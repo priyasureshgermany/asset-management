@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F5273">
+<title>Asset &amp; Liability Manager</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+<style>
+:root{
+  --bg:#F4F6F8; --card:#FFFFFF; --ink:#101828; --ink-soft:#5B6472; --line:#E3E8EE;
+  --brand:#0F5273; --brand-ink:#FFFFFF; --accent:#0E7C61; --danger:#B3261E; --warn:#9A6700;
+  --asset:#0E7C61; --liability:#B3261E; --invest:#7C4DFF; --goal:#0F5273;
+  --shadow:0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.08);
+  --radius:16px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1216; --card:#171C22; --ink:#EDEFF2; --ink-soft:#98A2B3; --line:#262D36;
+    --brand:#4FA9D6; --brand-ink:#06222E; --accent:#3FCF9E; --danger:#FF6B63; --warn:#E8B34A;
+    --asset:#3FCF9E; --liability:#FF6B63; --invest:#A78BFA; --goal:#4FA9D6;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1216; --card:#171C22; --ink:#EDEFF2; --ink-soft:#98A2B3; --line:#262D36;
+  --brand:#4FA9D6; --brand-ink:#06222E; --accent:#3FCF9E; --danger:#FF6B63; --warn:#E8B34A;
+  --asset:#3FCF9E; --liability:#FF6B63; --invest:#A78BFA; --goal:#4FA9D6;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+h1,h2,h3{margin:0 0 4px}
+.hidden{display:none!important}
+.app{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding-bottom:78px}
+header.top{position:sticky;top:0;z-index:5;background:var(--bg);padding:16px 16px 8px;display:flex;align-items:center;justify-content:space-between}
+header.top .brand{display:flex;align-items:center;gap:10px}
+header.top .brand img{width:32px;height:32px;border-radius:8px}
+header.top .brand span{font-weight:700;font-size:17px}
+.iconbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center}
+main{flex:1;padding:0 16px 16px}
+.panel{display:none}
+.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-bottom:12px}
+.card h3{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);font-weight:600}
+.networth{padding:20px 16px}
+.networth .figure{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:4px 0}
+.networth .sub{color:var(--ink-soft);font-size:13px}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.stat{border-radius:12px;padding:12px;background:var(--bg)}
+.stat .lbl{font-size:12px;color:var(--ink-soft)}
+.stat .val{font-size:19px;font-weight:700;margin-top:2px}
+.stat.asset .val{color:var(--asset)}
+.stat.liability .val{color:var(--liability)}
+.seg{display:flex;gap:6px;background:var(--bg);border-radius:12px;padding:4px;margin:14px 0}
+.seg button{flex:1;border:0;background:transparent;padding:8px;border-radius:9px;font-weight:600;color:var(--ink-soft)}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
+.list{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+.row .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto}
+.row .main{flex:1;min-width:0}
+.row .name{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .meta{font-size:12px;color:var(--ink-soft)}
+.row .amt{font-weight:700;white-space:nowrap}
+.row .amt.neg{color:var(--liability)}
+.row .amt.pos{color:var(--asset)}
+.empty{text-align:center;color:var(--ink-soft);padding:36px 12px}
+.empty .big{font-size:32px;margin-bottom:6px}
+.progress{height:8px;border-radius:99px;background:var(--bg);overflow:hidden;margin:8px 0}
+.progress > i{display:block;height:100%;background:var(--goal);border-radius:99px}
+.bar-row{display:flex;align-items:center;gap:10px;margin:8px 0}
+.bar-row .lbl{width:96px;font-size:12px;color:var(--ink-soft);flex:0 0 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-track{flex:1;height:10px;border-radius:99px;background:var(--bg);overflow:hidden}
+.bar-track > i{display:block;height:100%;border-radius:99px}
+.bar-row .pct{width:52px;text-align:right;font-size:12px;color:var(--ink-soft);flex:0 0 auto}
+nav.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+.app{position:relative}
+nav.tabbar{max-width:520px;margin:0 auto;position:fixed}
+nav.tabbar button{flex:1;background:transparent;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border-radius:12px;color:var(--ink-soft);font-size:11px;font-weight:600}
+nav.tabbar button.on{color:var(--brand)}
+nav.tabbar button svg{width:22px;height:22px}
+.fab{position:fixed;right:calc(50% - 260px + 20px);bottom:86px;z-index:11;width:56px;height:56px;border-radius:50%;background:var(--brand);color:var(--brand-ink);border:0;box-shadow:var(--shadow);font-size:28px;display:flex;align-items:center;justify-content:center}
+@media (max-width:560px){ .fab{right:20px} }
+.sheet-overlay{position:fixed;inset:0;background:rgba(10,14,18,.45);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.sheet-overlay.hidden{display:none}
+.sheet{background:var(--card);width:100%;max-width:520px;border-radius:20px 20px 0 0;max-height:88vh;overflow:auto;padding:16px 16px calc(24px + env(safe-area-inset-bottom))}
+.sheet .handle{width:36px;height:4px;background:var(--line);border-radius:99px;margin:0 auto 12px}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sheet-head h2{font-size:18px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12px;color:var(--ink-soft);margin-bottom:6px;font-weight:600}
+.field input,.field select,.field textarea{width:100%;padding:11px 12px;border-radius:11px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.field textarea{resize:vertical;min-height:60px}
+.field-row{display:flex;gap:10px}
+.field-row .field{flex:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:12px;border:0;font-weight:700;width:100%}
+.btn.primary{background:var(--brand);color:var(--brand-ink)}
+.btn.ghost{background:var(--bg);color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:transparent;color:var(--danger);border:1px solid var(--line)}
+.btn-row{display:flex;gap:10px;margin-top:16px}
+.btn-row .btn{flex:1}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.menu-tile{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 12px;text-align:left;display:flex;flex-direction:column;gap:8px}
+.menu-tile .ic{font-size:22px}
+.menu-tile .lbl{font-weight:700;font-size:14px}
+.menu-tile .sub{font-size:12px;color:var(--ink-soft)}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:13px 2px;border-bottom:1px solid var(--line);width:100%;background:transparent;border-left:0;border-right:0;border-top:0;text-align:left}
+.settings-row:last-child{border-bottom:0}
+.settings-row .t{font-weight:600}
+.settings-row .d{font-size:12px;color:var(--ink-soft);margin-top:2px}
+.settings-row .chev{color:var(--ink-soft)}
+.pill{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700}
+.pill.ok{background:color-mix(in srgb, var(--accent) 18%, transparent);color:var(--accent)}
+.pill.off{background:color-mix(in srgb, var(--ink-soft) 16%, transparent);color:var(--ink-soft)}
+.pill.err{background:color-mix(in srgb, var(--danger) 16%, transparent);color:var(--danger)}
+.status-line{font-size:12.5px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
+.calc-result{background:var(--bg);border-radius:12px;padding:14px;margin-top:14px}
+.calc-result .big{font-size:22px;font-weight:800}
+.calc-result .row2{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-soft);margin-top:6px}
+.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:99px;font-size:13px;z-index:40;box-shadow:var(--shadow)}
+.toast.hidden{display:none}
+.relgroup{margin-bottom:18px}
+.relgroup .ver{font-weight:800;font-size:14px;margin-bottom:6px}
+.relgroup .ver.current{color:var(--brand)}
+.relgroup ul{margin:0;padding-left:0;list-style:none}
+.relgroup li{display:flex;gap:8px;padding:5px 0;font-size:13.5px}
+.relgroup li .k{flex:0 0 auto}
+.tabs-inline{display:flex;gap:6px;background:var(--bg);border-radius:12px;padding:4px;margin-bottom:14px}
+.tabs-inline button{flex:1;border:0;background:transparent;padding:9px;border-radius:9px;font-weight:700;color:var(--ink-soft);font-size:13px}
+.tabs-inline button.on{background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
+.back-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.back-row button{background:transparent;border:0;font-size:20px;color:var(--ink);padding:4px}
+.back-row h2{font-size:18px}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="top">
+    <div class="brand">
+      <img src="icons/icon-192.png" alt="">
+      <span>Asset Manager</span>
+    </div>
+    <button class="iconbtn" id="btnTheme" title="Theme">🌓</button>
+  </header>
+
+  <main>
+
+    <!-- DASHBOARD -->
+    <section class="panel active" id="panel-dash">
+      <div class="card networth">
+        <div class="sub">Net worth</div>
+        <div class="figure" id="nwFigure">€0</div>
+        <div class="sub" id="nwAsOf">as of today</div>
+        <div class="stat-row">
+          <div class="stat asset"><div class="lbl">Total assets</div><div class="val" id="statAssets">€0</div></div>
+          <div class="stat liability"><div class="lbl">Total liabilities</div><div class="val" id="statLiabilities">€0</div></div>
+        </div>
+      </div>
+
+      <div class="seg">
+        <button class="on" data-dashtab="assets">Assets</button>
+        <button data-dashtab="liabilities">Liabilities</button>
+      </div>
+
+      <div class="list" id="dashList"></div>
+    </section>
+
+    <!-- GOALS -->
+    <section class="panel" id="panel-goal">
+      <div class="card">
+        <h3>Goals</h3>
+        <div class="sub" style="color:var(--ink-soft);font-size:13px">What you're saving toward</div>
+      </div>
+      <div class="list" id="goalList"></div>
+    </section>
+
+    <!-- INVESTMENTS -->
+    <section class="panel" id="panel-invest">
+      <div class="card">
+        <h3>Investments</h3>
+        <div class="sub" style="color:var(--ink-soft);font-size:13px" id="investSummary">Invested vs current value</div>
+      </div>
+      <div class="list" id="investList"></div>
+    </section>
+
+    <!-- MORE (menu, shown as a panel) -->
+    <section class="panel" id="panel-more">
+      <div class="card">
+        <h3>More</h3>
+        <div class="menu-grid">
+          <button class="menu-tile" id="tileSettings"><span class="ic">⚙️</span><span class="lbl">Settings</span><span class="sub">Sync, backup, calculator</span></button>
+          <button class="menu-tile" id="tileReports"><span class="ic">📊</span><span class="lbl">Reports</span><span class="sub">Breakdowns &amp; trends</span></button>
+          <button class="menu-tile" id="tileWhatsNew"><span class="ic">✨</span><span class="lbl">What's new</span><span class="sub">Release notes</span></button>
+          <button class="menu-tile" id="tileAbout"><span class="ic">ℹ️</span><span class="lbl">About</span><span class="sub" id="aboutVerSub">Version</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="panel" id="panel-settings">
+      <div class="back-row"><button id="backFromSettings">←</button><h2>Settings</h2></div>
+
+      <div class="card">
+        <h3>Profile</h3>
+        <div class="field"><label>Your name</label><input id="profName" placeholder="Your name"></div>
+        <div class="field"><label>Currency</label>
+          <select id="profCurrency">
+            <option value="EUR">€ Euro</option>
+            <option value="USD">$ US Dollar</option>
+            <option value="INR">₹ Indian Rupee</option>
+            <option value="GBP">£ British Pound</option>
+          </select>
+        </div>
+        <button class="btn primary" id="saveProfile">Save</button>
+      </div>
+
+      <div class="card" style="padding:0">
+        <button class="settings-row" id="rowGithub" style="padding:16px">
+          <div><div class="t">GitHub sync</div><div class="d" id="ghStatusLine">Off</div></div>
+          <span class="chev">›</span>
+        </button>
+        <button class="settings-row" id="rowBackup" style="padding:16px">
+          <div><div class="t">Backup &amp; restore</div><div class="d">Copy or restore your data</div></div>
+          <span class="chev">›</span>
+        </button>
+        <button class="settings-row" id="rowCalculator" style="padding:16px">
+          <div><div class="t">Calculator</div><div class="d">SIP &amp; loan (EMI) calculators</div></div>
+          <span class="chev">›</span>
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>Danger zone</h3>
+        <button class="btn danger" id="wipeAll">Delete all data</button>
+      </div>
+    </section>
+
+    <!-- GITHUB SYNC -->
+    <section class="panel" id="panel-github">
+      <div class="back-row"><button id="backFromGithub">←</button><h2>GitHub sync</h2></div>
+      <div class="card">
+        <div class="field"><label>Personal access token</label>
+          <div style="display:flex;gap:8px">
+            <input id="ghToken" type="password" placeholder="ghp_...">
+            <button class="iconbtn" id="ghTokenEye">👁</button>
+          </div>
+        </div>
+        <div class="field"><label>Repository (owner/repo)</label><input id="ghRepo" placeholder="priyasureshgermany/asset-management"></div>
+        <div class="field"><label>Branch</label><input id="ghBranch" placeholder="main"></div>
+        <div class="field"><label>File path</label><input id="ghPath" placeholder="data/asset-management-backup.json"></div>
+        <button class="btn primary" id="ghSave">Save &amp; enable</button>
+        <div class="status-line" id="ghDetailStatus">Not connected.</div>
+      </div>
+      <div class="card">
+        <h3>Sync</h3>
+        <div class="btn-row">
+          <button class="btn ghost" id="ghPull">Pull now</button>
+          <button class="btn ghost" id="ghPush">Push now</button>
+        </div>
+        <div class="status-line">Sync is manual only — nothing is pushed or pulled automatically.</div>
+      </div>
+      <div class="card">
+        <button class="btn danger" id="ghDisable">Disable sync</button>
+      </div>
+    </section>
+
+    <!-- BACKUP & RESTORE -->
+    <section class="panel" id="panel-backup">
+      <div class="back-row"><button id="backFromBackup">←</button><h2>Backup &amp; restore</h2></div>
+      <div class="card">
+        <h3>Back up</h3>
+        <p class="status-line" style="margin-top:0">Copies your entire data (assets, liabilities, goals, investments) to the clipboard as text. Paste it somewhere safe.</p>
+        <button class="btn primary" id="copyBackup">Copy backup to clipboard</button>
+      </div>
+      <div class="card">
+        <h3>Restore</h3>
+        <p class="status-line" style="margin-top:0">Paste a previously copied backup below, then restore. This replaces all current data.</p>
+        <div class="field"><textarea id="restoreBox" placeholder="Paste backup JSON here"></textarea></div>
+        <button class="btn ghost" id="doRestore">Restore from pasted backup</button>
+      </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section class="panel" id="panel-calc">
+      <div class="back-row"><button id="backFromCalc">←</button><h2>Calculator</h2></div>
+      <div class="tabs-inline">
+        <button class="on" data-calctab="sip">SIP</button>
+        <button data-calctab="loan">Loan (EMI)</button>
+      </div>
+
+      <div id="calcSip">
+        <div class="card">
+          <div class="field"><label>Monthly investment</label><input id="sipAmt" type="number" inputmode="decimal" placeholder="5000"></div>
+          <div class="field-row">
+            <div class="field"><label>Expected annual return %</label><input id="sipRate" type="number" inputmode="decimal" placeholder="12"></div>
+            <div class="field"><label>Duration (years)</label><input id="sipYears" type="number" inputmode="decimal" placeholder="10"></div>
+          </div>
+          <button class="btn primary" id="sipCalc">Calculate</button>
+          <div class="calc-result hidden" id="sipResult">
+            <div class="big" id="sipFuture">—</div>
+            <div class="row2"><span>Invested</span><span id="sipInvested">—</span></div>
+            <div class="row2"><span>Est. returns</span><span id="sipReturns">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="calcLoan" class="hidden">
+        <div class="card">
+          <div class="field"><label>Loan amount</label><input id="loanAmt" type="number" inputmode="decimal" placeholder="2000000"></div>
+          <div class="field-row">
+            <div class="field"><label>Interest rate % (annual)</label><input id="loanRate" type="number" inputmode="decimal" placeholder="8.5"></div>
+            <div class="field"><label>Tenure (years)</label><input id="loanYears" type="number" inputmode="decimal" placeholder="20"></div>
+          </div>
+          <button class="btn primary" id="loanCalc">Calculate</button>
+          <div class="calc-result hidden" id="loanResult">
+            <div class="big" id="loanEmi">—</div>
+            <div class="row2"><span>Total interest</span><span id="loanInterest">—</span></div>
+            <div class="row2"><span>Total payment</span><span id="loanTotal">—</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPORTS -->
+    <section class="panel" id="panel-reports">
+      <div class="back-row"><button id="backFromReports">←</button><h2>Reports</h2></div>
+      <div class="card">
+        <h3>Assets by category</h3>
+        <div id="repAssets"></div>
+      </div>
+      <div class="card">
+        <h3>Liabilities by category</h3>
+        <div id="repLiabilities"></div>
+      </div>
+      <div class="card">
+        <h3>Investments — invested vs current</h3>
+        <div id="repInvest"></div>
+      </div>
+      <div class="card">
+        <h3>Goal progress</h3>
+        <div id="repGoals"></div>
+      </div>
+    </section>
+
+    <!-- WHAT'S NEW -->
+    <section class="panel" id="panel-whatsnew">
+      <div class="back-row"><button id="backFromWhatsnew">←</button><h2>What's new</h2></div>
+      <div class="card" id="releasesBox">Loading…</div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="panel" id="panel-about">
+      <div class="back-row"><button id="backFromAbout">←</button><h2>About</h2></div>
+      <div class="card">
+        <div class="status-line" id="aboutBody"></div>
+        <button class="btn ghost" id="btnUpdate" style="margin-top:14px">Check for update</button>
+      </div>
+    </section>
+
+  </main>
+
+  <button class="fab" id="fab">+</button>
+
+  <nav class="tabbar">
+    <button class="on" data-tab="dash">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+      Dashboard
+    </button>
+    <button data-tab="goal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+      Goal
+    </button>
+    <button data-tab="invest">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+      Investment
+    </button>
+    <button data-tab="more">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+      More
+    </button>
+  </nav>
+</div>
+
+<!-- ADD/EDIT ASSET SHEET -->
+<div class="sheet-overlay hidden" id="ovAsset">
+  <div class="sheet">
+    <div class="handle"></div>
+    <div class="sheet-head"><h2 id="assetSheetTitle">Add asset</h2><button class="iconbtn" data-close>✕</button></div>
+    <input type="hidden" id="assetId">
+    <div class="field"><label>Name</label><input id="assetName" placeholder="e.g. Savings account"></div>
+    <div class="field"><label>Category</label>
+      <select id="assetCategory">
+        <option>Cash</option><option>Bank account</option><option>Fixed deposit</option>
+        <option>Property</option><option>Gold / jewellery</option><option>Vehicle</option><option>Other</option>
+      </select>
+    </div>
+    <div class="field"><label>Current value</label><input id="assetValue" type="number" inputmode="decimal" placeholder="0"></div>
+    <div class="field"><label>Notes (optional)</label><textarea id="assetNotes"></textarea></div>
+    <div class="btn-row">
+      <button class="btn danger hidden" id="assetDelete">Delete</button>
+      <button class="btn primary" id="assetSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD/EDIT LIABILITY SHEET -->
+<div class="sheet-overlay hidden" id="ovLiability">
+  <div class="sheet">
+    <div class="handle"></div>
+    <div class="sheet-head"><h2 id="liabSheetTitle">Add liability</h2><button class="iconbtn" data-close>✕</button></div>
+    <input type="hidden" id="liabId">
+    <div class="field"><label>Name</label><input id="liabName" placeholder="e.g. Home loan"></div>
+    <div class="field"><label>Category</label>
+      <select id="liabCategory">
+        <option>Home loan</option><option>Car loan</option><option>Personal loan</option>
+        <option>Credit card</option><option>Other</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Outstanding amount</label><input id="liabAmount" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="field"><label>Interest rate % (optional)</label><input id="liabRate" type="number" inputmode="decimal" placeholder="0"></div>
+    </div>
+    <div class="field"><label>Notes (optional)</label><textarea id="liabNotes"></textarea></div>
+    <div class="btn-row">
+      <button class="btn danger hidden" id="liabDelete">Delete</button>
+      <button class="btn primary" id="liabSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD/EDIT GOAL SHEET -->
+<div class="sheet-overlay hidden" id="ovGoal">
+  <div class="sheet">
+    <div class="handle"></div>
+    <div class="sheet-head"><h2 id="goalSheetTitle">Add goal</h2><button class="iconbtn" data-close>✕</button></div>
+    <input type="hidden" id="goalId">
+    <div class="field"><label>Goal name</label><input id="goalName" placeholder="e.g. Retirement"></div>
+    <div class="field-row">
+      <div class="field"><label>Target amount</label><input id="goalTarget" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="field"><label>Saved so far</label><input id="goalCurrent" type="number" inputmode="decimal" placeholder="0"></div>
+    </div>
+    <div class="field"><label>Target date (optional)</label><input id="goalDate" type="date"></div>
+    <div class="field"><label>Notes (optional)</label><textarea id="goalNotes"></textarea></div>
+    <div class="btn-row">
+      <button class="btn danger hidden" id="goalDelete">Delete</button>
+      <button class="btn primary" id="goalSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD/EDIT INVESTMENT SHEET -->
+<div class="sheet-overlay hidden" id="ovInvest">
+  <div class="sheet">
+    <div class="handle"></div>
+    <div class="sheet-head"><h2 id="investSheetTitle">Add investment</h2><button class="iconbtn" data-close>✕</button></div>
+    <input type="hidden" id="investId">
+    <div class="field"><label>Name</label><input id="investName" placeholder="e.g. Nifty Index Fund"></div>
+    <div class="field"><label>Type</label>
+      <select id="investType">
+        <option>SIP / Mutual fund</option><option>Stocks</option><option>Fixed deposit</option>
+        <option>PPF / EPF</option><option>Bonds</option><option>Other</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Invested amount</label><input id="investInvested" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="field"><label>Current value</label><input id="investCurrent" type="number" inputmode="decimal" placeholder="0"></div>
+    </div>
+    <div class="field"><label>Monthly SIP amount (optional)</label><input id="investSip" type="number" inputmode="decimal" placeholder="0"></div>
+    <div class="field"><label>Notes (optional)</label><textarea id="investNotes"></textarea></div>
+    <div class="btn-row">
+      <button class="btn danger hidden" id="investDelete">Delete</button>
+      <button class="btn primary" id="investSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK ADD PICKER (Dashboard FAB) -->
+<div class="sheet-overlay hidden" id="ovQuickAdd">
+  <div class="sheet">
+    <div class="handle"></div>
+    <div class="sheet-head"><h2>Add</h2><button class="iconbtn" data-close>✕</button></div>
+    <div class="btn-row" style="flex-direction:column">
+      <button class="btn primary" id="qaAsset">Add asset</button>
+      <button class="btn ghost" id="qaLiability">Add liability</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast hidden" id="toast"></div>
+
+<script>
+const APP_VERSION = "1.0.0";
+const APP_BUILT = "2026-09-06";
+const KEY = "assetmgr.v1";
+const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
+
+/* ---------- state ---------- */
+
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+
+function defaultState(){
+  return { v:1, assets:[], liabilities:[], goals:[], investments:[], profile:{ name:"", currency:"EUR" } };
+}
+
+/* Single point every loader/importer routes through, so a field added here is
+   read back everywhere by construction — never reconstruct state ad hoc elsewhere. */
+function stateFromPayload(p){
+  p = p && typeof p === "object" ? p : {};
+  const norm = (arr) => Array.isArray(arr) ? arr : [];
+  return {
+    v: 1,
+    assets: norm(p.assets).map(a => ({
+      id: a.id || uid(), name: String(a.name||""), category: String(a.category||"Other"),
+      value: Number(a.value)||0, notes: String(a.notes||""), updatedAt: a.updatedAt || new Date().toISOString()
+    })),
+    liabilities: norm(p.liabilities).map(l => ({
+      id: l.id || uid(), name: String(l.name||""), category: String(l.category||"Other"),
+      amount: Number(l.amount)||0, interestRate: Number(l.interestRate)||0, notes: String(l.notes||""),
+      updatedAt: l.updatedAt || new Date().toISOString()
+    })),
+    goals: norm(p.goals).map(g => ({
+      id: g.id || uid(), name: String(g.name||""), targetAmount: Number(g.targetAmount)||0,
+      currentAmount: Number(g.currentAmount)||0, targetDate: g.targetDate || "", notes: String(g.notes||""),
+      updatedAt: g.updatedAt || new Date().toISOString()
+    })),
+    investments: norm(p.investments).map(i => ({
+      id: i.id || uid(), name: String(i.name||""), type: String(i.type||"Other"),
+      investedAmount: Number(i.investedAmount)||0, currentValue: Number(i.currentValue)||0,
+      sipAmount: Number(i.sipAmount)||0, notes: String(i.notes||""), updatedAt: i.updatedAt || new Date().toISOString()
+    })),
+    profile: {
+      name: String((p.profile && p.profile.name) || ""),
+      currency: String((p.profile && p.profile.currency) || "EUR")
+    }
+  };
+}
+
+function stateCleared(){ return defaultState(); }
+
+let state = load();
+
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if (!raw) return defaultState();
+    return stateFromPayload(JSON.parse(raw));
+  }catch(e){ return defaultState(); }
+}
+
+function save(){
+  localStorage.setItem(KEY, JSON.stringify(state));
+}
+
+/* ---------- formatting ---------- */
+
+const CUR_SYMBOL = { EUR:"€", USD:"$", INR:"₹", GBP:"£" };
+function curSym(){ return CUR_SYMBOL[state.profile.currency] || "€"; }
+function fmt(n){
+  n = Number(n)||0;
+  return curSym() + n.toLocaleString(undefined, { maximumFractionDigits:0 });
+}
+
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.remove("hidden");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(()=>t.classList.add("hidden"), 2400);
+}
+
+/* ---------- navigation ---------- */
+
+const TABS = ["dash","goal","invest","more"];
+const SUBPANELS = ["settings","github","backup","calc","reports","whatsnew","about"];
+
+function showTab(tab){
+  TABS.forEach(t => {
+    document.getElementById("panel-"+t).classList.toggle("active", t===tab);
+  });
+  document.querySelectorAll("nav.tabbar button").forEach(b => b.classList.toggle("on", b.dataset.tab===tab));
+  SUBPANELS.forEach(p => document.getElementById("panel-"+p).classList.remove("active"));
+  document.getElementById("fab").classList.toggle("hidden", !(tab==="dash"||tab==="goal"||tab==="invest"));
+  currentTab = tab;
+  render();
+}
+
+function showSub(panel){
+  TABS.forEach(t => document.getElementById("panel-"+t).classList.remove("active"));
+  SUBPANELS.forEach(p => document.getElementById("panel-"+p).classList.toggle("active", p===panel));
+  document.getElementById("fab").classList.add("hidden");
+  if (panel==="reports") renderReports();
+  if (panel==="whatsnew") loadReleases();
+  if (panel==="about") renderAbout();
+  if (panel==="settings") renderSettings();
+  if (panel==="github") renderGithubPanel();
+}
+
+document.querySelectorAll("nav.tabbar button").forEach(b=>{
+  b.addEventListener("click", ()=> showTab(b.dataset.tab));
+});
+
+let currentTab = "dash";
+let dashTab = "assets";
+
+document.getElementById("tileSettings").onclick = ()=> showSub("settings");
+document.getElementById("tileReports").onclick = ()=> showSub("reports");
+document.getElementById("tileWhatsNew").onclick = ()=> showSub("whatsnew");
+document.getElementById("tileAbout").onclick = ()=> showSub("about");
+document.getElementById("backFromSettings").onclick = ()=> showTab("more");
+document.getElementById("backFromGithub").onclick = ()=> showSub("settings");
+document.getElementById("backFromBackup").onclick = ()=> showSub("settings");
+document.getElementById("backFromCalc").onclick = ()=> showSub("settings");
+document.getElementById("backFromReports").onclick = ()=> showTab("more");
+document.getElementById("backFromWhatsnew").onclick = ()=> showTab("more");
+document.getElementById("backFromAbout").onclick = ()=> showTab("more");
+document.getElementById("rowGithub").onclick = ()=> showSub("github");
+document.getElementById("rowBackup").onclick = ()=> showSub("backup");
+document.getElementById("rowCalculator").onclick = ()=> showSub("calc");
+
+document.querySelectorAll("[data-dashtab]").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    dashTab = b.dataset.dashtab;
+    document.querySelectorAll("[data-dashtab]").forEach(x=>x.classList.toggle("on", x===b));
+    renderDash();
+  });
+});
+
+document.querySelectorAll("[data-calctab]").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    document.querySelectorAll("[data-calctab]").forEach(x=>x.classList.toggle("on", x===b));
+    document.getElementById("calcSip").classList.toggle("hidden", b.dataset.calctab!=="sip");
+    document.getElementById("calcLoan").classList.toggle("hidden", b.dataset.calctab!=="loan");
+  });
+});
+
+/* ---------- sheets ---------- */
+
+function openSheet(id){ document.getElementById(id).classList.remove("hidden"); }
+function closeSheet(id){ document.getElementById(id).classList.add("hidden"); }
+document.querySelectorAll("[data-close]").forEach(b=>{
+  b.addEventListener("click", ()=> b.closest(".sheet-overlay").classList.add("hidden"));
+});
+
+document.getElementById("fab").onclick = ()=>{
+  if (currentTab==="dash") openSheet("ovQuickAdd");
+  else if (currentTab==="goal") openGoalSheet(null);
+  else if (currentTab==="invest") openInvestSheet(null);
+};
+document.getElementById("qaAsset").onclick = ()=>{ closeSheet("ovQuickAdd"); openAssetSheet(null); };
+document.getElementById("qaLiability").onclick = ()=>{ closeSheet("ovQuickAdd"); openLiabSheet(null); };
+
+/* ---------- render: dashboard ---------- */
+
+function totals(){
+  const assets = state.assets.reduce((s,a)=>s+a.value,0) + state.investments.reduce((s,i)=>s+i.currentValue,0);
+  const liabilities = state.liabilities.reduce((s,l)=>s+l.amount,0);
+  return { assets, liabilities, net: assets - liabilities };
+}
+
+function render(){
+  renderNetWorth();
+  if (currentTab==="dash") renderDash();
+  if (currentTab==="goal") renderGoals();
+  if (currentTab==="invest") renderInvest();
+}
+
+function renderNetWorth(){
+  const t = totals();
+  document.getElementById("nwFigure").textContent = fmt(t.net);
+  document.getElementById("statAssets").textContent = fmt(t.assets);
+  document.getElementById("statLiabilities").textContent = fmt(t.liabilities);
+  document.getElementById("nwAsOf").textContent = "as of " + new Date().toLocaleDateString();
+}
+
+function renderDash(){
+  const list = document.getElementById("dashList");
+  list.innerHTML = "";
+  if (dashTab==="assets"){
+    if (!state.assets.length){
+      list.innerHTML = '<div class="empty"><div class="big">🏦</div>No assets yet.<br>Tap + to add your first one.</div>';
+      return;
+    }
+    state.assets.slice().sort((a,b)=>b.value-a.value).forEach(a=>{
+      const row = document.createElement("div");
+      row.className = "row";
+      row.innerHTML = `<span class="dot" style="background:var(--asset)"></span>
+        <div class="main"><div class="name">${esc(a.name||a.category)}</div><div class="meta">${esc(a.category)}</div></div>
+        <div class="amt pos">${fmt(a.value)}</div>`;
+      row.addEventListener("click", ()=> openAssetSheet(a.id));
+      list.appendChild(row);
+    });
+  } else {
+    if (!state.liabilities.length){
+      list.innerHTML = '<div class="empty"><div class="big">📄</div>No liabilities yet.<br>Tap + to add one.</div>';
+      return;
+    }
+    state.liabilities.slice().sort((a,b)=>b.amount-a.amount).forEach(l=>{
+      const row = document.createElement("div");
+      row.className = "row";
+      row.innerHTML = `<span class="dot" style="background:var(--liability)"></span>
+        <div class="main"><div class="name">${esc(l.name||l.category)}</div><div class="meta">${esc(l.category)}${l.interestRate?" · "+l.interestRate+"%":""}</div></div>
+        <div class="amt neg">${fmt(l.amount)}</div>`;
+      row.addEventListener("click", ()=> openLiabSheet(l.id));
+      list.appendChild(row);
+    });
+  }
+}
+
+function esc(s){ return String(s??"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+/* ---------- render: goals ---------- */
+
+function renderGoals(){
+  const list = document.getElementById("goalList");
+  list.innerHTML = "";
+  if (!state.goals.length){
+    list.innerHTML = '<div class="empty"><div class="big">🎯</div>No goals yet.<br>Tap + to set one.</div>';
+    return;
+  }
+  state.goals.forEach(g=>{
+    const pct = g.targetAmount>0 ? Math.min(100, Math.round(g.currentAmount/g.targetAmount*100)) : 0;
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div style="font-weight:700">${esc(g.name)}</div>
+        <div style="font-size:12px;color:var(--ink-soft)">${pct}%</div>
+      </div>
+      <div class="progress"><i style="width:${pct}%;background:var(--goal)"></i></div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--ink-soft)">
+        <span>${fmt(g.currentAmount)} saved</span><span>of ${fmt(g.targetAmount)}</span>
+      </div>
+      ${g.targetDate ? `<div style="font-size:12px;color:var(--ink-soft);margin-top:4px">Target: ${g.targetDate}</div>` : ""}
+    `;
+    card.addEventListener("click", ()=> openGoalSheet(g.id));
+    list.appendChild(card);
+  });
+}
+
+/* ---------- render: investments ---------- */
+
+function renderInvest(){
+  const list = document.getElementById("investList");
+  list.innerHTML = "";
+  const invested = state.investments.reduce((s,i)=>s+i.investedAmount,0);
+  const current = state.investments.reduce((s,i)=>s+i.currentValue,0);
+  const gain = current - invested;
+  document.getElementById("investSummary").textContent =
+    state.investments.length ? `Invested ${fmt(invested)} · Now ${fmt(current)} · ${gain>=0?"+":""}${fmt(gain)}` : "Invested vs current value";
+  if (!state.investments.length){
+    list.innerHTML = '<div class="empty"><div class="big">📈</div>No investments yet.<br>Tap + to add one.</div>';
+    return;
+  }
+  state.investments.forEach(i=>{
+    const g = i.currentValue - i.investedAmount;
+    const row = document.createElement("div");
+    row.className = "row";
+    row.innerHTML = `<span class="dot" style="background:var(--invest)"></span>
+      <div class="main"><div class="name">${esc(i.name)}</div><div class="meta">${esc(i.type)}${i.sipAmount?" · SIP "+fmt(i.sipAmount)+"/mo":""}</div></div>
+      <div style="text-align:right">
+        <div class="amt">${fmt(i.currentValue)}</div>
+        <div class="meta" style="color:${g>=0?"var(--asset)":"var(--liability)"}">${g>=0?"+":""}${fmt(g)}</div>
+      </div>`;
+    row.addEventListener("click", ()=> openInvestSheet(i.id));
+    list.appendChild(row);
+  });
+}
+
+/* ---------- asset sheet ---------- */
+
+function openAssetSheet(id){
+  const a = id ? state.assets.find(x=>x.id===id) : null;
+  document.getElementById("assetSheetTitle").textContent = a ? "Edit asset" : "Add asset";
+  document.getElementById("assetId").value = a ? a.id : "";
+  document.getElementById("assetName").value = a ? a.name : "";
+  document.getElementById("assetCategory").value = a ? a.category : "Cash";
+  document.getElementById("assetValue").value = a ? a.value : "";
+  document.getElementById("assetNotes").value = a ? a.notes : "";
+  document.getElementById("assetDelete").classList.toggle("hidden", !a);
+  openSheet("ovAsset");
+}
+document.getElementById("assetSave").onclick = ()=>{
+  const id = document.getElementById("assetId").value || uid();
+  const rec = {
+    id, name: document.getElementById("assetName").value.trim(),
+    category: document.getElementById("assetCategory").value,
+    value: Number(document.getElementById("assetValue").value)||0,
+    notes: document.getElementById("assetNotes").value.trim(),
+    updatedAt: new Date().toISOString()
+  };
+  if (!rec.name){ toast("Give it a name"); return; }
+  const idx = state.assets.findIndex(x=>x.id===id);
+  if (idx>=0) state.assets[idx] = rec; else state.assets.push(rec);
+  save(); closeSheet("ovAsset"); render();
+};
+document.getElementById("assetDelete").onclick = ()=>{
+  const id = document.getElementById("assetId").value;
+  state.assets = state.assets.filter(x=>x.id!==id);
+  save(); closeSheet("ovAsset"); render();
+};
+
+/* ---------- liability sheet ---------- */
+
+function openLiabSheet(id){
+  const l = id ? state.liabilities.find(x=>x.id===id) : null;
+  document.getElementById("liabSheetTitle").textContent = l ? "Edit liability" : "Add liability";
+  document.getElementById("liabId").value = l ? l.id : "";
+  document.getElementById("liabName").value = l ? l.name : "";
+  document.getElementById("liabCategory").value = l ? l.category : "Home loan";
+  document.getElementById("liabAmount").value = l ? l.amount : "";
+  document.getElementById("liabRate").value = l ? l.interestRate : "";
+  document.getElementById("liabNotes").value = l ? l.notes : "";
+  document.getElementById("liabDelete").classList.toggle("hidden", !l);
+  openSheet("ovLiability");
+}
+document.getElementById("liabSave").onclick = ()=>{
+  const id = document.getElementById("liabId").value || uid();
+  const rec = {
+    id, name: document.getElementById("liabName").value.trim(),
+    category: document.getElementById("liabCategory").value,
+    amount: Number(document.getElementById("liabAmount").value)||0,
+    interestRate: Number(document.getElementById("liabRate").value)||0,
+    notes: document.getElementById("liabNotes").value.trim(),
+    updatedAt: new Date().toISOString()
+  };
+  if (!rec.name){ toast("Give it a name"); return; }
+  const idx = state.liabilities.findIndex(x=>x.id===id);
+  if (idx>=0) state.liabilities[idx] = rec; else state.liabilities.push(rec);
+  save(); closeSheet("ovLiability"); render();
+};
+document.getElementById("liabDelete").onclick = ()=>{
+  const id = document.getElementById("liabId").value;
+  state.liabilities = state.liabilities.filter(x=>x.id!==id);
+  save(); closeSheet("ovLiability"); render();
+};
+
+/* ---------- goal sheet ---------- */
+
+function openGoalSheet(id){
+  const g = id ? state.goals.find(x=>x.id===id) : null;
+  document.getElementById("goalSheetTitle").textContent = g ? "Edit goal" : "Add goal";
+  document.getElementById("goalId").value = g ? g.id : "";
+  document.getElementById("goalName").value = g ? g.name : "";
+  document.getElementById("goalTarget").value = g ? g.targetAmount : "";
+  document.getElementById("goalCurrent").value = g ? g.currentAmount : "";
+  document.getElementById("goalDate").value = g ? g.targetDate : "";
+  document.getElementById("goalNotes").value = g ? g.notes : "";
+  document.getElementById("goalDelete").classList.toggle("hidden", !g);
+  openSheet("ovGoal");
+}
+document.getElementById("goalSave").onclick = ()=>{
+  const id = document.getElementById("goalId").value || uid();
+  const rec = {
+    id, name: document.getElementById("goalName").value.trim(),
+    targetAmount: Number(document.getElementById("goalTarget").value)||0,
+    currentAmount: Number(document.getElementById("goalCurrent").value)||0,
+    targetDate: document.getElementById("goalDate").value,
+    notes: document.getElementById("goalNotes").value.trim(),
+    updatedAt: new Date().toISOString()
+  };
+  if (!rec.name){ toast("Give it a name"); return; }
+  const idx = state.goals.findIndex(x=>x.id===id);
+  if (idx>=0) state.goals[idx] = rec; else state.goals.push(rec);
+  save(); closeSheet("ovGoal"); render();
+};
+document.getElementById("goalDelete").onclick = ()=>{
+  const id = document.getElementById("goalId").value;
+  state.goals = state.goals.filter(x=>x.id!==id);
+  save(); closeSheet("ovGoal"); render();
+};
+
+/* ---------- investment sheet ---------- */
+
+function openInvestSheet(id){
+  const i = id ? state.investments.find(x=>x.id===id) : null;
+  document.getElementById("investSheetTitle").textContent = i ? "Edit investment" : "Add investment";
+  document.getElementById("investId").value = i ? i.id : "";
+  document.getElementById("investName").value = i ? i.name : "";
+  document.getElementById("investType").value = i ? i.type : "SIP / Mutual fund";
+  document.getElementById("investInvested").value = i ? i.investedAmount : "";
+  document.getElementById("investCurrent").value = i ? i.currentValue : "";
+  document.getElementById("investSip").value = i ? i.sipAmount : "";
+  document.getElementById("investNotes").value = i ? i.notes : "";
+  document.getElementById("investDelete").classList.toggle("hidden", !i);
+  openSheet("ovInvest");
+}
+document.getElementById("investSave").onclick = ()=>{
+  const id = document.getElementById("investId").value || uid();
+  const rec = {
+    id, name: document.getElementById("investName").value.trim(),
+    type: document.getElementById("investType").value,
+    investedAmount: Number(document.getElementById("investInvested").value)||0,
+    currentValue: Number(document.getElementById("investCurrent").value)||0,
+    sipAmount: Number(document.getElementById("investSip").value)||0,
+    notes: document.getElementById("investNotes").value.trim(),
+    updatedAt: new Date().toISOString()
+  };
+  if (!rec.name){ toast("Give it a name"); return; }
+  const idx = state.investments.findIndex(x=>x.id===id);
+  if (idx>=0) state.investments[idx] = rec; else state.investments.push(rec);
+  save(); closeSheet("ovInvest"); render();
+};
+document.getElementById("investDelete").onclick = ()=>{
+  const id = document.getElementById("investId").value;
+  state.investments = state.investments.filter(x=>x.id!==id);
+  save(); closeSheet("ovInvest"); render();
+};
+
+/* ---------- settings: profile ---------- */
+
+function renderSettings(){
+  document.getElementById("profName").value = state.profile.name;
+  document.getElementById("profCurrency").value = state.profile.currency;
+  document.getElementById("ghStatusLine").textContent = ghStatusText();
+}
+document.getElementById("saveProfile").onclick = ()=>{
+  state.profile.name = document.getElementById("profName").value.trim();
+  state.profile.currency = document.getElementById("profCurrency").value;
+  save(); render(); toast("Saved");
+};
+document.getElementById("wipeAll").onclick = ()=>{
+  if (!confirm("Delete all assets, liabilities, goals and investments? This cannot be undone here — make sure you have a backup.")) return;
+  state = stateCleared();
+  save(); render(); toast("All data deleted");
+};
+
+/* ---------- reports ---------- */
+
+function bar(container, rows, colorVar){
+  container.innerHTML = "";
+  if (!rows.length){ container.innerHTML = '<div class="empty" style="padding:16px">Nothing to show yet.</div>'; return; }
+  const max = Math.max(...rows.map(r=>r.value), 1);
+  rows.forEach(r=>{
+    const div = document.createElement("div");
+    div.className = "bar-row";
+    const pct = Math.round(r.value/max*100);
+    div.innerHTML = `<div class="lbl">${esc(r.label)}</div>
+      <div class="bar-track"><i style="width:${pct}%;background:var(${colorVar})"></i></div>
+      <div class="pct">${fmt(r.value)}</div>`;
+    container.appendChild(div);
+  });
+}
+
+function groupSum(arr, keyFn, valFn){
+  const m = new Map();
+  arr.forEach(x=>{ const k = keyFn(x); m.set(k, (m.get(k)||0) + valFn(x)); });
+  return [...m.entries()].map(([label,value])=>({label,value})).sort((a,b)=>b.value-a.value);
+}
+
+function renderReports(){
+  bar(document.getElementById("repAssets"), groupSum(state.assets, a=>a.category, a=>a.value), "--asset");
+  bar(document.getElementById("repLiabilities"), groupSum(state.liabilities, l=>l.category, l=>l.amount), "--liability");
+  bar(document.getElementById("repInvest"),
+    [{label:"Invested", value: state.investments.reduce((s,i)=>s+i.investedAmount,0)},
+     {label:"Current value", value: state.investments.reduce((s,i)=>s+i.currentValue,0)}],
+    "--invest");
+  const goalRows = state.goals.map(g=>({label:g.name, value: g.targetAmount>0 ? Math.round(g.currentAmount/g.targetAmount*100) : 0}));
+  const gc = document.getElementById("repGoals");
+  gc.innerHTML = "";
+  if (!goalRows.length){ gc.innerHTML = '<div class="empty" style="padding:16px">No goals yet.</div>'; }
+  goalRows.forEach(r=>{
+    const div = document.createElement("div");
+    div.className = "bar-row";
+    div.innerHTML = `<div class="lbl">${esc(r.label)}</div>
+      <div class="bar-track"><i style="width:${r.value}%;background:var(--goal)"></i></div>
+      <div class="pct">${r.value}%</div>`;
+    gc.appendChild(div);
+  });
+}
+
+/* ---------- calculators ---------- */
+
+document.getElementById("sipCalc").onclick = ()=>{
+  const P = Number(document.getElementById("sipAmt").value)||0;
+  const annual = Number(document.getElementById("sipRate").value)||0;
+  const years = Number(document.getElementById("sipYears").value)||0;
+  const r = annual/12/100;
+  const n = Math.round(years*12);
+  const future = r>0 ? P * ((Math.pow(1+r,n)-1)/r) * (1+r) : P*n;
+  const invested = P*n;
+  document.getElementById("sipFuture").textContent = fmt(future);
+  document.getElementById("sipInvested").textContent = fmt(invested);
+  document.getElementById("sipReturns").textContent = fmt(future-invested);
+  document.getElementById("sipResult").classList.remove("hidden");
+};
+
+document.getElementById("loanCalc").onclick = ()=>{
+  const P = Number(document.getElementById("loanAmt").value)||0;
+  const annual = Number(document.getElementById("loanRate").value)||0;
+  const years = Number(document.getElementById("loanYears").value)||0;
+  const r = annual/12/100;
+  const n = Math.round(years*12);
+  const emi = n>0 ? (r>0 ? P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1) : P/n) : 0;
+  const total = emi*n;
+  document.getElementById("loanEmi").textContent = fmt(emi) + " / month";
+  document.getElementById("loanInterest").textContent = fmt(total-P);
+  document.getElementById("loanTotal").textContent = fmt(total);
+  document.getElementById("loanResult").classList.remove("hidden");
+};
+
+/* ---------- backup & restore (clipboard-based, same JSON as GitHub sync) ---------- */
+
+document.getElementById("copyBackup").onclick = async ()=>{
+  const text = JSON.stringify(state);
+  try{
+    await navigator.clipboard.writeText(text);
+    toast("Backup copied to clipboard");
+  }catch(e){
+    const box = document.getElementById("restoreBox");
+    box.value = text;
+    box.focus(); box.select();
+    toast("Clipboard blocked — copy from the text box");
+  }
+};
+document.getElementById("doRestore").onclick = ()=>{
+  const raw = document.getElementById("restoreBox").value.trim();
+  if (!raw) { toast("Paste a backup first"); return; }
+  let parsed;
+  try{ parsed = JSON.parse(raw); }catch(e){ toast("That doesn't look like valid backup JSON"); return; }
+  if (!confirm("Restore this backup? It will replace everything currently in the app.")) return;
+  state = stateFromPayload(parsed);
+  save(); render(); toast("Restored");
+};
+
+/* ---------- GitHub sync ---------- */
+
+const GH = {
+  get token(){ return localStorage.getItem("assetmgr.gh.token") || ""; },
+  set token(v){ localStorage.setItem("assetmgr.gh.token", v); },
+  get repo(){ return localStorage.getItem("assetmgr.gh.repo") || ""; },
+  set repo(v){ localStorage.setItem("assetmgr.gh.repo", v); },
+  get branch(){ return localStorage.getItem("assetmgr.gh.branch") || "main"; },
+  set branch(v){ localStorage.setItem("assetmgr.gh.branch", v); },
+  get path(){ return localStorage.getItem("assetmgr.gh.path") || "data/asset-management-backup.json"; },
+  set path(v){ localStorage.setItem("assetmgr.gh.path", v); },
+  get enabled(){ return localStorage.getItem("assetmgr.gh.enabled") === "1"; },
+  set enabled(v){ localStorage.setItem("assetmgr.gh.enabled", v ? "1" : "0"); },
+  get lastSync(){ return localStorage.getItem("assetmgr.gh.lastSync") || ""; },
+  set lastSync(v){ localStorage.setItem("assetmgr.gh.lastSync", v); }
+};
+
+function ghHeaders(){
+  return {
+    "Authorization": "Bearer " + GH.token,
+    "Accept": "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28"
+  };
+}
+function ghUrl(){
+  return `https://api.github.com/repos/${GH.repo}/contents/${encodeURI(GH.path)}?ref=${encodeURIComponent(GH.branch)}`;
+}
+function b64EncodeUtf8(str){
+  const bytes = new TextEncoder().encode(str);
+  let bin = ""; bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin);
+}
+function b64DecodeUtf8(b64){
+  const bin = atob(b64.replace(/\n/g,""));
+  const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+function ghExplain(status){
+  if (status===401) return "Token rejected — check it's correct and hasn't expired.";
+  if (status===403) return "Forbidden — the token needs the 'repo' (or 'Contents: Read & write') permission.";
+  if (status===404) return "Repository or path not found — check owner/repo, branch and path.";
+  if (status===409) return "Conflict — someone else changed the file. Pull, then push again.";
+  if (status===422) return "Rejected by GitHub — check the branch name and path are valid.";
+  return "GitHub returned an error (" + status + ").";
+}
+function ghStatusText(){
+  if (!GH.enabled) return "Off";
+  return "Connected to " + (GH.repo || "?") + (GH.lastSync ? " · last synced " + new Date(GH.lastSync).toLocaleString() : " · never synced");
+}
+function renderGithubPanel(){
+  document.getElementById("ghToken").value = GH.token;
+  document.getElementById("ghRepo").value = GH.repo || "priyasureshgermany/asset-management";
+  document.getElementById("ghBranch").value = GH.branch;
+  document.getElementById("ghPath").value = GH.path;
+  document.getElementById("ghDetailStatus").textContent = ghStatusText();
+}
+document.getElementById("ghTokenEye").onclick = ()=>{
+  const el = document.getElementById("ghToken");
+  el.type = el.type==="password" ? "text" : "password";
+};
+document.getElementById("ghSave").onclick = ()=>{
+  const repo = document.getElementById("ghRepo").value.trim();
+  if (!GH_REPO_RE.test(repo)){ toast("Repository must look like owner/repo"); return; }
+  GH.token = document.getElementById("ghToken").value.trim();
+  GH.repo = repo;
+  GH.branch = document.getElementById("ghBranch").value.trim() || "main";
+  GH.path = document.getElementById("ghPath").value.trim() || "data/asset-management-backup.json";
+  GH.enabled = !!GH.token;
+  renderGithubPanel();
+  toast(GH.enabled ? "GitHub sync enabled" : "Saved (add a token to enable sync)");
+};
+document.getElementById("ghDisable").onclick = ()=>{
+  if (!confirm("Disable GitHub sync? Your local data stays untouched.")) return;
+  GH.enabled = false;
+  renderGithubPanel();
+  toast("Sync disabled");
+};
+
+document.getElementById("ghPull").onclick = async ()=>{
+  if (!GH.token || !GH.repo){ toast("Set up GitHub sync first"); return; }
+  document.getElementById("ghDetailStatus").textContent = "Pulling…";
+  try{
+    const res = await fetch(ghUrl(), { headers: ghHeaders() });
+    if (!res.ok){ document.getElementById("ghDetailStatus").textContent = ghExplain(res.status); return; }
+    const data = await res.json();
+    let text;
+    if (data.encoding === "base64") text = b64DecodeUtf8(data.content);
+    else if (data.download_url) text = await (await fetch(data.download_url)).text();
+    else { document.getElementById("ghDetailStatus").textContent = "Unexpected response from GitHub."; return; }
+    const parsed = JSON.parse(text);
+    if (!confirm("Pull from GitHub? This replaces everything currently in the app with the remote backup.")){
+      document.getElementById("ghDetailStatus").textContent = ghStatusText();
+      return;
+    }
+    state = stateFromPayload(parsed);
+    save(); render();
+    GH.lastSync = new Date().toISOString();
+    document.getElementById("ghDetailStatus").textContent = ghStatusText();
+    toast("Pulled from GitHub");
+  }catch(e){
+    document.getElementById("ghDetailStatus").textContent = "Pull failed: " + e.message;
+  }
+};
+
+document.getElementById("ghPush").onclick = async ()=>{
+  if (!GH.token || !GH.repo){ toast("Set up GitHub sync first"); return; }
+  document.getElementById("ghDetailStatus").textContent = "Pushing…";
+  try{
+    let sha;
+    const getRes = await fetch(ghUrl(), { headers: ghHeaders() });
+    if (getRes.ok){ sha = (await getRes.json()).sha; }
+    else if (getRes.status !== 404){
+      document.getElementById("ghDetailStatus").textContent = ghExplain(getRes.status);
+      return;
+    }
+    const body = {
+      message: "Update asset-management backup",
+      content: b64EncodeUtf8(JSON.stringify(state, null, 2)),
+      branch: GH.branch
+    };
+    if (sha) body.sha = sha;
+    const putRes = await fetch(`https://api.github.com/repos/${GH.repo}/contents/${encodeURI(GH.path)}`, {
+      method: "PUT", headers: ghHeaders(), body: JSON.stringify(body)
+    });
+    if (!putRes.ok){ document.getElementById("ghDetailStatus").textContent = ghExplain(putRes.status); return; }
+    GH.lastSync = new Date().toISOString();
+    document.getElementById("ghDetailStatus").textContent = ghStatusText();
+    toast("Pushed to GitHub");
+  }catch(e){
+    document.getElementById("ghDetailStatus").textContent = "Push failed: " + e.message;
+  }
+};
+
+/* ---------- what's new ---------- */
+
+const RELEASE_KINDS = { fix:"🔧", new:"✨", better:"📈" };
+function parseReleases(md){
+  const groups = [];
+  const lines = md.split("\n");
+  let cur = null;
+  lines.forEach(line=>{
+    const h = line.match(/^##\s+([\d.]+)\s+—\s+(.+)$/);
+    if (h){ cur = { version:h[1], date:h[2], items:[] }; groups.push(cur); return; }
+    const b = line.match(/^-\s+(?:(fix|new|better):\s*)?(.+)$/);
+    if (b && cur){ cur.items.push({ kind: b[1]||"better", text: b[2] }); }
+  });
+  return groups;
+}
+function loadReleases(){
+  const box = document.getElementById("releasesBox");
+  box.textContent = "Loading…";
+  fetch("RELEASES.md?v=" + APP_VERSION, { cache:"no-store" })
+    .then(r=>{ if(!r.ok) throw new Error("not found"); return r.text(); })
+    .then(md=>{
+      const groups = parseReleases(md);
+      box.innerHTML = groups.map(g=>{
+        const isCurrent = g.version === APP_VERSION;
+        return `<div class="relgroup">
+          <div class="ver ${isCurrent?"current":""}">${g.version} — ${g.date}${isCurrent?" · you're on this":""}</div>
+          <ul>${g.items.map(i=>`<li><span class="k">${RELEASE_KINDS[i.kind]||"📈"}</span><span>${esc(i.text)}</span></li>`).join("")}</ul>
+        </div>`;
+      }).join("") || "No release notes yet.";
+    })
+    .catch(()=>{ box.textContent = "Release notes aren't available right now."; });
+}
+
+/* ---------- about ---------- */
+
+function renderAbout(){
+  document.getElementById("aboutVerSub").textContent = "Version " + APP_VERSION;
+  document.getElementById("aboutBody").innerHTML =
+    `Version ${APP_VERSION}<br>Built ${APP_BUILT}`;
+}
+
+document.getElementById("btnUpdate").onclick = async ()=>{
+  if (!("serviceWorker" in navigator)) { toast("Not running as an installed app"); return; }
+  const regs = await navigator.serviceWorker.getRegistrations();
+  for (const reg of regs) await reg.update();
+  const keys = await caches.keys();
+  await Promise.all(keys.map(k=>caches.delete(k)));
+  toast("Updated — reloading…");
+  setTimeout(()=>location.reload(), 600);
+};
+
+/* ---------- theme ---------- */
+
+function applyTheme(t){
+  if (t === "system") document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme", t);
+  localStorage.setItem("assetmgr.theme", t);
+}
+document.getElementById("btnTheme").onclick = ()=>{
+  const cur = localStorage.getItem("assetmgr.theme") || "system";
+  const next = cur==="system" ? "light" : cur==="light" ? "dark" : "system";
+  applyTheme(next);
+  toast("Theme: " + next);
+};
+applyTheme(localStorage.getItem("assetmgr.theme") || "system");
+
+/* ---------- service worker ---------- */
+
+if ("serviceWorker" in navigator && location.protocol !== "file:"){
+  navigator.serviceWorker.register("sw.js").catch(()=>{});
+}
+
+/* ---------- init ---------- */
+
+render();
+</script>
+</body>
+</html>
