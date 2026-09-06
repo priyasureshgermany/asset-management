@@ -398,19 +398,55 @@ button.tile:hover .tile-go{color:var(--accent)}
   bottom:calc(80px + env(safe-area-inset-bottom));
   display:flex;flex-direction:column;align-items:flex-end;gap:10px;
 }
+/* Real glass rather than a tinted disc. The transparency lives in the fill,
+   not in element opacity — fading the whole button would fade the glyph with
+   it. The page is blurred and over-saturated behind it, a bright rim runs the
+   top edge, and a specular cap and hot spot sit on the surface. */
 .fab{
   position:relative;isolation:isolate;width:56px;height:56px;border-radius:50%;
   background:
-    radial-gradient(125% 105% at 30% 10%, rgba(255,255,255,.18) 0%, rgba(255,255,255,.03) 40%, rgba(255,255,255,0) 62%),
-    linear-gradient(150deg, color-mix(in srgb, var(--accent-mid) 24%, transparent), color-mix(in srgb, var(--accent) 34%, transparent));
+    radial-gradient(125% 105% at 30% 10%,
+      rgba(255,255,255,.18) 0%, rgba(255,255,255,.03) 40%, rgba(255,255,255,0) 62%),
+    linear-gradient(150deg,
+      color-mix(in srgb, var(--accent-mid) 9%, transparent),
+      color-mix(in srgb, var(--accent) 15%, transparent));
   color:var(--ink);
   -webkit-backdrop-filter:blur(24px) saturate(2.2) brightness(1.04);
   backdrop-filter:blur(24px) saturate(2.2) brightness(1.04);
   border:1px solid var(--fab-rim);display:grid;place-items:center;
-  box-shadow:0 10px 28px rgba(15,25,34,.26), inset 0 1.5px 1.5px rgba(255,255,255,.5), inset 0 -12px 20px rgba(0,0,0,.11);
+  box-shadow:
+    0 10px 28px rgba(15,25,34,.26),
+    inset 0 1.5px 1.5px rgba(255,255,255,.66),
+    inset 0 -12px 20px rgba(0,0,0,.11),
+    inset 0 0 18px rgba(255,255,255,.06);
+  transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .2s,backdrop-filter .2s;
+}
+/* the specular cap across the dome */
+.fab::after{
+  content:"";position:absolute;left:12%;right:12%;top:4%;height:42%;
+  border-radius:50%;
+  background:linear-gradient(to bottom,
+    rgba(255,255,255,.42), rgba(255,255,255,.08) 55%, rgba(255,255,255,0));
+  pointer-events:none;
+}
+/* the hot spot, and a caustic arc where light bounces off the far wall */
+.fab::before{
+  content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:
+    radial-gradient(circle at 30% 17%, rgba(255,255,255,.62) 0%, rgba(255,255,255,0) 24%),
+    radial-gradient(120% 60% at 50% 108%, rgba(255,255,255,.22) 0%, rgba(255,255,255,0) 52%);
+  filter:blur(.6px);
+}
+/* the glyph stays fully opaque, so a see-through button is still readable */
+.fab svg{
+  width:28px;height:28px;stroke-width:1.15;position:relative;z-index:1;
+  filter:drop-shadow(0 1px 2.5px rgba(8,18,26,.4));
   transition:transform .22s cubic-bezier(.2,.7,.3,1);
 }
-.fab svg{width:24px;height:24px;stroke-width:2.1;transition:transform .25s cubic-bezier(.2,.7,.3,1)}
+.fab:hover{
+  -webkit-backdrop-filter:blur(22px) saturate(2.2) brightness(1.1);
+  backdrop-filter:blur(22px) saturate(2.2) brightness(1.1);
+}
 .fab:active{transform:scale(.92)}
 .fab[aria-expanded="true"] svg{transform:rotate(45deg)}
 .fabmenu{display:flex;flex-direction:column;align-items:flex-end;gap:8px;pointer-events:none}
@@ -1135,7 +1171,7 @@ select.inp{appearance:none;background-image:none}
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.7";
+const APP_VERSION = "1.0.8";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1445,14 +1481,22 @@ document.querySelectorAll("[data-close]").forEach(b =>
   b.addEventListener("click", () => sheetClose(b.closest(".sheet").id)));
 document.addEventListener("keydown", e => { if (e.key === "Escape") sheetClose(); });
 
-/* ---------- FAB ---------- */
+/* ---------- icons ---------- */
+const ICON_BANK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 10v9M15 10v9"/><path d="M3 21h18"/></svg>';
+const ICON_DEBT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h12l4 4v12H4z"/><path d="M9 13h6M9 17h6"/></svg>';
+const ICON_GOAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg>';
+const ICON_CHART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>';
+
+/* ---------- FAB ----------
+   Each way in carries the icon the thing it makes will wear in the list, so
+   what you pick from looks like what you get. */
 const FAB_OPTIONS = {
   dash: [
-    { cls:"in",  label:"Asset",     go:() => openAsset(null) },
-    { cls:"out", label:"Liability", go:() => openLiab(null) }
+    { cls:"in",  label:"Asset",     icon:ICON_BANK,  go:() => openAsset(null) },
+    { cls:"out", label:"Liability", icon:ICON_DEBT,  go:() => openLiab(null) }
   ],
-  goal:   [{ cls:"in", label:"Goal", go:() => openGoal(null) }],
-  invest: [{ cls:"in", label:"Investment", go:() => openInvest(null) }]
+  goal:   [{ cls:"in", label:"Goal",       icon:ICON_GOAL,  go:() => openGoal(null) }],
+  invest: [{ cls:"in", label:"Investment", icon:ICON_CHART, go:() => openInvest(null) }]
 };
 function renderFabMenu(){
   const menu = $("fabMenu");
@@ -1461,8 +1505,7 @@ function renderFabMenu(){
     const b = document.createElement("button");
     b.type = "button";
     b.className = "fabopt " + opt.cls;
-    b.innerHTML = '<span class="fo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
-      'stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>' + esc(opt.label);
+    b.innerHTML = '<span class="fo-ic">' + opt.icon + '</span>' + esc(opt.label);
     b.addEventListener("click", () => { closeFab(); opt.go(); });
     menu.appendChild(b);
   });
@@ -1822,11 +1865,6 @@ document.querySelectorAll("#dashSeg button").forEach(b =>
 function emptyBlock(icon, title, text){
   return `<div class="empty"><div class="em-ic">${icon}</div><h4>${esc(title)}</h4><p>${esc(text)}</p></div>`;
 }
-const ICON_BANK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 10v9M15 10v9"/><path d="M3 21h18"/></svg>';
-const ICON_DEBT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h12l4 4v12H4z"/><path d="M9 13h6M9 17h6"/></svg>';
-const ICON_GOAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg>';
-const ICON_CHART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>';
-
 function curPill(c){
   return c === display() ? "" : `<span class="pill cur">${esc(c)}</span>`;
 }
