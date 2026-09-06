@@ -1,5 +1,11 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.19 — 2026-09-06
+- better: The sync pane is shaped like the expense tracker's: the state said at the top, and Push, Pull and Turn off only once it is on.
+- better: No branch to fill in. Without one GitHub reads and writes the repository's own default, which is the branch anyone wanted and one less thing to get wrong.
+- new: It says how far behind the backup is — on the Settings tile and in the pane — counting what has been added, changed or dropped since the last push.
+- better: Save & enable becomes Update these settings once sync is on, rather than inviting you to turn on what is already running.
+
 ## 1.0.18 — 2026-09-06
 - new: A Check it button under GitHub sync asks GitHub what the token may actually do — read, write, and whether the branch is there — rather than leaving you to find out by pushing.
 - fix: The message when a push is refused now says what to change: which permission a fine-grained token needs, and which scope a classic one does.

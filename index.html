@@ -1060,6 +1060,7 @@ html.locked #lockScreen{
     <button class="setrow" type="button" data-pane="github">
       <span class="sr-ic"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.5 2 2 6.6 2 12.2c0 4.5 2.9 8.3 6.8 9.7.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.2-4.6-5.2 0-1.1.4-2.1 1-2.8-.1-.3-.4-1.4.1-2.9 0 0 .8-.3 2.8 1.1a9.3 9.3 0 015 0c2-1.4 2.8-1.1 2.8-1.1.5 1.5.2 2.6.1 2.9.6.7 1 1.7 1 2.8 0 4-2.4 4.9-4.6 5.2.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10.2 10.2 0 0022 12.2C22 6.6 17.5 2 12 2z"/></svg></span>
       <span class="sr-t"><b>GitHub sync</b><span id="ghTileSub">Off</span></span>
+      <span class="updot" id="ghTileDot" hidden>Push</span>
     </button>
     <button class="setrow" type="button" data-pane="import">
       <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 11l4 4 4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg></span>
@@ -1130,6 +1131,7 @@ html.locked #lockScreen{
   <div class="sheet-body setpane" id="pane-github" hidden>
     <h3>GitHub sync</h3>
     <p class="ph">A copy of everything, kept as one JSON file in a repository you own. Manual on both sides — nothing is sent or fetched unless you press it.</p>
+    <div class="note" id="ghStatus" style="margin-bottom:16px">Off — what is here stays on this device.</div>
     <div class="field"><label>Personal access token</label>
       <div style="display:flex;gap:8px">
         <input class="inp" id="ghToken" type="password" placeholder="ghp_…">
@@ -1139,20 +1141,16 @@ html.locked #lockScreen{
       </div>
     </div>
     <div class="field"><label>Repository</label><input class="inp" id="ghRepo" placeholder="owner/repo"></div>
-    <div class="row2">
-      <div class="field"><label>Branch</label><input class="inp" id="ghBranch" placeholder="main"></div>
-      <div class="field"><label>File path</label><input class="inp" id="ghPath" placeholder="data/backup.json"></div>
-    </div>
+    <div class="field"><label>File path</label><input class="inp" id="ghPath" placeholder="data/backup.json"></div>
     <div class="btnrow">
       <button class="btn" id="ghSave">Save &amp; enable</button>
       <button class="btn ghost" id="ghCheck">Check it</button>
     </div>
-    <div class="btnrow" style="margin-top:9px">
+    <div class="btnrow" id="ghOnRow" style="margin-top:9px" hidden>
       <button class="btn ghost" id="ghPull">Pull onto this device</button>
-      <button class="btn ghost" id="ghPush">Push now</button>
+      <button class="btn" id="ghPush">Push now</button>
     </div>
-    <div class="note" id="ghStatus" style="margin-top:12px">Not connected.</div>
-    <button class="btn danger" id="ghDisable" style="margin-top:12px">Disable sync</button>
+    <button class="btn danger" id="ghDisable" style="margin-top:9px" hidden>Turn sync off</button>
   </div>
 
   <div class="sheet-body setpane" id="pane-import" hidden>
@@ -1490,7 +1488,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.18";
+const APP_VERSION = "1.0.19";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1702,6 +1700,9 @@ function load(){
 function save(){
   try{ localStorage.setItem(KEY, JSON.stringify(state)); }
   catch(e){ toast("Could not save to this device"); }
+  /* The tile carries the count, so it has to be told when the book moves.
+     Guarded because save() runs before the sync code is reached on first load. */
+  if (typeof ghTileSub === "function" && $("ghTileDot")) ghTileSub();
 }
 
 /* ============================================================
@@ -3327,8 +3328,6 @@ const GH = {
   set token(v){ localStorage.setItem("assetmgr.gh.token", v); },
   get repo(){ return localStorage.getItem("assetmgr.gh.repo") || ""; },
   set repo(v){ localStorage.setItem("assetmgr.gh.repo", v); },
-  get branch(){ return localStorage.getItem("assetmgr.gh.branch") || "main"; },
-  set branch(v){ localStorage.setItem("assetmgr.gh.branch", v); },
   get path(){ return localStorage.getItem("assetmgr.gh.path") || "data/asset-management-backup.json"; },
   set path(v){ localStorage.setItem("assetmgr.gh.path", v); },
   get enabled(){ return localStorage.getItem("assetmgr.gh.enabled") === "1"; },
@@ -3343,9 +3342,11 @@ function ghHeaders(){
     "X-GitHub-Api-Version": "2022-11-28"
   };
 }
-function ghContentsUrl(withRef){
-  const base = "https://api.github.com/repos/" + GH.repo + "/contents/" + encodeURI(GH.path);
-  return withRef ? base + "?ref=" + encodeURIComponent(GH.branch) : base;
+/* No branch anywhere: without one GitHub reads and writes the repository's
+   own default, which is the branch anybody actually wants and one less field
+   to get wrong. */
+function ghContentsUrl(){
+  return "https://api.github.com/repos/" + GH.repo + "/contents/" + encodeURI(GH.path);
 }
 function b64EncodeUtf8(s){
   const bytes = new TextEncoder().encode(s);
@@ -3365,20 +3366,68 @@ function ghExplain(status){
   if (status === 422) return "GitHub refused it — check the branch name and path.";
   return "GitHub returned an error (" + status + ").";
 }
+/* ---------- what this device holds that the backup does not ----------
+   A push writes the whole book, so knowing whether it is worth pushing means
+   remembering what was in the last one. A signature per record, kept beside
+   the token, is enough to count what has been added, changed or dropped
+   since — and cheap enough to work out on every save. */
+const GH_SNAP = "assetmgr.gh.snapshot";
+
+function ghFingerprint(){
+  const sig = {};
+  const add = (p, arr, f) => arr.forEach(x => { sig[p + x.id] = f(x); });
+  add("a", state.assets, a => [a.name, a.category, a.value, a.investedAmount, a.currency, a.notes].join("|"));
+  add("l", state.liabilities, l => [l.name, l.category, l.amount, l.interestRate, l.currency, l.notes].join("|"));
+  add("g", state.goals, g => [g.name, g.targetAmount, g.currentAmount, g.currency, g.targetDate, g.notes].join("|"));
+  add("i", state.investments, i => [i.name, i.type, i.investedAmount, i.currentValue, i.currency,
+    i.units, i.sipAmount, i.sipDay, i.sipDone, i.grams, i.purity, i.goldKind, i.boughtOn, i.notes].join("|"));
+  return { sig, misc: JSON.stringify([state.profile, state.settings]) };
+}
+function ghSaveSnapshot(){
+  try{ localStorage.setItem(GH_SNAP, JSON.stringify(ghFingerprint())); }
+  catch(e){ /* storage full: the count degrades, the data does not */ }
+}
+function ghUnpushed(){
+  if (!GH.enabled) return 0;
+  let snap = null;
+  try{ snap = JSON.parse(localStorage.getItem(GH_SNAP) || "null"); }catch(e){}
+  /* Never pushed from here, so there is nothing to compare against and
+     everything counts as waiting. */
+  const now = ghFingerprint();
+  if (!snap || !snap.sig) return Object.keys(now.sig).length;
+  let n = 0;
+  Object.keys(now.sig).forEach(k => { if (snap.sig[k] !== now.sig[k]) n++; });
+  Object.keys(snap.sig).forEach(k => { if (now.sig[k] == null) n++; });
+  if (snap.misc !== now.misc) n++;
+  return n;
+}
+
 function ghStatusText(){
-  if (!GH.enabled) return "Off. Add a token and a repository to turn it on.";
-  return "On, against " + GH.repo + " (" + GH.branch + ")." +
-    (GH.lastSync ? " Last synced " + new Date(GH.lastSync).toLocaleString() + "." : " Not synced yet.");
+  if (!GH.enabled) return "Off — what is here stays on this device.";
+  const n = ghUnpushed();
+  const last = GH.lastSync ? " Last pushed " + new Date(GH.lastSync).toLocaleString() + "." : "";
+  return n
+    ? n + (n === 1 ? " change is" : " changes are") + " not in the backup yet." + last
+    : "Up to date with " + GH.repo + "." + last;
 }
 function fillGithub(){
+  const on = GH.enabled;
   $("ghToken").value = GH.token;
   $("ghRepo").value = GH.repo || "priyasureshgermany/asset-management";
-  $("ghBranch").value = GH.branch;
   $("ghPath").value = GH.path;
   $("ghStatus").textContent = ghStatusText();
+  /* Once it is on, the button is not an invitation to turn it on again. */
+  $("ghSave").textContent = on ? "Update these settings" : "Save & enable";
+  $("ghOnRow").hidden = !on;
+  $("ghDisable").hidden = !on;
+  ghTileSub();
 }
 function ghTileSub(){
-  $("ghTileSub").textContent = GH.enabled ? "On · " + GH.repo : "Off";
+  const n = GH.enabled ? ghUnpushed() : 0;
+  $("ghTileSub").textContent = !GH.enabled ? "Off"
+    : n ? n + (n === 1 ? " change to push" : " changes to push")
+    : "Up to date";
+  $("ghTileDot").hidden = !n;
 }
 $("ghEye").addEventListener("click", () => {
   const el = $("ghToken");
@@ -3389,16 +3438,16 @@ $("ghSave").addEventListener("click", () => {
   if (!GH_REPO_RE.test(repo)){ toast("That should look like owner/repo"); return; }
   GH.token = $("ghToken").value.trim();
   GH.repo = repo;
-  GH.branch = $("ghBranch").value.trim() || "main";
   GH.path = $("ghPath").value.trim() || "data/asset-management-backup.json";
+  const was = GH.enabled;
   GH.enabled = !!GH.token;
-  fillGithub(); ghTileSub();
-  toast(GH.enabled ? "GitHub sync on" : "Saved — add a token to turn it on");
+  fillGithub();
+  toast(!GH.enabled ? "Saved — add a token to turn it on" : was ? "Settings updated" : "GitHub sync on");
 });
 $("ghDisable").addEventListener("click", () => {
   if (!confirm("Turn GitHub sync off? What is on this device stays.")) return;
   GH.enabled = false;
-  fillGithub(); ghTileSub();
+  fillGithub();
   toast("Sync off");
 });
 /* Asks GitHub what this token may actually do, rather than making you find
@@ -3409,7 +3458,6 @@ $("ghDisable").addEventListener("click", () => {
 $("ghCheck").addEventListener("click", async () => {
   const token = $("ghToken").value.trim();
   const repo = $("ghRepo").value.trim();
-  const branch = $("ghBranch").value.trim() || "main";
   const st = $("ghStatus");
   if (!token || !GH_REPO_RE.test(repo)){ st.textContent = "Fill in a token and owner/repo first."; return; }
   st.textContent = "Asking GitHub…";
@@ -3430,13 +3478,8 @@ $("ghCheck").addEventListener("click", async () => {
       st.textContent = "The token can read " + repo + " but not write to it. " + GH_WRITE_HELP;
       return;
     }
-    /* it may write — so the only thing left to be wrong is the branch */
-    const br = await fetch("https://api.github.com/repos/" + repo + "/branches/" +
-                           encodeURIComponent(branch), { headers: head });
-    st.textContent = br.ok
-      ? "All set: the token can write to " + repo + ", and the branch " + branch + " is there."
-      : "The token can write to " + repo + ", but there is no branch called " + branch +
-        " — the default is " + (info.default_branch || "main") + ".";
+    st.textContent = "All set: the token can write to " + repo +
+      ", on its " + (info.default_branch || "default") + " branch.";
   }catch(e){
     st.textContent = "Could not reach GitHub: " + e.message;
   }
@@ -3446,7 +3489,7 @@ $("ghPull").addEventListener("click", async () => {
   if (!GH.token || !GH.repo){ toast("Set the token and repository first"); return; }
   $("ghStatus").textContent = "Pulling…";
   try{
-    const res = await fetch(ghContentsUrl(true), { headers: ghHeaders() });
+    const res = await fetch(ghContentsUrl(), { headers: ghHeaders() });
     if (!res.ok){ $("ghStatus").textContent = ghExplain(res.status); return; }
     const data = await res.json();
     const text = data.encoding === "base64" ? b64DecodeUtf8(data.content)
@@ -3460,7 +3503,8 @@ $("ghPull").addEventListener("click", async () => {
     state = stateFromPayload(parsed);
     save(); render();
     GH.lastSync = new Date().toISOString();
-    $("ghStatus").textContent = ghStatusText();
+    ghSaveSnapshot();               /* what is here is what the backup holds */
+    fillGithub();
     toast("Pulled from GitHub");
   }catch(e){ $("ghStatus").textContent = "Pull failed: " + e.message; }
 });
@@ -3469,22 +3513,22 @@ $("ghPush").addEventListener("click", async () => {
   $("ghStatus").textContent = "Pushing…";
   try{
     let sha;
-    const head = await fetch(ghContentsUrl(true), { headers: ghHeaders() });
+    const head = await fetch(ghContentsUrl(), { headers: ghHeaders() });
     if (head.ok) sha = (await head.json()).sha;
     else if (head.status !== 404){ $("ghStatus").textContent = ghExplain(head.status); return; }
 
     const body = {
       message: "Update asset-management backup",
-      content: b64EncodeUtf8(JSON.stringify(state, null, 2)),
-      branch: GH.branch
+      content: b64EncodeUtf8(JSON.stringify(state, null, 2))
     };
     if (sha) body.sha = sha;
-    const put = await fetch(ghContentsUrl(false), {
+    const put = await fetch(ghContentsUrl(), {
       method:"PUT", headers: ghHeaders(), body: JSON.stringify(body)
     });
     if (!put.ok){ $("ghStatus").textContent = ghExplain(put.status); return; }
     GH.lastSync = new Date().toISOString();
-    $("ghStatus").textContent = ghStatusText();
+    ghSaveSnapshot();               /* this is now what the backup holds */
+    fillGithub();
     toast("Pushed to GitHub");
   }catch(e){ $("ghStatus").textContent = "Push failed: " + e.message; }
 });
