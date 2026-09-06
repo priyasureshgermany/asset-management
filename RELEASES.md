@@ -1,5 +1,13 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.11 — 2026-09-06
+- new: An eye in the top bar hides every amount at once, for reading the app somewhere public. Weights, counts and percentages stay — on their own they give nothing away.
+- new: An asset can carry what you paid for it as well as what it is worth, and shows the difference the way an investment does.
+- new: Physical gold takes a date and what the piece actually is — necklace, aram, chain, ring, stud, dollar, bangles — and the Gold tab filters on it.
+- new: Funds and Stocks have tabs of their own now, with Other for deposits, PPF and bonds.
+- better: Under All, gold is one line for the whole drawer rather than piece by piece; the pieces are what the Gold tab is for.
+- better: The net worth no longer sits under the app name — it is the first thing on the dashboard already.
+
 ## 1.0.10 — 2026-09-06
 - better: Rupees are what the app starts in now, with euro a tap away in the top bar and under Settings → Profile.
 - better: The calculators open on the sums actually being asked rather than an empty form: 20.000 a month at 14% over 10 years, and a 30,00,000 loan at 10.10% over 20.

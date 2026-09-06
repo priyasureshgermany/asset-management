@@ -161,6 +161,10 @@ button{cursor:pointer;background:none;border:none;padding:0}
 }
 .iconbtn:hover{background:var(--surface-2);color:var(--ink)}
 .iconbtn svg{width:19px;height:19px;stroke-width:1.8}
+.eyebtn .eye-off{display:none}
+html.amounts-hidden .eyebtn .eye-on{display:none}
+html.amounts-hidden .eyebtn .eye-off{display:block}
+html.amounts-hidden .eyebtn{color:var(--accent)}
 .curbtn{
   height:36px;padding:0 11px;border-radius:10px;flex:none;
   display:flex;align-items:center;gap:6px;
@@ -736,6 +740,10 @@ html.locked #lockScreen{
       <span class="brand-top"><b>Asset Manager</b><span class="brand-cur" id="brandCur">EUR</span></span>
       <span class="brand-hi" id="brandHi"></span>
     </button>
+    <button class="iconbtn eyebtn" id="btnEye" type="button" aria-pressed="true" title="Hide amounts">
+      <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><path d="M1 1l22 22"/></svg>
+    </button>
     <button class="curbtn" id="btnCur" type="button" title="Change display currency">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 6h18"/><path d="M7 22l-4-4 4-4"/><path d="M21 18H3"/></svg>
       <span id="curLabel">EUR</span>
@@ -832,10 +840,13 @@ html.locked #lockScreen{
     <div class="segwrap">
       <div class="seg" id="invSeg" role="tablist">
         <button role="tab" data-inv="all" aria-selected="true">All <span class="n" id="nInvAll">0</span></button>
-        <button role="tab" data-inv="paper" aria-selected="false">Funds &amp; stocks <span class="n" id="nInvPaper">0</span></button>
+        <button role="tab" data-inv="funds" aria-selected="false">Funds <span class="n" id="nInvFunds">0</span></button>
+        <button role="tab" data-inv="stocks" aria-selected="false">Stocks <span class="n" id="nInvStocks">0</span></button>
         <button role="tab" data-inv="gold" aria-selected="false">Gold <span class="n" id="nInvGold">0</span></button>
+        <button role="tab" data-inv="other" aria-selected="false">Other <span class="n" id="nInvOther">0</span></button>
       </div>
     </div>
+    <div class="chips" id="goldFilter" style="padding:12px 14px 0" hidden></div>
     <div class="list" id="investList"></div>
   </div>
 
@@ -1157,6 +1168,8 @@ html.locked #lockScreen{
     <div class="field"><label>Currency</label><div class="toggle2" id="assetCurTog"></div></div>
     <div class="field"><label>Name</label><input class="inp" id="assetName" placeholder="Savings account"></div>
     <div class="field"><label>Category</label><div class="chips" id="assetCats"></div></div>
+    <div class="field"><label>What you paid for it (optional)</label>
+      <input class="inp" id="assetPaid" type="text" inputmode="decimal" placeholder="0"></div>
     <div class="field"><label>Note (optional)</label><textarea class="inp" id="assetNotes"></textarea></div>
     <button class="btn" id="assetSave">Save</button>
     <button class="btn danger" id="assetDelete" style="margin-top:9px" hidden>Delete this asset</button>
@@ -1243,7 +1256,9 @@ html.locked #lockScreen{
           </select>
         </div>
       </div>
+      <div class="field"><label>What it is</label><div class="chips" id="goldKinds"></div></div>
       <div class="field"><label>Description</label><input class="inp" id="investGoldDesc" placeholder="Two bangles, bought in Chennai"></div>
+      <div class="field"><label>Bought on (optional)</label><input class="inp" id="investGoldDate" type="date"></div>
       <div class="field"><label>What you paid (optional)</label><input class="inp" id="investGoldPaid" type="text" inputmode="decimal" placeholder="0"></div>
       <div class="note" id="goldValueNote">Worth is worked out from the weight and the gold price in Settings → Rates &amp; gold.</div>
     </div>
@@ -1282,7 +1297,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.10";
+const APP_VERSION = "1.0.11";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1358,6 +1373,9 @@ const INVEST_TYPES = [
   { k:"Other",             b:"Other" }
 ];
 const GOLD_TYPE = "Physical Gold";
+/* Kept in the words these are actually called, so a filter reads the way the
+   drawer does. */
+const GOLD_KINDS = ["Necklace","Aram","Chain","Ring","Stud","Dollar","Bangles","Other"];
 
 function bucketOf(table, key){
   const hit = table.find(x => x.k === key);
@@ -1423,7 +1441,7 @@ function stateFromPayload(p){
     v: 2,
     assets: arr(p.assets).map(a => ({
       id: a.id || uid(), name: str(a.name), category: str(a.category || "Other"),
-      value: num(a.value), currency: cur(a.currency),
+      value: num(a.value), investedAmount: num(a.investedAmount), currency: cur(a.currency),
       notes: str(a.notes), updatedAt: a.updatedAt || new Date().toISOString()
     })),
     liabilities: arr(p.liabilities).map(l => ({
@@ -1442,6 +1460,7 @@ function stateFromPayload(p){
       investedAmount: num(i.investedAmount), currentValue: num(i.currentValue),
       currency: cur(i.currency), sipAmount: num(i.sipAmount),
       grams: num(i.grams), purity: str(i.purity), goldDesc: str(i.goldDesc),
+      goldKind: str(i.goldKind), boughtOn: str(i.boughtOn),
       notes: str(i.notes), updatedAt: i.updatedAt || new Date().toISOString()
     })),
     profile: { name: str(p.profile && p.profile.name), currency: home },
@@ -1496,7 +1515,12 @@ function investWorth(inv){
 }
 function goldPrice(c){ return state.settings.goldPerGram[c] || 0; }
 
+const AMOUNT_MASK = "••••";
+let amountsHidden = false;
+try{ amountsHidden = localStorage.getItem("assetmgr.hideAmounts") === "1"; }catch(e){}
+
 function fmt(amount, c){
+  if (amountsHidden) return AMOUNT_MASK;
   const cu = c || display();
   const meta = CUR_META[cu] || CUR_META.INR;
   const abs = Math.abs(amount);
@@ -1515,6 +1539,7 @@ function fmtRate(n){
 /* An exact amount — for a schedule, where rounding every row to whole units
    would stop the rows adding up to the total they came from. */
 function fmtExact(amount, c){
+  if (amountsHidden) return AMOUNT_MASK;
   const cu = c || display();
   const meta = CUR_META[cu] || CUR_META.INR;
   return (amount < 0 ? "-" : "") + meta.sym +
@@ -1552,6 +1577,7 @@ const VIEWS = { dash:"viewDash", goal:"viewGoal", invest:"viewInvest" };
 let view = "dash";
 let dashTab = "assets";
 let invTab = "all";
+let goldKindFilter = "All";
 
 function setView(v){
   view = v;
@@ -1642,6 +1668,20 @@ $("btnCur").addEventListener("click", () => {
 });
 $("btnBrand").addEventListener("click", () => setView("dash"));
 
+function syncEye(){
+  document.documentElement.classList.toggle("amounts-hidden", amountsHidden);
+  const t = amountsHidden ? "Show amounts" : "Hide amounts";
+  const b = $("btnEye");
+  b.title = t; b.setAttribute("aria-label", t);
+  b.setAttribute("aria-pressed", String(!amountsHidden));
+}
+$("btnEye").addEventListener("click", () => {
+  amountsHidden = !amountsHidden;
+  try{ localStorage.setItem("assetmgr.hideAmounts", amountsHidden ? "1" : "0"); }catch(e){}
+  syncEye();
+  render();
+});
+
 /* ============================================================
    Render
    ============================================================ */
@@ -1649,9 +1689,10 @@ function render(){
   $("curLabel").textContent = display();
   $("brandCur").textContent = display();
   const t = totals();
-  $("brandHi").textContent = state.profile.name
-    ? state.profile.name + " · " + fmtDisp(t.net)
-    : fmtDisp(t.net) + " net";
+  /* The net worth is the first thing on the dashboard already; repeating it
+     under the title only put a figure on every screen in the app. */
+  $("brandHi").textContent = state.profile.name;
+  $("brandHi").hidden = !state.profile.name;
   renderFabMenu();
   if (view === "dash") renderDash(t);
   if (view === "goal") renderGoals();
@@ -1994,6 +2035,7 @@ function renderDashList(){
     rows.className = "rows";
     items.forEach(a => {
       const bucket = bucketOf(ASSET_CATS, a.category);
+      const g = a.investedAmount > 0 ? a.value - a.investedAmount : null;
       const b = document.createElement("button");
       b.type = "button";
       b.className = "row";
@@ -2002,7 +2044,10 @@ function renderDashList(){
          <span class="rowmain"><span class="t1">${esc(a.name || a.category)}</span>
            <span class="t2"><span class="cn">${esc(a.category)}</span>${curPill(a.currency)}</span></span>
          <span class="rowend"><span class="amt in">${esc(fmt(a.value, a.currency))}</span>
-           ${a.currency !== display() ? `<span class="amt-sub flat">${esc(fmtDisp(toDisp(a.value, a.currency)))}</span>` : ""}</span>`;
+           ${g !== null
+              ? `<span class="amt-sub ${g > 0 ? "up" : g < 0 ? "down" : "flat"}">${(g >= 0 ? "+" : "") + esc(fmt(g, a.currency))}</span>`
+              : a.currency !== display()
+                ? `<span class="amt-sub flat">${esc(fmtDisp(toDisp(a.value, a.currency)))}</span>` : ""}</span>`;
       b.addEventListener("click", () => openAsset(a.id));
       rows.appendChild(b);
     });
@@ -2112,25 +2157,73 @@ function renderInvest(){
       (gold.count === 1 ? " holding" : " holdings");
   }
 
-  const paper = state.investments.filter(i => i.type !== GOLD_TYPE);
+  const inTab = (i, tab) =>
+    tab === "all"    ? true :
+    tab === "funds"  ? i.type === "SIP / Mutual fund" :
+    tab === "stocks" ? i.type === "Stocks" :
+    tab === "gold"   ? i.type === GOLD_TYPE :
+                       i.type !== GOLD_TYPE && i.type !== "Stocks" && i.type !== "SIP / Mutual fund";
   $("nInvAll").textContent = state.investments.length;
-  $("nInvPaper").textContent = paper.length;
+  $("nInvFunds").textContent = state.investments.filter(i => inTab(i, "funds")).length;
+  $("nInvStocks").textContent = state.investments.filter(i => inTab(i, "stocks")).length;
   $("nInvGold").textContent = gold.count;
+  $("nInvOther").textContent = state.investments.filter(i => inTab(i, "other")).length;
   document.querySelectorAll("#invSeg button").forEach(b =>
     b.setAttribute("aria-selected", String(b.dataset.inv === invTab)));
 
+  /* Gold is filtered by what the thing actually is, which is how anyone looking
+     for it thinks of it — the chips only appear where there is gold to sort. */
+  const goldChips = $("goldFilter");
+  goldChips.hidden = invTab !== "gold" || gold.count === 0;
+  if (!goldChips.hidden){
+    const kinds = ["All"].concat(GOLD_KINDS.filter(k =>
+      state.investments.some(i => i.type === GOLD_TYPE && (i.goldKind || "Other") === k)));
+    if (!kinds.includes(goldKindFilter)) goldKindFilter = "All";
+    goldChips.innerHTML = kinds.map(k =>
+      `<button class="chip" type="button" data-k="${esc(k)}" aria-pressed="${k === goldKindFilter}">${esc(k)}</button>`).join("");
+    goldChips.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+      goldKindFilter = b.dataset.k; renderInvest();
+    }));
+  }
+
   const host = $("investList");
   host.innerHTML = "";
-  const items = state.investments.filter(i =>
-    invTab === "all" ? true : invTab === "gold" ? i.type === GOLD_TYPE : i.type !== GOLD_TYPE);
+  let items = state.investments.filter(i => inTab(i, invTab));
+  if (invTab === "gold" && goldKindFilter !== "All")
+    items = items.filter(i => (i.goldKind || "Other") === goldKindFilter);
 
-  if (!items.length){
+  /* Under All, gold arrives as one line. A drawer of bangles listed piece by
+     piece buries the funds it is sitting next to, and the pieces are what the
+     Gold tab is for. */
+  const collapseGold = invTab === "all" && gold.count > 0;
+  if (collapseGold) items = items.filter(i => i.type !== GOLD_TYPE);
+
+  if (!items.length && !collapseGold){
     host.innerHTML = emptyBlock(ICON_CHART, "Nothing here yet",
       "SIPs, stocks, deposits — and physical gold, which is valued by weight.");
     return;
   }
   const rows = document.createElement("div");
   rows.className = "rows";
+
+  if (collapseGold){
+    const paidGold = state.investments
+      .filter(i => i.type === GOLD_TYPE)
+      .reduce((sum, i) => sum + toDisp(i.investedAmount > 0 ? i.investedAmount : investWorth(i), i.currency), 0);
+    const g = gold.worth - paidGold;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "row";
+    b.innerHTML =
+      `<span class="mono" style="background:${swatchSoft("Gold")};color:${swatch("Gold")}">${ICON_BANK}</span>
+       <span class="rowmain"><span class="t1">Physical Gold</span>
+         <span class="t2"><span class="cn">${esc(gold.grams.toLocaleString(undefined,{maximumFractionDigits:2}))} g across ${gold.count} ${gold.count === 1 ? "holding" : "holdings"}</span><span class="pill gold">Gold</span></span></span>
+       <span class="rowend"><span class="amt">${esc(fmtDisp(gold.worth))}</span>
+         <span class="amt-sub ${g > 0 ? "up" : g < 0 ? "down" : "flat"}">${(g >= 0 ? "+" : "") + esc(fmtDisp(g))}</span></span>`;
+    b.addEventListener("click", () => { invTab = "gold"; renderInvest(); });
+    rows.appendChild(b);
+  }
+
   items.slice()
     .sort((a,b) => toDisp(investWorth(b), b.currency) - toDisp(investWorth(a), a.currency))
     .forEach(i => {
@@ -2140,8 +2233,8 @@ function renderInvest(){
       const paid = i.investedAmount > 0 ? i.investedAmount : (isGold ? now : 0);
       const g = now - paid;
       const sub = isGold
-        ? (i.grams ? i.grams + " g" + (i.purity ? " · " + i.purity : "") : i.type) +
-          (i.goldDesc ? " · " + i.goldDesc : "")
+        ? [i.goldKind, i.grams ? i.grams + " g" : "", i.purity, i.boughtOn, i.goldDesc]
+            .filter(Boolean).join(" · ")
         : i.type + (i.sipAmount ? " · SIP " + fmt(i.sipAmount, i.currency) : "");
       const b = document.createElement("button");
       b.type = "button";
@@ -2197,6 +2290,7 @@ function openAsset(id){
   $("assetId").value = a ? a.id : "";
   $("assetName").value = a ? a.name : "";
   $("assetValue").value = a ? a.value || "" : "";
+  $("assetPaid").value = a && a.investedAmount ? a.investedAmount : "";
   $("assetNotes").value = a ? a.notes : "";
   const cur = a ? a.currency : state.profile.currency;
   $("assetCurSym").textContent = curSym(cur);
@@ -2211,7 +2305,8 @@ $("assetSave").addEventListener("click", () => {
   if (!name){ toast("Give it a name"); return; }
   const rec = {
     id, name, category: pickedChip("assetCats", "Other"),
-    value: num($("assetValue").value), currency: pickedCur("assetCurTog"),
+    value: num($("assetValue").value), investedAmount: num($("assetPaid").value),
+    currency: pickedCur("assetCurTog"),
     notes: $("assetNotes").value.trim(), updatedAt: new Date().toISOString()
   };
   const at = state.assets.findIndex(x => x.id === id);
@@ -2318,6 +2413,8 @@ function openInvest(id){
   $("investGrams").value = i && i.grams ? i.grams : "";
   $("investPurity").value = i ? i.purity : "22K";
   $("investGoldDesc").value = i ? i.goldDesc : "";
+  $("investGoldDate").value = i ? i.boughtOn : "";
+  buildChips("goldKinds", GOLD_KINDS.map(k => ({ k })), i && i.goldKind ? i.goldKind : "Necklace");
   $("investGoldPaid").value = i && i.type === GOLD_TYPE && i.investedAmount ? i.investedAmount : "";
   $("investNotes").value = i ? i.notes : "";
 
@@ -2345,6 +2442,8 @@ $("investSave").addEventListener("click", () => {
     grams: isGold ? num($("investGrams").value) : 0,
     purity: isGold ? $("investPurity").value : "",
     goldDesc: isGold ? $("investGoldDesc").value.trim() : "",
+    goldKind: isGold ? pickedChip("goldKinds", "Other") : "",
+    boughtOn: isGold ? $("investGoldDate").value : "",
     notes: $("investNotes").value.trim(), updatedAt: new Date().toISOString()
   };
   const at = state.investments.findIndex(x => x.id === id);
@@ -3064,6 +3163,7 @@ if ("serviceWorker" in navigator && location.protocol !== "file:"){
 $("aboutTileSub").textContent = "Version " + APP_VERSION;
 ghTileSub();
 lockTileSub();
+syncEye();
 render();
 </script>
 </body>
