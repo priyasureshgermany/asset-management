@@ -11,6 +11,15 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/icon-192.png">
+<script>
+  /* Before anything paints. The script that runs the app is at the foot of the
+     document, and a lock applied there would come after a frame of readable
+     figures — which is the one thing a lock is for. */
+  try{
+    if (localStorage.getItem("assetmgr.lock.enabled") === "1")
+      document.documentElement.classList.add("locked");
+  }catch(e){}
+</script>
 <style>
 /* ============================================================
    TOKENS — the same set the expense tracker uses, so the two
@@ -588,6 +597,7 @@ select.inp{appearance:none;background-image:none}
 .setrow[data-pane="github"] { --tile-h:240; --tile-l:38% }
 .setrow[data-pane="data"]   { --tile-h:52;  --tile-l:26% }
 .setrow[data-pane="calc"]   { --tile-h:275; --tile-l:36% }
+.setrow[data-pane="lock"]   { --tile-h:340; --tile-l:30% }
 .setrow .sr-ic{width:48px;height:48px;border-radius:15px;flex:none;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
 .setrow .sr-ic svg{width:26px;height:26px;stroke-width:1.6}
 .setrow .sr-t{display:flex;flex-direction:column;gap:2px;min-width:0;width:100%}
@@ -663,6 +673,48 @@ select.inp{appearance:none;background-image:none}
 .ytable td.yr{font-family:var(--sans);color:var(--ink-3);font-weight:600}
 .ytable tbody tr:last-child td.yr{color:var(--ink)}
 .ytable td.pos{color:var(--pos)} .ytable td.neg{color:var(--neg)}
+
+/* ---------- App lock ----------
+   An opaque screen rather than a translucent one: the point is that the
+   figures cannot be read over your shoulder, and a blur still shows shapes. */
+#lockScreen{display:none}
+html.locked{overflow:hidden}
+html.locked #lockScreen{
+  display:flex;position:fixed;inset:0;z-index:200;
+  background:var(--ground);align-items:center;justify-content:center;
+  padding:24px 18px calc(24px + env(safe-area-inset-bottom));
+}
+.lock-card{width:100%;max-width:330px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.lock-logo{width:74px;height:74px;border-radius:21px;box-shadow:var(--shadow-md)}
+.lock-brand{font-size:17px;font-weight:600;margin-top:16px;letter-spacing:-.01em}
+.lock-sub{font-size:13px;color:var(--ink-3);margin-top:4px;line-height:1.45}
+.lock-dots{display:flex;gap:15px;margin:24px 0 4px}
+.lock-dots span{
+  width:13px;height:13px;border-radius:50%;border:1.7px solid var(--line-strong);
+  transition:background .15s,border-color .15s,transform .15s;
+}
+.lock-dots span.filled{background:var(--accent);border-color:var(--accent);transform:scale(1.08)}
+.lock-dots.shake{animation:lockShake .4s cubic-bezier(.36,.07,.19,.97)}
+@keyframes lockShake{
+  10%,90%{transform:translateX(-2px)} 20%,80%{transform:translateX(4px)}
+  30%,50%,70%{transform:translateX(-7px)} 40%,60%{transform:translateX(7px)}
+}
+.lock-msg{font-size:12.5px;color:var(--neg);min-height:17px;margin-top:8px;font-weight:500}
+.lock-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;width:100%;max-width:262px;margin-top:14px}
+.lock-key{
+  height:58px;border-radius:17px;background:var(--surface);border:1px solid var(--line);
+  font-size:21px;font-weight:500;color:var(--ink);
+  display:grid;place-items:center;transition:background .12s,transform .1s;
+}
+.lock-key:hover{background:var(--surface-2)}
+.lock-key:active{transform:scale(.94);background:var(--surface-sunk)}
+.lock-key.ghost{background:transparent;border-color:transparent}
+.lock-key.ghost:hover{background:var(--surface-2)}
+.lock-key svg{width:22px;height:22px;stroke-width:1.9}
+.lock-recover{width:100%;display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.lock-recover .lr-q{font-size:13px;color:var(--ink-2);font-weight:500}
+.lock-foot{margin-top:20px;font-size:12.5px;color:var(--accent);font-weight:600;padding:6px 10px;border-radius:9px}
+.lock-foot:hover{background:var(--surface-2)}
 
 /* ---------- Toast ---------- */
 .toast{
@@ -879,6 +931,10 @@ select.inp{appearance:none;background-image:none}
       <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
       <span class="sr-t"><b>Backup &amp; restore</b><span>Copy out, paste back</span></span>
     </button>
+    <button class="setrow" type="button" data-pane="lock">
+      <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 018 0v3"/><path d="M12 15v2"/></svg></span>
+      <span class="sr-t"><b>App lock</b><span id="lockTileSub">Off</span></span>
+    </button>
     <button class="setrow" type="button" data-pane="calc">
       <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2.5"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h4"/></svg></span>
       <span class="sr-t"><b>Calculator</b><span>SIP and loan (EMI)</span></span>
@@ -1022,6 +1078,36 @@ select.inp{appearance:none;background-image:none}
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="sheet-body setpane" id="pane-lock" hidden>
+    <h3>App lock</h3>
+    <p class="ph">A PIN asked for when the app opens, and again after five minutes away.</p>
+    <div class="note" id="lockStatus" style="margin-bottom:16px"></div>
+
+    <div id="lockOffBox">
+      <div class="row2">
+        <div class="field"><label>Choose a PIN</label>
+          <input class="inp" id="pinNew" type="password" inputmode="numeric" maxlength="4" placeholder="4 digits"></div>
+        <div class="field"><label>And again</label>
+          <input class="inp" id="pinAgain" type="password" inputmode="numeric" maxlength="4" placeholder="4 digits"></div>
+      </div>
+      <div class="field"><label>A question only you can answer</label>
+        <input class="inp" id="lockQ" placeholder="The street I grew up on"></div>
+      <div class="field"><label>Its answer</label>
+        <input class="inp" id="lockA" autocapitalize="none" spellcheck="false" placeholder="Your answer"></div>
+      <div class="note" style="margin-bottom:14px">Without the question a forgotten PIN would shut you out of your own book for good. The answer is kept as a hash, and matched with the case and spacing taken out.</div>
+      <button class="btn" id="lockTurnOn">Turn the lock on</button>
+    </div>
+
+    <div id="lockOnBox" hidden>
+      <div class="btnrow">
+        <button class="btn ghost" id="lockChange">Change the PIN</button>
+        <button class="btn danger" id="lockTurnOff">Turn it off</button>
+      </div>
+    </div>
+
+    <div class="note warn" style="margin-top:18px">This shuts the app, it does not encrypt it. What is stored on this device stays readable to anyone who opens the browser’s own tools — the PIN is for whoever picks up your phone, not for someone taking the device apart.</div>
   </div>
 
   <div class="sheet-body setpane" id="pane-about" hidden>
@@ -1168,10 +1254,35 @@ select.inp{appearance:none;background-image:none}
   </div>
 </section>
 
+<!-- ============ APP LOCK ============ -->
+<div id="lockScreen" role="dialog" aria-modal="true" aria-label="Locked">
+  <div class="lock-card">
+    <img class="lock-logo" src="icons/icon-192.png" alt="" aria-hidden="true">
+    <div class="lock-brand">Asset Manager</div>
+    <div class="lock-sub" id="lockSub">Enter your PIN</div>
+
+    <div class="lock-dots" id="lockDots"><span></span><span></span><span></span><span></span></div>
+    <div class="lock-msg" id="lockMsg"></div>
+
+    <div class="lock-pad" id="lockPad"></div>
+
+    <div class="lock-recover" id="lockRecover" hidden>
+      <div class="lr-q" id="lockRecoverQ"></div>
+      <input class="inp" id="lockAnswer" type="text" autocomplete="off"
+             autocapitalize="none" spellcheck="false" placeholder="Your answer">
+      <button class="btn" id="lockAnswerGo">Unlock</button>
+      <button class="btn ghost" id="lockRecoverBack">Back to the PIN</button>
+    </div>
+
+    <button class="lock-foot" id="lockForgot" type="button">Forgotten your PIN?</button>
+    <button class="lock-foot" id="lockCancel" type="button" hidden>Cancel</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.8";
+const APP_VERSION = "1.0.9";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -2259,10 +2370,10 @@ document.querySelectorAll("#moreMenu .morerow").forEach(b =>
     if (what === "settings"){ setPane(null); sheetOpen("shSet"); }
   }));
 
-const PANES = ["profile","rates","github","data","calc","about"];
+const PANES = ["profile","rates","github","data","lock","calc","about"];
 const PANE_TITLES = {
   profile:"Profile", rates:"Rates & gold", github:"GitHub sync",
-  data:"Backup & restore", calc:"Calculator", about:"About"
+  data:"Backup & restore", lock:"App lock", calc:"Calculator", about:"About"
 };
 function setPane(p){
   $("setMenu").hidden = !!p;
@@ -2273,6 +2384,7 @@ function setPane(p){
   if (p === "rates") fillRates();
   if (p === "github") fillGithub();
   if (p === "about") fillAbout();
+  if (p === "lock") fillLock();
   if (p === "calc") fillCalc();
 }
 document.querySelectorAll("#setMenu .setrow").forEach(b =>
@@ -2434,8 +2546,9 @@ $("doRestore").addEventListener("click", () => {
   state = stateFromPayload(parsed);
   save(); render(); toast("Restored");
 });
-$("wipeAll").addEventListener("click", () => {
+$("wipeAll").addEventListener("click", async () => {
   if (!confirm("Delete every asset, liability, goal and investment? Your settings stay.")) return;
+  if (!(await lockConfirm("Enter your PIN to delete everything"))) return;
   state = stateCleared();
   save(); render(); toast("Everything deleted");
 });
@@ -2680,6 +2793,240 @@ $("btnUpdate").addEventListener("click", async () => {
   setTimeout(() => location.reload(), 700);
 });
 
+/* ============================================================
+   App lock
+
+   A PIN keeps the book shut against whoever picks up the phone. It is not
+   encryption and does not pretend to be: what is stored on this device is
+   still plain, and anyone determined enough to open the browser's own tools
+   can read it. Say so where it is switched on rather than implying a safe.
+
+   Only hashes are kept — the PIN and the recovery answer are salted and
+   run through SHA-256, so the stored values cannot be read back into the
+   PIN itself.
+   ============================================================ */
+const LOCK = {
+  ENABLED:"assetmgr.lock.enabled", SALT:"assetmgr.lock.salt",
+  PIN:"assetmgr.lock.pinHash", Q:"assetmgr.lock.question", A:"assetmgr.lock.answerHash"
+};
+const PIN_LEN = 4;
+
+function lockEnabled(){ return localStorage.getItem(LOCK.ENABLED) === "1"; }
+function lockSalt(){
+  let s = localStorage.getItem(LOCK.SALT);
+  if (!s){
+    s = Array.from(crypto.getRandomValues(new Uint8Array(8)))
+      .map(b => b.toString(16).padStart(2, "0")).join("");
+    localStorage.setItem(LOCK.SALT, s);
+  }
+  return s;
+}
+async function sha(prefix, value){
+  const buf = await crypto.subtle.digest("SHA-256",
+    new TextEncoder().encode(lockSalt() + ":" + prefix + ":" + value));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+const pinHash = (pin) => sha("pin", pin);
+/* Answers are compared with the case and the spacing taken out — remembering
+   an answer is the point, not typing it the way you typed it a year ago. */
+const answerHash = (a) => sha("ans", String(a || "").trim().toLowerCase().replace(/\s+/g, " "));
+
+let lockMode = "unlock";        /* "unlock" | "confirm" */
+let lockBuf = "";
+let lockResolve = null;
+
+function lockDots(){
+  document.querySelectorAll("#lockDots span").forEach((s, i) =>
+    s.classList.toggle("filled", i < lockBuf.length));
+}
+function lockShake(){
+  const d = $("lockDots");
+  d.classList.remove("shake"); void d.offsetWidth; d.classList.add("shake");
+}
+function lockSay(msg){ $("lockMsg").textContent = msg || ""; }
+
+const ICON_BACKSPACE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H8.5L3 12l5.5 7H21z"/><path d="M15 9.5l-4 5M11 9.5l4 5"/></svg>';
+
+function buildPad(){
+  const pad = $("lockPad");
+  pad.innerHTML = "";
+  const keys = ["1","2","3","4","5","6","7","8","9","", "0", "del"];
+  keys.forEach(k => {
+    if (k === ""){ pad.appendChild(document.createElement("span")); return; }
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "lock-key" + (k === "del" ? " ghost" : "");
+    b.innerHTML = k === "del" ? ICON_BACKSPACE : k;
+    b.setAttribute("aria-label", k === "del" ? "Delete" : k);
+    b.addEventListener("click", () => k === "del" ? lockBack() : lockPush(k));
+    pad.appendChild(b);
+  });
+}
+function lockBack(){ lockBuf = lockBuf.slice(0, -1); lockDots(); lockSay(""); }
+async function lockPush(d){
+  if (lockBuf.length >= PIN_LEN) return;
+  lockBuf += d;
+  lockDots();
+  if (lockBuf.length < PIN_LEN) return;
+  const ok = (await pinHash(lockBuf)) === localStorage.getItem(LOCK.PIN);
+  if (!ok){
+    lockShake();
+    lockSay(lockMode === "confirm" ? "That is not the PIN." : "Wrong PIN. Try again.");
+    lockBuf = ""; lockDots();
+    return;
+  }
+  if (lockMode === "confirm") lockConfirmEnd(true);
+  else unlockApp();
+}
+
+function lockShowUnlock(sub){
+  lockMode = "unlock"; lockBuf = "";
+  $("lockSub").textContent = sub || "Enter your PIN";
+  $("lockPad").hidden = false;
+  $("lockDots").hidden = false;
+  $("lockRecover").hidden = true;
+  $("lockForgot").hidden = !localStorage.getItem(LOCK.A);
+  $("lockCancel").hidden = true;
+  lockSay(""); lockDots();
+  document.documentElement.classList.add("locked");
+}
+function unlockApp(){
+  document.documentElement.classList.remove("locked");
+  lockBuf = ""; lockHiddenAt = 0;
+  lockResetIdle();
+  render();
+}
+
+/* Confirming something destructive reuses the same screen: same keypad, same
+   hash, but it settles a promise instead of opening the app. */
+function lockConfirm(what){
+  if (!lockEnabled()) return Promise.resolve(true);
+  lockShowUnlock(what);
+  lockMode = "confirm";
+  $("lockForgot").hidden = true;
+  $("lockCancel").hidden = false;
+  return new Promise(res => { lockResolve = res; });
+}
+function lockConfirmEnd(ok){
+  $("lockCancel").hidden = true;
+  document.documentElement.classList.remove("locked");
+  lockBuf = ""; lockMode = "unlock";
+  const r = lockResolve; lockResolve = null;
+  if (r) r(ok);
+}
+$("lockCancel").addEventListener("click", () => lockConfirmEnd(false));
+
+/* ---------- forgotten it ---------- */
+$("lockForgot").addEventListener("click", () => {
+  const q = localStorage.getItem(LOCK.Q);
+  if (!q) return;
+  $("lockRecoverQ").textContent = q;
+  $("lockAnswer").value = "";
+  $("lockRecover").hidden = false;
+  $("lockPad").hidden = true;
+  $("lockDots").hidden = true;
+  $("lockForgot").hidden = true;
+  $("lockSub").textContent = "Answer this and the PIN comes off";
+  lockSay("");
+  $("lockAnswer").focus();
+});
+$("lockRecoverBack").addEventListener("click", () => lockShowUnlock());
+async function lockTryAnswer(){
+  const given = await answerHash($("lockAnswer").value);
+  if (given !== localStorage.getItem(LOCK.A)){
+    lockSay("That is not the answer saved.");
+    return;
+  }
+  /* The answer stands in for the PIN, so the lock comes off rather than the
+     PIN being revealed — there is nothing to reveal, only a hash. */
+  localStorage.setItem(LOCK.ENABLED, "0");
+  localStorage.removeItem(LOCK.PIN);
+  $("lockRecover").hidden = true;
+  unlockApp();
+  toast("Lock removed — set a new PIN when you like");
+}
+$("lockAnswerGo").addEventListener("click", lockTryAnswer);
+$("lockAnswer").addEventListener("keydown", e => { if (e.key === "Enter") lockTryAnswer(); });
+
+/* physical keyboards, since this runs on a desktop too */
+document.addEventListener("keydown", e => {
+  if (!document.documentElement.classList.contains("locked")) return;
+  if ($("lockPad").hidden) return;
+  if (/^[0-9]$/.test(e.key)){ lockPush(e.key); e.preventDefault(); }
+  else if (e.key === "Backspace"){ lockBack(); e.preventDefault(); }
+});
+
+/* ---------- shutting again ----------
+   An installed app is often resumed from memory rather than reloaded, so
+   locking at boot alone would never fire again. Coming back after a while
+   away is what actually needs covering. */
+const LOCK_IDLE_MS = 5 * 60 * 1000;
+let lockIdleTimer = null;
+let lockHiddenAt = 0;
+
+function lockNow(){
+  if (!lockEnabled() || document.documentElement.classList.contains("locked")) return;
+  sheetCloseAll();
+  lockShowUnlock();
+}
+function lockResetIdle(){
+  if (lockIdleTimer) clearTimeout(lockIdleTimer);
+  if (!lockEnabled()) return;
+  lockIdleTimer = setTimeout(lockNow, LOCK_IDLE_MS);
+}
+["pointerdown", "keydown", "touchstart"].forEach(ev =>
+  document.addEventListener(ev, lockResetIdle, { passive: true }));
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) lockHiddenAt = Date.now();
+  else if (lockHiddenAt && Date.now() - lockHiddenAt > LOCK_IDLE_MS) lockNow();
+  else lockResetIdle();
+});
+
+/* ---------- the pane that switches it on ---------- */
+function lockTileSub(){
+  $("lockTileSub").textContent = lockEnabled() ? "On" : "Off";
+}
+function fillLock(){
+  const on = lockEnabled();
+  lockTileSub();
+  $("lockOffBox").hidden = on;
+  $("lockOnBox").hidden = !on;
+  $("lockStatus").textContent = on
+    ? "On. The PIN is asked for when the app opens, and again after five minutes away."
+    : "Off. Anyone who picks up this device can read what is here.";
+  ["pinNew","pinAgain","lockQ","lockA"].forEach(id => { $(id).value = ""; });
+}
+$("lockTurnOn").addEventListener("click", async () => {
+  const pin = $("pinNew").value.trim(), again = $("pinAgain").value.trim();
+  const q = $("lockQ").value.trim(), a = $("lockA").value.trim();
+  if (!/^[0-9]{4}$/.test(pin)){ toast("The PIN is four digits"); return; }
+  if (pin !== again){ toast("The two PINs are not the same"); return; }
+  if (!q || !a){ toast("Set a question and an answer, or a forgotten PIN locks you out"); return; }
+  localStorage.setItem(LOCK.PIN, await pinHash(pin));
+  localStorage.setItem(LOCK.Q, q);
+  localStorage.setItem(LOCK.A, await answerHash(a));
+  localStorage.setItem(LOCK.ENABLED, "1");
+  fillLock(); lockResetIdle();
+  toast("Lock on");
+});
+$("lockTurnOff").addEventListener("click", async () => {
+  if (!(await lockConfirm("Enter your PIN to take the lock off"))) return;
+  localStorage.setItem(LOCK.ENABLED, "0");
+  localStorage.removeItem(LOCK.PIN);
+  fillLock();
+  toast("Lock off");
+});
+$("lockChange").addEventListener("click", async () => {
+  if (!(await lockConfirm("Enter the PIN you use now"))) return;
+  localStorage.setItem(LOCK.ENABLED, "0");
+  localStorage.removeItem(LOCK.PIN);
+  fillLock();
+  toast("Choose a new PIN");
+});
+
+buildPad();
+if (lockEnabled()) lockShowUnlock();
+
 /* ---------- theme ---------- */
 function applyTheme(t){
   if (t === "system") document.documentElement.removeAttribute("data-theme");
@@ -2716,6 +3063,7 @@ if ("serviceWorker" in navigator && location.protocol !== "file:"){
 /* ---------- go ---------- */
 $("aboutTileSub").textContent = "Version " + APP_VERSION;
 ghTileSub();
+lockTileSub();
 render();
 </script>
 </body>

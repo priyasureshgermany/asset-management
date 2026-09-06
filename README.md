@@ -37,6 +37,25 @@ currency, from Settings → Rates & gold, worked out fresh every time it is
 read (`investWorth()`). The Investment tab totals the grams across every
 gold holding and what they come to at today's price.
 
+### App lock
+
+A four-digit PIN, asked for when the app opens and again after five minutes
+away — an installed app is usually resumed from memory rather than reloaded,
+so locking at boot alone would only ever fire once. The class that hides the
+app is set by a small script in `<head>`, because the app's own script runs
+at the foot of the document and a lock applied there would come one frame of
+readable figures too late.
+
+Only hashes are stored: the PIN and the recovery answer are salted and run
+through SHA-256. The recovery answer is matched with case and spacing taken
+out. Deleting everything asks for the PIN, and the recovery question is
+hidden during that ask — otherwise the question could authorise a wipe.
+
+**It is a lock, not a safe.** What is stored on the device stays plain, and
+anyone who opens the browser's own tools can read it. It is there for whoever
+picks up your phone, not for someone taking the device apart. The app says so
+where it is switched on.
+
 ### Settings
 
 - **Profile** — your name, and the currency new entries start in.

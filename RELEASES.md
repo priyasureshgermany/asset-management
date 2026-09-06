@@ -1,5 +1,9 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.9 — 2026-09-06
+- new: A PIN lock: four digits asked for when the app opens and again after five minutes away, with a question of your own to fall back on if the PIN goes.
+- new: Deleting everything now asks for the PIN, and the recovery question is put away while it asks — a question that could authorise a wipe is not a lock.
+
 ## 1.0.8 — 2026-09-06
 - better: The + on the dashboard is real glass again, at the expense tracker's own strength — the page shows through it, with a specular cap and a hot spot on the surface and the glyph left fully opaque so a see-through button is still readable.
 - fix: Asset and Liability were both offered under the same plus. Each now carries the icon the thing it makes will wear in the list, so what you pick from looks like what you get.
