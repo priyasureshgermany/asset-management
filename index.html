@@ -263,6 +263,7 @@ button.tile:hover .tile-go{color:var(--accent)}
 .legrow .dot{width:9px;height:9px;border-radius:3px;flex:none}
 .legrow .ln{flex:1;min-width:0;font-size:12px;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .legrow .lp{font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums;color:var(--ink-3);flex:none}
+.legrow .lp.amt{color:var(--ink);font-weight:600}
 
 /* ---------- Gold card ---------- */
 .goldcard{
@@ -1110,7 +1111,7 @@ select.inp{appearance:none;background-image:none}
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.3";
+const APP_VERSION = "1.0.4";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1563,12 +1564,16 @@ function renderAlloc(){
     `<div class="pie-mid"><div class="pm-v">${esc(shown ? fmtDisp(shown.value) : fmtDisp(total))}</div>` +
     `<div class="pm-k">${esc(shown ? shown.label : "Total")}</div></div>`;
 
+  /* The share is what the list is for — until you pick one, and then the
+     question you were asking was how much, so that row answers in money. */
   $("allocLegend").innerHTML = slices.map((s, idx) => {
     const share = total > 0 ? (s.value / total * 100) : 0;
-    return `<button class="legrow${allocPick === idx ? " on" : ""}" type="button" data-i="${idx}">
+    const on = allocPick === idx;
+    return `<button class="legrow${on ? " on" : ""}" type="button" data-i="${idx}"
+        aria-pressed="${on}" title="${esc(s.label)}: ${esc(fmtDisp(s.value))}">
       <span class="dot" style="background:${s.colour}"></span>
       <span class="ln">${esc(s.label)}</span>
-      <span class="lp">${share.toFixed(0)}%</span>
+      <span class="lp${on ? " amt" : ""}">${on ? esc(fmtDisp(s.value)) : share.toFixed(0) + "%"}</span>
     </button>`;
   }).join("");
 

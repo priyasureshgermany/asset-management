@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.4 — 2026-09-06
+- better: Pick a colour on the dashboard chart and that row answers in money rather than a share — the donut's middle already did, and now the legend beside it agrees.
+
 ## 1.0.3 — 2026-09-06
 - better: Charts follow the expense tracker's colour system: hsl(h 82% L) inside the same 22–42 band, placed by OkLab distance so no two wedges look alike, and the shared tokens for the figures that mean income or debt.
 - fix: Gold held as jewellery and gold held as an investment were drawn in the very same colour and counted as two wedges. They are one wedge now, which is what they are — and so is a fixed deposit, whichever list it was entered from.
