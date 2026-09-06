@@ -224,6 +224,42 @@ button.tile:hover .tile-go{color:var(--accent)}
   transition:width .45s cubic-bezier(.4,0,.2,1);
 }
 
+/* ---------- A SIP whose day has come ---------- */
+.duebar{
+  display:flex;align-items:center;gap:11px;width:100%;text-align:left;
+  margin:14px 14px 0;padding:12px 13px;border-radius:var(--r-lg);
+  background:var(--warn-soft);border:1px solid color-mix(in srgb, var(--warn) 30%, transparent);
+  transition:filter .15s,transform .12s;
+}
+.duebar:hover{filter:brightness(1.03)}
+.duebar:active{transform:scale(.99)}
+.duebar[hidden]{display:none}
+.du-ic{
+  width:34px;height:34px;flex:none;border-radius:11px;display:grid;place-items:center;
+  background:color-mix(in srgb, var(--warn) 20%, transparent);color:var(--warn);
+}
+.du-ic svg{width:18px;height:18px;stroke-width:1.9}
+.du-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.du-t{font-size:13.5px;font-weight:600;color:var(--ink)}
+.du-s{font-size:11.5px;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.du-go{flex:none;color:var(--warn)}
+.du-go svg{width:18px;height:18px;stroke-width:2}
+.duerow{
+  display:flex;align-items:center;gap:11px;padding:11px 12px;width:100%;text-align:left;
+  border-bottom:1px solid var(--line);
+}
+.duerow:last-child{border-bottom:none}
+.duerow .dr-m{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.duerow .dr-n{font-size:14px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.duerow .dr-d{font-size:11.5px;color:var(--ink-3)}
+.duerow .dr-a{font-family:var(--mono);font-size:13.5px;font-weight:600;flex:none}
+.dr-tick{
+  width:30px;height:30px;flex:none;border-radius:9px;border:1.6px solid var(--line-strong);
+  display:grid;place-items:center;color:transparent;transition:all .15s;
+}
+.dr-tick:hover{border-color:var(--pos);color:var(--pos)}
+.dr-tick svg{width:16px;height:16px;stroke-width:2.6}
+
 /* ---------- Chart blocks ---------- */
 .chartblock{
   margin:14px 14px 0;padding:14px 15px 8px;
@@ -804,6 +840,15 @@ html.locked #lockScreen{
 
   <!-- ============ DASHBOARD ============ -->
   <div id="viewDash">
+    <button class="duebar" id="dueBar" type="button" hidden>
+      <span class="du-ic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M12 14v3.5M10.3 15h3.4"/></svg>
+      </span>
+      <span class="du-txt"><span class="du-t" id="dueT">—</span><span class="du-s" id="dueS">—</span></span>
+      <span class="du-go">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </span>
+    </button>
     <section class="statement">
       <div class="eyebrow">Net worth</div>
       <div class="net" id="nwVal">€0</div>
@@ -1305,7 +1350,12 @@ html.locked #lockScreen{
         <div class="field"><label>Put in</label><input class="inp" id="investInvested" type="text" inputmode="decimal" placeholder="0"></div>
         <div class="field"><label>Worth now</label><input class="inp" id="investCurrent" type="text" inputmode="decimal" placeholder="0"></div>
       </div>
-      <div class="field"><label>Monthly SIP (optional)</label><input class="inp" id="investSip" type="text" inputmode="decimal" placeholder="0"></div>
+      <div class="row2">
+        <div class="field"><label>Monthly SIP (optional)</label>
+          <input class="inp" id="investSip" type="text" inputmode="decimal" placeholder="0"></div>
+        <div class="field"><label>Goes out on day</label>
+          <input class="inp" id="investSipDay" type="text" inputmode="numeric" placeholder="5"></div>
+      </div>
     </div>
 
     <div id="investGoldFields" hidden>
@@ -1328,6 +1378,22 @@ html.locked #lockScreen{
     <div class="field" style="margin-top:15px"><label>Note (optional)</label><textarea class="inp" id="investNotes"></textarea></div>
     <button class="btn" id="investSave">Save</button>
     <button class="btn danger" id="investDelete" style="margin-top:9px" hidden>Delete this investment</button>
+  </div>
+</section>
+
+<!-- ============ SIPS DUE ============ -->
+<section class="sheet" id="shDue" role="dialog" aria-modal="true" aria-labelledby="dueTitle">
+  <div class="sheet-head">
+    <h2 id="dueTitle">SIPs due</h2>
+    <button class="iconbtn" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body">
+    <p class="ph" id="dueLead"></p>
+    <div class="rows" id="dueRows"></div>
+    <button class="btn" id="dueAll" style="margin-top:14px">Tick them all off</button>
+    <div class="note" style="margin-top:12px">Ticking one off says it went out this month. It comes back on its day next month.</div>
   </div>
 </section>
 
@@ -1359,7 +1425,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.14";
+const APP_VERSION = "1.0.15";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1521,6 +1587,10 @@ function stateFromPayload(p){
       id: i.id || uid(), name: str(i.name), type: str(i.type || "Other"),
       investedAmount: num(i.investedAmount), currentValue: num(i.currentValue),
       currency: cur(i.currency), sipAmount: num(i.sipAmount),
+      sipDay: Math.min(31, Math.max(0, Math.round(num(i.sipDay)))),
+      /* the month last ticked off, as YYYY-MM — a date would invite the
+         question of which date, and the answer is only ever the month */
+      sipDone: str(i.sipDone),
       grams: num(i.grams), purity: str(i.purity), goldDesc: str(i.goldDesc),
       goldKind: str(i.goldKind), boughtOn: str(i.boughtOn),
       notes: str(i.notes), updatedAt: i.updatedAt || new Date().toISOString()
@@ -1788,6 +1858,7 @@ function renderDash(t){
   $("ratioFill").style.background = ratio >= 70 ? "var(--neg)" : ratio >= 40 ? "var(--warn)" : "var(--pos)";
   $("ratioWrap").hidden = t.assets === 0 && t.liabilities === 0;
 
+  renderDueBar();
   renderAlloc();
   renderBars("assetBars", "assetBarN", assetSlices(), t.assets);
   renderBars("liabBars", "liabBarN", liabSlices(), t.liabilities);
@@ -2171,6 +2242,79 @@ function renderDashList(){
   }
 }
 
+/* ============================================================
+   SIPs whose day has come
+
+   No notification can reach a phone with the app shut — that needs a server
+   pushing it, and this is a page. So the app says it when you open it, which
+   is the honest version of the same thing.
+   ============================================================ */
+function monthKey(d){
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+}
+/** The day this month a SIP set for the 31st actually falls on. */
+function dueDayThisMonth(day, now){
+  const last = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+  return Math.min(day, last);
+}
+function sipDueList(now){
+  now = now || new Date();
+  const key = monthKey(now);
+  return state.investments.filter(i =>
+    i.type !== GOLD_TYPE &&
+    i.sipAmount > 0 && i.sipDay > 0 &&
+    i.sipDone !== key &&
+    now.getDate() >= dueDayThisMonth(i.sipDay, now));
+}
+function renderDueBar(){
+  const due = sipDueList();
+  const bar = $("dueBar");
+  bar.hidden = !due.length;
+  if (!due.length) return;
+  const total = due.reduce((s, i) => s + toDisp(i.sipAmount, i.currency), 0);
+  $("dueT").textContent = due.length === 1
+    ? "A SIP is due" : due.length + " SIPs are due";
+  $("dueS").textContent = fmtDisp(total) + " · " + due.map(i => i.name).join(", ");
+}
+function openDue(){
+  const now = new Date();
+  const due = sipDueList(now);
+  if (!due.length) return;
+  $("dueLead").textContent = due.length === 1
+    ? "This one's day has come round."
+    : "These have had their day come round this month.";
+  $("dueRows").innerHTML = due.map(i => {
+    const day = dueDayThisMonth(i.sipDay, now);
+    const late = now.getDate() - day;
+    return `<div class="duerow">
+      <span class="dr-m"><span class="dr-n">${esc(i.name || i.type)}</span>
+        <span class="dr-d">day ${day}${late > 0 ? " · " + late + (late === 1 ? " day ago" : " days ago") : " · today"}</span></span>
+      <span class="dr-a">${esc(fmt(i.sipAmount, i.currency))}</span>
+      <button class="dr-tick" type="button" data-id="${esc(i.id)}" aria-label="Mark as gone out">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 7"/></svg>
+      </button>
+    </div>`;
+  }).join("");
+  $("dueRows").querySelectorAll(".dr-tick").forEach(b =>
+    b.addEventListener("click", () => tickSip(b.dataset.id)));
+  sheetOpen("shDue");
+}
+function tickSip(id){
+  const i = state.investments.find(x => x.id === id);
+  if (!i) return;
+  i.sipDone = monthKey(new Date());
+  save();
+  render();
+  if (!sipDueList().length){ sheetClose("shDue"); toast("All caught up"); }
+  else openDue();
+}
+$("dueBar").addEventListener("click", openDue);
+$("dueAll").addEventListener("click", () => {
+  const key = monthKey(new Date());
+  sipDueList().forEach(i => { i.sipDone = key; });
+  save(); render(); sheetClose("shDue"); toast("All caught up");
+});
+
 /* ---------- goals ---------- */
 function renderGoals(){
   const target = state.goals.reduce((s,g) => s + toDisp(g.targetAmount, g.currency), 0);
@@ -2502,6 +2646,7 @@ function openInvest(id){
   $("investInvested").value = i && i.investedAmount ? i.investedAmount : "";
   $("investCurrent").value = i && i.currentValue ? i.currentValue : "";
   $("investSip").value = i && i.sipAmount ? i.sipAmount : "";
+  $("investSipDay").value = i && i.sipDay ? i.sipDay : "";
   $("investGrams").value = i && i.grams ? i.grams : "";
   $("investPurity").value = i ? i.purity : "22K";
   $("investGoldDesc").value = i ? i.goldDesc : "";
@@ -2531,6 +2676,9 @@ $("investSave").addEventListener("click", () => {
     /* Gold is never stored as a value — it is weighed each time it is read. */
     currentValue: isGold ? 0 : num($("investCurrent").value),
     sipAmount: isGold ? 0 : num($("investSip").value),
+    sipDay: isGold ? 0 : Math.min(31, Math.max(0, Math.round(num($("investSipDay").value)))),
+    /* editing a holding is not paying its SIP, so the tick stands */
+    sipDone: isGold ? "" : (state.investments.find(x => x.id === id) || {}).sipDone || "",
     grams: isGold ? num($("investGrams").value) : 0,
     purity: isGold ? $("investPurity").value : "",
     goldDesc: isGold ? $("investGoldDesc").value.trim() : "",

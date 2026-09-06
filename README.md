@@ -37,6 +37,20 @@ currency, from Settings → Rates & gold, worked out fresh every time it is
 read (`investWorth()`). The Investment tab totals the grams across every
 gold holding and what they come to at today's price.
 
+### SIPs coming due
+
+An investment can carry the day of the month its SIP goes out. On or after
+that day the dashboard says so, and the banner opens onto the list with a
+tick against each. Ticking one records the *month* it went out, so it stays
+quiet for the rest of that month and comes back on its day in the next. A
+SIP set for the 31st falls on the 28th, 29th or 30th where the month is
+shorter.
+
+**It cannot reach a phone with the app shut.** A notification arriving on the
+day needs a server pushing it, and this is a page with no server behind it —
+the browser API for scheduling one locally was abandoned. So the app says it
+when you open it, which is the honest version of the same thing.
+
 ### App lock
 
 A four-digit PIN, asked for when the app opens and again after five minutes

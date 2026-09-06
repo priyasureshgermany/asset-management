@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.15 — 2026-09-06
+- new: A SIP can carry the day it goes out, and the dashboard says when one has come round. Tick it off and it stays quiet until its day next month.
+
 ## 1.0.14 — 2026-09-06
 - new: Reports come in three now: an overview, investments on their own, and an in-depth allocation.
 - new: A pie on each report, the same solid the dashboard draws — several can sit on a page at once, each with its own lit slice.
