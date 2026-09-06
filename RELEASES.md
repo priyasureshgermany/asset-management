@@ -1,5 +1,9 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.3 — 2026-09-06
+- better: Charts follow the expense tracker's colour system: hsl(h 82% L) inside the same 22–42 band, placed by OkLab distance so no two wedges look alike, and the shared tokens for the figures that mean income or debt.
+- fix: Gold held as jewellery and gold held as an investment were drawn in the very same colour and counted as two wedges. They are one wedge now, which is what they are — and so is a fixed deposit, whichever list it was entered from.
+
 ## 1.0.2 — 2026-09-06
 - fix: A rate typed with a comma — 8,75 — was read as nothing, so a loan quietly worked itself out at 0% interest. Every amount now takes either decimal mark, and a rate is shown with the one you use.
 - new: SIP and loan results open into a year-by-year table: what went in and what it came to, or what is principal, what is interest, and what is left to pay.

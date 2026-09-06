@@ -59,6 +59,33 @@ python -m http.server 4174
 Then open `http://localhost:4174`. Or use the `.claude/launch.json`
 configuration with the `run` skill / Claude's browser preview.
 
+## Chart colour
+
+The expense tracker's system, kept to the letter: `hsl(h 82% L)` with `L`
+inside a 22–42 band, and colours placed so no two are near each other in
+**OkLab**, which is what the eye actually separates — hue degrees lie, since
+10° apart in the greens is invisible where the same 10° in the reds is
+obvious. Figures that mean income or debt take the shared tokens
+(`--pos`, `--neg`, `--bar-in`, `--bar-out`, `--warn`, `--accent`) instead,
+the way the tracker's own dashboard chart does.
+
+The palettes in `index.html` (`BUCKETS`, `LIAB_CATS`) were solved against
+that metric and are checked by:
+
+```bash
+node tools/check-palette.mjs '<owned palette JSON>' '<owed palette JSON>'
+```
+
+It fails on any pair under 14 apart, the tracker's own threshold. Run it
+after changing a hue or adding a category. A hue that carries meaning barely
+moves (gold is gold); the neutral ones absorb the separation; and red is left
+for what you owe, so nothing you own strays into it.
+
+Note the chart groups by *bucket*, not by the label on the entry sheet: gold
+held as jewellery and gold held as an investment are one wedge, and so is a
+fixed deposit whichever list it came from. They are the same holding, and two
+wedges of it would only have to be told apart by a colour that says nothing.
+
 ## The icon
 
 A brass vault door on the same engraved plate the expense tracker uses, so the
