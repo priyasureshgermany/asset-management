@@ -688,6 +688,47 @@ select.inp{appearance:none;background-image:none}
 .ytable td.yr{font-family:var(--sans);color:var(--ink-3);font-weight:600}
 .ytable tbody tr:last-child td.yr{color:var(--ink)}
 .ytable td.pos{color:var(--pos)} .ytable td.neg{color:var(--neg)}
+.ytable .yr-row{cursor:pointer}
+.ytable .yr-row:hover td{background:var(--surface-2)}
+.ytable .yr-row.open td{background:var(--surface-2)}
+.yr-caret{
+  display:inline-block;width:0;height:0;margin-right:7px;vertical-align:1px;
+  border-left:4.5px solid currentColor;border-top:3.5px solid transparent;
+  border-bottom:3.5px solid transparent;color:var(--ink-3);
+  transition:transform .18s;transform-origin:30% 50%;
+}
+.yr-row.open .yr-caret{transform:rotate(90deg)}
+.ytable .mo-row td{
+  background:var(--surface-sunk);font-size:11px;color:var(--ink-3);
+  padding-top:6px;padding-bottom:6px;
+}
+.ytable .mo-row td.mo{font-family:var(--sans);padding-left:24px}
+.ytable tbody tr.mo-row:last-child td{color:var(--ink-3);font-weight:400}
+
+/* ---------- Held against target ----------
+   The bar is what is held; the notch on it is what was meant to be held. Two
+   bars would have to be compared; one bar and a mark is read at a glance. */
+.alrow{padding:10px 0 12px;border-bottom:1px solid var(--line)}
+.alrow:last-of-type{border-bottom:none}
+.al-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:7px}
+.al-n{font-size:12.5px;font-weight:500;color:var(--ink-2);display:flex;align-items:center;gap:7px;min-width:0}
+.al-n .dot{width:9px;height:9px;border-radius:3px;flex:none}
+.al-v{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink);flex:none}
+.al-track{position:relative;height:10px;background:var(--surface-sunk);border-radius:99px;overflow:visible}
+.al-track .al-now{display:block;height:100%;border-radius:99px}
+.al-track .al-tgt{
+  position:absolute;top:-3px;width:2px;height:16px;border-radius:2px;
+  background:var(--ink);transform:translateX(-1px);
+}
+.al-foot{display:flex;align-items:center;gap:10px;margin-top:7px;font-size:11.5px;color:var(--ink-3)}
+.al-foot > span:first-child{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.al-drift{flex:1;font-weight:600}
+.al-drift.over{color:var(--warn)} .al-drift.under{color:var(--accent)} .al-drift.ok{color:var(--pos)}
+.al-set{display:flex;align-items:center;gap:5px;flex:none;color:var(--ink-3)}
+.al-in{
+  width:52px;padding:5px 7px;text-align:right;font-family:var(--mono);
+  font-size:12px;font-weight:600;border-radius:8px;
+}
 
 /* ---------- App lock ----------
    An opaque screen rather than a translucent one: the point is that the
@@ -1152,7 +1193,14 @@ html.locked #lockScreen{
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
   </div>
-  <div class="sheet-body" id="repBody"></div>
+  <div class="sheet-body">
+    <div class="seg" id="repSeg" role="tablist" style="margin-bottom:14px">
+      <button role="tab" data-rep="overview" aria-selected="true">Overview</button>
+      <button role="tab" data-rep="invest" aria-selected="false">Investments</button>
+      <button role="tab" data-rep="depth" aria-selected="false">In depth</button>
+    </div>
+    <div id="repBody"></div>
+  </div>
 </section>
 
 <!-- ============ WHAT'S NEW ============ -->
@@ -1311,7 +1359,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.13";
+const APP_VERSION = "1.0.14";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1480,6 +1528,15 @@ function stateFromPayload(p){
     profile: { name: str(p.profile && p.profile.name), currency: home },
     settings: {
       display: oneOf(settings.display, CURRENCIES, home),
+      /* What share of everything owned each kind is meant to be. Kept as whole
+         percents against the chart's own buckets, so the report can put the
+         two side by side without a second vocabulary. */
+      targets: (function(){
+        const t = settings.targets && typeof settings.targets === "object" ? settings.targets : {};
+        const out = {};
+        BUCKETS.forEach(b => { const v = num(t[b.k]); if (v > 0) out[b.k] = Math.min(100, v); });
+        return out;
+      })(),
       inrPerEur: num(settings.inrPerEur) > 0 ? num(settings.inrPerEur) : 90,
       goldPerGram: {
         EUR: num(gold.EUR) > 0 ? num(gold.EUR) : 75,
@@ -1855,22 +1912,30 @@ function pieWall(a1, a2){
          pieX(b1).toFixed(2) + " " + (pieY(b1) + d).toFixed(2) + " Z";
 }
 
-let allocPick = null;
-function renderAlloc(){
-  const slices = assetSlices();
+/* One pie, drawn wherever it is asked for. Several can sit on a page at
+   once, so the gradients are named after the pie as well as the slice — two
+   pies sharing an id would each be painted in the other's colours. The lit
+   slice is remembered per pie for the same reason. */
+const piePick = {};
+
+function renderPie(key, pieEl, legendEl, slices, opts){
+  opts = opts || {};
   const total = slices.reduce((s,x) => s + x.value, 0);
-  $("allocBlock").hidden = !slices.length;
-  if (!slices.length) return;
-  if (allocPick != null && allocPick >= slices.length) allocPick = null;
+  if (!slices.length || !total){
+    pieEl.innerHTML = "";
+    if (legendEl) legendEl.innerHTML = "";
+    return 0;
+  }
+  let pick = piePick[key];
+  if (pick != null && pick >= slices.length) pick = piePick[key] = null;
 
-  $("allocN").textContent = slices.length + (slices.length === 1 ? " kind" : " kinds");
-
+  const gid = (what, i) => "pg" + what + key + i;
   const dark = isDark();
   /* twelve o'clock is -90 degrees, and the angle runs clockwise from there */
   let at = -Math.PI / 2;
   const spans = slices.map((s, i) => {
     const span = total > 0 ? (s.value / total) * Math.PI * 2 : 0;
-    const out = { s, i, a1: at, a2: at + span, on: allocPick === i };
+    const out = { s, i, a1: at, a2: at + span, on: pick === i };
     at += span;
     return out;
   });
@@ -1881,21 +1946,21 @@ function renderAlloc(){
   const chosen = spans.find(x => x.on);
   const defs = spans.map((x, i) => {
     const k = pieShades(x.s.cat, x.on);
-    return '<linearGradient id="pgt' + i + '" gradientUnits="userSpaceOnUse" ' +
+    return '<linearGradient id="' + gid("t", i) + '" gradientUnits="userSpaceOnUse" ' +
              'x1="0" y1="' + yTop + '" x2="0" y2="' + (PIE.cy + PIE.ry) + '">' +
              '<stop offset="0" stop-color="' + k.lit + '"/>' +
              '<stop offset="0.44" stop-color="' + k.top + '"/>' +
              '<stop offset="1" stop-color="' + k.base + '"/></linearGradient>' +
-           '<linearGradient id="pgw' + i + '" gradientUnits="userSpaceOnUse" ' +
+           '<linearGradient id="' + gid("w", i) + '" gradientUnits="userSpaceOnUse" ' +
              'x1="0" y1="' + PIE.cy + '" x2="0" y2="' + yBot + '">' +
              '<stop offset="0" stop-color="' + k.base + '"/>' +
              '<stop offset="0.28" stop-color="' + k.wall + '"/>' +
              '<stop offset="1" stop-color="' + k.foot + '"/></linearGradient>';
   }).join("") +
-  '<radialGradient id="pgShadow">' +
+  '<radialGradient id="' + 'pgShadow' + key + '">' +
     '<stop offset="0" stop-color="' + (dark ? "rgba(0,0,0,.6)" : "rgba(15,25,34,.24)") + '"/>' +
     '<stop offset="1" stop-color="rgba(0,0,0,0)"/></radialGradient>' +
-  '<radialGradient id="pgGloss" cx="0.34" cy="0.20" r="0.78">' +
+  '<radialGradient id="' + 'pgGloss' + key + '" cx="0.34" cy="0.20" r="0.78">' +
     '<stop offset="0" stop-color="rgba(255,255,255,' + (dark ? ".17" : ".30") + ')"/>' +
     '<stop offset="0.5" stop-color="rgba(255,255,255,' + (dark ? ".04" : ".08") + ')"/>' +
     '<stop offset="1" stop-color="rgba(255,255,255,0)"/></radialGradient>' +
@@ -1904,11 +1969,11 @@ function renderAlloc(){
      carries — laid out in the pie's coordinates, so the shine continues the
      light already crossing the object rather than starting again mid-wedge. */
   (chosen
-    ? '<filter id="pgLit" x="-25%" y="-25%" width="150%" height="150%">' +
+    ? '<filter id="' + 'pgLit' + key + '" x="-25%" y="-25%" width="150%" height="150%">' +
         '<feDropShadow dx="0" dy="1.3" stdDeviation="2.1" flood-color="' +
           (dark ? "#000" : "#0F1922") + '" flood-opacity="' + (dark ? "0.55" : "0.34") +
           '"/></filter>' +
-      '<radialGradient id="pgSheen" gradientUnits="userSpaceOnUse" ' +
+      '<radialGradient id="' + 'pgSheen' + key + '" gradientUnits="userSpaceOnUse" ' +
         'cx="' + (PIE.cx - PIE.rx * 0.30).toFixed(1) + '" ' +
         'cy="' + (PIE.cy - PIE.ry * 0.62).toFixed(1) + '" ' +
         'r="' + (PIE.rx * 0.98).toFixed(1) + '">' +
@@ -1919,32 +1984,32 @@ function renderAlloc(){
       /* the hotspot: small, near-white, gone within a fifth of its radius. A
          slow fade reads as haze; the sharpness of the falloff is what reads
          as wet, so this one stops almost as soon as it starts. */
-      '<radialGradient id="pgHot">' +
+      '<radialGradient id="' + 'pgHot' + key + '">' +
         '<stop offset="0" stop-color="rgba(255,255,255,.96)"/>' +
         '<stop offset="0.18" stop-color="rgba(255,255,255,.62)"/>' +
         '<stop offset="0.46" stop-color="rgba(255,255,255,.16)"/>' +
         '<stop offset="1" stop-color="rgba(255,255,255,0)"/></radialGradient>' +
-      '<clipPath id="pgClip"><path d="' + pieTop(chosen.a1, chosen.a2) + '"/></clipPath>'
+      '<clipPath id="' + 'pgClip' + key + '"><path d="' + pieTop(chosen.a1, chosen.a2) + '"/></clipPath>'
     : "");
 
   const hair = dark ? "rgba(255,255,255,.16)" : "rgba(255,255,255,.5)";
   const walls = [], tops = [];
   spans.forEach((x, i) => {
-    const dim = allocPick != null && !x.on ? ' opacity="0.42"' : "";
-    const glow = x.on ? ' filter="url(#pgLit)"' : "";
+    const dim = pick != null && !x.on ? ' opacity="0.42"' : "";
+    const glow = x.on ? ' filter="url(#' + 'pgLit' + key + ')"' : "";
     const edge = ' stroke="' + hair + '" stroke-width="0.7"';
     const w = pieWall(x.a1, x.a2);
-    if (w) walls.push('<path class="pie-wall" d="' + w + '" fill="url(#pgw' + i + ')"' + edge + dim + glow + "></path>");
-    tops.push('<path class="pie-top" d="' + pieTop(x.a1, x.a2) + '" fill="url(#pgt' + i + ')"' +
+    if (w) walls.push('<path class="pie-wall" d="' + w + '" fill="url(#' + gid("w", i) + ')"' + edge + dim + glow + "></path>");
+    tops.push('<path class="pie-top" d="' + pieTop(x.a1, x.a2) + '" fill="url(#' + gid("t", i) + ')"' +
               edge + dim + glow + ' data-i="' + i + '">' +
               "<title>" + esc(x.s.label) + " · " + esc(fmtDisp(x.s.value)) + "</title></path>");
   });
 
-  $("allocPie").innerHTML =
-    '<svg viewBox="0 0 200 158" role="img" aria-label="Where your money sits">' +
+  pieEl.innerHTML =
+    '<svg viewBox="0 0 200 158" role="img" aria-label="' + esc(opts.label || "Breakdown") + '">' +
     "<defs>" + defs + "</defs>" +
     '<ellipse cx="' + PIE.cx + '" cy="' + (PIE.cy + PIE.depth + 8) + '" rx="' + (PIE.rx * 1.04) +
-      '" ry="' + (PIE.ry * 0.46) + '" fill="url(#pgShadow)"/>' +
+      '" ry="' + (PIE.ry * 0.46) + '" fill="url(#' + 'pgShadow' + key + ')"/>' +
     walls.join("") + tops.join("") +
     /* the chosen slice takes its polish over the top of the flat faces. The
        hotspot is placed against the slice's own middle rather than the pie's,
@@ -1958,18 +2023,18 @@ function renderAlloc(){
           const k = Math.max(0.3, Math.min(1, (chosen.a2 - chosen.a1) / (Math.PI / 3.2)));
           const hx = PIE.cx + Math.cos(mid) * PIE.rx * 0.5 - PIE.rx * 0.09 * k;
           const hy = PIE.cy + Math.sin(mid) * PIE.ry * 0.5 - PIE.ry * 0.22 * k;
-          return '<g clip-path="url(#pgClip)" pointer-events="none">' +
-                 '<path d="' + pieTop(chosen.a1, chosen.a2) + '" fill="url(#pgSheen)"/>' +
+          return '<g clip-path="url(#' + 'pgClip' + key + ')" pointer-events="none">' +
+                 '<path d="' + pieTop(chosen.a1, chosen.a2) + '" fill="url(#' + 'pgSheen' + key + ')"/>' +
                  '<ellipse cx="' + hx.toFixed(1) + '" cy="' + hy.toFixed(1) +
                    '" rx="' + (PIE.rx * 0.30 * k).toFixed(1) +
-                   '" ry="' + (PIE.ry * 0.34 * k).toFixed(1) + '" fill="url(#pgHot)"/>' +
+                   '" ry="' + (PIE.ry * 0.34 * k).toFixed(1) + '" fill="url(#' + 'pgHot' + key + ')"/>' +
                  "</g>";
         })()
       : "") +
     /* the pie's own sheen goes on last and takes no clicks, so the slices under
        it stay tappable and the polish underneath still shows through */
     '<ellipse cx="' + PIE.cx + '" cy="' + PIE.cy + '" rx="' + PIE.rx + '" ry="' + PIE.ry +
-      '" fill="url(#pgGloss)" pointer-events="none"/>' +
+      '" fill="url(#' + 'pgGloss' + key + ')" pointer-events="none"/>' +
     "</svg>";
 
   /* What the lit slice is worth, over the chart itself — the amount belongs on
@@ -1980,12 +2045,12 @@ function renderAlloc(){
     amt.style.color = tintInk(chosen.s.cat, dark);
     amt.innerHTML = `<span class="pa-v">${esc(fmtDisp(chosen.s.value))}</span>` +
                     `<span class="pa-n">${esc(chosen.s.label)}</span>`;
-    $("allocPie").appendChild(amt);
+    pieEl.appendChild(amt);
   }
 
-  $("allocLegend").innerHTML = slices.map((s, idx) => {
+  if (legendEl) legendEl.innerHTML = slices.map((s, idx) => {
     const share = total > 0 ? (s.value / total * 100) : 0;
-    const on = allocPick === idx;
+    const on = pick === idx;
     return `<button class="legrow${on ? " on" : ""}" type="button" data-i="${idx}"
         aria-pressed="${on}" title="${esc(s.label)}: ${esc(fmtDisp(s.value))}">
       <span class="dot" style="background:${pieShades(s.cat, false).base}"></span>
@@ -1994,11 +2059,24 @@ function renderAlloc(){
     </button>`;
   }).join("");
 
-  const pick = (idx) => { allocPick = allocPick === idx ? null : idx; renderAlloc(); };
-  $("allocPie").querySelectorAll(".pie-top").forEach(el =>
-    el.addEventListener("click", () => pick(Number(el.dataset.i))));
-  $("allocLegend").querySelectorAll(".legrow").forEach(el =>
-    el.addEventListener("click", () => pick(Number(el.dataset.i))));
+  const choose = (idx) => {
+    piePick[key] = piePick[key] === idx ? null : idx;
+    renderPie(key, pieEl, legendEl, slices, opts);
+  };
+  pieEl.querySelectorAll(".pie-top").forEach(el =>
+    el.addEventListener("click", () => choose(Number(el.dataset.i))));
+  if (legendEl) legendEl.querySelectorAll(".legrow").forEach(el =>
+    el.addEventListener("click", () => choose(Number(el.dataset.i))));
+  return total;
+}
+
+/* The dashboard's own, which is where the pie started. */
+function renderAlloc(){
+  const slices = assetSlices();
+  $("allocBlock").hidden = !slices.length;
+  if (!slices.length) return;
+  $("allocN").textContent = slices.length + (slices.length === 1 ? " kind" : " kinds");
+  renderPie("alloc", $("allocPie"), $("allocLegend"), slices, { label:"Where your money sits" });
 }
 
 function renderBars(hostId, noteId, slices, total){
@@ -2554,19 +2632,22 @@ $("calcTog").querySelectorAll("button").forEach(b =>
 function sipSchedule(P, annual, months){
   const r = annual / 12 / 100;
   const rows = [];
-  let worth = 0, put = 0;
+  let worth = 0, put = 0, inYear = [];
   for (let m = 1; m <= months; m++){
     worth = (worth + P) * (1 + r);   /* paid at the start of the month */
     put += P;
-    if (m % 12 === 0 || m === months)
-      rows.push({ year: Math.ceil(m / 12), put, worth, earned: worth - put });
+    inYear.push({ n: ((m - 1) % 12) + 1, put, worth, earned: worth - put });
+    if (m % 12 === 0 || m === months){
+      rows.push({ year: Math.ceil(m / 12), put, worth, earned: worth - put, months: inYear });
+      inYear = [];
+    }
   }
   return rows;
 }
 function loanSchedule(P, annual, months, emi){
   const r = annual / 12 / 100;
   const rows = [];
-  let left = P, yearP = 0, yearI = 0;
+  let left = P, yearP = 0, yearI = 0, inYear = [];
   for (let m = 1; m <= months; m++){
     const interest = left * r;
     /* the last instalment clears whatever rounding has left behind, so the
@@ -2574,13 +2655,30 @@ function loanSchedule(P, annual, months, emi){
     const principal = m === months ? left : emi - interest;
     left = Math.max(0, left - principal);
     yearP += principal; yearI += interest;
+    inYear.push({ n: ((m - 1) % 12) + 1, principal, interest, left });
     if (m % 12 === 0 || m === months){
-      rows.push({ year: Math.ceil(m / 12), principal: yearP, interest: yearI, left });
-      yearP = 0; yearI = 0;
+      rows.push({ year: Math.ceil(m / 12), principal: yearP, interest: yearI, left, months: inYear });
+      yearP = 0; yearI = 0; inYear = [];
     }
   }
   return rows;
 }
+/* A year opens onto its own twelve months and nothing else — opening one
+   should not push every other year's detail onto the screen with it. */
+function wireYearRows(hostId){
+  const host = $(hostId);
+  host.querySelectorAll(".yr-row").forEach(tr => {
+    const toggle = () => {
+      const open = tr.classList.toggle("open");
+      host.querySelectorAll('.mo-row[data-y="' + tr.dataset.y + '"]').forEach(m => { m.hidden = !open; });
+    };
+    tr.addEventListener("click", toggle);
+    tr.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " "){ e.preventDefault(); toggle(); }
+    });
+  });
+}
+
 function yearLabel(row, months){
   const last = Math.ceil(months / 12);
   return row.year === last && months % 12 ? "Year " + row.year + "*" : "Year " + row.year;
@@ -2599,12 +2697,18 @@ $("sipCalc").addEventListener("click", () => {
   $("sipReturns").textContent = fmtDisp(earned);
   $("sipBarIn").style.width = (invested / future * 100) + "%";
   $("sipBarRet").style.width = (earned / future * 100) + "%";
-  $("sipYearRows").innerHTML = rows.map(row => `<tr>
-    <td class="yr">${esc(yearLabel(row, n))}</td>
+  $("sipYearRows").innerHTML = rows.map(row => `<tr class="yr-row" data-y="${row.year}" tabindex="0">
+    <td class="yr"><span class="yr-caret"></span>${esc(yearLabel(row, n))}</td>
     <td>${esc(fmtExact(row.put))}</td>
     <td>${esc(fmtExact(row.worth))}</td>
     <td class="pos">${esc(fmtExact(row.earned))}</td>
-  </tr>`).join("");
+  </tr>` + row.months.map(mo => `<tr class="mo-row" data-y="${row.year}" hidden>
+    <td class="mo">Month ${mo.n}</td>
+    <td>${esc(fmtExact(mo.put))}</td>
+    <td>${esc(fmtExact(mo.worth))}</td>
+    <td class="pos">${esc(fmtExact(mo.earned))}</td>
+  </tr>`).join("")).join("");
+  wireYearRows("sipYearRows");
   $("sipOut").hidden = false;
 });
 $("loanCalc").addEventListener("click", () => {
@@ -2621,12 +2725,18 @@ $("loanCalc").addEventListener("click", () => {
   $("loanTotal").textContent = fmtDisp(total);
   $("loanBarP").style.width = (P / total * 100) + "%";
   $("loanBarI").style.width = (interest / total * 100) + "%";
-  $("loanYearRows").innerHTML = rows.map(row => `<tr>
-    <td class="yr">${esc(yearLabel(row, n))}</td>
+  $("loanYearRows").innerHTML = rows.map(row => `<tr class="yr-row" data-y="${row.year}" tabindex="0">
+    <td class="yr"><span class="yr-caret"></span>${esc(yearLabel(row, n))}</td>
     <td>${esc(fmtExact(row.principal))}</td>
     <td class="neg">${esc(fmtExact(row.interest))}</td>
     <td>${esc(fmtExact(row.left))}</td>
-  </tr>`).join("");
+  </tr>` + row.months.map(mo => `<tr class="mo-row" data-y="${row.year}" hidden>
+    <td class="mo">Month ${mo.n}</td>
+    <td>${esc(fmtExact(mo.principal))}</td>
+    <td class="neg">${esc(fmtExact(mo.interest))}</td>
+    <td>${esc(fmtExact(mo.left))}</td>
+  </tr>`).join("")).join("");
+  wireYearRows("loanYearRows");
   $("loanOut").hidden = false;
 });
 
@@ -2811,31 +2921,75 @@ function repBars(title, slices, total){
     </div>`).join("")}
   </div>`;
 }
+/* A block with a pie in it, drawn after the markup is in the document —
+   renderPie needs the elements to exist before it can hang a chart on them. */
+function repPieBlock(key, title, note){
+  return `<div class="chartblock tight" style="margin:0 0 14px">
+    <div class="chartblock-h"><div class="cb-t">${esc(title)}</div><div class="cb-n">${esc(note || "")}</div></div>
+    <div class="pierow">
+      <div class="pie3d" id="pie_${key}"></div>
+      <div class="pielegend" id="leg_${key}"></div>
+    </div>
+  </div>`;
+}
+function repDrawPie(key, slices, label){
+  const host = $("pie_" + key);
+  if (host) renderPie(key, host, $("leg_" + key), slices, { label });
+}
+
+let repTab = "overview";
+
+/* Everything owned, sliced by where it is held rather than what it is. */
+function currencySlices(){
+  return CURRENCIES.map(c => {
+    const own =
+      state.assets.filter(a => a.currency === c).reduce((s,a) => s + toDisp(a.value, a.currency), 0) +
+      state.investments.filter(i => i.currency === c).reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
+    return { label: "Held in " + c, cat: catOf(c === "INR" ? "Gold" : "Bank account"), value: own };
+  }).filter(x => x.value > 0);
+}
+
+/* Investments only, by kind — the dashboard pie folds them in with everything
+   else, and on this tab they are the whole subject. */
+function investSlices(filter){
+  const m = new Map();
+  state.investments
+    .filter(i => !filter || filter(i))
+    .forEach(i => {
+      const b = bucketOf(INVEST_TYPES, i.type);
+      const hit = m.get(b);
+      const v = toDisp(investWorth(i), i.currency);
+      if (hit) hit.value += v;
+      else m.set(b, { label: b, cat: catOf(b), value: v });
+    });
+  return [...m.values()].filter(x => x.value > 0).sort((a,b) => b.value - a.value);
+}
+
 function renderReports(){
   const t = totals();
   const gold = goldTotals();
-  const invWorth = state.investments.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
-  const invPaid = state.investments.reduce((s,i) => s + toDisp(i.investedAmount, i.currency), 0);
 
-  const byCurrency = CURRENCIES.map(c => {
-    const own = state.assets.filter(a => a.currency === c).reduce((s,a) => s + toDisp(a.value, a.currency), 0)
-      + state.investments.filter(i => i.currency === c).reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
-    return { label:"Held in " + c, colour: c === "EUR" ? "var(--accent)" : "var(--warn)", value: own };
-  }).filter(x => x.value > 0);
+  if (repTab === "overview") repOverview(t, gold);
+  else if (repTab === "invest") repInvestments();
+  else repDepth(t);
 
+  document.querySelectorAll("#repSeg button").forEach(b =>
+    b.setAttribute("aria-selected", String(b.dataset.rep === repTab)));
+}
+
+function repOverview(t, gold){
+  const assets = assetSlices(), liabs = liabSlices(), cur = currencySlices();
   $("repBody").innerHTML =
     `<div class="aboutbox">
        <div><b>${esc(fmtDisp(t.net))}</b> net worth, shown in ${esc(display())}</div>
        <div>${esc(fmtDisp(t.assets))} owned · ${esc(fmtDisp(t.liabilities))} owed</div>
        ${gold.count ? `<div>${esc(gold.grams.toLocaleString(undefined,{maximumFractionDigits:2}))} g of gold, worth ${esc(fmtDisp(gold.worth))}</div>` : ""}
      </div>` +
-    repBars("Assets by category", assetSlices(), t.assets) +
-    repBars("Liabilities by kind", liabSlices(), t.liabilities) +
-    repBars("Where it is held", byCurrency, byCurrency.reduce((s,x) => s + x.value, 0)) +
-    (state.investments.length ? repBars("Investments: paid in against worth now", [
-      { label:"Paid in", colour:"var(--accent)", value: invPaid },
-      { label:"Worth now", colour:"var(--pos-block)", value: invWorth }
-    ], Math.max(invPaid, invWorth)) : "") +
+    (assets.length ? repPieBlock("repA", "Where your money sits", fmtDisp(t.assets)) : "") +
+    repBars("Assets by category", assets, t.assets) +
+    (liabs.length ? repPieBlock("repL", "What you owe", fmtDisp(t.liabilities)) : "") +
+    repBars("Liabilities by kind", liabs, t.liabilities) +
+    (cur.length > 1 ? repPieBlock("repC", "Euro against rupee", "") : "") +
     (state.goals.length ? `<div class="chartblock" style="margin:0 0 14px">
       <div class="chartblock-h"><div class="cb-t">Goals</div></div>
       ${state.goals.map(g => {
@@ -2847,7 +3001,133 @@ function renderReports(){
         </div>`;
       }).join("")}
     </div>` : "");
+
+  if (assets.length) repDrawPie("repA", assets, "Where your money sits");
+  if (liabs.length) repDrawPie("repL", liabs, "What you owe");
+  if (cur.length > 1) repDrawPie("repC", cur, "Euro against rupee");
 }
+
+/* ---------- investments, in detail ---------- */
+let repInvFilter = "all";
+
+function repInvestments(){
+  if (!state.investments.length){
+    $("repBody").innerHTML = emptyBlock(ICON_CHART, "Nothing invested yet",
+      "Funds, stocks, deposits and gold all report here once there is something to report on.");
+    return;
+  }
+  const kinds = ["all"].concat([...new Set(state.investments.map(i => bucketOf(INVEST_TYPES, i.type)))]);
+  if (!kinds.includes(repInvFilter)) repInvFilter = "all";
+  const match = (i) => repInvFilter === "all" || bucketOf(INVEST_TYPES, i.type) === repInvFilter;
+
+  const rows = state.investments.filter(match);
+  const worth = rows.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
+  const paid = rows.reduce((s,i) =>
+    s + toDisp(i.investedAmount > 0 ? i.investedAmount : (i.type === GOLD_TYPE ? investWorth(i) : 0), i.currency), 0);
+  const gain = worth - paid;
+
+  $("repBody").innerHTML =
+    `<div class="chips" style="margin-bottom:14px">${kinds.map(k =>
+       `<button class="chip" type="button" data-f="${esc(k)}" aria-pressed="${k === repInvFilter}">${esc(k === "all" ? "All kinds" : k)}</button>`).join("")}</div>
+     <div class="aboutbox">
+       <div><b>${esc(fmtDisp(worth))}</b> worth now, ${esc(fmtDisp(paid))} put in</div>
+       <div>${gain >= 0 ? "Up" : "Down"} ${esc(fmtDisp(Math.abs(gain)))}${paid > 0 ? " · " + esc(pct(gain / paid * 100)) : ""}</div>
+       <div>${rows.length} ${rows.length === 1 ? "holding" : "holdings"}</div>
+     </div>` +
+    repPieBlock("repI", "By kind", fmtDisp(worth)) +
+    `<div class="chartblock" style="margin:0 0 14px">
+      <div class="chartblock-h"><div class="cb-t">Every holding</div><div class="cb-n">worth · gain</div></div>
+      ${rows.slice().sort((a,b) => toDisp(investWorth(b), b.currency) - toDisp(investWorth(a), a.currency))
+        .map(i => {
+          const now = investWorth(i);
+          const cost = i.investedAmount > 0 ? i.investedAmount : (i.type === GOLD_TYPE ? now : 0);
+          const g = now - cost;
+          const share = worth > 0 ? toDisp(now, i.currency) / worth * 100 : 0;
+          return `<div class="barrow" style="cursor:default">
+            <div class="barrow-head"><span class="barrow-l">${esc(i.name || i.type)}</span>
+              <span class="barrow-v">${esc(fmt(now, i.currency))}</span></div>
+            <div class="barrow-track"><i style="width:${share.toFixed(1)}%;background:${swatch(bucketOf(INVEST_TYPES, i.type))}"></i></div>
+            <div class="barrow-sub" style="max-height:none;opacity:1;margin-top:6px">
+              ${esc(i.type)}${i.type === GOLD_TYPE && i.grams ? " · " + i.grams + " g" : ""} ·
+              ${cost ? (g >= 0 ? "up " : "down ") + esc(fmt(Math.abs(g), i.currency)) +
+                       (cost > 0 ? " (" + esc(pct(g / cost * 100)) + ")" : "") : "no cost recorded"}
+            </div>
+          </div>`;
+        }).join("")}
+    </div>`;
+
+  repDrawPie("repI", investSlices(match), "Investments by kind");
+  $("repBody").querySelectorAll("[data-f]").forEach(b =>
+    b.addEventListener("click", () => { repInvFilter = b.dataset.f; renderReports(); }));
+}
+
+/* ---------- in depth: what you hold against what you meant to ----------
+   The target is set here rather than in Settings, because this is the screen
+   where you find out it is wrong. A number you can only change two screens
+   away is a number that stays wrong. */
+function repDepth(t){
+  const slices = assetSlices();
+  const targets = state.settings.targets || {};
+  const set = Object.keys(targets).reduce((s,k) => s + targets[k], 0);
+  const rows = BUCKETS
+    .map(b => {
+      const has = slices.find(x => x.label === b.k);
+      return { k: b.k, cat: b, now: has ? has.value : 0, target: targets[b.k] || 0 };
+    })
+    .filter(r => r.now > 0 || r.target > 0);
+
+  $("repBody").innerHTML =
+    `<div class="aboutbox">
+       <div><b>${esc(fmtDisp(t.assets))}</b> owned across ${rows.filter(r => r.now > 0).length} kinds</div>
+       <div>${set ? set + "% of a target allocation set" : "No target allocation set yet"}${set > 100 ? " — more than a whole" : ""}</div>
+     </div>
+     <div class="chartblock" style="margin:0 0 14px">
+       <div class="chartblock-h"><div class="cb-t">Held against target</div><div class="cb-n">drift</div></div>
+       ${rows.length ? rows.map(r => {
+         const nowPct = t.assets > 0 ? r.now / t.assets * 100 : 0;
+         const drift = r.target ? nowPct - r.target : null;
+         const colour = swatch(r.k);
+         return `<div class="alrow">
+           <div class="al-head">
+             <span class="al-n"><span class="dot" style="background:${colour}"></span>${esc(r.k)}</span>
+             <span class="al-v">${nowPct.toFixed(1)}%${r.target ? " of " + r.target + "%" : ""}</span>
+           </div>
+           <div class="al-track">
+             <i class="al-now" style="width:${Math.min(100, nowPct).toFixed(1)}%;background:${colour}"></i>
+             ${r.target ? `<i class="al-tgt" style="left:${Math.min(100, r.target)}%"></i>` : ""}
+           </div>
+           <div class="al-foot">
+             <span>${esc(fmtDisp(r.now))}</span>
+             <span class="al-drift ${drift === null ? "" : drift > 1 ? "over" : drift < -1 ? "under" : "ok"}">${
+               drift === null ? "no target"
+               : Math.abs(drift) < 0.05 ? "on target"
+               : (drift > 0 ? "+" : "") + drift.toFixed(1) + " points"}</span>
+             <label class="al-set">target
+               <input class="inp al-in" type="text" inputmode="decimal" data-t="${esc(r.k)}"
+                      value="${r.target || ""}" placeholder="—">%
+             </label>
+           </div>
+         </div>`;
+       }).join("") : '<div class="empty" style="padding:18px"><p>Nothing owned yet to compare.</p></div>'}
+     </div>
+     <div class="note">A target is the share of everything you own that a kind is meant to be. Set the ones you care about and leave the rest blank — they will simply say what they are.</div>`;
+
+  $("repBody").querySelectorAll(".al-in").forEach(inp => {
+    const commit = () => {
+      const v = num(inp.value);
+      const next = Object.assign({}, state.settings.targets);
+      if (v > 0) next[inp.dataset.t] = Math.min(100, v); else delete next[inp.dataset.t];
+      state.settings.targets = next;
+      save();
+      renderReports();
+    };
+    inp.addEventListener("change", commit);
+    inp.addEventListener("keydown", e => { if (e.key === "Enter") inp.blur(); });
+  });
+}
+
+document.querySelectorAll("#repSeg button").forEach(b =>
+  b.addEventListener("click", () => { repTab = b.dataset.rep; renderReports(); }));
 
 /* ============================================================
    What's new

@@ -1,5 +1,12 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.14 — 2026-09-06
+- new: Reports come in three now: an overview, investments on their own, and an in-depth allocation.
+- new: A pie on each report, the same solid the dashboard draws — several can sit on a page at once, each with its own lit slice.
+- new: Investments report by kind, filtered, with every holding listed against what it cost.
+- new: In depth: what each kind is against what it was meant to be, with the target set on the same screen you notice the drift on.
+- new: A year in either calculator opens onto the twelve months inside it.
+
 ## 1.0.13 — 2026-09-06
 - new: The app tells you when a newer build is out: a dot on More and an Update badge on What's new and About, instead of you pressing Update to find out.
 
