@@ -5,18 +5,43 @@ with an optional GitHub backup. A single-file PWA (`index.html`), same
 architecture as [expense-tracker](../expense-tracker) — no build step, no
 server, no dependencies.
 
+The design is deliberately the expense tracker's: the same tokens, shell,
+top bar, sheets, tiles, chips and tab bar, so the two apps read as one
+family rather than two apps by the same person.
+
 ## Structure
 
-- **Dashboard** — net worth, total assets, total liabilities, and the list of
-  individual assets/liabilities (add/edit/delete from here, via the + button).
-- **Goal** — savings goals with a target amount, amount saved so far, and an
-  optional target date.
-- **Investment** — SIP/mutual funds, stocks, fixed deposits, PPF/EPF, bonds:
-  invested amount vs current value, with gain/loss shown per item.
+- **Dashboard** — net worth, assets against liabilities, a tappable donut of
+  where the money sits, category bars that open for their share, and the list
+  of individual assets/liabilities (added and edited from here, via +).
+- **Goal** — savings goals with a target, what is saved so far, and a date.
+- **Investment** — SIP/mutual funds, stocks, fixed deposits, PPF/EPF, bonds
+  and physical gold: what went in against what it is worth, per holding and
+  in total.
 - **More** — Settings, Reports, What's new, About.
+
+### Two currencies
+
+Every entry keeps the currency it was entered in — euro for what is held in
+Germany, rupees for what is held in India. Only totals convert, using the
+rate under Settings → Rates & gold, and the top bar switches which currency
+those totals are shown in. A row whose currency differs from the one on
+display is tagged, and shows its converted figure underneath.
+
+### Physical gold
+
+Gold is held by weight, so it is entered that way: grams, purity, a
+description, and optionally what was paid. Its worth is never a number you
+keep updating by hand — it is `grams × price per gram` in the entry's own
+currency, from Settings → Rates & gold, worked out fresh every time it is
+read (`investWorth()`). The Investment tab totals the grams across every
+gold holding and what they come to at today's price.
 
 ### Settings
 
+- **Profile** — your name, and the currency new entries start in.
+- **Rates & gold** — rupees per euro, and the gold price per gram in each
+  currency. Everything that converts or weighs reads these two.
 - **GitHub sync** — manual Pull/Push only. Nothing syncs automatically; see
   the pitfall this avoids in the project notes. Needs a personal access token
   with Contents read/write on the target repo, entered in-app (stored in
@@ -54,3 +79,10 @@ payload (freshly loaded, pulled from GitHub, or pasted in). Every field is
 read back through here on purpose: it's the fix for a bug class where a
 field silently drops because one of several copies of the same object
 literal forgot about it. Never reconstruct state ad hoc elsewhere.
+
+Figures work the same way. `conv()`/`toDisp()` are the only conversion
+between currencies, and `investWorth()` the only answer to what a holding is
+worth — gold included. Everything that totals, charts or lists calls those,
+so two figures on the same screen cannot disagree about the same thing. When
+adding a total, check it the arithmetic way: the buckets must sum to the
+total they are drawn from.

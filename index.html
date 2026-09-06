@@ -4,1032 +4,2006 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0F5273">
-<title>Asset &amp; Liability Manager</title>
+<title>Asset Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/icon-192.png">
 <style>
+/* ============================================================
+   TOKENS — the same set the expense tracker uses, so the two
+   apps read as one family. Light is complete; dark redefines only.
+   ============================================================ */
 :root{
-  --bg:#F4F6F8; --card:#FFFFFF; --ink:#101828; --ink-soft:#5B6472; --line:#E3E8EE;
-  --brand:#0F5273; --brand-ink:#FFFFFF; --accent:#0E7C61; --danger:#B3261E; --warn:#9A6700;
-  --asset:#0E7C61; --liability:#B3261E; --invest:#7C4DFF; --goal:#0F5273;
-  --shadow:0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.08);
-  --radius:16px;
-  color-scheme: light;
+  color-scheme:light;
+  --ground:#F4F6F8;
+  --surface:#FFFFFF;
+  --surface-2:#EFF2F5;
+  --surface-sunk:#E7EBEF;
+  --ink:#0F1922;
+  --ink-2:#465563;
+  --ink-3:#78889A;
+  --line:#DFE4EA;
+  --line-strong:#C6CED7;
+
+  --accent:#0F5273;
+  --accent-ink:#FFFFFF;
+  --accent-soft:#E3EDF3;
+  --accent-mid:#5D93B0;
+
+  --pos:#0B6B4B;
+  --pos-soft:#DFF0E8;
+  --neg:#A93724;
+  --neg-soft:#F8E4E0;
+  --warn:#8A5B10;
+  --warn-soft:#FBEEDA;
+  --gold:#8A6A10;
+  --gold-soft:#F7EDD2;
+
+  --shadow-sm:0 1px 2px rgba(15,25,34,.06), 0 1px 1px rgba(15,25,34,.04);
+  --shadow-md:0 4px 16px rgba(15,25,34,.10);
+  --shadow-lg:0 -8px 40px rgba(15,25,34,.18);
+  --fab-rim:rgba(255,255,255,.62);
+
+  --r-sm:8px; --r-md:12px; --r-lg:18px; --r-xl:26px;
+  --sans:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --shell:512px;
 }
-@media (prefers-color-scheme: dark){
+@media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#0E1216; --card:#171C22; --ink:#EDEFF2; --ink-soft:#98A2B3; --line:#262D36;
-    --brand:#4FA9D6; --brand-ink:#06222E; --accent:#3FCF9E; --danger:#FF6B63; --warn:#E8B34A;
-    --asset:#3FCF9E; --liability:#FF6B63; --invest:#A78BFA; --goal:#4FA9D6;
-    color-scheme: dark;
+    color-scheme:dark;
+    --ground:#0B1116; --surface:#141C23; --surface-2:#1B242C; --surface-sunk:#101820;
+    --ink:#E7EDF3; --ink-2:#A3B1BF; --ink-3:#71818F;
+    --line:#232E38; --line-strong:#33414D;
+    --accent:#5FB0D6; --accent-ink:#06131B; --accent-soft:#152833; --accent-mid:#3D7F9E;
+    --pos:#3FCB92; --pos-soft:#0F2A20;
+    --neg:#FF7F6B; --neg-soft:#2E1712;
+    --warn:#E5B25B; --warn-soft:#2B2110;
+    --gold:#E5C15B; --gold-soft:#2B2410;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --shadow-md:0 4px 16px rgba(0,0,0,.45);
+    --shadow-lg:0 -8px 40px rgba(0,0,0,.6);
+    --fab-rim:rgba(255,255,255,.16);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0E1216; --card:#171C22; --ink:#EDEFF2; --ink-soft:#98A2B3; --line:#262D36;
-  --brand:#4FA9D6; --brand-ink:#06222E; --accent:#3FCF9E; --danger:#FF6B63; --warn:#E8B34A;
-  --asset:#3FCF9E; --liability:#FF6B63; --invest:#A78BFA; --goal:#4FA9D6;
-  color-scheme: dark;
+  color-scheme:dark;
+  --ground:#0B1116; --surface:#141C23; --surface-2:#1B242C; --surface-sunk:#101820;
+  --ink:#E7EDF3; --ink-2:#A3B1BF; --ink-3:#71818F;
+  --line:#232E38; --line-strong:#33414D;
+  --accent:#5FB0D6; --accent-ink:#06131B; --accent-soft:#152833; --accent-mid:#3D7F9E;
+  --pos:#3FCB92; --pos-soft:#0F2A20;
+  --neg:#FF7F6B; --neg-soft:#2E1712;
+  --warn:#E5B25B; --warn-soft:#2B2110;
+  --gold:#E5C15B; --gold-soft:#2B2410;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+  --shadow-md:0 4px 16px rgba(0,0,0,.45);
+  --shadow-lg:0 -8px 40px rgba(0,0,0,.6);
+  --fab-rim:rgba(255,255,255,.16);
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.45;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+}
+html, body, .sheet-body, .shell{scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar, body::-webkit-scrollbar,
+.sheet-body::-webkit-scrollbar, .shell::-webkit-scrollbar{width:0;height:0;display:none}
 button,input,select,textarea{font:inherit;color:inherit}
-button{cursor:pointer}
-h1,h2,h3{margin:0 0 4px}
-.hidden{display:none!important}
-.app{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding-bottom:78px}
-header.top{position:sticky;top:0;z-index:5;background:var(--bg);padding:16px 16px 8px;display:flex;align-items:center;justify-content:space-between}
-header.top .brand{display:flex;align-items:center;gap:10px}
-header.top .brand img{width:32px;height:32px;border-radius:8px}
-header.top .brand span{font-weight:700;font-size:17px}
-.iconbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center}
-main{flex:1;padding:0 16px 16px}
-.panel{display:none}
-.panel.active{display:block}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-bottom:12px}
-.card h3{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);font-weight:600}
-.networth{padding:20px 16px}
-.networth .figure{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:4px 0}
-.networth .sub{color:var(--ink-soft);font-size:13px}
-.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.stat{border-radius:12px;padding:12px;background:var(--bg)}
-.stat .lbl{font-size:12px;color:var(--ink-soft)}
-.stat .val{font-size:19px;font-weight:700;margin-top:2px}
-.stat.asset .val{color:var(--asset)}
-.stat.liability .val{color:var(--liability)}
-.seg{display:flex;gap:6px;background:var(--bg);border-radius:12px;padding:4px;margin:14px 0}
-.seg button{flex:1;border:0;background:transparent;padding:8px;border-radius:9px;font-weight:600;color:var(--ink-soft)}
-.seg button.on{background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
-.list{display:flex;flex-direction:column;gap:8px}
-.row{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
-.row .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto}
-.row .main{flex:1;min-width:0}
-.row .name{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.row .meta{font-size:12px;color:var(--ink-soft)}
-.row .amt{font-weight:700;white-space:nowrap}
-.row .amt.neg{color:var(--liability)}
-.row .amt.pos{color:var(--asset)}
-.empty{text-align:center;color:var(--ink-soft);padding:36px 12px}
-.empty .big{font-size:32px;margin-bottom:6px}
-.progress{height:8px;border-radius:99px;background:var(--bg);overflow:hidden;margin:8px 0}
-.progress > i{display:block;height:100%;background:var(--goal);border-radius:99px}
-.bar-row{display:flex;align-items:center;gap:10px;margin:8px 0}
-.bar-row .lbl{width:96px;font-size:12px;color:var(--ink-soft);flex:0 0 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bar-track{flex:1;height:10px;border-radius:99px;background:var(--bg);overflow:hidden}
-.bar-track > i{display:block;height:100%;border-radius:99px}
-.bar-row .pct{width:52px;text-align:right;font-size:12px;color:var(--ink-soft);flex:0 0 auto}
-nav.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
-.app{position:relative}
-nav.tabbar{max-width:520px;margin:0 auto;position:fixed}
-nav.tabbar button{flex:1;background:transparent;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border-radius:12px;color:var(--ink-soft);font-size:11px;font-weight:600}
-nav.tabbar button.on{color:var(--brand)}
-nav.tabbar button svg{width:22px;height:22px}
-.fab{position:fixed;right:calc(50% - 260px + 20px);bottom:86px;z-index:11;width:56px;height:56px;border-radius:50%;background:var(--brand);color:var(--brand-ink);border:0;box-shadow:var(--shadow);font-size:28px;display:flex;align-items:center;justify-content:center}
-@media (max-width:560px){ .fab{right:20px} }
-.sheet-overlay{position:fixed;inset:0;background:rgba(10,14,18,.45);z-index:20;display:flex;align-items:flex-end;justify-content:center}
-.sheet-overlay.hidden{display:none}
-.sheet{background:var(--card);width:100%;max-width:520px;border-radius:20px 20px 0 0;max-height:88vh;overflow:auto;padding:16px 16px calc(24px + env(safe-area-inset-bottom))}
-.sheet .handle{width:36px;height:4px;background:var(--line);border-radius:99px;margin:0 auto 12px}
-.sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.sheet-head h2{font-size:18px}
-.field{margin-bottom:12px}
-.field label{display:block;font-size:12px;color:var(--ink-soft);margin-bottom:6px;font-weight:600}
-.field input,.field select,.field textarea{width:100%;padding:11px 12px;border-radius:11px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
-.field textarea{resize:vertical;min-height:60px}
-.field-row{display:flex;gap:10px}
-.field-row .field{flex:1}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:12px;border:0;font-weight:700;width:100%}
-.btn.primary{background:var(--brand);color:var(--brand-ink)}
-.btn.ghost{background:var(--bg);color:var(--ink);border:1px solid var(--line)}
-.btn.danger{background:transparent;color:var(--danger);border:1px solid var(--line)}
-.btn-row{display:flex;gap:10px;margin-top:16px}
-.btn-row .btn{flex:1}
-.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.menu-tile{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 12px;text-align:left;display:flex;flex-direction:column;gap:8px}
-.menu-tile .ic{font-size:22px}
-.menu-tile .lbl{font-weight:700;font-size:14px}
-.menu-tile .sub{font-size:12px;color:var(--ink-soft)}
-.settings-row{display:flex;align-items:center;justify-content:space-between;padding:13px 2px;border-bottom:1px solid var(--line);width:100%;background:transparent;border-left:0;border-right:0;border-top:0;text-align:left}
-.settings-row:last-child{border-bottom:0}
-.settings-row .t{font-weight:600}
-.settings-row .d{font-size:12px;color:var(--ink-soft);margin-top:2px}
-.settings-row .chev{color:var(--ink-soft)}
-.pill{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700}
-.pill.ok{background:color-mix(in srgb, var(--accent) 18%, transparent);color:var(--accent)}
-.pill.off{background:color-mix(in srgb, var(--ink-soft) 16%, transparent);color:var(--ink-soft)}
-.pill.err{background:color-mix(in srgb, var(--danger) 16%, transparent);color:var(--danger)}
-.status-line{font-size:12.5px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
-.calc-result{background:var(--bg);border-radius:12px;padding:14px;margin-top:14px}
-.calc-result .big{font-size:22px;font-weight:800}
-.calc-result .row2{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-soft);margin-top:6px}
-.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:99px;font-size:13px;z-index:40;box-shadow:var(--shadow)}
-.toast.hidden{display:none}
+button{cursor:pointer;background:none;border:none;padding:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+[hidden]{display:none !important}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+
+/* ---------- Shell ---------- */
+.shell{
+  max-width:var(--shell);margin:0 auto;min-height:100vh;min-height:100dvh;
+  background:var(--ground);display:flex;flex-direction:column;position:relative;
+}
+@media (min-width:544px){
+  body{background:var(--surface-sunk)}
+  .shell{box-shadow:0 0 0 1px var(--line), 0 24px 80px rgba(15,25,34,.14)}
+}
+
+/* ---------- Top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:30;background:var(--surface);
+  border-bottom:1px solid var(--line);
+  padding:calc(10px + env(safe-area-inset-top)) 14px 10px;
+  display:flex;align-items:center;gap:10px;
+}
+.applogo{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  margin-top:calc(env(safe-area-inset-top) / 2);
+  height:calc((100% - env(safe-area-inset-top)) * 0.8);
+  width:auto;border-radius:12px;object-fit:cover;
+  pointer-events:none;user-select:none;box-shadow:0 1px 4px rgba(0,0,0,.18);
+}
+.brand{
+  display:flex;flex-direction:column;align-items:flex-start;gap:1px;
+  margin-right:auto;min-width:0;text-align:left;
+  padding:2px 6px 2px 0;border-radius:9px;transition:opacity .15s;
+}
+.brand:active{opacity:.6}
+.brand-top{display:flex;align-items:baseline;gap:7px;min-width:0}
+.brand b{font-size:16px;font-weight:600;letter-spacing:-.01em;white-space:nowrap}
+.brand-cur{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;white-space:nowrap;
+}
+.brand-hi{
+  font-size:11.5px;color:var(--ink-3);font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;
+}
+.iconbtn{
+  width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
+  color:var(--ink-2);transition:background .15s,color .15s;flex:none;
+}
+.iconbtn:hover{background:var(--surface-2);color:var(--ink)}
+.iconbtn svg{width:19px;height:19px;stroke-width:1.8}
+.curbtn{
+  height:36px;padding:0 11px;border-radius:10px;flex:none;
+  display:flex;align-items:center;gap:6px;
+  background:var(--accent-soft);color:var(--accent);
+  font-size:12px;font-weight:600;letter-spacing:.02em;
+  transition:filter .15s,transform .12s;
+}
+.curbtn:active{transform:scale(.95)}
+.curbtn svg{width:13px;height:13px;stroke-width:2.1}
+
+/* ---------- Statement ---------- */
+.statement{
+  margin:14px 14px 0;padding:17px 16px 16px;
+  background:var(--surface);border-radius:var(--r-lg);border:1px solid var(--line);
+}
+.eyebrow{
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;
+}
+.net{
+  font-size:clamp(34px,11vw,46px);font-weight:600;letter-spacing:-.035em;line-height:1.02;
+  margin:6px 0 2px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;
+}
+.net small{font-size:12px;font-weight:500;letter-spacing:0;color:var(--ink-3)}
+.net.is-pos{color:var(--pos)} .net.is-neg{color:var(--neg)}
+.stmt-sub{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.tile{
+  background:var(--surface-2);border-radius:var(--r-md);padding:11px 12px;
+  display:flex;flex-direction:column;gap:3px;border-left:3px solid transparent;
+}
+.tile.in{border-left-color:var(--pos)}
+.tile.out{border-left-color:var(--neg)}
+.tile.gold{border-left-color:var(--gold)}
+.tile .lbl{
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;
+}
+.tile .val{font-size:19px;font-weight:600;letter-spacing:-.02em}
+.tile.in .val{color:var(--pos)} .tile.out .val{color:var(--neg)} .tile.gold .val{color:var(--gold)}
+.tile .sub{font-size:11px;color:var(--ink-3)}
+button.tile{text-align:left;cursor:pointer;transition:background .15s}
+button.tile:hover{background:var(--surface-sunk)}
+button.tile:active{transform:scale(.99)}
+.tile-go{float:right;font-size:9.5px;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
+button.tile:hover .tile-go{color:var(--accent)}
+
+/* ---------- Meter ---------- */
+.meter-wrap{margin-top:16px}
+.meter-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:7px}
+.meter-head .k{font-size:12px;color:var(--ink-2);font-weight:500}
+.meter-head .v{font-size:12px;color:var(--ink-2);font-family:var(--mono);font-variant-numeric:tabular-nums}
+.meter{height:8px;background:var(--surface-sunk);border-radius:99px;overflow:hidden}
+.meter i{
+  display:block;height:100%;background:var(--neg);border-radius:99px;
+  transition:width .45s cubic-bezier(.4,0,.2,1);
+}
+
+/* ---------- Chart blocks ---------- */
+.chartblock{
+  margin:14px 14px 0;padding:14px 15px 8px;
+  background:var(--surface);border-radius:var(--r-lg);border:1px solid var(--line);
+}
+.chartblock.tight{padding-bottom:14px}
+.chartblock-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:11px}
+.cb-t{font-size:12.5px;font-weight:600;color:var(--ink)}
+.cb-n{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-3)}
+
+.barrow{display:block;width:100%;text-align:left;padding:7px 0 9px;border-bottom:1px solid var(--line)}
+.chartblock .barrow:last-child{border-bottom:none}
+.barrow-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.barrow-l{font-size:12.5px;font-weight:500;color:var(--ink-2)}
+.barrow-v{font-family:var(--mono);font-size:12.5px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink)}
+.barrow-track{height:9px;background:var(--surface-sunk);border-radius:99px;overflow:hidden}
+.barrow-track i{display:block;height:100%;border-radius:99px;transition:width .55s cubic-bezier(.4,0,.2,1),filter .15s}
+.barrow:hover .barrow-track i{filter:brightness(1.12)}
+.barrow-sub{
+  font-size:11.5px;color:var(--ink-3);line-height:1.5;
+  max-height:0;opacity:0;overflow:hidden;
+  transition:max-height .28s ease,opacity .22s ease,margin-top .28s ease;
+}
+.barrow.open .barrow-sub{max-height:90px;opacity:1;margin-top:7px}
+
+/* ---------- Donut ---------- */
+.pierow{display:flex;align-items:center;gap:14px;padding-bottom:6px}
+.pie{flex:none;width:132px;height:132px;position:relative}
+.pie svg{display:block;width:100%;height:100%;transform:rotate(-90deg)}
+.pie .slice{
+  fill:none;stroke-width:17;cursor:pointer;
+  transition:stroke-width .18s cubic-bezier(.2,.7,.3,1),opacity .18s;
+}
+.pie .slice.on{stroke-width:23}
+.pie .slice.dim{opacity:.34}
+.pie-mid{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;pointer-events:none;padding:0 12px;
+}
+.pie-mid .pm-v{font-size:15px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.pie-mid .pm-k{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-top:2px}
+.pielegend{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.legrow{
+  display:flex;align-items:center;gap:8px;width:100%;text-align:left;
+  padding:5px 6px;border-radius:8px;transition:background .15s;
+}
+.legrow:hover{background:var(--surface-2)}
+.legrow.on{background:var(--surface-2)}
+.legrow .dot{width:9px;height:9px;border-radius:3px;flex:none}
+.legrow .ln{flex:1;min-width:0;font-size:12px;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.legrow .lp{font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums;color:var(--ink-3);flex:none}
+
+/* ---------- Gold card ---------- */
+.goldcard{
+  margin:14px 14px 0;padding:15px 16px 16px;
+  background:linear-gradient(140deg,#7A5B10,#A8821E 55%,#C9A227);
+  border-radius:var(--r-lg);box-shadow:var(--shadow-md);position:relative;
+}
+.gc-k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.72)}
+.gc-v{font-size:29px;font-weight:700;letter-spacing:-.02em;color:#fff;margin-top:5px}
+.gc-s{font-size:11.5px;color:rgba(255,255,255,.7);margin-top:4px}
+.gc-edit{
+  position:absolute;top:12px;right:12px;padding:5px 10px;border-radius:99px;
+  background:rgba(255,255,255,.16);color:#fff;font-size:11px;font-weight:600;
+}
+.gc-edit:hover{background:rgba(255,255,255,.26)}
+
+/* ---------- Segmented ---------- */
+.segwrap{padding:14px 14px 0;background:var(--ground)}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:3px;background:var(--surface-sunk);padding:3px;border-radius:var(--r-md)}
+.seg button{
+  padding:8px 3px;border-radius:9px;font-size:12px;font-weight:500;color:var(--ink-2);
+  transition:background .18s,color .18s,box-shadow .18s;
+  display:flex;align-items:center;justify-content:center;gap:4px;min-width:0;white-space:nowrap;
+}
+.seg button .n{font-family:var(--mono);font-size:10px;font-variant-numeric:tabular-nums;color:var(--ink-3);flex:none}
+.seg button[aria-selected="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:var(--shadow-sm)}
+.seg button[aria-selected="true"] .n{color:var(--accent)}
+
+/* ---------- List ---------- */
+.list{padding:14px 14px 0;display:flex;flex-direction:column;gap:18px;flex:1}
+.daygroup{display:flex;flex-direction:column;gap:6px}
+.dayhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:0 2px 2px}
+.dayhead .d{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-3)}
+.dayhead .t{font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums;color:var(--ink-3)}
+.rows{background:var(--surface);border-radius:var(--r-lg);border:1px solid var(--line);overflow:hidden}
+.row{
+  display:flex;align-items:center;gap:11px;padding:11px 12px;width:100%;text-align:left;
+  border-bottom:1px solid var(--line);transition:background .15s;position:relative;
+}
+.row:last-child{border-bottom:none}
+.row:hover{background:var(--surface-2)}
+.mono{width:34px;height:34px;flex:none;border-radius:10px;display:grid;place-items:center}
+.mono svg{display:block;width:18px;height:18px;stroke-width:1.9}
+.rowmain{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.rowmain .t1{font-size:14px;font-weight:500;letter-spacing:-.005em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rowmain .t2{font-size:11.5px;color:var(--ink-3);display:flex;align-items:center;gap:6px;min-width:0}
+.rowmain .t2 .cn{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rowend{display:flex;flex-direction:column;align-items:flex-end;gap:1px;flex:none}
+.amt{font-family:var(--mono);font-size:14px;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:-.02em}
+.amt.in{color:var(--pos)} .amt.out{color:var(--neg)}
+.amt-sub{font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums}
+.amt-sub.up{color:var(--pos)} .amt-sub.down{color:var(--neg)} .amt-sub.flat{color:var(--ink-3)}
+.pill{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:1.5px 5px;border-radius:5px;flex:none}
+.pill.cur{background:var(--accent-soft);color:var(--accent)}
+.pill.gold{background:var(--gold-soft);color:var(--gold)}
+
+/* ---------- Goals ---------- */
+.goalcard{
+  margin:0;padding:14px 15px 13px;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-lg);width:100%;text-align:left;
+  transition:background .15s,border-color .15s;
+}
+.goalcard:hover{background:var(--surface-2);border-color:var(--line-strong)}
+.goal-top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.goal-ic{width:30px;height:30px;flex:none;border-radius:9px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.goal-ic svg{width:16px;height:16px;stroke-width:1.9}
+.goal-n{flex:1;min-width:0;font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.goal-pct{font-family:var(--mono);font-size:12px;font-weight:600;flex:none;color:var(--accent)}
+.env-track{height:9px;background:var(--surface-sunk);border-radius:99px;overflow:hidden}
+.env-track i{display:block;height:100%;border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.goal-sub{margin-top:7px;font-size:11.5px;color:var(--ink-3);display:flex;justify-content:space-between;gap:10px;font-variant-numeric:tabular-nums}
+
+/* ---------- Empty ---------- */
+.empty{text-align:center;padding:44px 26px;color:var(--ink-3)}
+.empty .em-ic{width:52px;height:52px;margin:0 auto 14px;border-radius:16px;background:var(--surface-2);display:grid;place-items:center;color:var(--ink-3)}
+.empty .em-ic svg{width:24px;height:24px;stroke-width:1.5}
+.empty h4{margin:0 0 5px;font-size:15px;font-weight:600;color:var(--ink-2)}
+.empty p{margin:0;font-size:13px;line-height:1.55;max-width:31ch;margin-inline:auto}
+
+/* ---------- Bottom bar ---------- */
+.spacer{height:calc(104px + env(safe-area-inset-bottom))}
+.tabbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:28;
+  max-width:var(--shell);margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--surface);border-top:1px solid var(--line);
+  padding:8px 6px calc(10px + env(safe-area-inset-bottom));
+  box-shadow:0 -1px 0 rgba(15,25,34,.04), 0 -10px 30px rgba(15,25,34,.06);
+}
+@supports (backdrop-filter:blur(20px)){
+  .tabbar{background:color-mix(in srgb, var(--surface) 86%, transparent);backdrop-filter:saturate(180%) blur(20px)}
+}
+.tabbar button{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  padding:5px 2px;border-radius:12px;
+  font-size:10px;font-weight:500;line-height:1.2;color:var(--ink-3);
+  transition:color .18s,transform .12s;text-align:center;position:relative;
+}
+.tabbar button svg{width:21px;height:21px;flex:none;stroke-width:1.8}
+.tabbar button:active{transform:scale(.93)}
+.tabbar button[aria-selected="true"]{color:var(--accent);font-weight:600}
+.tabbar button[aria-selected="true"] svg{stroke-width:2.1}
+
+/* ---------- FAB ---------- */
+.fabwrap{
+  position:fixed;z-index:29;
+  right:max(18px, calc(50vw - var(--shell)/2 + 18px));
+  bottom:calc(80px + env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;align-items:flex-end;gap:10px;
+}
+.fab{
+  position:relative;isolation:isolate;width:56px;height:56px;border-radius:50%;
+  background:
+    radial-gradient(125% 105% at 30% 10%, rgba(255,255,255,.18) 0%, rgba(255,255,255,.03) 40%, rgba(255,255,255,0) 62%),
+    linear-gradient(150deg, color-mix(in srgb, var(--accent-mid) 24%, transparent), color-mix(in srgb, var(--accent) 34%, transparent));
+  color:var(--ink);
+  -webkit-backdrop-filter:blur(24px) saturate(2.2) brightness(1.04);
+  backdrop-filter:blur(24px) saturate(2.2) brightness(1.04);
+  border:1px solid var(--fab-rim);display:grid;place-items:center;
+  box-shadow:0 10px 28px rgba(15,25,34,.26), inset 0 1.5px 1.5px rgba(255,255,255,.5), inset 0 -12px 20px rgba(0,0,0,.11);
+  transition:transform .22s cubic-bezier(.2,.7,.3,1);
+}
+.fab svg{width:24px;height:24px;stroke-width:2.1;transition:transform .25s cubic-bezier(.2,.7,.3,1)}
+.fab:active{transform:scale(.92)}
+.fab[aria-expanded="true"] svg{transform:rotate(45deg)}
+.fabmenu{display:flex;flex-direction:column;align-items:flex-end;gap:8px;pointer-events:none}
+.fabopt{
+  display:flex;align-items:center;gap:9px;padding:9px 14px 9px 10px;border-radius:99px;
+  background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-md);
+  font-size:13.5px;font-weight:600;
+  opacity:0;transform:translateY(8px) scale(.96);
+  transition:opacity .2s,transform .2s cubic-bezier(.2,.7,.3,1);
+}
+.fabmenu.open{pointer-events:auto}
+.fabmenu.open .fabopt{opacity:1;transform:none}
+.fabopt:active{transform:scale(.95)}
+.fabopt .fo-ic{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;flex:none}
+.fabopt .fo-ic svg{width:14px;height:14px;stroke-width:2.3}
+.fabopt.in{color:var(--pos)} .fabopt.in .fo-ic{background:var(--pos-soft)}
+.fabopt.out{color:var(--neg)} .fabopt.out .fo-ic{background:var(--neg-soft)}
+
+/* ---------- Sheets ---------- */
+.scrim{
+  position:fixed;inset:0;z-index:60;background:rgba(9,16,22,.5);
+  opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(2px);
+}
+.scrim.open{opacity:1;pointer-events:auto}
+.sheet{
+  position:fixed;left:0;right:0;bottom:0;z-index:61;
+  max-width:var(--shell);margin:0 auto;background:var(--surface);
+  border-radius:var(--r-xl) var(--r-xl) 0 0;box-shadow:var(--shadow-lg);
+  transform:translateY(101%);transition:transform .3s cubic-bezier(.32,.72,0,1);
+  max-height:92dvh;display:flex;flex-direction:column;
+}
+.sheet.open{transform:translateY(0)}
+.sheet-head{
+  padding:14px 18px 10px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:10px;flex:none;position:relative;
+}
+.sheet-head::before{
+  content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);
+  width:34px;height:4px;border-radius:99px;background:var(--line-strong);
+}
+.sheet-head h2{margin:0;font-size:16px;font-weight:600;letter-spacing:-.01em;flex:1}
+.sheet-body{padding:16px 18px calc(20px + env(safe-area-inset-bottom));overflow-y:auto;-webkit-overflow-scrolling:touch}
+
+/* ---------- Form ---------- */
+.field{margin-bottom:15px}
+.field > label{
+  display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;margin-bottom:6px;
+}
+.inp{
+  width:100%;padding:11px 12px;border-radius:var(--r-md);
+  background:var(--surface-2);border:1.5px solid transparent;font-size:15px;
+  transition:border-color .15s,background .15s;
+}
+.inp:focus{outline:none;border-color:var(--accent);background:var(--surface)}
+textarea.inp{resize:vertical;min-height:64px;font-size:13px;line-height:1.5}
+select.inp{appearance:none;background-image:none}
+@media (max-width:543px){ .inp, textarea.inp{font-size:16px} }
+.amtfield{
+  display:flex;align-items:center;gap:8px;background:var(--surface-2);
+  border-radius:var(--r-md);padding:6px 14px;border:1.5px solid transparent;
+  transition:border-color .15s,background .15s;
+}
+.amtfield:focus-within{border-color:var(--accent);background:var(--surface)}
+.amtfield .cur{font-size:24px;font-weight:500;color:var(--ink-3)}
+.amtfield input{
+  flex:1;min-width:0;background:none;border:none;outline:none;
+  font-size:30px;font-weight:600;letter-spacing:-.03em;padding:6px 0;
+}
+.toggle2{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:3px;background:var(--surface-sunk);padding:3px;border-radius:var(--r-md)}
+.toggle2 button{
+  padding:10px;border-radius:9px;font-size:13.5px;font-weight:500;color:var(--ink-2);
+  transition:all .18s;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.toggle2 button[aria-pressed="true"]{background:var(--surface);font-weight:600;box-shadow:var(--shadow-sm);color:var(--ink)}
+.toggle2 button.x[aria-pressed="true"]{color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{
+  padding:10px 14px;border-radius:14px;font-size:13px;font-weight:500;
+  background:var(--surface-2);color:var(--ink-2);border:1.5px solid transparent;
+  transition:all .15s;display:flex;align-items:center;gap:8px;
+}
+.chip:hover{background:var(--surface-sunk)}
+.chip:active{transform:scale(.96)}
+.chip[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent);font-weight:600}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{
+  width:100%;padding:13px;border-radius:var(--r-md);
+  background:linear-gradient(135deg, var(--accent-mid), var(--accent));color:var(--accent-ink);
+  font-size:15px;font-weight:600;letter-spacing:-.005em;
+  transition:filter .15s,transform .12s;
+}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{transform:scale(.985)}
+.btn.ghost{background:var(--surface-2);color:var(--ink-2);font-weight:500}
+.btn.ghost:hover{background:var(--surface-sunk);color:var(--ink)}
+.btn.danger{background:var(--neg-soft);color:var(--neg)}
+.btn.sm{padding:9px;font-size:13px}
+.btnrow{display:flex;gap:9px;margin-top:4px}
+.note{
+  font-size:12px;color:var(--ink-3);line-height:1.6;
+  background:var(--surface-2);padding:11px 13px;border-radius:var(--r-md);
+  border-left:3px solid var(--line-strong);
+}
+.note.warn{border-left-color:var(--warn);background:var(--warn-soft);color:var(--ink-2)}
+
+/* ---------- More / Settings tiles ---------- */
+#moreMenu{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.morerow{
+  position:relative;display:flex;flex-direction:column;align-items:center;gap:7px;
+  padding:11px 6px 10px;border-radius:14px;text-align:center;
+  background:var(--surface-2);border:1px solid var(--line);
+  transition:background .15s,border-color .15s,transform .12s;
+  border-left:3px solid hsl(var(--tile-h, 210) 82% var(--tile-l, 32%));
+}
+.morerow:hover{background:var(--surface-sunk)}
+.morerow:active{transform:scale(.97)}
+.morerow[data-more="report"]  { --tile-h:6;   --tile-l:30% }
+.morerow[data-more="settings"]{ --tile-h:152; --tile-l:26% }
+.morerow[data-more="notes"]   { --tile-h:200; --tile-l:32% }
+.morerow .sr-ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.morerow .sr-ic svg{width:21px;height:21px;stroke-width:1.7}
+.morerow b{font-size:12px;font-weight:600;line-height:1.2}
+.morerow .ms{font-size:10px;color:var(--ink-3);line-height:1.25}
+.themerow{margin-top:12px;grid-column:1 / -1}
+
+#setMenu{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start}
+.setrow{
+  display:flex;flex-direction:column;align-items:flex-start;gap:10px;
+  padding:15px 14px;border-radius:16px;text-align:left;min-height:126px;
+  background:var(--surface-2);border:1px solid var(--line);
+  transition:background .15s,border-color .15s,transform .12s;
+  border-left:3px solid hsl(var(--tile-h, 210) 82% var(--tile-l, 32%));
+}
+.setrow:hover{background:var(--surface-sunk)}
+.setrow:active{transform:scale(.97)}
+.setrow[data-pane="profile"]{ --tile-h:210; --tile-l:34% }
+.setrow[data-pane="rates"]  { --tile-h:45;  --tile-l:30% }
+.setrow[data-pane="github"] { --tile-h:240; --tile-l:38% }
+.setrow[data-pane="data"]   { --tile-h:52;  --tile-l:26% }
+.setrow[data-pane="calc"]   { --tile-h:275; --tile-l:36% }
+.setrow .sr-ic{width:48px;height:48px;border-radius:15px;flex:none;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.setrow .sr-ic svg{width:26px;height:26px;stroke-width:1.6}
+.setrow .sr-t{display:flex;flex-direction:column;gap:2px;min-width:0;width:100%}
+.setrow .sr-t b{font-size:13.5px;font-weight:600;line-height:1.25}
+.setrow .sr-t span{font-size:11px;color:var(--ink-3);line-height:1.35}
+.setrow-wide{
+  grid-column:1 / -1;min-height:0;flex-direction:row;align-items:center;gap:13px;
+  background:var(--accent-soft);
+  border-top-color:transparent;border-right-color:transparent;border-bottom-color:transparent;
+  border-left-color:var(--accent);
+}
+.setrow-wide .sr-ic{background:var(--surface);width:44px;height:44px;border-radius:14px}
+.setpane h3{margin:0 0 4px;font-size:14px;font-weight:600}
+.setpane .ph{font-size:12.5px;color:var(--ink-3);line-height:1.55;margin:0 0 14px}
+.setsec{margin-bottom:22px}
+.setsec:last-child{margin-bottom:6px}
+
+/* ---------- About / release notes ---------- */
+.aboutbox{
+  background:var(--surface-2);border-radius:var(--r-md);padding:13px 14px;
+  font-size:13px;color:var(--ink-2);line-height:1.7;margin-bottom:14px;
+}
+.aboutbox b{color:var(--ink);font-weight:600}
 .relgroup{margin-bottom:18px}
-.relgroup .ver{font-weight:800;font-size:14px;margin-bottom:6px}
-.relgroup .ver.current{color:var(--brand)}
-.relgroup ul{margin:0;padding-left:0;list-style:none}
-.relgroup li{display:flex;gap:8px;padding:5px 0;font-size:13.5px}
-.relgroup li .k{flex:0 0 auto}
-.tabs-inline{display:flex;gap:6px;background:var(--bg);border-radius:12px;padding:4px;margin-bottom:14px}
-.tabs-inline button{flex:1;border:0;background:transparent;padding:9px;border-radius:9px;font-weight:700;color:var(--ink-soft);font-size:13px}
-.tabs-inline button.on{background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
-.back-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.back-row button{background:transparent;border:0;font-size:20px;color:var(--ink);padding:4px}
-.back-row h2{font-size:18px}
+.relgroup:last-child{margin-bottom:4px}
+.rel-h{display:flex;align-items:baseline;gap:9px;margin-bottom:7px}
+.rel-v{
+  font-family:var(--mono);font-size:11.5px;font-weight:600;padding:2px 8px;
+  border-radius:99px;background:var(--surface-2);color:var(--ink-2);
+}
+.rel-v.current{background:var(--accent);color:var(--accent-ink)}
+.rel-d{font-size:11.5px;color:var(--ink-3)}
+.rel-l{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.rel-i{display:grid;grid-template-columns:22px 1fr;gap:9px;align-items:start}
+.rel-x{font-size:13px;line-height:1.55;color:var(--ink-2)}
+.rel-k{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;background:var(--surface-2);color:var(--ink-3)}
+.rel-k svg{width:13px;height:13px;stroke-width:2}
+.rel-i.fix .rel-k{background:var(--neg-soft);color:var(--neg)}
+.rel-i.new .rel-k{background:var(--accent-soft);color:var(--accent)}
+.rel-i.better .rel-k{background:var(--pos-soft);color:var(--pos)}
+
+/* ---------- Calculator ---------- */
+.calcout{background:var(--surface-2);border-radius:var(--r-md);padding:14px 15px;margin-top:4px}
+.calcout .co-v{font-size:26px;font-weight:700;letter-spacing:-.03em;color:var(--accent)}
+.calcout .co-k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.calcout .co-r{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--ink-2);margin-top:9px;padding-top:9px;border-top:1px solid var(--line)}
+.calcout .co-r span:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
+.calcbar{display:flex;height:10px;border-radius:99px;overflow:hidden;margin-top:12px;background:var(--surface-sunk)}
+.calcbar i{display:block;height:100%}
+
+/* ---------- Toast ---------- */
+.toast{
+  position:fixed;left:50%;bottom:calc(110px + env(safe-area-inset-bottom));
+  transform:translateX(-50%) translateY(10px);z-index:80;
+  background:var(--ink);color:var(--ground);padding:11px 18px;border-radius:99px;
+  font-size:13px;font-weight:500;box-shadow:var(--shadow-md);
+  opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
-<div class="app">
 
-  <header class="top">
-    <div class="brand">
-      <img src="icons/icon-192.png" alt="">
-      <span>Asset Manager</span>
-    </div>
-    <button class="iconbtn" id="btnTheme" title="Theme">🌓</button>
+<div class="shell">
+  <header class="topbar">
+    <img class="applogo" src="icons/icon-192.png" alt="" aria-hidden="true">
+    <button class="brand" id="btnBrand" type="button" title="Net worth">
+      <span class="brand-top"><b>Asset Manager</b><span class="brand-cur" id="brandCur">EUR</span></span>
+      <span class="brand-hi" id="brandHi"></span>
+    </button>
+    <button class="curbtn" id="btnCur" type="button" title="Change display currency">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 6h18"/><path d="M7 22l-4-4 4-4"/><path d="M21 18H3"/></svg>
+      <span id="curLabel">EUR</span>
+    </button>
   </header>
 
-  <main>
-
-    <!-- DASHBOARD -->
-    <section class="panel active" id="panel-dash">
-      <div class="card networth">
-        <div class="sub">Net worth</div>
-        <div class="figure" id="nwFigure">€0</div>
-        <div class="sub" id="nwAsOf">as of today</div>
-        <div class="stat-row">
-          <div class="stat asset"><div class="lbl">Total assets</div><div class="val" id="statAssets">€0</div></div>
-          <div class="stat liability"><div class="lbl">Total liabilities</div><div class="val" id="statLiabilities">€0</div></div>
-        </div>
-      </div>
-
-      <div class="seg">
-        <button class="on" data-dashtab="assets">Assets</button>
-        <button data-dashtab="liabilities">Liabilities</button>
-      </div>
-
-      <div class="list" id="dashList"></div>
-    </section>
-
-    <!-- GOALS -->
-    <section class="panel" id="panel-goal">
-      <div class="card">
-        <h3>Goals</h3>
-        <div class="sub" style="color:var(--ink-soft);font-size:13px">What you're saving toward</div>
-      </div>
-      <div class="list" id="goalList"></div>
-    </section>
-
-    <!-- INVESTMENTS -->
-    <section class="panel" id="panel-invest">
-      <div class="card">
-        <h3>Investments</h3>
-        <div class="sub" style="color:var(--ink-soft);font-size:13px" id="investSummary">Invested vs current value</div>
-      </div>
-      <div class="list" id="investList"></div>
-    </section>
-
-    <!-- MORE (menu, shown as a panel) -->
-    <section class="panel" id="panel-more">
-      <div class="card">
-        <h3>More</h3>
-        <div class="menu-grid">
-          <button class="menu-tile" id="tileSettings"><span class="ic">⚙️</span><span class="lbl">Settings</span><span class="sub">Sync, backup, calculator</span></button>
-          <button class="menu-tile" id="tileReports"><span class="ic">📊</span><span class="lbl">Reports</span><span class="sub">Breakdowns &amp; trends</span></button>
-          <button class="menu-tile" id="tileWhatsNew"><span class="ic">✨</span><span class="lbl">What's new</span><span class="sub">Release notes</span></button>
-          <button class="menu-tile" id="tileAbout"><span class="ic">ℹ️</span><span class="lbl">About</span><span class="sub" id="aboutVerSub">Version</span></button>
-        </div>
-      </div>
-    </section>
-
-    <!-- SETTINGS -->
-    <section class="panel" id="panel-settings">
-      <div class="back-row"><button id="backFromSettings">←</button><h2>Settings</h2></div>
-
-      <div class="card">
-        <h3>Profile</h3>
-        <div class="field"><label>Your name</label><input id="profName" placeholder="Your name"></div>
-        <div class="field"><label>Currency</label>
-          <select id="profCurrency">
-            <option value="EUR">€ Euro</option>
-            <option value="USD">$ US Dollar</option>
-            <option value="INR">₹ Indian Rupee</option>
-            <option value="GBP">£ British Pound</option>
-          </select>
-        </div>
-        <button class="btn primary" id="saveProfile">Save</button>
-      </div>
-
-      <div class="card" style="padding:0">
-        <button class="settings-row" id="rowGithub" style="padding:16px">
-          <div><div class="t">GitHub sync</div><div class="d" id="ghStatusLine">Off</div></div>
-          <span class="chev">›</span>
+  <!-- ============ DASHBOARD ============ -->
+  <div id="viewDash">
+    <section class="statement">
+      <div class="eyebrow">Net worth</div>
+      <div class="net" id="nwVal">€0</div>
+      <div class="stmt-sub" id="nwSub">—</div>
+      <div class="tiles">
+        <button class="tile in" id="tileAssets" type="button">
+          <div class="lbl">Assets <span class="tile-go">View ›</span></div>
+          <div class="val" id="assetsVal">€0</div>
+          <div class="sub" id="assetsSub">—</div>
         </button>
-        <button class="settings-row" id="rowBackup" style="padding:16px">
-          <div><div class="t">Backup &amp; restore</div><div class="d">Copy or restore your data</div></div>
-          <span class="chev">›</span>
-        </button>
-        <button class="settings-row" id="rowCalculator" style="padding:16px">
-          <div><div class="t">Calculator</div><div class="d">SIP &amp; loan (EMI) calculators</div></div>
-          <span class="chev">›</span>
+        <button class="tile out" id="tileLiabs" type="button">
+          <div class="lbl">Liabilities <span class="tile-go">View ›</span></div>
+          <div class="val" id="liabsVal">€0</div>
+          <div class="sub" id="liabsSub">—</div>
         </button>
       </div>
-
-      <div class="card">
-        <h3>Danger zone</h3>
-        <button class="btn danger" id="wipeAll">Delete all data</button>
+      <div class="meter-wrap" id="ratioWrap">
+        <div class="meter-head"><span class="k">What you owe against what you own</span><span class="v" id="ratioV">—</span></div>
+        <div class="meter"><i id="ratioFill" style="width:0%"></i></div>
       </div>
     </section>
 
-    <!-- GITHUB SYNC -->
-    <section class="panel" id="panel-github">
-      <div class="back-row"><button id="backFromGithub">←</button><h2>GitHub sync</h2></div>
-      <div class="card">
-        <div class="field"><label>Personal access token</label>
-          <div style="display:flex;gap:8px">
-            <input id="ghToken" type="password" placeholder="ghp_...">
-            <button class="iconbtn" id="ghTokenEye">👁</button>
-          </div>
-        </div>
-        <div class="field"><label>Repository (owner/repo)</label><input id="ghRepo" placeholder="priyasureshgermany/asset-management"></div>
-        <div class="field"><label>Branch</label><input id="ghBranch" placeholder="main"></div>
-        <div class="field"><label>File path</label><input id="ghPath" placeholder="data/asset-management-backup.json"></div>
-        <button class="btn primary" id="ghSave">Save &amp; enable</button>
-        <div class="status-line" id="ghDetailStatus">Not connected.</div>
+    <section class="chartblock tight" id="allocBlock">
+      <div class="chartblock-h">
+        <div class="cb-t">Where your money sits</div>
+        <div class="cb-n" id="allocN">—</div>
       </div>
-      <div class="card">
-        <h3>Sync</h3>
-        <div class="btn-row">
-          <button class="btn ghost" id="ghPull">Pull now</button>
-          <button class="btn ghost" id="ghPush">Push now</button>
-        </div>
-        <div class="status-line">Sync is manual only — nothing is pushed or pulled automatically.</div>
-      </div>
-      <div class="card">
-        <button class="btn danger" id="ghDisable">Disable sync</button>
+      <div class="pierow">
+        <div class="pie" id="allocPie"></div>
+        <div class="pielegend" id="allocLegend"></div>
       </div>
     </section>
 
-    <!-- BACKUP & RESTORE -->
-    <section class="panel" id="panel-backup">
-      <div class="back-row"><button id="backFromBackup">←</button><h2>Backup &amp; restore</h2></div>
-      <div class="card">
-        <h3>Back up</h3>
-        <p class="status-line" style="margin-top:0">Copies your entire data (assets, liabilities, goals, investments) to the clipboard as text. Paste it somewhere safe.</p>
-        <button class="btn primary" id="copyBackup">Copy backup to clipboard</button>
+    <section class="chartblock" id="assetBarBlock">
+      <div class="chartblock-h"><div class="cb-t">Assets by category</div><div class="cb-n" id="assetBarN">—</div></div>
+      <div id="assetBars"></div>
+    </section>
+
+    <section class="chartblock" id="liabBarBlock">
+      <div class="chartblock-h"><div class="cb-t">Liabilities by kind</div><div class="cb-n" id="liabBarN">—</div></div>
+      <div id="liabBars"></div>
+    </section>
+
+    <div class="segwrap">
+      <div class="seg" id="dashSeg" role="tablist">
+        <button role="tab" data-dash="assets" aria-selected="true">Assets <span class="n" id="nAssets">0</span></button>
+        <button role="tab" data-dash="liabilities" aria-selected="false">Liabilities <span class="n" id="nLiabs">0</span></button>
       </div>
-      <div class="card">
-        <h3>Restore</h3>
-        <p class="status-line" style="margin-top:0">Paste a previously copied backup below, then restore. This replaces all current data.</p>
-        <div class="field"><textarea id="restoreBox" placeholder="Paste backup JSON here"></textarea></div>
-        <button class="btn ghost" id="doRestore">Restore from pasted backup</button>
+    </div>
+    <div class="list" id="dashList"></div>
+  </div>
+
+  <!-- ============ GOALS ============ -->
+  <div id="viewGoal" hidden>
+    <section class="statement">
+      <div class="eyebrow">Saving toward</div>
+      <div class="net" id="goalVal">€0</div>
+      <div class="stmt-sub" id="goalSub">—</div>
+      <div class="tiles">
+        <div class="tile in"><div class="lbl">Saved</div><div class="val" id="goalSaved">€0</div></div>
+        <div class="tile out"><div class="lbl">Still to go</div><div class="val" id="goalLeft">€0</div></div>
+      </div>
+    </section>
+    <div class="list" id="goalList"></div>
+  </div>
+
+  <!-- ============ INVESTMENTS ============ -->
+  <div id="viewInvest" hidden>
+    <section class="statement">
+      <div class="eyebrow">Portfolio value</div>
+      <div class="net" id="invVal">€0</div>
+      <div class="stmt-sub" id="invSub">—</div>
+      <div class="tiles">
+        <div class="tile"><div class="lbl">Invested</div><div class="val" id="invInvested">€0</div></div>
+        <div class="tile in" id="invGainTile"><div class="lbl">Gain / loss</div><div class="val" id="invGain">€0</div><div class="sub" id="invGainPct">—</div></div>
       </div>
     </section>
 
-    <!-- CALCULATOR -->
-    <section class="panel" id="panel-calc">
-      <div class="back-row"><button id="backFromCalc">←</button><h2>Calculator</h2></div>
-      <div class="tabs-inline">
-        <button class="on" data-calctab="sip">SIP</button>
-        <button data-calctab="loan">Loan (EMI)</button>
-      </div>
-
-      <div id="calcSip">
-        <div class="card">
-          <div class="field"><label>Monthly investment</label><input id="sipAmt" type="number" inputmode="decimal" placeholder="5000"></div>
-          <div class="field-row">
-            <div class="field"><label>Expected annual return %</label><input id="sipRate" type="number" inputmode="decimal" placeholder="12"></div>
-            <div class="field"><label>Duration (years)</label><input id="sipYears" type="number" inputmode="decimal" placeholder="10"></div>
-          </div>
-          <button class="btn primary" id="sipCalc">Calculate</button>
-          <div class="calc-result hidden" id="sipResult">
-            <div class="big" id="sipFuture">—</div>
-            <div class="row2"><span>Invested</span><span id="sipInvested">—</span></div>
-            <div class="row2"><span>Est. returns</span><span id="sipReturns">—</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div id="calcLoan" class="hidden">
-        <div class="card">
-          <div class="field"><label>Loan amount</label><input id="loanAmt" type="number" inputmode="decimal" placeholder="2000000"></div>
-          <div class="field-row">
-            <div class="field"><label>Interest rate % (annual)</label><input id="loanRate" type="number" inputmode="decimal" placeholder="8.5"></div>
-            <div class="field"><label>Tenure (years)</label><input id="loanYears" type="number" inputmode="decimal" placeholder="20"></div>
-          </div>
-          <button class="btn primary" id="loanCalc">Calculate</button>
-          <div class="calc-result hidden" id="loanResult">
-            <div class="big" id="loanEmi">—</div>
-            <div class="row2"><span>Total interest</span><span id="loanInterest">—</span></div>
-            <div class="row2"><span>Total payment</span><span id="loanTotal">—</span></div>
-          </div>
-        </div>
-      </div>
+    <section class="goldcard" id="goldCard" hidden>
+      <button class="gc-edit" id="btnGoldPrice" type="button">Edit price</button>
+      <div class="gc-k">Physical gold</div>
+      <div class="gc-v" id="goldGrams">0 g</div>
+      <div class="gc-s" id="goldWorth">—</div>
     </section>
 
-    <!-- REPORTS -->
-    <section class="panel" id="panel-reports">
-      <div class="back-row"><button id="backFromReports">←</button><h2>Reports</h2></div>
-      <div class="card">
-        <h3>Assets by category</h3>
-        <div id="repAssets"></div>
+    <div class="segwrap">
+      <div class="seg" id="invSeg" role="tablist">
+        <button role="tab" data-inv="all" aria-selected="true">All <span class="n" id="nInvAll">0</span></button>
+        <button role="tab" data-inv="paper" aria-selected="false">Funds &amp; stocks <span class="n" id="nInvPaper">0</span></button>
+        <button role="tab" data-inv="gold" aria-selected="false">Gold <span class="n" id="nInvGold">0</span></button>
       </div>
-      <div class="card">
-        <h3>Liabilities by category</h3>
-        <div id="repLiabilities"></div>
-      </div>
-      <div class="card">
-        <h3>Investments — invested vs current</h3>
-        <div id="repInvest"></div>
-      </div>
-      <div class="card">
-        <h3>Goal progress</h3>
-        <div id="repGoals"></div>
-      </div>
-    </section>
+    </div>
+    <div class="list" id="investList"></div>
+  </div>
 
-    <!-- WHAT'S NEW -->
-    <section class="panel" id="panel-whatsnew">
-      <div class="back-row"><button id="backFromWhatsnew">←</button><h2>What's new</h2></div>
-      <div class="card" id="releasesBox">Loading…</div>
-    </section>
+  <div class="spacer"></div>
 
-    <!-- ABOUT -->
-    <section class="panel" id="panel-about">
-      <div class="back-row"><button id="backFromAbout">←</button><h2>About</h2></div>
-      <div class="card">
-        <div class="status-line" id="aboutBody"></div>
-        <button class="btn ghost" id="btnUpdate" style="margin-top:14px">Check for update</button>
-      </div>
-    </section>
+  <div class="fabwrap" id="fabWrap">
+    <div class="fabmenu" id="fabMenu"></div>
+    <button class="fab" id="btnAdd" type="button" aria-label="Add" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+    </button>
+  </div>
 
-  </main>
-
-  <button class="fab" id="fab">+</button>
-
-  <nav class="tabbar">
-    <button class="on" data-tab="dash">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+  <div class="tabbar" id="viewTog" role="tablist">
+    <button role="tab" data-view="dash" aria-selected="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
       Dashboard
     </button>
-    <button data-tab="goal">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+    <button role="tab" data-view="goal" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg>
       Goal
     </button>
-    <button data-tab="invest">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+    <button role="tab" data-view="invest" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
       Investment
     </button>
-    <button data-tab="more">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+    <button type="button" id="btnMore" aria-haspopup="dialog" aria-label="More">
+      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg>
       More
     </button>
-  </nav>
+  </div>
 </div>
 
-<!-- ADD/EDIT ASSET SHEET -->
-<div class="sheet-overlay hidden" id="ovAsset">
-  <div class="sheet">
-    <div class="handle"></div>
-    <div class="sheet-head"><h2 id="assetSheetTitle">Add asset</h2><button class="iconbtn" data-close>✕</button></div>
+<div class="scrim" id="scrim"></div>
+
+<!-- ============ MORE ============ -->
+<section class="sheet" id="shMore" role="dialog" aria-modal="true" aria-labelledby="moreTitle">
+  <div class="sheet-head">
+    <h2 id="moreTitle">More</h2>
+    <button class="iconbtn" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body" id="moreMenu">
+    <button class="morerow" type="button" data-more="report">
+      <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 109 9h-9z"/><path d="M14.5 2.5A8 8 0 0121.5 9.5h-7z"/></svg></span>
+      <b>Reports</b>
+      <span class="ms">How it breaks down</span>
+    </button>
+    <button class="morerow" type="button" data-more="notes">
+      <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3.5l1.9 5.1 5.1 1.9-5.1 1.9L11 17.5l-1.9-5.1L4 10.5l5.1-1.9z"/><path d="M18.4 15.1l.7 1.9 1.9.7-1.9.7-.7 1.9-.7-1.9-1.9-.7 1.9-.7z"/></svg></span>
+      <b>What&rsquo;s new</b>
+      <span class="ms">Version and changes</span>
+    </button>
+    <button class="morerow" type="button" data-more="settings">
+      <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></span>
+      <b>Settings</b>
+      <span class="ms">Sync, backup, the rest</span>
+    </button>
+    <div class="toggle2 themerow" id="themeTog">
+      <button class="x" data-v="system" aria-pressed="true">System</button>
+      <button class="x" data-v="light" aria-pressed="false">Light</button>
+      <button class="x" data-v="dark" aria-pressed="false">Dark</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SETTINGS ============ -->
+<section class="sheet" id="shSet" role="dialog" aria-modal="true" aria-labelledby="setTitle">
+  <div class="sheet-head">
+    <button class="iconbtn" id="setBack" aria-label="Back to settings" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <h2 id="setTitle">Settings</h2>
+    <button class="iconbtn" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <div class="sheet-body" id="setMenu">
+    <button class="setrow" type="button" data-pane="profile">
+      <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></span>
+      <span class="sr-t"><b>Profile</b><span>Your name and home currency</span></span>
+    </button>
+    <button class="setrow" type="button" data-pane="rates">
+      <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 6h18"/><path d="M7 22l-4-4 4-4"/><path d="M21 18H3"/></svg></span>
+      <span class="sr-t"><b>Rates &amp; gold</b><span>EUR to INR, gold per gram</span></span>
+    </button>
+    <button class="setrow" type="button" data-pane="github">
+      <span class="sr-ic"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.5 2 2 6.6 2 12.2c0 4.5 2.9 8.3 6.8 9.7.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.2-4.6-5.2 0-1.1.4-2.1 1-2.8-.1-.3-.4-1.4.1-2.9 0 0 .8-.3 2.8 1.1a9.3 9.3 0 015 0c2-1.4 2.8-1.1 2.8-1.1.5 1.5.2 2.6.1 2.9.6.7 1 1.7 1 2.8 0 4-2.4 4.9-4.6 5.2.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10.2 10.2 0 0022 12.2C22 6.6 17.5 2 12 2z"/></svg></span>
+      <span class="sr-t"><b>GitHub sync</b><span id="ghTileSub">Off</span></span>
+    </button>
+    <button class="setrow" type="button" data-pane="data">
+      <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+      <span class="sr-t"><b>Backup &amp; restore</b><span>Copy out, paste back</span></span>
+    </button>
+    <button class="setrow" type="button" data-pane="calc">
+      <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2.5"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h4"/></svg></span>
+      <span class="sr-t"><b>Calculator</b><span>SIP and loan (EMI)</span></span>
+    </button>
+    <button class="setrow setrow-wide" type="button" data-pane="about">
+      <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5"/><path d="M12 8h.01"/></svg></span>
+      <span class="sr-t"><b>About</b><span id="aboutTileSub">Version</span></span>
+    </button>
+  </div>
+
+  <!-- panes -->
+  <div class="sheet-body setpane" id="pane-profile" hidden>
+    <h3>Profile</h3>
+    <p class="ph">Your name, and the currency new entries start in.</p>
+    <div class="field"><label>Your name</label><input class="inp" id="profName" placeholder="Your name"></div>
+    <div class="field"><label>Home currency</label>
+      <div class="toggle2" id="profCurTog">
+        <button class="x" data-cur="EUR" aria-pressed="true">€ Euro</button>
+        <button class="x" data-cur="INR" aria-pressed="false">₹ Rupee</button>
+      </div>
+    </div>
+    <button class="btn" id="saveProfile">Save</button>
+  </div>
+
+  <div class="sheet-body setpane" id="pane-rates" hidden>
+    <h3>Rates &amp; gold</h3>
+    <p class="ph">Entries keep the currency you enter them in. These figures are what convert them when a total has to be one number, and what a gram of gold is worth today.</p>
+    <div class="setsec">
+      <div class="field"><label>Rupees per euro</label><input class="inp" id="rateInr" type="number" inputmode="decimal" placeholder="90"></div>
+      <div class="note">Used for every converted total. A euro entry shown in rupees is multiplied by this; a rupee entry shown in euro is divided by it.</div>
+    </div>
+    <div class="setsec">
+      <div class="field"><label>Gold price per gram (€)</label><input class="inp" id="goldEur" type="number" inputmode="decimal" placeholder="75"></div>
+      <div class="field"><label>Gold price per gram (₹)</label><input class="inp" id="goldInr" type="number" inputmode="decimal" placeholder="7200"></div>
+      <div class="note">Physical gold is valued from its weight, not a figure you keep updating by hand: grams × the price above, in the entry's own currency.</div>
+    </div>
+    <button class="btn" id="saveRates">Save</button>
+  </div>
+
+  <div class="sheet-body setpane" id="pane-github" hidden>
+    <h3>GitHub sync</h3>
+    <p class="ph">A copy of everything, kept as one JSON file in a repository you own. Manual on both sides — nothing is sent or fetched unless you press it.</p>
+    <div class="field"><label>Personal access token</label>
+      <div style="display:flex;gap:8px">
+        <input class="inp" id="ghToken" type="password" placeholder="ghp_…">
+        <button class="iconbtn" id="ghEye" aria-label="Show token" style="background:var(--surface-2)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="field"><label>Repository</label><input class="inp" id="ghRepo" placeholder="owner/repo"></div>
+    <div class="row2">
+      <div class="field"><label>Branch</label><input class="inp" id="ghBranch" placeholder="main"></div>
+      <div class="field"><label>File path</label><input class="inp" id="ghPath" placeholder="data/backup.json"></div>
+    </div>
+    <button class="btn" id="ghSave">Save &amp; enable</button>
+    <div class="btnrow" style="margin-top:9px">
+      <button class="btn ghost" id="ghPull">Pull onto this device</button>
+      <button class="btn ghost" id="ghPush">Push now</button>
+    </div>
+    <div class="note" id="ghStatus" style="margin-top:12px">Not connected.</div>
+    <button class="btn danger" id="ghDisable" style="margin-top:12px">Disable sync</button>
+  </div>
+
+  <div class="sheet-body setpane" id="pane-data" hidden>
+    <h3>Backup &amp; restore</h3>
+    <p class="ph">The same JSON the GitHub backup holds — one copy of everything, kept as text.</p>
+    <div class="setsec">
+      <button class="btn" id="copyBackup">Copy backup to clipboard</button>
+    </div>
+    <div class="setsec">
+      <div class="field"><label>Restore from a backup</label><textarea class="inp" id="restoreBox" placeholder="Paste a backup here"></textarea></div>
+      <button class="btn ghost" id="doRestore">Restore</button>
+      <div class="note warn" style="margin-top:12px">Restoring replaces everything currently in the app. Copy a backup out first if you are not sure.</div>
+    </div>
+    <div class="setsec">
+      <button class="btn danger" id="wipeAll">Delete everything</button>
+    </div>
+  </div>
+
+  <div class="sheet-body setpane" id="pane-calc" hidden>
+    <h3>Calculator</h3>
+    <p class="ph">Two sums worth having to hand.</p>
+    <div class="toggle2" id="calcTog" style="margin-bottom:16px">
+      <button class="x" data-calc="sip" aria-pressed="true">SIP</button>
+      <button class="x" data-calc="loan" aria-pressed="false">Loan (EMI)</button>
+    </div>
+
+    <div id="calcSip">
+      <div class="field"><label>Monthly investment</label>
+        <div class="amtfield"><span class="cur" id="sipCur">€</span><input id="sipAmt" type="number" inputmode="decimal" placeholder="500"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>Return % a year</label><input class="inp" id="sipRate" type="number" inputmode="decimal" placeholder="12"></div>
+        <div class="field"><label>Years</label><input class="inp" id="sipYears" type="number" inputmode="decimal" placeholder="10"></div>
+      </div>
+      <button class="btn" id="sipCalc">Work it out</button>
+      <div class="calcout" id="sipOut" hidden>
+        <div class="co-k">Worth at the end</div>
+        <div class="co-v" id="sipFuture">—</div>
+        <div class="calcbar"><i id="sipBarIn" style="background:var(--accent)"></i><i id="sipBarRet" style="background:var(--pos)"></i></div>
+        <div class="co-r"><span>You put in</span><span id="sipInvested">—</span></div>
+        <div class="co-r"><span>It earned</span><span id="sipReturns">—</span></div>
+      </div>
+    </div>
+
+    <div id="calcLoan" hidden>
+      <div class="field"><label>Loan amount</label>
+        <div class="amtfield"><span class="cur" id="loanCur">€</span><input id="loanAmt" type="number" inputmode="decimal" placeholder="200000"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>Interest % a year</label><input class="inp" id="loanRate" type="number" inputmode="decimal" placeholder="3.8"></div>
+        <div class="field"><label>Years</label><input class="inp" id="loanYears" type="number" inputmode="decimal" placeholder="20"></div>
+      </div>
+      <button class="btn" id="loanCalc">Work it out</button>
+      <div class="calcout" id="loanOut" hidden>
+        <div class="co-k">Every month</div>
+        <div class="co-v" id="loanEmi">—</div>
+        <div class="calcbar"><i id="loanBarP" style="background:var(--accent)"></i><i id="loanBarI" style="background:var(--neg)"></i></div>
+        <div class="co-r"><span>Interest over the term</span><span id="loanInterest">—</span></div>
+        <div class="co-r"><span>Paid in total</span><span id="loanTotal">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-body setpane" id="pane-about" hidden>
+    <h3>About</h3>
+    <p class="ph">Asset Manager — assets, liabilities, goals and investments, kept on this device.</p>
+    <div class="aboutbox" id="aboutBox"></div>
+    <button class="btn ghost" id="btnUpdate">Update to the newest build</button>
+    <div class="note" style="margin-top:12px">The app keeps serving the build you have until you press this — an update is a thing you decide to take.</div>
+  </div>
+</section>
+
+<!-- ============ REPORTS ============ -->
+<section class="sheet" id="shReports" role="dialog" aria-modal="true" aria-labelledby="repTitle">
+  <div class="sheet-head">
+    <h2 id="repTitle">Reports</h2>
+    <button class="iconbtn" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body" id="repBody"></div>
+</section>
+
+<!-- ============ WHAT'S NEW ============ -->
+<section class="sheet" id="shNotes" role="dialog" aria-modal="true" aria-labelledby="notesTitle">
+  <div class="sheet-head">
+    <h2 id="notesTitle">What&rsquo;s new</h2>
+    <button class="iconbtn" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body" id="notesBody">Loading…</div>
+</section>
+
+<!-- ============ ASSET ============ -->
+<section class="sheet" id="shAsset" role="dialog" aria-modal="true" aria-labelledby="assetTitle">
+  <div class="sheet-head">
+    <h2 id="assetTitle">Add asset</h2>
+    <button class="iconbtn" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body">
     <input type="hidden" id="assetId">
-    <div class="field"><label>Name</label><input id="assetName" placeholder="e.g. Savings account"></div>
-    <div class="field"><label>Category</label>
-      <select id="assetCategory">
-        <option>Cash</option><option>Bank account</option><option>Fixed deposit</option>
-        <option>Property</option><option>Gold / jewellery</option><option>Vehicle</option><option>Other</option>
-      </select>
+    <div class="field"><label>What it is worth</label>
+      <div class="amtfield"><span class="cur" id="assetCurSym">€</span><input id="assetValue" type="number" inputmode="decimal" placeholder="0"></div>
     </div>
-    <div class="field"><label>Current value</label><input id="assetValue" type="number" inputmode="decimal" placeholder="0"></div>
-    <div class="field"><label>Notes (optional)</label><textarea id="assetNotes"></textarea></div>
-    <div class="btn-row">
-      <button class="btn danger hidden" id="assetDelete">Delete</button>
-      <button class="btn primary" id="assetSave">Save</button>
-    </div>
+    <div class="field"><label>Currency</label><div class="toggle2" id="assetCurTog"></div></div>
+    <div class="field"><label>Name</label><input class="inp" id="assetName" placeholder="Savings account"></div>
+    <div class="field"><label>Category</label><div class="chips" id="assetCats"></div></div>
+    <div class="field"><label>Note (optional)</label><textarea class="inp" id="assetNotes"></textarea></div>
+    <button class="btn" id="assetSave">Save</button>
+    <button class="btn danger" id="assetDelete" style="margin-top:9px" hidden>Delete this asset</button>
   </div>
-</div>
+</section>
 
-<!-- ADD/EDIT LIABILITY SHEET -->
-<div class="sheet-overlay hidden" id="ovLiability">
-  <div class="sheet">
-    <div class="handle"></div>
-    <div class="sheet-head"><h2 id="liabSheetTitle">Add liability</h2><button class="iconbtn" data-close>✕</button></div>
+<!-- ============ LIABILITY ============ -->
+<section class="sheet" id="shLiab" role="dialog" aria-modal="true" aria-labelledby="liabTitle">
+  <div class="sheet-head">
+    <h2 id="liabTitle">Add liability</h2>
+    <button class="iconbtn" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body">
     <input type="hidden" id="liabId">
-    <div class="field"><label>Name</label><input id="liabName" placeholder="e.g. Home loan"></div>
-    <div class="field"><label>Category</label>
-      <select id="liabCategory">
-        <option>Home loan</option><option>Car loan</option><option>Personal loan</option>
-        <option>Credit card</option><option>Other</option>
-      </select>
+    <div class="field"><label>Still owed</label>
+      <div class="amtfield"><span class="cur" id="liabCurSym">€</span><input id="liabAmount" type="number" inputmode="decimal" placeholder="0"></div>
     </div>
-    <div class="field-row">
-      <div class="field"><label>Outstanding amount</label><input id="liabAmount" type="number" inputmode="decimal" placeholder="0"></div>
-      <div class="field"><label>Interest rate % (optional)</label><input id="liabRate" type="number" inputmode="decimal" placeholder="0"></div>
-    </div>
-    <div class="field"><label>Notes (optional)</label><textarea id="liabNotes"></textarea></div>
-    <div class="btn-row">
-      <button class="btn danger hidden" id="liabDelete">Delete</button>
-      <button class="btn primary" id="liabSave">Save</button>
-    </div>
+    <div class="field"><label>Currency</label><div class="toggle2" id="liabCurTog"></div></div>
+    <div class="field"><label>Name</label><input class="inp" id="liabName" placeholder="Home loan"></div>
+    <div class="field"><label>Kind</label><div class="chips" id="liabCats"></div></div>
+    <div class="field"><label>Interest % a year (optional)</label><input class="inp" id="liabRate" type="number" inputmode="decimal" placeholder="0"></div>
+    <div class="field"><label>Note (optional)</label><textarea class="inp" id="liabNotes"></textarea></div>
+    <button class="btn" id="liabSave">Save</button>
+    <button class="btn danger" id="liabDelete" style="margin-top:9px" hidden>Delete this liability</button>
   </div>
-</div>
+</section>
 
-<!-- ADD/EDIT GOAL SHEET -->
-<div class="sheet-overlay hidden" id="ovGoal">
-  <div class="sheet">
-    <div class="handle"></div>
-    <div class="sheet-head"><h2 id="goalSheetTitle">Add goal</h2><button class="iconbtn" data-close>✕</button></div>
+<!-- ============ GOAL ============ -->
+<section class="sheet" id="shGoal" role="dialog" aria-modal="true" aria-labelledby="goalTitle">
+  <div class="sheet-head">
+    <h2 id="goalTitle">Add goal</h2>
+    <button class="iconbtn" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body">
     <input type="hidden" id="goalId">
-    <div class="field"><label>Goal name</label><input id="goalName" placeholder="e.g. Retirement"></div>
-    <div class="field-row">
-      <div class="field"><label>Target amount</label><input id="goalTarget" type="number" inputmode="decimal" placeholder="0"></div>
-      <div class="field"><label>Saved so far</label><input id="goalCurrent" type="number" inputmode="decimal" placeholder="0"></div>
+    <div class="field"><label>Target</label>
+      <div class="amtfield"><span class="cur" id="goalCurSym">€</span><input id="goalTarget" type="number" inputmode="decimal" placeholder="0"></div>
     </div>
-    <div class="field"><label>Target date (optional)</label><input id="goalDate" type="date"></div>
-    <div class="field"><label>Notes (optional)</label><textarea id="goalNotes"></textarea></div>
-    <div class="btn-row">
-      <button class="btn danger hidden" id="goalDelete">Delete</button>
-      <button class="btn primary" id="goalSave">Save</button>
+    <div class="field"><label>Currency</label><div class="toggle2" id="goalCurTog"></div></div>
+    <div class="field"><label>What it is for</label><input class="inp" id="goalName" placeholder="House down payment"></div>
+    <div class="row2">
+      <div class="field"><label>Saved so far</label><input class="inp" id="goalCurrent" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="field"><label>By when</label><input class="inp" id="goalDate" type="date"></div>
     </div>
+    <div class="field"><label>Note (optional)</label><textarea class="inp" id="goalNotes"></textarea></div>
+    <button class="btn" id="goalSave">Save</button>
+    <button class="btn danger" id="goalDelete" style="margin-top:9px" hidden>Delete this goal</button>
   </div>
-</div>
+</section>
 
-<!-- ADD/EDIT INVESTMENT SHEET -->
-<div class="sheet-overlay hidden" id="ovInvest">
-  <div class="sheet">
-    <div class="handle"></div>
-    <div class="sheet-head"><h2 id="investSheetTitle">Add investment</h2><button class="iconbtn" data-close>✕</button></div>
+<!-- ============ INVESTMENT ============ -->
+<section class="sheet" id="shInvest" role="dialog" aria-modal="true" aria-labelledby="investTitle">
+  <div class="sheet-head">
+    <h2 id="investTitle">Add investment</h2>
+    <button class="iconbtn" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body">
     <input type="hidden" id="investId">
-    <div class="field"><label>Name</label><input id="investName" placeholder="e.g. Nifty Index Fund"></div>
-    <div class="field"><label>Type</label>
-      <select id="investType">
-        <option>SIP / Mutual fund</option><option>Stocks</option><option>Fixed deposit</option>
-        <option>PPF / EPF</option><option>Bonds</option><option>Other</option>
-      </select>
-    </div>
-    <div class="field-row">
-      <div class="field"><label>Invested amount</label><input id="investInvested" type="number" inputmode="decimal" placeholder="0"></div>
-      <div class="field"><label>Current value</label><input id="investCurrent" type="number" inputmode="decimal" placeholder="0"></div>
-    </div>
-    <div class="field"><label>Monthly SIP amount (optional)</label><input id="investSip" type="number" inputmode="decimal" placeholder="0"></div>
-    <div class="field"><label>Notes (optional)</label><textarea id="investNotes"></textarea></div>
-    <div class="btn-row">
-      <button class="btn danger hidden" id="investDelete">Delete</button>
-      <button class="btn primary" id="investSave">Save</button>
-    </div>
-  </div>
-</div>
+    <div class="field"><label>Kind</label><div class="chips" id="investTypes"></div></div>
+    <div class="field"><label>Currency</label><div class="toggle2" id="investCurTog"></div></div>
+    <div class="field"><label>Name</label><input class="inp" id="investName" placeholder="Index fund"></div>
 
-<!-- QUICK ADD PICKER (Dashboard FAB) -->
-<div class="sheet-overlay hidden" id="ovQuickAdd">
-  <div class="sheet">
-    <div class="handle"></div>
-    <div class="sheet-head"><h2>Add</h2><button class="iconbtn" data-close>✕</button></div>
-    <div class="btn-row" style="flex-direction:column">
-      <button class="btn primary" id="qaAsset">Add asset</button>
-      <button class="btn ghost" id="qaLiability">Add liability</button>
+    <div id="investPaperFields">
+      <div class="row2">
+        <div class="field"><label>Put in</label><input class="inp" id="investInvested" type="number" inputmode="decimal" placeholder="0"></div>
+        <div class="field"><label>Worth now</label><input class="inp" id="investCurrent" type="number" inputmode="decimal" placeholder="0"></div>
+      </div>
+      <div class="field"><label>Monthly SIP (optional)</label><input class="inp" id="investSip" type="number" inputmode="decimal" placeholder="0"></div>
     </div>
-  </div>
-</div>
 
-<div class="toast hidden" id="toast"></div>
+    <div id="investGoldFields" hidden>
+      <div class="row2">
+        <div class="field"><label>Weight in grams</label><input class="inp" id="investGrams" type="number" inputmode="decimal" placeholder="0"></div>
+        <div class="field"><label>Purity</label>
+          <select class="inp" id="investPurity">
+            <option value="24K">24K</option><option value="22K" selected>22K</option>
+            <option value="18K">18K</option><option value="">Not stated</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label>Description</label><input class="inp" id="investGoldDesc" placeholder="Two bangles, bought in Chennai"></div>
+      <div class="field"><label>What you paid (optional)</label><input class="inp" id="investGoldPaid" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="note" id="goldValueNote">Worth is worked out from the weight and the gold price in Settings → Rates &amp; gold.</div>
+    </div>
+
+    <div class="field" style="margin-top:15px"><label>Note (optional)</label><textarea class="inp" id="investNotes"></textarea></div>
+    <button class="btn" id="investSave">Save</button>
+    <button class="btn danger" id="investDelete" style="margin-top:9px" hidden>Delete this investment</button>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.0";
+const APP_VERSION = "1.0.1";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
 
-/* ---------- state ---------- */
+/* ============================================================
+   Currency
+   ============================================================ */
+const CURRENCIES = ["EUR", "INR"];
+const CUR_META = {
+  EUR: { sym:"€", locale:"de-DE", label:"€ Euro" },
+  INR: { sym:"₹", locale:"en-IN", label:"₹ Rupee" }
+};
+function curSym(c){ return (CUR_META[c] || CUR_META.EUR).sym; }
 
-function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+/* ============================================================
+   Categories — one table each, so a hue and an icon can never
+   drift apart from the name they belong to.
+   ============================================================ */
+const ASSET_CATS = [
+  { k:"Cash",            h:152 },
+  { k:"Bank account",    h:210 },
+  { k:"Fixed deposit",   h:188 },
+  { k:"Property",        h:24  },
+  { k:"Gold / jewellery",h:45  },
+  { k:"Vehicle",         h:275 },
+  { k:"Other",           h:320 }
+];
+const LIAB_CATS = [
+  { k:"Home loan",     h:6   },
+  { k:"Car loan",      h:24  },
+  { k:"Personal loan", h:340 },
+  { k:"Credit card",   h:300 },
+  { k:"Other",         h:260 }
+];
+const INVEST_TYPES = [
+  { k:"SIP / Mutual fund", h:275 },
+  { k:"Stocks",            h:210 },
+  { k:"Physical Gold",     h:45  },
+  { k:"Fixed deposit",     h:188 },
+  { k:"PPF / EPF",         h:152 },
+  { k:"Bonds",             h:340 },
+  { k:"Other",             h:24  }
+];
+const GOLD_TYPE = "Physical Gold";
 
-function defaultState(){
-  return { v:1, assets:[], liabilities:[], goals:[], investments:[], profile:{ name:"", currency:"EUR" } };
+function hueOf(table, key){
+  const hit = table.find(x => x.k === key);
+  return hit ? hit.h : 210;
 }
+function paint(h){ return "hsl(" + h + " 82% 38%)"; }
 
-/* Single point every loader/importer routes through, so a field added here is
-   read back everywhere by construction — never reconstruct state ad hoc elsewhere. */
+/* ============================================================
+   State — stateFromPayload is the ONE place a payload becomes
+   state, and stateCleared the one place an empty book is made.
+   Every loader (load, GitHub pull, paste-restore) goes through
+   it, so a field added here is read back everywhere by
+   construction rather than by everyone remembering.
+   ============================================================ */
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+const num = (v) => { const n = Number(v); return Number.isFinite(n) ? n : 0; };
+const str = (v) => String(v == null ? "" : v);
+const oneOf = (v, list, dflt) => list.includes(v) ? v : dflt;
+
 function stateFromPayload(p){
   p = p && typeof p === "object" ? p : {};
-  const norm = (arr) => Array.isArray(arr) ? arr : [];
+  const arr = (a) => Array.isArray(a) ? a : [];
+  const home = oneOf(p.profile && p.profile.currency, CURRENCIES, "EUR");
+  /* Entries made before currency existed are in the home currency: that is
+     what they were entered as, whatever the app calls it now. */
+  const cur = (c) => oneOf(c, CURRENCIES, home);
+  const settings = p.settings && typeof p.settings === "object" ? p.settings : {};
+  const gold = settings.goldPerGram && typeof settings.goldPerGram === "object" ? settings.goldPerGram : {};
   return {
-    v: 1,
-    assets: norm(p.assets).map(a => ({
-      id: a.id || uid(), name: String(a.name||""), category: String(a.category||"Other"),
-      value: Number(a.value)||0, notes: String(a.notes||""), updatedAt: a.updatedAt || new Date().toISOString()
+    v: 2,
+    assets: arr(p.assets).map(a => ({
+      id: a.id || uid(), name: str(a.name), category: str(a.category || "Other"),
+      value: num(a.value), currency: cur(a.currency),
+      notes: str(a.notes), updatedAt: a.updatedAt || new Date().toISOString()
     })),
-    liabilities: norm(p.liabilities).map(l => ({
-      id: l.id || uid(), name: String(l.name||""), category: String(l.category||"Other"),
-      amount: Number(l.amount)||0, interestRate: Number(l.interestRate)||0, notes: String(l.notes||""),
-      updatedAt: l.updatedAt || new Date().toISOString()
+    liabilities: arr(p.liabilities).map(l => ({
+      id: l.id || uid(), name: str(l.name), category: str(l.category || "Other"),
+      amount: num(l.amount), currency: cur(l.currency), interestRate: num(l.interestRate),
+      notes: str(l.notes), updatedAt: l.updatedAt || new Date().toISOString()
     })),
-    goals: norm(p.goals).map(g => ({
-      id: g.id || uid(), name: String(g.name||""), targetAmount: Number(g.targetAmount)||0,
-      currentAmount: Number(g.currentAmount)||0, targetDate: g.targetDate || "", notes: String(g.notes||""),
+    goals: arr(p.goals).map(g => ({
+      id: g.id || uid(), name: str(g.name), targetAmount: num(g.targetAmount),
+      currentAmount: num(g.currentAmount), currency: cur(g.currency),
+      targetDate: str(g.targetDate), notes: str(g.notes),
       updatedAt: g.updatedAt || new Date().toISOString()
     })),
-    investments: norm(p.investments).map(i => ({
-      id: i.id || uid(), name: String(i.name||""), type: String(i.type||"Other"),
-      investedAmount: Number(i.investedAmount)||0, currentValue: Number(i.currentValue)||0,
-      sipAmount: Number(i.sipAmount)||0, notes: String(i.notes||""), updatedAt: i.updatedAt || new Date().toISOString()
+    investments: arr(p.investments).map(i => ({
+      id: i.id || uid(), name: str(i.name), type: str(i.type || "Other"),
+      investedAmount: num(i.investedAmount), currentValue: num(i.currentValue),
+      currency: cur(i.currency), sipAmount: num(i.sipAmount),
+      grams: num(i.grams), purity: str(i.purity), goldDesc: str(i.goldDesc),
+      notes: str(i.notes), updatedAt: i.updatedAt || new Date().toISOString()
     })),
-    profile: {
-      name: String((p.profile && p.profile.name) || ""),
-      currency: String((p.profile && p.profile.currency) || "EUR")
+    profile: { name: str(p.profile && p.profile.name), currency: home },
+    settings: {
+      display: oneOf(settings.display, CURRENCIES, home),
+      inrPerEur: num(settings.inrPerEur) > 0 ? num(settings.inrPerEur) : 90,
+      goldPerGram: {
+        EUR: num(gold.EUR) > 0 ? num(gold.EUR) : 75,
+        INR: num(gold.INR) > 0 ? num(gold.INR) : 7200
+      }
     }
   };
 }
-
-function stateCleared(){ return defaultState(); }
+function stateCleared(){
+  /* Setup survives a wipe; the book itself does not. */
+  return stateFromPayload({ profile: state.profile, settings: state.settings });
+}
 
 let state = load();
-
 function load(){
   try{
     const raw = localStorage.getItem(KEY);
-    if (!raw) return defaultState();
-    return stateFromPayload(JSON.parse(raw));
-  }catch(e){ return defaultState(); }
+    return stateFromPayload(raw ? JSON.parse(raw) : {});
+  }catch(e){ return stateFromPayload({}); }
 }
-
 function save(){
-  localStorage.setItem(KEY, JSON.stringify(state));
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); }
+  catch(e){ toast("Could not save to this device"); }
 }
 
-/* ---------- formatting ---------- */
+/* ============================================================
+   Money — one conversion, one derivation of what an investment
+   is worth. Everything that totals anything calls these two,
+   so no two figures can disagree about what a thing is worth.
+   ============================================================ */
+function display(){ return state.settings.display; }
+function conv(amount, from, to){
+  if (from === to) return amount;
+  const rate = state.settings.inrPerEur;
+  if (from === "EUR" && to === "INR") return amount * rate;
+  if (from === "INR" && to === "EUR") return amount / rate;
+  return amount;
+}
+function toDisp(amount, from){ return conv(amount, from, display()); }
 
-const CUR_SYMBOL = { EUR:"€", USD:"$", INR:"₹", GBP:"£" };
-function curSym(){ return CUR_SYMBOL[state.profile.currency] || "€"; }
-function fmt(n){
-  n = Number(n)||0;
-  return curSym() + n.toLocaleString(undefined, { maximumFractionDigits:0 });
+/* What an investment is worth right now. Gold is weighed, not remembered:
+   grams × today's price, in the entry's own currency. Everything else keeps
+   the value that was typed in. */
+function investWorth(inv){
+  if (inv.type === GOLD_TYPE) return inv.grams * goldPrice(inv.currency);
+  return inv.currentValue;
+}
+function goldPrice(c){ return state.settings.goldPerGram[c] || 0; }
+
+function fmt(amount, c){
+  const cu = c || display();
+  const meta = CUR_META[cu] || CUR_META.EUR;
+  const abs = Math.abs(amount);
+  const digits = abs > 0 && abs < 100 ? 2 : 0;
+  return (amount < 0 ? "-" : "") + meta.sym +
+    abs.toLocaleString(meta.locale, { minimumFractionDigits:digits, maximumFractionDigits:digits });
+}
+function fmtDisp(amount){ return fmt(amount, display()); }
+function pct(n){ return (n >= 0 ? "+" : "") + n.toFixed(1) + "%"; }
+
+function totals(){
+  const plain = state.assets.reduce((s,a) => s + toDisp(a.value, a.currency), 0);
+  const invest = state.investments.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
+  const liabilities = state.liabilities.reduce((s,l) => s + toDisp(l.amount, l.currency), 0);
+  const assets = plain + invest;
+  return { plain, invest, assets, liabilities, net: assets - liabilities };
 }
 
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c =>
+    ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+}
+
+let toastTimer;
 function toast(msg){
   const t = document.getElementById("toast");
   t.textContent = msg;
-  t.classList.remove("hidden");
-  clearTimeout(toast._t);
-  toast._t = setTimeout(()=>t.classList.add("hidden"), 2400);
+  t.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("on"), 2600);
 }
 
-/* ---------- navigation ---------- */
+const $ = (id) => document.getElementById(id);
 
-const TABS = ["dash","goal","invest","more"];
-const SUBPANELS = ["settings","github","backup","calc","reports","whatsnew","about"];
-
-function showTab(tab){
-  TABS.forEach(t => {
-    document.getElementById("panel-"+t).classList.toggle("active", t===tab);
-  });
-  document.querySelectorAll("nav.tabbar button").forEach(b => b.classList.toggle("on", b.dataset.tab===tab));
-  SUBPANELS.forEach(p => document.getElementById("panel-"+p).classList.remove("active"));
-  document.getElementById("fab").classList.toggle("hidden", !(tab==="dash"||tab==="goal"||tab==="invest"));
-  currentTab = tab;
-  render();
-}
-
-function showSub(panel){
-  TABS.forEach(t => document.getElementById("panel-"+t).classList.remove("active"));
-  SUBPANELS.forEach(p => document.getElementById("panel-"+p).classList.toggle("active", p===panel));
-  document.getElementById("fab").classList.add("hidden");
-  if (panel==="reports") renderReports();
-  if (panel==="whatsnew") loadReleases();
-  if (panel==="about") renderAbout();
-  if (panel==="settings") renderSettings();
-  if (panel==="github") renderGithubPanel();
-}
-
-document.querySelectorAll("nav.tabbar button").forEach(b=>{
-  b.addEventListener("click", ()=> showTab(b.dataset.tab));
-});
-
-let currentTab = "dash";
+/* ============================================================
+   Navigation
+   ============================================================ */
+const VIEWS = { dash:"viewDash", goal:"viewGoal", invest:"viewInvest" };
+let view = "dash";
 let dashTab = "assets";
+let invTab = "all";
 
-document.getElementById("tileSettings").onclick = ()=> showSub("settings");
-document.getElementById("tileReports").onclick = ()=> showSub("reports");
-document.getElementById("tileWhatsNew").onclick = ()=> showSub("whatsnew");
-document.getElementById("tileAbout").onclick = ()=> showSub("about");
-document.getElementById("backFromSettings").onclick = ()=> showTab("more");
-document.getElementById("backFromGithub").onclick = ()=> showSub("settings");
-document.getElementById("backFromBackup").onclick = ()=> showSub("settings");
-document.getElementById("backFromCalc").onclick = ()=> showSub("settings");
-document.getElementById("backFromReports").onclick = ()=> showTab("more");
-document.getElementById("backFromWhatsnew").onclick = ()=> showTab("more");
-document.getElementById("backFromAbout").onclick = ()=> showTab("more");
-document.getElementById("rowGithub").onclick = ()=> showSub("github");
-document.getElementById("rowBackup").onclick = ()=> showSub("backup");
-document.getElementById("rowCalculator").onclick = ()=> showSub("calc");
-
-document.querySelectorAll("[data-dashtab]").forEach(b=>{
-  b.addEventListener("click", ()=>{
-    dashTab = b.dataset.dashtab;
-    document.querySelectorAll("[data-dashtab]").forEach(x=>x.classList.toggle("on", x===b));
-    renderDash();
-  });
-});
-
-document.querySelectorAll("[data-calctab]").forEach(b=>{
-  b.addEventListener("click", ()=>{
-    document.querySelectorAll("[data-calctab]").forEach(x=>x.classList.toggle("on", x===b));
-    document.getElementById("calcSip").classList.toggle("hidden", b.dataset.calctab!=="sip");
-    document.getElementById("calcLoan").classList.toggle("hidden", b.dataset.calctab!=="loan");
-  });
-});
+function setView(v){
+  view = v;
+  Object.keys(VIEWS).forEach(k => { $(VIEWS[k]).hidden = k !== v; });
+  document.querySelectorAll('#viewTog button[data-view]').forEach(b =>
+    b.setAttribute("aria-selected", String(b.dataset.view === v)));
+  closeFab();
+  render();
+  window.scrollTo({ top:0, behavior:"smooth" });
+}
+document.querySelectorAll('#viewTog button[data-view]').forEach(b =>
+  b.addEventListener("click", () => setView(b.dataset.view)));
 
 /* ---------- sheets ---------- */
+let openSheets = [];
+function sheetOpen(id){
+  const el = $(id);
+  if (!el || openSheets.includes(id)) return;
+  openSheets.push(id);
+  $("scrim").classList.add("open");
+  el.classList.add("open");
+}
+function sheetClose(id){
+  const target = id || openSheets[openSheets.length - 1];
+  if (!target) return;
+  const el = $(target);
+  if (el) el.classList.remove("open");
+  openSheets = openSheets.filter(s => s !== target);
+  if (!openSheets.length) $("scrim").classList.remove("open");
+}
+function sheetCloseAll(){
+  openSheets.forEach(s => { const el = $(s); if (el) el.classList.remove("open"); });
+  openSheets = [];
+  $("scrim").classList.remove("open");
+}
+$("scrim").addEventListener("click", sheetCloseAll);
+document.querySelectorAll("[data-close]").forEach(b =>
+  b.addEventListener("click", () => sheetClose(b.closest(".sheet").id)));
+document.addEventListener("keydown", e => { if (e.key === "Escape") sheetClose(); });
 
-function openSheet(id){ document.getElementById(id).classList.remove("hidden"); }
-function closeSheet(id){ document.getElementById(id).classList.add("hidden"); }
-document.querySelectorAll("[data-close]").forEach(b=>{
-  b.addEventListener("click", ()=> b.closest(".sheet-overlay").classList.add("hidden"));
+/* ---------- FAB ---------- */
+const FAB_OPTIONS = {
+  dash: [
+    { cls:"in",  label:"Asset",     go:() => openAsset(null) },
+    { cls:"out", label:"Liability", go:() => openLiab(null) }
+  ],
+  goal:   [{ cls:"in", label:"Goal", go:() => openGoal(null) }],
+  invest: [{ cls:"in", label:"Investment", go:() => openInvest(null) }]
+};
+function renderFabMenu(){
+  const menu = $("fabMenu");
+  menu.innerHTML = "";
+  (FAB_OPTIONS[view] || []).forEach(opt => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "fabopt " + opt.cls;
+    b.innerHTML = '<span class="fo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+      'stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>' + esc(opt.label);
+    b.addEventListener("click", () => { closeFab(); opt.go(); });
+    menu.appendChild(b);
+  });
+}
+function closeFab(){
+  $("fabMenu").classList.remove("open");
+  $("btnAdd").setAttribute("aria-expanded", "false");
+}
+$("btnAdd").addEventListener("click", () => {
+  const opts = FAB_OPTIONS[view] || [];
+  if (opts.length === 1){ opts[0].go(); return; }
+  const open = $("fabMenu").classList.toggle("open");
+  $("btnAdd").setAttribute("aria-expanded", String(open));
 });
 
-document.getElementById("fab").onclick = ()=>{
-  if (currentTab==="dash") openSheet("ovQuickAdd");
-  else if (currentTab==="goal") openGoalSheet(null);
-  else if (currentTab==="invest") openInvestSheet(null);
-};
-document.getElementById("qaAsset").onclick = ()=>{ closeSheet("ovQuickAdd"); openAssetSheet(null); };
-document.getElementById("qaLiability").onclick = ()=>{ closeSheet("ovQuickAdd"); openLiabSheet(null); };
+/* ---------- currency switch ---------- */
+$("btnCur").addEventListener("click", () => {
+  const i = CURRENCIES.indexOf(display());
+  state.settings.display = CURRENCIES[(i + 1) % CURRENCIES.length];
+  save();
+  render();
+  toast("Showing totals in " + display());
+});
+$("btnBrand").addEventListener("click", () => setView("dash"));
 
-/* ---------- render: dashboard ---------- */
-
-function totals(){
-  const assets = state.assets.reduce((s,a)=>s+a.value,0) + state.investments.reduce((s,i)=>s+i.currentValue,0);
-  const liabilities = state.liabilities.reduce((s,l)=>s+l.amount,0);
-  return { assets, liabilities, net: assets - liabilities };
-}
-
+/* ============================================================
+   Render
+   ============================================================ */
 function render(){
-  renderNetWorth();
-  if (currentTab==="dash") renderDash();
-  if (currentTab==="goal") renderGoals();
-  if (currentTab==="invest") renderInvest();
-}
-
-function renderNetWorth(){
+  $("curLabel").textContent = display();
+  $("brandCur").textContent = display();
   const t = totals();
-  document.getElementById("nwFigure").textContent = fmt(t.net);
-  document.getElementById("statAssets").textContent = fmt(t.assets);
-  document.getElementById("statLiabilities").textContent = fmt(t.liabilities);
-  document.getElementById("nwAsOf").textContent = "as of " + new Date().toLocaleDateString();
+  $("brandHi").textContent = state.profile.name
+    ? state.profile.name + " · " + fmtDisp(t.net)
+    : fmtDisp(t.net) + " net";
+  renderFabMenu();
+  if (view === "dash") renderDash(t);
+  if (view === "goal") renderGoals();
+  if (view === "invest") renderInvest();
 }
 
-function renderDash(){
-  const list = document.getElementById("dashList");
-  list.innerHTML = "";
-  if (dashTab==="assets"){
-    if (!state.assets.length){
-      list.innerHTML = '<div class="empty"><div class="big">🏦</div>No assets yet.<br>Tap + to add your first one.</div>';
-      return;
-    }
-    state.assets.slice().sort((a,b)=>b.value-a.value).forEach(a=>{
-      const row = document.createElement("div");
-      row.className = "row";
-      row.innerHTML = `<span class="dot" style="background:var(--asset)"></span>
-        <div class="main"><div class="name">${esc(a.name||a.category)}</div><div class="meta">${esc(a.category)}</div></div>
-        <div class="amt pos">${fmt(a.value)}</div>`;
-      row.addEventListener("click", ()=> openAssetSheet(a.id));
-      list.appendChild(row);
-    });
-  } else {
-    if (!state.liabilities.length){
-      list.innerHTML = '<div class="empty"><div class="big">📄</div>No liabilities yet.<br>Tap + to add one.</div>';
-      return;
-    }
-    state.liabilities.slice().sort((a,b)=>b.amount-a.amount).forEach(l=>{
-      const row = document.createElement("div");
-      row.className = "row";
-      row.innerHTML = `<span class="dot" style="background:var(--liability)"></span>
-        <div class="main"><div class="name">${esc(l.name||l.category)}</div><div class="meta">${esc(l.category)}${l.interestRate?" · "+l.interestRate+"%":""}</div></div>
-        <div class="amt neg">${fmt(l.amount)}</div>`;
-      row.addEventListener("click", ()=> openLiabSheet(l.id));
-      list.appendChild(row);
-    });
-  }
+function renderDash(t){
+  const netEl = $("nwVal");
+  netEl.textContent = fmtDisp(t.net);
+  netEl.className = "net " + (t.net < 0 ? "is-neg" : "is-pos");
+  $("nwSub").textContent = t.invest > 0
+    ? fmtDisp(t.invest) + " of it invested"
+    : "Everything you own, less everything you owe";
+  $("assetsVal").textContent = fmtDisp(t.assets);
+  $("liabsVal").textContent = fmtDisp(t.liabilities);
+  $("assetsSub").textContent = state.assets.length + " held · " + state.investments.length + " invested";
+  $("liabsSub").textContent = state.liabilities.length + (state.liabilities.length === 1 ? " debt" : " debts");
+
+  const ratio = t.assets > 0 ? Math.min(100, t.liabilities / t.assets * 100) : (t.liabilities > 0 ? 100 : 0);
+  $("ratioV").textContent = t.assets > 0 ? ratio.toFixed(0) + "%" : "—";
+  $("ratioFill").style.width = ratio + "%";
+  $("ratioFill").style.background = ratio >= 70 ? "var(--neg)" : ratio >= 40 ? "var(--warn)" : "var(--pos)";
+  $("ratioWrap").hidden = t.assets === 0 && t.liabilities === 0;
+
+  renderAlloc();
+  renderBars("assetBars", "assetBarN", assetSlices(), t.assets);
+  renderBars("liabBars", "liabBarN", liabSlices(), t.liabilities);
+  $("assetBarBlock").hidden = !state.assets.length && !state.investments.length;
+  $("liabBarBlock").hidden = !state.liabilities.length;
+
+  $("nAssets").textContent = state.assets.length;
+  $("nLiabs").textContent = state.liabilities.length;
+  document.querySelectorAll("#dashSeg button").forEach(b =>
+    b.setAttribute("aria-selected", String(b.dataset.dash === dashTab)));
+  renderDashList();
 }
 
-function esc(s){ return String(s??"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+/* Assets grouped for the chart: plain assets by their category, investments
+   folded in by kind, so the pie says where the money actually sits. */
+function assetSlices(){
+  const m = new Map();
+  const add = (label, hue, amount) => {
+    const hit = m.get(label);
+    if (hit) hit.value += amount;
+    else m.set(label, { label, hue, value: amount });
+  };
+  state.assets.forEach(a => add(a.category || "Other", hueOf(ASSET_CATS, a.category), toDisp(a.value, a.currency)));
+  state.investments.forEach(i => add(i.type || "Other", hueOf(INVEST_TYPES, i.type), toDisp(investWorth(i), i.currency)));
+  return [...m.values()].filter(s => s.value > 0).sort((a,b) => b.value - a.value);
+}
+function liabSlices(){
+  const m = new Map();
+  state.liabilities.forEach(l => {
+    const label = l.category || "Other";
+    const hit = m.get(label);
+    const amount = toDisp(l.amount, l.currency);
+    if (hit) hit.value += amount;
+    else m.set(label, { label, hue: hueOf(LIAB_CATS, label), value: amount });
+  });
+  return [...m.values()].filter(s => s.value > 0).sort((a,b) => b.value - a.value);
+}
 
-/* ---------- render: goals ---------- */
+let allocPick = null;
+function renderAlloc(){
+  const slices = assetSlices();
+  const total = slices.reduce((s,x) => s + x.value, 0);
+  $("allocBlock").hidden = !slices.length;
+  if (!slices.length) return;
+  if (allocPick != null && allocPick >= slices.length) allocPick = null;
 
-function renderGoals(){
-  const list = document.getElementById("goalList");
-  list.innerHTML = "";
-  if (!state.goals.length){
-    list.innerHTML = '<div class="empty"><div class="big">🎯</div>No goals yet.<br>Tap + to set one.</div>';
+  $("allocN").textContent = slices.length + (slices.length === 1 ? " kind" : " kinds");
+
+  const R = 42, C = 2 * Math.PI * R;
+  let at = 0;
+  const arcs = slices.map((s, idx) => {
+    const frac = total > 0 ? s.value / total : 0;
+    const len = frac * C;
+    const dash = `${Math.max(len - 1.5, 0.6)} ${C - Math.max(len - 1.5, 0.6)}`;
+    const off = -at;
+    at += len;
+    const cls = "slice" + (allocPick === idx ? " on" : allocPick != null ? " dim" : "");
+    return `<circle class="${cls}" data-i="${idx}" cx="60" cy="60" r="${R}" stroke="${paint(s.hue)}"
+      stroke-dasharray="${dash}" stroke-dashoffset="${off}" stroke-linecap="butt"></circle>`;
+  }).join("");
+
+  const shown = allocPick != null ? slices[allocPick] : null;
+  $("allocPie").innerHTML =
+    `<svg viewBox="0 0 120 120" aria-hidden="true">${arcs}</svg>` +
+    `<div class="pie-mid"><div class="pm-v">${esc(shown ? fmtDisp(shown.value) : fmtDisp(total))}</div>` +
+    `<div class="pm-k">${esc(shown ? shown.label : "Total")}</div></div>`;
+
+  $("allocLegend").innerHTML = slices.map((s, idx) => {
+    const share = total > 0 ? (s.value / total * 100) : 0;
+    return `<button class="legrow${allocPick === idx ? " on" : ""}" type="button" data-i="${idx}">
+      <span class="dot" style="background:${paint(s.hue)}"></span>
+      <span class="ln">${esc(s.label)}</span>
+      <span class="lp">${share.toFixed(0)}%</span>
+    </button>`;
+  }).join("");
+
+  const pick = (idx) => { allocPick = allocPick === idx ? null : idx; renderAlloc(); };
+  $("allocPie").querySelectorAll(".slice").forEach(el =>
+    el.addEventListener("click", () => pick(Number(el.dataset.i))));
+  $("allocLegend").querySelectorAll(".legrow").forEach(el =>
+    el.addEventListener("click", () => pick(Number(el.dataset.i))));
+}
+
+function renderBars(hostId, noteId, slices, total){
+  const host = $(hostId);
+  host.innerHTML = "";
+  if (noteId) $(noteId).textContent = total > 0 ? fmtDisp(total) : "—";
+  if (!slices.length){
+    host.innerHTML = '<div class="empty" style="padding:18px"><p>Nothing here yet.</p></div>';
     return;
   }
-  state.goals.forEach(g=>{
-    const pct = g.targetAmount>0 ? Math.min(100, Math.round(g.currentAmount/g.targetAmount*100)) : 0;
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <div style="font-weight:700">${esc(g.name)}</div>
-        <div style="font-size:12px;color:var(--ink-soft)">${pct}%</div>
-      </div>
-      <div class="progress"><i style="width:${pct}%;background:var(--goal)"></i></div>
-      <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--ink-soft)">
-        <span>${fmt(g.currentAmount)} saved</span><span>of ${fmt(g.targetAmount)}</span>
-      </div>
-      ${g.targetDate ? `<div style="font-size:12px;color:var(--ink-soft);margin-top:4px">Target: ${g.targetDate}</div>` : ""}
-    `;
-    card.addEventListener("click", ()=> openGoalSheet(g.id));
-    list.appendChild(card);
+  const max = Math.max(...slices.map(s => s.value));
+  slices.forEach(s => {
+    const share = total > 0 ? s.value / total * 100 : 0;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "barrow";
+    b.innerHTML =
+      `<div class="barrow-head"><span class="barrow-l">${esc(s.label)}</span>
+        <span class="barrow-v">${esc(fmtDisp(s.value))}</span></div>
+       <div class="barrow-track"><i style="width:${(s.value / max * 100).toFixed(1)}%;background:${paint(s.hue)}"></i></div>
+       <div class="barrow-sub">${share.toFixed(1)}% of the total.</div>`;
+    b.addEventListener("click", () => b.classList.toggle("open"));
+    host.appendChild(b);
   });
 }
 
-/* ---------- render: investments ---------- */
+document.querySelectorAll("#dashSeg button").forEach(b =>
+  b.addEventListener("click", () => { dashTab = b.dataset.dash; render(); }));
+
+function emptyBlock(icon, title, text){
+  return `<div class="empty"><div class="em-ic">${icon}</div><h4>${esc(title)}</h4><p>${esc(text)}</p></div>`;
+}
+const ICON_BANK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 10v9M15 10v9"/><path d="M3 21h18"/></svg>';
+const ICON_DEBT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h12l4 4v12H4z"/><path d="M9 13h6M9 17h6"/></svg>';
+const ICON_GOAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg>';
+const ICON_CHART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>';
+
+function curPill(c){
+  return c === display() ? "" : `<span class="pill cur">${esc(c)}</span>`;
+}
+
+function renderDashList(){
+  const host = $("dashList");
+  host.innerHTML = "";
+  if (dashTab === "assets"){
+    const items = state.assets.slice().sort((a,b) => toDisp(b.value, b.currency) - toDisp(a.value, a.currency));
+    if (!items.length){
+      host.innerHTML = emptyBlock(ICON_BANK, "Nothing owned yet",
+        "Add what you hold — an account, a property, gold. The + button starts one.");
+      return;
+    }
+    const rows = document.createElement("div");
+    rows.className = "rows";
+    items.forEach(a => {
+      const hue = hueOf(ASSET_CATS, a.category);
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "row";
+      b.innerHTML =
+        `<span class="mono" style="background:hsl(${hue} 82% 38% / .14);color:${paint(hue)}">${ICON_BANK}</span>
+         <span class="rowmain"><span class="t1">${esc(a.name || a.category)}</span>
+           <span class="t2"><span class="cn">${esc(a.category)}</span>${curPill(a.currency)}</span></span>
+         <span class="rowend"><span class="amt in">${esc(fmt(a.value, a.currency))}</span>
+           ${a.currency !== display() ? `<span class="amt-sub flat">${esc(fmtDisp(toDisp(a.value, a.currency)))}</span>` : ""}</span>`;
+      b.addEventListener("click", () => openAsset(a.id));
+      rows.appendChild(b);
+    });
+    host.appendChild(rows);
+  } else {
+    const items = state.liabilities.slice().sort((a,b) => toDisp(b.amount, b.currency) - toDisp(a.amount, a.currency));
+    if (!items.length){
+      host.innerHTML = emptyBlock(ICON_DEBT, "Nothing owed",
+        "Loans and cards go here, so the net worth above is the real one.");
+      return;
+    }
+    const rows = document.createElement("div");
+    rows.className = "rows";
+    items.forEach(l => {
+      const hue = hueOf(LIAB_CATS, l.category);
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "row";
+      b.innerHTML =
+        `<span class="mono" style="background:hsl(${hue} 82% 38% / .14);color:${paint(hue)}">${ICON_DEBT}</span>
+         <span class="rowmain"><span class="t1">${esc(l.name || l.category)}</span>
+           <span class="t2"><span class="cn">${esc(l.category)}${l.interestRate ? " · " + l.interestRate + "%" : ""}</span>${curPill(l.currency)}</span></span>
+         <span class="rowend"><span class="amt out">${esc(fmt(l.amount, l.currency))}</span>
+           ${l.currency !== display() ? `<span class="amt-sub flat">${esc(fmtDisp(toDisp(l.amount, l.currency)))}</span>` : ""}</span>`;
+      b.addEventListener("click", () => openLiab(l.id));
+      rows.appendChild(b);
+    });
+    host.appendChild(rows);
+  }
+}
+
+/* ---------- goals ---------- */
+function renderGoals(){
+  const target = state.goals.reduce((s,g) => s + toDisp(g.targetAmount, g.currency), 0);
+  const saved = state.goals.reduce((s,g) => s + toDisp(g.currentAmount, g.currency), 0);
+  $("goalVal").textContent = fmtDisp(target);
+  $("goalVal").className = "net";
+  $("goalSaved").textContent = fmtDisp(saved);
+  $("goalLeft").textContent = fmtDisp(Math.max(0, target - saved));
+  $("goalSub").textContent = target > 0
+    ? (saved / target * 100).toFixed(0) + "% of the way there"
+    : "Set a target and watch it fill";
+
+  const host = $("goalList");
+  host.innerHTML = "";
+  if (!state.goals.length){
+    host.innerHTML = emptyBlock(ICON_GOAL, "No goals yet",
+      "A goal is a number and a date — a deposit, a fund, a trip. The + button adds one.");
+    return;
+  }
+  state.goals.forEach(g => {
+    const share = g.targetAmount > 0 ? Math.min(100, g.currentAmount / g.targetAmount * 100) : 0;
+    const done = share >= 100;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "goalcard";
+    b.innerHTML =
+      `<div class="goal-top">
+         <span class="goal-ic">${ICON_GOAL}</span>
+         <span class="goal-n">${esc(g.name)}</span>
+         <span class="goal-pct" style="${done ? "color:var(--pos)" : ""}">${share.toFixed(0)}%</span>
+       </div>
+       <div class="env-track"><i style="width:${share}%;background:${done ? "var(--pos)" : "var(--accent)"}"></i></div>
+       <div class="goal-sub">
+         <span>${esc(fmt(g.currentAmount, g.currency))} of ${esc(fmt(g.targetAmount, g.currency))}</span>
+         <span>${g.targetDate ? "by " + esc(g.targetDate) : ""}</span>
+       </div>`;
+    b.addEventListener("click", () => openGoal(g.id));
+    host.appendChild(b);
+  });
+}
+
+/* ---------- investments ---------- */
+function goldTotals(){
+  const golds = state.investments.filter(i => i.type === GOLD_TYPE);
+  const grams = golds.reduce((s,i) => s + i.grams, 0);
+  const worth = golds.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
+  return { grams, worth, count: golds.length };
+}
 
 function renderInvest(){
-  const list = document.getElementById("investList");
-  list.innerHTML = "";
-  const invested = state.investments.reduce((s,i)=>s+i.investedAmount,0);
-  const current = state.investments.reduce((s,i)=>s+i.currentValue,0);
-  const gain = current - invested;
-  document.getElementById("investSummary").textContent =
-    state.investments.length ? `Invested ${fmt(invested)} · Now ${fmt(current)} · ${gain>=0?"+":""}${fmt(gain)}` : "Invested vs current value";
-  if (!state.investments.length){
-    list.innerHTML = '<div class="empty"><div class="big">📈</div>No investments yet.<br>Tap + to add one.</div>';
+  const worth = state.investments.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
+  /* Gold's cost is optional — when it was never entered, count what it is
+     worth instead, so the gain line is not a loss of the whole holding. */
+  const invested = state.investments.reduce((s,i) => {
+    const paid = i.investedAmount > 0 ? i.investedAmount : (i.type === GOLD_TYPE ? investWorth(i) : i.investedAmount);
+    return s + toDisp(paid, i.currency);
+  }, 0);
+  const gain = worth - invested;
+
+  $("invVal").textContent = fmtDisp(worth);
+  $("invVal").className = "net";
+  $("invInvested").textContent = fmtDisp(invested);
+  $("invGain").textContent = (gain >= 0 ? "+" : "") + fmtDisp(gain);
+  $("invGainPct").textContent = invested > 0 ? pct(gain / invested * 100) : "—";
+  $("invGainTile").className = "tile " + (gain < 0 ? "out" : "in");
+  $("invSub").textContent = state.investments.length
+    ? state.investments.length + (state.investments.length === 1 ? " holding" : " holdings")
+    : "Funds, stocks, deposits and gold";
+
+  const gold = goldTotals();
+  $("goldCard").hidden = gold.count === 0;
+  if (gold.count){
+    $("goldGrams").textContent = gold.grams.toLocaleString(undefined, { maximumFractionDigits:2 }) + " g";
+    $("goldWorth").textContent = fmtDisp(gold.worth) + " at " +
+      fmt(goldPrice(display()), display()) + " a gram · " + gold.count +
+      (gold.count === 1 ? " holding" : " holdings");
+  }
+
+  const paper = state.investments.filter(i => i.type !== GOLD_TYPE);
+  $("nInvAll").textContent = state.investments.length;
+  $("nInvPaper").textContent = paper.length;
+  $("nInvGold").textContent = gold.count;
+  document.querySelectorAll("#invSeg button").forEach(b =>
+    b.setAttribute("aria-selected", String(b.dataset.inv === invTab)));
+
+  const host = $("investList");
+  host.innerHTML = "";
+  const items = state.investments.filter(i =>
+    invTab === "all" ? true : invTab === "gold" ? i.type === GOLD_TYPE : i.type !== GOLD_TYPE);
+
+  if (!items.length){
+    host.innerHTML = emptyBlock(ICON_CHART, "Nothing here yet",
+      "SIPs, stocks, deposits — and physical gold, which is valued by weight.");
     return;
   }
-  state.investments.forEach(i=>{
-    const g = i.currentValue - i.investedAmount;
-    const row = document.createElement("div");
-    row.className = "row";
-    row.innerHTML = `<span class="dot" style="background:var(--invest)"></span>
-      <div class="main"><div class="name">${esc(i.name)}</div><div class="meta">${esc(i.type)}${i.sipAmount?" · SIP "+fmt(i.sipAmount)+"/mo":""}</div></div>
-      <div style="text-align:right">
-        <div class="amt">${fmt(i.currentValue)}</div>
-        <div class="meta" style="color:${g>=0?"var(--asset)":"var(--liability)"}">${g>=0?"+":""}${fmt(g)}</div>
-      </div>`;
-    row.addEventListener("click", ()=> openInvestSheet(i.id));
-    list.appendChild(row);
-  });
+  const rows = document.createElement("div");
+  rows.className = "rows";
+  items.slice()
+    .sort((a,b) => toDisp(investWorth(b), b.currency) - toDisp(investWorth(a), a.currency))
+    .forEach(i => {
+      const hue = hueOf(INVEST_TYPES, i.type);
+      const isGold = i.type === GOLD_TYPE;
+      const now = investWorth(i);
+      const paid = i.investedAmount > 0 ? i.investedAmount : (isGold ? now : 0);
+      const g = now - paid;
+      const sub = isGold
+        ? (i.grams ? i.grams + " g" + (i.purity ? " · " + i.purity : "") : i.type) +
+          (i.goldDesc ? " · " + i.goldDesc : "")
+        : i.type + (i.sipAmount ? " · SIP " + fmt(i.sipAmount, i.currency) : "");
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "row";
+      b.innerHTML =
+        `<span class="mono" style="background:hsl(${hue} 82% 38% / .14);color:${paint(hue)}">${isGold ? ICON_BANK : ICON_CHART}</span>
+         <span class="rowmain"><span class="t1">${esc(i.name || i.type)}</span>
+           <span class="t2"><span class="cn">${esc(sub)}</span>${isGold ? '<span class="pill gold">Gold</span>' : ""}${curPill(i.currency)}</span></span>
+         <span class="rowend"><span class="amt">${esc(fmt(now, i.currency))}</span>
+           <span class="amt-sub ${g > 0 ? "up" : g < 0 ? "down" : "flat"}">${paid ? (g >= 0 ? "+" : "") + esc(fmt(g, i.currency)) : "—"}</span></span>`;
+      b.addEventListener("click", () => openInvest(i.id));
+      rows.appendChild(b);
+    });
+  host.appendChild(rows);
+}
+document.querySelectorAll("#invSeg button").forEach(b =>
+  b.addEventListener("click", () => { invTab = b.dataset.inv; renderInvest(); }));
+
+/* ============================================================
+   Pickers shared by the entry sheets
+   ============================================================ */
+function buildCurTog(hostId, current, onPick){
+  const host = $(hostId);
+  host.innerHTML = CURRENCIES.map(c =>
+    `<button class="x" type="button" data-cur="${c}" aria-pressed="${c === current}">${esc(CUR_META[c].label)}</button>`).join("");
+  host.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+    host.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    onPick(b.dataset.cur);
+  }));
+}
+function pickedCur(hostId){
+  const on = $(hostId).querySelector('[aria-pressed="true"]');
+  return on ? on.dataset.cur : state.profile.currency;
+}
+function buildChips(hostId, table, current, onPick){
+  const host = $(hostId);
+  host.innerHTML = table.map(c =>
+    `<button class="chip" type="button" data-k="${esc(c.k)}" aria-pressed="${c.k === current}">${esc(c.k)}</button>`).join("");
+  host.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+    host.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    if (onPick) onPick(b.dataset.k);
+  }));
+}
+function pickedChip(hostId, dflt){
+  const on = $(hostId).querySelector('[aria-pressed="true"]');
+  return on ? on.dataset.k : dflt;
 }
 
 /* ---------- asset sheet ---------- */
-
-function openAssetSheet(id){
-  const a = id ? state.assets.find(x=>x.id===id) : null;
-  document.getElementById("assetSheetTitle").textContent = a ? "Edit asset" : "Add asset";
-  document.getElementById("assetId").value = a ? a.id : "";
-  document.getElementById("assetName").value = a ? a.name : "";
-  document.getElementById("assetCategory").value = a ? a.category : "Cash";
-  document.getElementById("assetValue").value = a ? a.value : "";
-  document.getElementById("assetNotes").value = a ? a.notes : "";
-  document.getElementById("assetDelete").classList.toggle("hidden", !a);
-  openSheet("ovAsset");
+function openAsset(id){
+  const a = id ? state.assets.find(x => x.id === id) : null;
+  $("assetTitle").textContent = a ? "Edit asset" : "Add asset";
+  $("assetId").value = a ? a.id : "";
+  $("assetName").value = a ? a.name : "";
+  $("assetValue").value = a ? a.value || "" : "";
+  $("assetNotes").value = a ? a.notes : "";
+  const cur = a ? a.currency : state.profile.currency;
+  $("assetCurSym").textContent = curSym(cur);
+  buildCurTog("assetCurTog", cur, c => { $("assetCurSym").textContent = curSym(c); });
+  buildChips("assetCats", ASSET_CATS, a ? a.category : "Cash");
+  $("assetDelete").hidden = !a;
+  sheetOpen("shAsset");
 }
-document.getElementById("assetSave").onclick = ()=>{
-  const id = document.getElementById("assetId").value || uid();
+$("assetSave").addEventListener("click", () => {
+  const id = $("assetId").value || uid();
+  const name = $("assetName").value.trim();
+  if (!name){ toast("Give it a name"); return; }
   const rec = {
-    id, name: document.getElementById("assetName").value.trim(),
-    category: document.getElementById("assetCategory").value,
-    value: Number(document.getElementById("assetValue").value)||0,
-    notes: document.getElementById("assetNotes").value.trim(),
-    updatedAt: new Date().toISOString()
+    id, name, category: pickedChip("assetCats", "Other"),
+    value: num($("assetValue").value), currency: pickedCur("assetCurTog"),
+    notes: $("assetNotes").value.trim(), updatedAt: new Date().toISOString()
   };
-  if (!rec.name){ toast("Give it a name"); return; }
-  const idx = state.assets.findIndex(x=>x.id===id);
-  if (idx>=0) state.assets[idx] = rec; else state.assets.push(rec);
-  save(); closeSheet("ovAsset"); render();
-};
-document.getElementById("assetDelete").onclick = ()=>{
-  const id = document.getElementById("assetId").value;
-  state.assets = state.assets.filter(x=>x.id!==id);
-  save(); closeSheet("ovAsset"); render();
-};
+  const at = state.assets.findIndex(x => x.id === id);
+  if (at >= 0) state.assets[at] = rec; else state.assets.push(rec);
+  save(); sheetClose("shAsset"); render(); toast("Saved");
+});
+$("assetDelete").addEventListener("click", () => {
+  if (!confirm("Delete this asset?")) return;
+  state.assets = state.assets.filter(x => x.id !== $("assetId").value);
+  save(); sheetClose("shAsset"); render(); toast("Deleted");
+});
 
 /* ---------- liability sheet ---------- */
-
-function openLiabSheet(id){
-  const l = id ? state.liabilities.find(x=>x.id===id) : null;
-  document.getElementById("liabSheetTitle").textContent = l ? "Edit liability" : "Add liability";
-  document.getElementById("liabId").value = l ? l.id : "";
-  document.getElementById("liabName").value = l ? l.name : "";
-  document.getElementById("liabCategory").value = l ? l.category : "Home loan";
-  document.getElementById("liabAmount").value = l ? l.amount : "";
-  document.getElementById("liabRate").value = l ? l.interestRate : "";
-  document.getElementById("liabNotes").value = l ? l.notes : "";
-  document.getElementById("liabDelete").classList.toggle("hidden", !l);
-  openSheet("ovLiability");
+function openLiab(id){
+  const l = id ? state.liabilities.find(x => x.id === id) : null;
+  $("liabTitle").textContent = l ? "Edit liability" : "Add liability";
+  $("liabId").value = l ? l.id : "";
+  $("liabName").value = l ? l.name : "";
+  $("liabAmount").value = l ? l.amount || "" : "";
+  $("liabRate").value = l && l.interestRate ? l.interestRate : "";
+  $("liabNotes").value = l ? l.notes : "";
+  const cur = l ? l.currency : state.profile.currency;
+  $("liabCurSym").textContent = curSym(cur);
+  buildCurTog("liabCurTog", cur, c => { $("liabCurSym").textContent = curSym(c); });
+  buildChips("liabCats", LIAB_CATS, l ? l.category : "Home loan");
+  $("liabDelete").hidden = !l;
+  sheetOpen("shLiab");
 }
-document.getElementById("liabSave").onclick = ()=>{
-  const id = document.getElementById("liabId").value || uid();
+$("liabSave").addEventListener("click", () => {
+  const id = $("liabId").value || uid();
+  const name = $("liabName").value.trim();
+  if (!name){ toast("Give it a name"); return; }
   const rec = {
-    id, name: document.getElementById("liabName").value.trim(),
-    category: document.getElementById("liabCategory").value,
-    amount: Number(document.getElementById("liabAmount").value)||0,
-    interestRate: Number(document.getElementById("liabRate").value)||0,
-    notes: document.getElementById("liabNotes").value.trim(),
-    updatedAt: new Date().toISOString()
+    id, name, category: pickedChip("liabCats", "Other"),
+    amount: num($("liabAmount").value), currency: pickedCur("liabCurTog"),
+    interestRate: num($("liabRate").value),
+    notes: $("liabNotes").value.trim(), updatedAt: new Date().toISOString()
   };
-  if (!rec.name){ toast("Give it a name"); return; }
-  const idx = state.liabilities.findIndex(x=>x.id===id);
-  if (idx>=0) state.liabilities[idx] = rec; else state.liabilities.push(rec);
-  save(); closeSheet("ovLiability"); render();
-};
-document.getElementById("liabDelete").onclick = ()=>{
-  const id = document.getElementById("liabId").value;
-  state.liabilities = state.liabilities.filter(x=>x.id!==id);
-  save(); closeSheet("ovLiability"); render();
-};
+  const at = state.liabilities.findIndex(x => x.id === id);
+  if (at >= 0) state.liabilities[at] = rec; else state.liabilities.push(rec);
+  save(); sheetClose("shLiab"); render(); toast("Saved");
+});
+$("liabDelete").addEventListener("click", () => {
+  if (!confirm("Delete this liability?")) return;
+  state.liabilities = state.liabilities.filter(x => x.id !== $("liabId").value);
+  save(); sheetClose("shLiab"); render(); toast("Deleted");
+});
 
 /* ---------- goal sheet ---------- */
-
-function openGoalSheet(id){
-  const g = id ? state.goals.find(x=>x.id===id) : null;
-  document.getElementById("goalSheetTitle").textContent = g ? "Edit goal" : "Add goal";
-  document.getElementById("goalId").value = g ? g.id : "";
-  document.getElementById("goalName").value = g ? g.name : "";
-  document.getElementById("goalTarget").value = g ? g.targetAmount : "";
-  document.getElementById("goalCurrent").value = g ? g.currentAmount : "";
-  document.getElementById("goalDate").value = g ? g.targetDate : "";
-  document.getElementById("goalNotes").value = g ? g.notes : "";
-  document.getElementById("goalDelete").classList.toggle("hidden", !g);
-  openSheet("ovGoal");
+function openGoal(id){
+  const g = id ? state.goals.find(x => x.id === id) : null;
+  $("goalTitle").textContent = g ? "Edit goal" : "Add goal";
+  $("goalId").value = g ? g.id : "";
+  $("goalName").value = g ? g.name : "";
+  $("goalTarget").value = g ? g.targetAmount || "" : "";
+  $("goalCurrent").value = g ? g.currentAmount || "" : "";
+  $("goalDate").value = g ? g.targetDate : "";
+  $("goalNotes").value = g ? g.notes : "";
+  const cur = g ? g.currency : state.profile.currency;
+  $("goalCurSym").textContent = curSym(cur);
+  buildCurTog("goalCurTog", cur, c => { $("goalCurSym").textContent = curSym(c); });
+  $("goalDelete").hidden = !g;
+  sheetOpen("shGoal");
 }
-document.getElementById("goalSave").onclick = ()=>{
-  const id = document.getElementById("goalId").value || uid();
+$("goalSave").addEventListener("click", () => {
+  const id = $("goalId").value || uid();
+  const name = $("goalName").value.trim();
+  if (!name){ toast("Give it a name"); return; }
   const rec = {
-    id, name: document.getElementById("goalName").value.trim(),
-    targetAmount: Number(document.getElementById("goalTarget").value)||0,
-    currentAmount: Number(document.getElementById("goalCurrent").value)||0,
-    targetDate: document.getElementById("goalDate").value,
-    notes: document.getElementById("goalNotes").value.trim(),
+    id, name, targetAmount: num($("goalTarget").value),
+    currentAmount: num($("goalCurrent").value), currency: pickedCur("goalCurTog"),
+    targetDate: $("goalDate").value, notes: $("goalNotes").value.trim(),
     updatedAt: new Date().toISOString()
   };
-  if (!rec.name){ toast("Give it a name"); return; }
-  const idx = state.goals.findIndex(x=>x.id===id);
-  if (idx>=0) state.goals[idx] = rec; else state.goals.push(rec);
-  save(); closeSheet("ovGoal"); render();
-};
-document.getElementById("goalDelete").onclick = ()=>{
-  const id = document.getElementById("goalId").value;
-  state.goals = state.goals.filter(x=>x.id!==id);
-  save(); closeSheet("ovGoal"); render();
-};
+  const at = state.goals.findIndex(x => x.id === id);
+  if (at >= 0) state.goals[at] = rec; else state.goals.push(rec);
+  save(); sheetClose("shGoal"); render(); toast("Saved");
+});
+$("goalDelete").addEventListener("click", () => {
+  if (!confirm("Delete this goal?")) return;
+  state.goals = state.goals.filter(x => x.id !== $("goalId").value);
+  save(); sheetClose("shGoal"); render(); toast("Deleted");
+});
 
 /* ---------- investment sheet ---------- */
-
-function openInvestSheet(id){
-  const i = id ? state.investments.find(x=>x.id===id) : null;
-  document.getElementById("investSheetTitle").textContent = i ? "Edit investment" : "Add investment";
-  document.getElementById("investId").value = i ? i.id : "";
-  document.getElementById("investName").value = i ? i.name : "";
-  document.getElementById("investType").value = i ? i.type : "SIP / Mutual fund";
-  document.getElementById("investInvested").value = i ? i.investedAmount : "";
-  document.getElementById("investCurrent").value = i ? i.currentValue : "";
-  document.getElementById("investSip").value = i ? i.sipAmount : "";
-  document.getElementById("investNotes").value = i ? i.notes : "";
-  document.getElementById("investDelete").classList.toggle("hidden", !i);
-  openSheet("ovInvest");
+function investFormMode(type, cur){
+  const isGold = type === GOLD_TYPE;
+  $("investPaperFields").hidden = isGold;
+  $("investGoldFields").hidden = !isGold;
+  if (isGold){
+    $("goldValueNote").textContent =
+      "Worth is worked out from the weight: grams × " + fmt(goldPrice(cur), cur) +
+      " a gram, which you set in Settings → Rates & gold.";
+  }
 }
-document.getElementById("investSave").onclick = ()=>{
-  const id = document.getElementById("investId").value || uid();
+function openInvest(id){
+  const i = id ? state.investments.find(x => x.id === id) : null;
+  $("investTitle").textContent = i ? "Edit investment" : "Add investment";
+  $("investId").value = i ? i.id : "";
+  $("investName").value = i ? i.name : "";
+  $("investInvested").value = i && i.investedAmount ? i.investedAmount : "";
+  $("investCurrent").value = i && i.currentValue ? i.currentValue : "";
+  $("investSip").value = i && i.sipAmount ? i.sipAmount : "";
+  $("investGrams").value = i && i.grams ? i.grams : "";
+  $("investPurity").value = i ? i.purity : "22K";
+  $("investGoldDesc").value = i ? i.goldDesc : "";
+  $("investGoldPaid").value = i && i.type === GOLD_TYPE && i.investedAmount ? i.investedAmount : "";
+  $("investNotes").value = i ? i.notes : "";
+
+  const cur = i ? i.currency : state.profile.currency;
+  const type = i ? i.type : "SIP / Mutual fund";
+  buildCurTog("investCurTog", cur, c => investFormMode(pickedChip("investTypes", type), c));
+  buildChips("investTypes", INVEST_TYPES, type, k => investFormMode(k, pickedCur("investCurTog")));
+  investFormMode(type, cur);
+  $("investDelete").hidden = !i;
+  sheetOpen("shInvest");
+}
+$("investSave").addEventListener("click", () => {
+  const id = $("investId").value || uid();
+  const type = pickedChip("investTypes", "Other");
+  const isGold = type === GOLD_TYPE;
+  const name = $("investName").value.trim();
+  if (!name){ toast("Give it a name"); return; }
+  if (isGold && num($("investGrams").value) <= 0){ toast("How many grams?"); return; }
   const rec = {
-    id, name: document.getElementById("investName").value.trim(),
-    type: document.getElementById("investType").value,
-    investedAmount: Number(document.getElementById("investInvested").value)||0,
-    currentValue: Number(document.getElementById("investCurrent").value)||0,
-    sipAmount: Number(document.getElementById("investSip").value)||0,
-    notes: document.getElementById("investNotes").value.trim(),
-    updatedAt: new Date().toISOString()
+    id, name, type, currency: pickedCur("investCurTog"),
+    investedAmount: isGold ? num($("investGoldPaid").value) : num($("investInvested").value),
+    /* Gold is never stored as a value — it is weighed each time it is read. */
+    currentValue: isGold ? 0 : num($("investCurrent").value),
+    sipAmount: isGold ? 0 : num($("investSip").value),
+    grams: isGold ? num($("investGrams").value) : 0,
+    purity: isGold ? $("investPurity").value : "",
+    goldDesc: isGold ? $("investGoldDesc").value.trim() : "",
+    notes: $("investNotes").value.trim(), updatedAt: new Date().toISOString()
   };
-  if (!rec.name){ toast("Give it a name"); return; }
-  const idx = state.investments.findIndex(x=>x.id===id);
-  if (idx>=0) state.investments[idx] = rec; else state.investments.push(rec);
-  save(); closeSheet("ovInvest"); render();
-};
-document.getElementById("investDelete").onclick = ()=>{
-  const id = document.getElementById("investId").value;
-  state.investments = state.investments.filter(x=>x.id!==id);
-  save(); closeSheet("ovInvest"); render();
-};
+  const at = state.investments.findIndex(x => x.id === id);
+  if (at >= 0) state.investments[at] = rec; else state.investments.push(rec);
+  save(); sheetClose("shInvest"); render(); toast("Saved");
+});
+$("investDelete").addEventListener("click", () => {
+  if (!confirm("Delete this investment?")) return;
+  state.investments = state.investments.filter(x => x.id !== $("investId").value);
+  save(); sheetClose("shInvest"); render(); toast("Deleted");
+});
 
-/* ---------- settings: profile ---------- */
+/* ============================================================
+   More / Settings
+   ============================================================ */
+$("btnMore").addEventListener("click", () => sheetOpen("shMore"));
+document.querySelectorAll("#moreMenu .morerow").forEach(b =>
+  b.addEventListener("click", () => {
+    const what = b.dataset.more;
+    sheetClose("shMore");
+    if (what === "report"){ renderReports(); sheetOpen("shReports"); }
+    if (what === "notes"){ loadReleases(); sheetOpen("shNotes"); }
+    if (what === "settings"){ setPane(null); sheetOpen("shSet"); }
+  }));
 
-function renderSettings(){
-  document.getElementById("profName").value = state.profile.name;
-  document.getElementById("profCurrency").value = state.profile.currency;
-  document.getElementById("ghStatusLine").textContent = ghStatusText();
+const PANES = ["profile","rates","github","data","calc","about"];
+const PANE_TITLES = {
+  profile:"Profile", rates:"Rates & gold", github:"GitHub sync",
+  data:"Backup & restore", calc:"Calculator", about:"About"
+};
+function setPane(p){
+  $("setMenu").hidden = !!p;
+  PANES.forEach(x => { $("pane-" + x).hidden = x !== p; });
+  $("setBack").hidden = !p;
+  $("setTitle").textContent = p ? PANE_TITLES[p] : "Settings";
+  if (p === "profile") fillProfile();
+  if (p === "rates") fillRates();
+  if (p === "github") fillGithub();
+  if (p === "about") fillAbout();
+  if (p === "calc") fillCalc();
 }
-document.getElementById("saveProfile").onclick = ()=>{
-  state.profile.name = document.getElementById("profName").value.trim();
-  state.profile.currency = document.getElementById("profCurrency").value;
+document.querySelectorAll("#setMenu .setrow").forEach(b =>
+  b.addEventListener("click", () => setPane(b.dataset.pane)));
+$("setBack").addEventListener("click", () => setPane(null));
+
+/* ---------- profile ---------- */
+function fillProfile(){
+  $("profName").value = state.profile.name;
+  $("profCurTog").querySelectorAll("button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.cur === state.profile.currency)));
+}
+$("profCurTog").querySelectorAll("button").forEach(b =>
+  b.addEventListener("click", () => {
+    $("profCurTog").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  }));
+$("saveProfile").addEventListener("click", () => {
+  state.profile.name = $("profName").value.trim();
+  const on = $("profCurTog").querySelector('[aria-pressed="true"]');
+  state.profile.currency = on ? on.dataset.cur : "EUR";
   save(); render(); toast("Saved");
-};
-document.getElementById("wipeAll").onclick = ()=>{
-  if (!confirm("Delete all assets, liabilities, goals and investments? This cannot be undone here — make sure you have a backup.")) return;
-  state = stateCleared();
-  save(); render(); toast("All data deleted");
-};
+});
 
-/* ---------- reports ---------- */
-
-function bar(container, rows, colorVar){
-  container.innerHTML = "";
-  if (!rows.length){ container.innerHTML = '<div class="empty" style="padding:16px">Nothing to show yet.</div>'; return; }
-  const max = Math.max(...rows.map(r=>r.value), 1);
-  rows.forEach(r=>{
-    const div = document.createElement("div");
-    div.className = "bar-row";
-    const pct = Math.round(r.value/max*100);
-    div.innerHTML = `<div class="lbl">${esc(r.label)}</div>
-      <div class="bar-track"><i style="width:${pct}%;background:var(${colorVar})"></i></div>
-      <div class="pct">${fmt(r.value)}</div>`;
-    container.appendChild(div);
-  });
+/* ---------- rates & gold ---------- */
+function fillRates(){
+  $("rateInr").value = state.settings.inrPerEur;
+  $("goldEur").value = state.settings.goldPerGram.EUR;
+  $("goldInr").value = state.settings.goldPerGram.INR;
 }
+$("saveRates").addEventListener("click", () => {
+  const rate = num($("rateInr").value);
+  if (rate <= 0){ toast("The rate has to be more than zero"); return; }
+  state.settings.inrPerEur = rate;
+  state.settings.goldPerGram.EUR = num($("goldEur").value);
+  state.settings.goldPerGram.INR = num($("goldInr").value);
+  save(); render(); toast("Saved");
+});
+$("btnGoldPrice").addEventListener("click", () => { setPane("rates"); sheetOpen("shSet"); });
 
-function groupSum(arr, keyFn, valFn){
-  const m = new Map();
-  arr.forEach(x=>{ const k = keyFn(x); m.set(k, (m.get(k)||0) + valFn(x)); });
-  return [...m.entries()].map(([label,value])=>({label,value})).sort((a,b)=>b.value-a.value);
+/* ---------- calculator ---------- */
+function fillCalc(){
+  $("sipCur").textContent = curSym(display());
+  $("loanCur").textContent = curSym(display());
 }
+$("calcTog").querySelectorAll("button").forEach(b =>
+  b.addEventListener("click", () => {
+    $("calcTog").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    $("calcSip").hidden = b.dataset.calc !== "sip";
+    $("calcLoan").hidden = b.dataset.calc !== "loan";
+  }));
+$("sipCalc").addEventListener("click", () => {
+  const P = num($("sipAmt").value), annual = num($("sipRate").value), years = num($("sipYears").value);
+  const r = annual / 12 / 100, n = Math.round(years * 12);
+  if (P <= 0 || n <= 0){ toast("Fill in the amount and the years"); return; }
+  const future = r > 0 ? P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) : P * n;
+  const invested = P * n;
+  const earned = future - invested;
+  $("sipFuture").textContent = fmtDisp(future);
+  $("sipInvested").textContent = fmtDisp(invested);
+  $("sipReturns").textContent = fmtDisp(earned);
+  $("sipBarIn").style.width = (invested / future * 100) + "%";
+  $("sipBarRet").style.width = (earned / future * 100) + "%";
+  $("sipOut").hidden = false;
+});
+$("loanCalc").addEventListener("click", () => {
+  const P = num($("loanAmt").value), annual = num($("loanRate").value), years = num($("loanYears").value);
+  const r = annual / 12 / 100, n = Math.round(years * 12);
+  if (P <= 0 || n <= 0){ toast("Fill in the amount and the years"); return; }
+  const emi = r > 0 ? P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1) : P / n;
+  const total = emi * n;
+  const interest = total - P;
+  $("loanEmi").textContent = fmtDisp(emi);
+  $("loanInterest").textContent = fmtDisp(interest);
+  $("loanTotal").textContent = fmtDisp(total);
+  $("loanBarP").style.width = (P / total * 100) + "%";
+  $("loanBarI").style.width = (interest / total * 100) + "%";
+  $("loanOut").hidden = false;
+});
 
-function renderReports(){
-  bar(document.getElementById("repAssets"), groupSum(state.assets, a=>a.category, a=>a.value), "--asset");
-  bar(document.getElementById("repLiabilities"), groupSum(state.liabilities, l=>l.category, l=>l.amount), "--liability");
-  bar(document.getElementById("repInvest"),
-    [{label:"Invested", value: state.investments.reduce((s,i)=>s+i.investedAmount,0)},
-     {label:"Current value", value: state.investments.reduce((s,i)=>s+i.currentValue,0)}],
-    "--invest");
-  const goalRows = state.goals.map(g=>({label:g.name, value: g.targetAmount>0 ? Math.round(g.currentAmount/g.targetAmount*100) : 0}));
-  const gc = document.getElementById("repGoals");
-  gc.innerHTML = "";
-  if (!goalRows.length){ gc.innerHTML = '<div class="empty" style="padding:16px">No goals yet.</div>'; }
-  goalRows.forEach(r=>{
-    const div = document.createElement("div");
-    div.className = "bar-row";
-    div.innerHTML = `<div class="lbl">${esc(r.label)}</div>
-      <div class="bar-track"><i style="width:${r.value}%;background:var(--goal)"></i></div>
-      <div class="pct">${r.value}%</div>`;
-    gc.appendChild(div);
-  });
-}
-
-/* ---------- calculators ---------- */
-
-document.getElementById("sipCalc").onclick = ()=>{
-  const P = Number(document.getElementById("sipAmt").value)||0;
-  const annual = Number(document.getElementById("sipRate").value)||0;
-  const years = Number(document.getElementById("sipYears").value)||0;
-  const r = annual/12/100;
-  const n = Math.round(years*12);
-  const future = r>0 ? P * ((Math.pow(1+r,n)-1)/r) * (1+r) : P*n;
-  const invested = P*n;
-  document.getElementById("sipFuture").textContent = fmt(future);
-  document.getElementById("sipInvested").textContent = fmt(invested);
-  document.getElementById("sipReturns").textContent = fmt(future-invested);
-  document.getElementById("sipResult").classList.remove("hidden");
-};
-
-document.getElementById("loanCalc").onclick = ()=>{
-  const P = Number(document.getElementById("loanAmt").value)||0;
-  const annual = Number(document.getElementById("loanRate").value)||0;
-  const years = Number(document.getElementById("loanYears").value)||0;
-  const r = annual/12/100;
-  const n = Math.round(years*12);
-  const emi = n>0 ? (r>0 ? P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1) : P/n) : 0;
-  const total = emi*n;
-  document.getElementById("loanEmi").textContent = fmt(emi) + " / month";
-  document.getElementById("loanInterest").textContent = fmt(total-P);
-  document.getElementById("loanTotal").textContent = fmt(total);
-  document.getElementById("loanResult").classList.remove("hidden");
-};
-
-/* ---------- backup & restore (clipboard-based, same JSON as GitHub sync) ---------- */
-
-document.getElementById("copyBackup").onclick = async ()=>{
+/* ---------- backup & restore ---------- */
+$("copyBackup").addEventListener("click", async () => {
   const text = JSON.stringify(state);
   try{
     await navigator.clipboard.writeText(text);
-    toast("Backup copied to clipboard");
+    toast("Backup copied");
   }catch(e){
-    const box = document.getElementById("restoreBox");
-    box.value = text;
-    box.focus(); box.select();
-    toast("Clipboard blocked — copy from the text box");
+    const box = $("restoreBox");
+    box.value = text; box.focus(); box.select();
+    toast("Clipboard blocked — copy it from the box");
   }
-};
-document.getElementById("doRestore").onclick = ()=>{
-  const raw = document.getElementById("restoreBox").value.trim();
-  if (!raw) { toast("Paste a backup first"); return; }
+});
+$("doRestore").addEventListener("click", () => {
+  const raw = $("restoreBox").value.trim();
+  if (!raw){ toast("Paste a backup first"); return; }
   let parsed;
-  try{ parsed = JSON.parse(raw); }catch(e){ toast("That doesn't look like valid backup JSON"); return; }
-  if (!confirm("Restore this backup? It will replace everything currently in the app.")) return;
+  try{ parsed = JSON.parse(raw); }catch(e){ toast("That is not a backup"); return; }
+  if (!confirm("Restore this backup? Everything in the app now is replaced.")) return;
   state = stateFromPayload(parsed);
   save(); render(); toast("Restored");
-};
+});
+$("wipeAll").addEventListener("click", () => {
+  if (!confirm("Delete every asset, liability, goal and investment? Your settings stay.")) return;
+  state = stateCleared();
+  save(); render(); toast("Everything deleted");
+});
 
-/* ---------- GitHub sync ---------- */
-
+/* ============================================================
+   GitHub sync — manual on both sides, deliberately. An automatic
+   write turns any local bug into remote data loss.
+   ============================================================ */
 const GH = {
   get token(){ return localStorage.getItem("assetmgr.gh.token") || ""; },
   set token(v){ localStorage.setItem("assetmgr.gh.token", v); },
@@ -1044,7 +2018,6 @@ const GH = {
   get lastSync(){ return localStorage.getItem("assetmgr.gh.lastSync") || ""; },
   set lastSync(v){ localStorage.setItem("assetmgr.gh.lastSync", v); }
 };
-
 function ghHeaders(){
   return {
     "Authorization": "Bearer " + GH.token,
@@ -1052,189 +2025,251 @@ function ghHeaders(){
     "X-GitHub-Api-Version": "2022-11-28"
   };
 }
-function ghUrl(){
-  return `https://api.github.com/repos/${GH.repo}/contents/${encodeURI(GH.path)}?ref=${encodeURIComponent(GH.branch)}`;
+function ghContentsUrl(withRef){
+  const base = "https://api.github.com/repos/" + GH.repo + "/contents/" + encodeURI(GH.path);
+  return withRef ? base + "?ref=" + encodeURIComponent(GH.branch) : base;
 }
-function b64EncodeUtf8(str){
-  const bytes = new TextEncoder().encode(str);
-  let bin = ""; bytes.forEach(b => bin += String.fromCharCode(b));
+function b64EncodeUtf8(s){
+  const bytes = new TextEncoder().encode(s);
+  let bin = "";
+  bytes.forEach(b => bin += String.fromCharCode(b));
   return btoa(bin);
 }
 function b64DecodeUtf8(b64){
-  const bin = atob(b64.replace(/\n/g,""));
-  const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
-  return new TextDecoder().decode(bytes);
+  const bin = atob(String(b64).replace(/\s/g, ""));
+  return new TextDecoder().decode(Uint8Array.from(bin, c => c.charCodeAt(0)));
 }
 function ghExplain(status){
-  if (status===401) return "Token rejected — check it's correct and hasn't expired.";
-  if (status===403) return "Forbidden — the token needs the 'repo' (or 'Contents: Read & write') permission.";
-  if (status===404) return "Repository or path not found — check owner/repo, branch and path.";
-  if (status===409) return "Conflict — someone else changed the file. Pull, then push again.";
-  if (status===422) return "Rejected by GitHub — check the branch name and path are valid.";
+  if (status === 401) return "Token rejected — check it is right and has not expired.";
+  if (status === 403) return "Forbidden — the token needs Contents: read & write on that repo.";
+  if (status === 404) return "Not found — check the repository, branch and path.";
+  if (status === 409) return "Conflict — the file moved on. Pull, then push again.";
+  if (status === 422) return "GitHub refused it — check the branch name and path.";
   return "GitHub returned an error (" + status + ").";
 }
 function ghStatusText(){
-  if (!GH.enabled) return "Off";
-  return "Connected to " + (GH.repo || "?") + (GH.lastSync ? " · last synced " + new Date(GH.lastSync).toLocaleString() : " · never synced");
+  if (!GH.enabled) return "Off. Add a token and a repository to turn it on.";
+  return "On, against " + GH.repo + " (" + GH.branch + ")." +
+    (GH.lastSync ? " Last synced " + new Date(GH.lastSync).toLocaleString() + "." : " Not synced yet.");
 }
-function renderGithubPanel(){
-  document.getElementById("ghToken").value = GH.token;
-  document.getElementById("ghRepo").value = GH.repo || "priyasureshgermany/asset-management";
-  document.getElementById("ghBranch").value = GH.branch;
-  document.getElementById("ghPath").value = GH.path;
-  document.getElementById("ghDetailStatus").textContent = ghStatusText();
+function fillGithub(){
+  $("ghToken").value = GH.token;
+  $("ghRepo").value = GH.repo || "priyasureshgermany/asset-management";
+  $("ghBranch").value = GH.branch;
+  $("ghPath").value = GH.path;
+  $("ghStatus").textContent = ghStatusText();
 }
-document.getElementById("ghTokenEye").onclick = ()=>{
-  const el = document.getElementById("ghToken");
-  el.type = el.type==="password" ? "text" : "password";
-};
-document.getElementById("ghSave").onclick = ()=>{
-  const repo = document.getElementById("ghRepo").value.trim();
-  if (!GH_REPO_RE.test(repo)){ toast("Repository must look like owner/repo"); return; }
-  GH.token = document.getElementById("ghToken").value.trim();
+function ghTileSub(){
+  $("ghTileSub").textContent = GH.enabled ? "On · " + GH.repo : "Off";
+}
+$("ghEye").addEventListener("click", () => {
+  const el = $("ghToken");
+  el.type = el.type === "password" ? "text" : "password";
+});
+$("ghSave").addEventListener("click", () => {
+  const repo = $("ghRepo").value.trim();
+  if (!GH_REPO_RE.test(repo)){ toast("That should look like owner/repo"); return; }
+  GH.token = $("ghToken").value.trim();
   GH.repo = repo;
-  GH.branch = document.getElementById("ghBranch").value.trim() || "main";
-  GH.path = document.getElementById("ghPath").value.trim() || "data/asset-management-backup.json";
+  GH.branch = $("ghBranch").value.trim() || "main";
+  GH.path = $("ghPath").value.trim() || "data/asset-management-backup.json";
   GH.enabled = !!GH.token;
-  renderGithubPanel();
-  toast(GH.enabled ? "GitHub sync enabled" : "Saved (add a token to enable sync)");
-};
-document.getElementById("ghDisable").onclick = ()=>{
-  if (!confirm("Disable GitHub sync? Your local data stays untouched.")) return;
+  fillGithub(); ghTileSub();
+  toast(GH.enabled ? "GitHub sync on" : "Saved — add a token to turn it on");
+});
+$("ghDisable").addEventListener("click", () => {
+  if (!confirm("Turn GitHub sync off? What is on this device stays.")) return;
   GH.enabled = false;
-  renderGithubPanel();
-  toast("Sync disabled");
-};
-
-document.getElementById("ghPull").onclick = async ()=>{
-  if (!GH.token || !GH.repo){ toast("Set up GitHub sync first"); return; }
-  document.getElementById("ghDetailStatus").textContent = "Pulling…";
+  fillGithub(); ghTileSub();
+  toast("Sync off");
+});
+$("ghPull").addEventListener("click", async () => {
+  if (!GH.token || !GH.repo){ toast("Set the token and repository first"); return; }
+  $("ghStatus").textContent = "Pulling…";
   try{
-    const res = await fetch(ghUrl(), { headers: ghHeaders() });
-    if (!res.ok){ document.getElementById("ghDetailStatus").textContent = ghExplain(res.status); return; }
+    const res = await fetch(ghContentsUrl(true), { headers: ghHeaders() });
+    if (!res.ok){ $("ghStatus").textContent = ghExplain(res.status); return; }
     const data = await res.json();
-    let text;
-    if (data.encoding === "base64") text = b64DecodeUtf8(data.content);
-    else if (data.download_url) text = await (await fetch(data.download_url)).text();
-    else { document.getElementById("ghDetailStatus").textContent = "Unexpected response from GitHub."; return; }
+    const text = data.encoding === "base64" ? b64DecodeUtf8(data.content)
+      : data.download_url ? await (await fetch(data.download_url)).text() : null;
+    if (text == null){ $("ghStatus").textContent = "GitHub sent something unexpected."; return; }
     const parsed = JSON.parse(text);
-    if (!confirm("Pull from GitHub? This replaces everything currently in the app with the remote backup.")){
-      document.getElementById("ghDetailStatus").textContent = ghStatusText();
+    if (!confirm("Pull from GitHub? Everything on this device is replaced by the backup.")){
+      $("ghStatus").textContent = ghStatusText();
       return;
     }
     state = stateFromPayload(parsed);
     save(); render();
     GH.lastSync = new Date().toISOString();
-    document.getElementById("ghDetailStatus").textContent = ghStatusText();
+    $("ghStatus").textContent = ghStatusText();
     toast("Pulled from GitHub");
-  }catch(e){
-    document.getElementById("ghDetailStatus").textContent = "Pull failed: " + e.message;
-  }
-};
-
-document.getElementById("ghPush").onclick = async ()=>{
-  if (!GH.token || !GH.repo){ toast("Set up GitHub sync first"); return; }
-  document.getElementById("ghDetailStatus").textContent = "Pushing…";
+  }catch(e){ $("ghStatus").textContent = "Pull failed: " + e.message; }
+});
+$("ghPush").addEventListener("click", async () => {
+  if (!GH.token || !GH.repo){ toast("Set the token and repository first"); return; }
+  $("ghStatus").textContent = "Pushing…";
   try{
     let sha;
-    const getRes = await fetch(ghUrl(), { headers: ghHeaders() });
-    if (getRes.ok){ sha = (await getRes.json()).sha; }
-    else if (getRes.status !== 404){
-      document.getElementById("ghDetailStatus").textContent = ghExplain(getRes.status);
-      return;
-    }
+    const head = await fetch(ghContentsUrl(true), { headers: ghHeaders() });
+    if (head.ok) sha = (await head.json()).sha;
+    else if (head.status !== 404){ $("ghStatus").textContent = ghExplain(head.status); return; }
+
     const body = {
       message: "Update asset-management backup",
       content: b64EncodeUtf8(JSON.stringify(state, null, 2)),
       branch: GH.branch
     };
     if (sha) body.sha = sha;
-    const putRes = await fetch(`https://api.github.com/repos/${GH.repo}/contents/${encodeURI(GH.path)}`, {
-      method: "PUT", headers: ghHeaders(), body: JSON.stringify(body)
+    const put = await fetch(ghContentsUrl(false), {
+      method:"PUT", headers: ghHeaders(), body: JSON.stringify(body)
     });
-    if (!putRes.ok){ document.getElementById("ghDetailStatus").textContent = ghExplain(putRes.status); return; }
+    if (!put.ok){ $("ghStatus").textContent = ghExplain(put.status); return; }
     GH.lastSync = new Date().toISOString();
-    document.getElementById("ghDetailStatus").textContent = ghStatusText();
+    $("ghStatus").textContent = ghStatusText();
     toast("Pushed to GitHub");
-  }catch(e){
-    document.getElementById("ghDetailStatus").textContent = "Push failed: " + e.message;
-  }
+  }catch(e){ $("ghStatus").textContent = "Push failed: " + e.message; }
+});
+
+/* ============================================================
+   Reports
+   ============================================================ */
+function repBars(title, slices, total){
+  if (!slices.length) return "";
+  const max = Math.max(...slices.map(s => s.value));
+  return `<div class="chartblock" style="margin:0 0 14px">
+    <div class="chartblock-h"><div class="cb-t">${esc(title)}</div><div class="cb-n">${esc(fmtDisp(total))}</div></div>
+    ${slices.map(s => `<div class="barrow" style="cursor:default">
+      <div class="barrow-head"><span class="barrow-l">${esc(s.label)}</span>
+        <span class="barrow-v">${esc(fmtDisp(s.value))}</span></div>
+      <div class="barrow-track"><i style="width:${(s.value / max * 100).toFixed(1)}%;background:${paint(s.hue)}"></i></div>
+    </div>`).join("")}
+  </div>`;
+}
+function renderReports(){
+  const t = totals();
+  const gold = goldTotals();
+  const invWorth = state.investments.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
+  const invPaid = state.investments.reduce((s,i) => s + toDisp(i.investedAmount, i.currency), 0);
+
+  const byCurrency = CURRENCIES.map(c => {
+    const own = state.assets.filter(a => a.currency === c).reduce((s,a) => s + toDisp(a.value, a.currency), 0)
+      + state.investments.filter(i => i.currency === c).reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
+    return { label:"Held in " + c, hue: c === "EUR" ? 210 : 24, value: own };
+  }).filter(x => x.value > 0);
+
+  $("repBody").innerHTML =
+    `<div class="aboutbox">
+       <div><b>${esc(fmtDisp(t.net))}</b> net worth, shown in ${esc(display())}</div>
+       <div>${esc(fmtDisp(t.assets))} owned · ${esc(fmtDisp(t.liabilities))} owed</div>
+       ${gold.count ? `<div>${esc(gold.grams.toLocaleString(undefined,{maximumFractionDigits:2}))} g of gold, worth ${esc(fmtDisp(gold.worth))}</div>` : ""}
+     </div>` +
+    repBars("Assets by category", assetSlices(), t.assets) +
+    repBars("Liabilities by kind", liabSlices(), t.liabilities) +
+    repBars("Where it is held", byCurrency, byCurrency.reduce((s,x) => s + x.value, 0)) +
+    (state.investments.length ? repBars("Investments: paid in against worth now", [
+      { label:"Paid in", hue:210, value: invPaid },
+      { label:"Worth now", hue:152, value: invWorth }
+    ], Math.max(invPaid, invWorth)) : "") +
+    (state.goals.length ? `<div class="chartblock" style="margin:0 0 14px">
+      <div class="chartblock-h"><div class="cb-t">Goals</div></div>
+      ${state.goals.map(g => {
+        const share = g.targetAmount > 0 ? Math.min(100, g.currentAmount / g.targetAmount * 100) : 0;
+        return `<div class="barrow" style="cursor:default">
+          <div class="barrow-head"><span class="barrow-l">${esc(g.name)}</span>
+            <span class="barrow-v">${share.toFixed(0)}%</span></div>
+          <div class="barrow-track"><i style="width:${share}%;background:var(--accent)"></i></div>
+        </div>`;
+      }).join("")}
+    </div>` : "");
+}
+
+/* ============================================================
+   What's new
+   ============================================================ */
+const REL_ICONS = {
+  fix: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 01-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 015.4-5.4z"/></svg>',
+  new: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2 5.5L19.5 10 14 12l-2 5.5L10 12 4.5 10 10 8.5z"/></svg>',
+  better: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>'
 };
-
-/* ---------- what's new ---------- */
-
-const RELEASE_KINDS = { fix:"🔧", new:"✨", better:"📈" };
 function parseReleases(md){
-  const groups = [];
-  const lines = md.split("\n");
+  const out = [];
   let cur = null;
-  lines.forEach(line=>{
+  md.split("\n").forEach(line => {
     const h = line.match(/^##\s+([\d.]+)\s+—\s+(.+)$/);
-    if (h){ cur = { version:h[1], date:h[2], items:[] }; groups.push(cur); return; }
+    if (h){ cur = { version:h[1], date:h[2], items:[] }; out.push(cur); return; }
     const b = line.match(/^-\s+(?:(fix|new|better):\s*)?(.+)$/);
-    if (b && cur){ cur.items.push({ kind: b[1]||"better", text: b[2] }); }
+    if (b && cur) cur.items.push({ kind: b[1] || "better", text: b[2] });
   });
-  return groups;
+  return out;
 }
 function loadReleases(){
-  const box = document.getElementById("releasesBox");
+  const box = $("notesBody");
   box.textContent = "Loading…";
   fetch("RELEASES.md?v=" + APP_VERSION, { cache:"no-store" })
-    .then(r=>{ if(!r.ok) throw new Error("not found"); return r.text(); })
-    .then(md=>{
+    .then(r => { if (!r.ok) throw new Error("no notes"); return r.text(); })
+    .then(md => {
       const groups = parseReleases(md);
-      box.innerHTML = groups.map(g=>{
-        const isCurrent = g.version === APP_VERSION;
-        return `<div class="relgroup">
-          <div class="ver ${isCurrent?"current":""}">${g.version} — ${g.date}${isCurrent?" · you're on this":""}</div>
-          <ul>${g.items.map(i=>`<li><span class="k">${RELEASE_KINDS[i.kind]||"📈"}</span><span>${esc(i.text)}</span></li>`).join("")}</ul>
-        </div>`;
-      }).join("") || "No release notes yet.";
+      box.innerHTML = groups.map(g => `<div class="relgroup">
+        <div class="rel-h">
+          <span class="rel-v${g.version === APP_VERSION ? " current" : ""}">${esc(g.version)}</span>
+          <span class="rel-d">${esc(g.date)}${g.version === APP_VERSION ? " · you're on this" : ""}</span>
+        </div>
+        <ul class="rel-l">${g.items.map(i => `<li class="rel-i ${esc(i.kind)}">
+          <span class="rel-k">${REL_ICONS[i.kind] || REL_ICONS.better}</span>
+          <span class="rel-x">${esc(i.text)}</span></li>`).join("")}</ul>
+      </div>`).join("") || "No notes yet.";
     })
-    .catch(()=>{ box.textContent = "Release notes aren't available right now."; });
+    .catch(() => { box.textContent = "Release notes are not available right now."; });
 }
 
 /* ---------- about ---------- */
-
-function renderAbout(){
-  document.getElementById("aboutVerSub").textContent = "Version " + APP_VERSION;
-  document.getElementById("aboutBody").innerHTML =
-    `Version ${APP_VERSION}<br>Built ${APP_BUILT}`;
+function fillAbout(){
+  $("aboutBox").innerHTML =
+    `<div>Version <b>${esc(APP_VERSION)}</b></div>
+     <div>Built ${esc(APP_BUILT)}</div>
+     <div>${state.assets.length} assets · ${state.liabilities.length} liabilities ·
+      ${state.investments.length} investments · ${state.goals.length} goals</div>`;
 }
-
-document.getElementById("btnUpdate").onclick = async ()=>{
-  if (!("serviceWorker" in navigator)) { toast("Not running as an installed app"); return; }
+$("btnUpdate").addEventListener("click", async () => {
+  if (!("serviceWorker" in navigator)){ toast("Not installed as an app"); return; }
   const regs = await navigator.serviceWorker.getRegistrations();
-  for (const reg of regs) await reg.update();
+  await Promise.all(regs.map(r => r.update()));
   const keys = await caches.keys();
-  await Promise.all(keys.map(k=>caches.delete(k)));
-  toast("Updated — reloading…");
-  setTimeout(()=>location.reload(), 600);
-};
+  await Promise.all(keys.map(k => caches.delete(k)));
+  toast("Updating…");
+  setTimeout(() => location.reload(), 700);
+});
 
 /* ---------- theme ---------- */
-
 function applyTheme(t){
   if (t === "system") document.documentElement.removeAttribute("data-theme");
   else document.documentElement.setAttribute("data-theme", t);
   localStorage.setItem("assetmgr.theme", t);
+  document.querySelectorAll("#themeTog button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.v === t)));
 }
-document.getElementById("btnTheme").onclick = ()=>{
-  const cur = localStorage.getItem("assetmgr.theme") || "system";
-  const next = cur==="system" ? "light" : cur==="light" ? "dark" : "system";
-  applyTheme(next);
-  toast("Theme: " + next);
-};
+document.querySelectorAll("#themeTog button").forEach(b =>
+  b.addEventListener("click", () => applyTheme(b.dataset.v)));
 applyTheme(localStorage.getItem("assetmgr.theme") || "system");
 
-/* ---------- service worker ---------- */
+/* ---------- dashboard tiles jump to their list ---------- */
+$("tileAssets").addEventListener("click", () => {
+  dashTab = "assets"; render();
+  $("dashList").scrollIntoView({ behavior:"smooth", block:"start" });
+});
+$("tileLiabs").addEventListener("click", () => {
+  dashTab = "liabilities"; render();
+  $("dashList").scrollIntoView({ behavior:"smooth", block:"start" });
+});
 
+/* ---------- service worker ---------- */
 if ("serviceWorker" in navigator && location.protocol !== "file:"){
-  navigator.serviceWorker.register("sw.js").catch(()=>{});
+  navigator.serviceWorker.register("sw.js").catch(() => {});
 }
 
-/* ---------- init ---------- */
-
+/* ---------- go ---------- */
+$("aboutTileSub").textContent = "Version " + APP_VERSION;
+ghTileSub();
 render();
 </script>
 </body>
