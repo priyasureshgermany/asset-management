@@ -401,6 +401,17 @@ button.tile:hover .tile-go{color:var(--accent)}
 }
 .tabbar button svg{width:21px;height:21px;flex:none;stroke-width:1.8}
 .tabbar button:active{transform:scale(.93)}
+/* A newer build waiting is worth saying on the tab, not only two taps inside. */
+.tabdot{
+  position:absolute;top:3px;right:calc(50% - 16px);
+  width:7px;height:7px;border-radius:99px;background:var(--neg);
+}
+.updot{
+  position:absolute;top:9px;right:9px;padding:3px 8px;border-radius:99px;
+  background:var(--neg);color:#fff;
+  font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+}
+.setrow, .morerow{position:relative}
 .tabbar button[aria-selected="true"]{color:var(--accent);font-weight:600}
 .tabbar button[aria-selected="true"] svg{stroke-width:2.1}
 
@@ -873,6 +884,7 @@ html.locked #lockScreen{
       Investment
     </button>
     <button type="button" id="btnMore" aria-haspopup="dialog" aria-label="More">
+      <span class="tabdot" id="moreDot" hidden></span>
       <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg>
       More
     </button>
@@ -898,7 +910,8 @@ html.locked #lockScreen{
     <button class="morerow" type="button" data-more="notes">
       <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3.5l1.9 5.1 5.1 1.9-5.1 1.9L11 17.5l-1.9-5.1L4 10.5l5.1-1.9z"/><path d="M18.4 15.1l.7 1.9 1.9.7-1.9.7-.7 1.9-.7-1.9-1.9-.7 1.9-.7z"/></svg></span>
       <b>What&rsquo;s new</b>
-      <span class="ms">Version and changes</span>
+      <span class="ms" id="moreNotesSub">Version and changes</span>
+      <span class="updot" id="moreNotesDot" hidden>Update</span>
     </button>
     <button class="morerow" type="button" data-more="settings">
       <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></span>
@@ -953,6 +966,7 @@ html.locked #lockScreen{
     <button class="setrow setrow-wide" type="button" data-pane="about">
       <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5"/><path d="M12 8h.01"/></svg></span>
       <span class="sr-t"><b>About</b><span id="aboutTileSub">Version</span></span>
+      <span class="updot" id="setAboutDot" hidden>Update</span>
     </button>
   </div>
 
@@ -1297,7 +1311,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.12";
+const APP_VERSION = "1.0.13";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -2875,12 +2889,48 @@ function loadReleases(){
 }
 
 /* ---------- about ---------- */
+/* ---------- is there a newer one? ----------
+   The worker serves the build you have until you ask for another, which is
+   the point of it — but it also means nothing ever tells you another exists.
+   So ask the network directly, past every cache, and compare the version in
+   what comes back with the one running. */
+let updateAvailable = "";
+
+function checkForUpdate(){
+  return fetch("index.html?v=" + Date.now(), { cache:"no-store" })
+    .then(r => r.ok ? r.text() : null)
+    .then(t => {
+      if (!t) return "";
+      const live = (t.match(/const APP_VERSION = "([^"]+)"/) || [])[1];
+      return (live && live !== APP_VERSION) ? live : "";
+    })
+    .catch(() => "");           /* offline is not out of date */
+}
+
+function showUpdate(live){
+  updateAvailable = live;
+  $("moreDot").hidden = !live;
+  $("setAboutDot").hidden = !live;
+  $("moreNotesDot").hidden = !live;
+  $("moreNotesSub").textContent = live ? live + " is ready" : "Version and changes";
+  $("aboutTileSub").textContent = live ? live + " ready" : "Version " + APP_VERSION;
+  $("btnUpdate").textContent = live ? "Update to " + live : "Update to the newest build";
+}
+
 function fillAbout(){
   $("aboutBox").innerHTML =
     `<div>Version <b>${esc(APP_VERSION)}</b></div>
      <div>Built ${esc(APP_BUILT)}</div>
+     <div id="abRunning">Checking for a newer build…</div>
      <div>${state.assets.length} assets · ${state.liabilities.length} liabilities ·
       ${state.investments.length} investments · ${state.goals.length} goals</div>`;
+  checkForUpdate().then(live => {
+    const line = $("abRunning");
+    if (line) line.textContent = live
+      ? APP_VERSION + " running · " + live + " available"
+      : APP_VERSION + " running · up to date";
+    showUpdate(live);
+  });
 }
 $("btnUpdate").addEventListener("click", async () => {
   if (!("serviceWorker" in navigator)){ toast("Not installed as an app"); return; }
@@ -3164,6 +3214,9 @@ $("aboutTileSub").textContent = "Version " + APP_VERSION;
 ghTileSub();
 lockTileSub();
 syncEye();
+/* Asked once a minute after opening rather than immediately: the first
+   moments belong to drawing the app, not to the network. */
+setTimeout(() => checkForUpdate().then(showUpdate), 4000);
 render();
 </script>
 </body>

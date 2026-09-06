@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.13 — 2026-09-06
+- new: The app tells you when a newer build is out: a dot on More and an Update badge on What's new and About, instead of you pressing Update to find out.
+
 ## 1.0.12 — 2026-09-06
 - better: A new mark: a rising bar chart with the euro and the rupee in gold over it, no frame. The bars are the app's own chart colours, so the icon and the charts are one system.
 
