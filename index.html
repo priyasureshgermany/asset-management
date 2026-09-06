@@ -240,18 +240,41 @@ button.tile:hover .tile-go{color:var(--accent)}
 /* The pie is drawn in projection and stands on its own wall — see the drawing
    code for how the light is laid across the whole solid rather than per slice.
    overflow:visible so the chosen slice's shadow is not clipped. */
-.pie3d{display:grid;place-items:center;padding:6px 0}
-.pie3d svg{width:min(300px,84vw);height:auto;overflow:visible}
+/* The pie sits left and the shares read down the right, as they did before the
+   solid arrived. It keeps the larger share of the row: a projected pie loses
+   height to the projection, so it needs the width to stay legible. */
+.pierow{display:flex;align-items:center;gap:10px}
+.pie3d{flex:1 1 57%;min-width:0;display:grid;place-items:center;padding:2px 0;position:relative}
+.pie3d svg{width:100%;max-width:250px;height:auto;overflow:visible}
+@media (max-width:360px){
+  /* below this the two of them start squeezing each other rather than sharing */
+  .pierow{flex-direction:column;align-items:stretch;gap:4px}
+  .pie3d{flex:none}
+  .pie3d svg{max-width:100%}
+}
 .pie-top{cursor:pointer}
 @media (hover:hover){ .pie-top:hover{filter:brightness(1.08)} }
-.pieinfo{
-  margin:10px 2px 2px;padding:11px 13px;border-radius:var(--r-md);
-  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
-  font-size:13px;line-height:1.4;
+/* What the lit slice is worth, said over the thing you clicked. It takes no
+   clicks itself, so the slice underneath stays tappable. */
+.pie-amt{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  padding:7px 13px;border-radius:99px;text-align:center;
+  background:var(--surface);border:1px solid var(--line);
+  box-shadow:var(--shadow-md);pointer-events:none;
+  animation:amtIn .18s cubic-bezier(.2,.7,.3,1);
 }
-.pieinfo .pi-n{font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pieinfo .pi-v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:700;flex:none}
-.pieinfo .pi-s{font-size:11.5px;opacity:.8}
+@keyframes amtIn{
+  from{opacity:0;transform:translate(-50%,-50%) scale(.9)}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1)}
+}
+.pie-amt .pa-v{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+  font-weight:700;font-size:14px;letter-spacing:-.02em;white-space:nowrap;display:block;
+}
+.pie-amt .pa-n{
+  font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+  font-weight:600;margin-top:1px;display:block;white-space:nowrap;
+}
 .pielegend{min-width:0;display:flex;flex-direction:column;gap:1px;margin-top:4px}
 .legrow{
   display:flex;align-items:center;gap:8px;width:100%;text-align:left;
@@ -262,7 +285,6 @@ button.tile:hover .tile-go{color:var(--accent)}
 .legrow .dot{width:9px;height:9px;border-radius:3px;flex:none}
 .legrow .ln{flex:1;min-width:0;font-size:12px;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .legrow .lp{font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums;color:var(--ink-3);flex:none}
-.legrow .lp.amt{color:var(--ink);font-weight:600}
 
 /* ---------- Gold card ---------- */
 .goldcard{
@@ -658,9 +680,10 @@ select.inp{appearance:none;background-image:none}
         <div class="cb-t">Where your money sits</div>
         <div class="cb-n" id="allocN">—</div>
       </div>
-      <div class="pie3d" id="allocPie"></div>
-      <div class="pieinfo" id="allocInfo" hidden></div>
-      <div class="pielegend" id="allocLegend"></div>
+      <div class="pierow">
+        <div class="pie3d" id="allocPie"></div>
+        <div class="pielegend" id="allocLegend"></div>
+      </div>
     </section>
 
     <section class="chartblock" id="assetBarBlock">
@@ -1109,7 +1132,7 @@ select.inp{appearance:none;background-image:none}
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.5";
+const APP_VERSION = "1.0.6";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1584,11 +1607,6 @@ function pieShades(c, on){
     foot: "hsl(" + h + " " + (CAT_SAT - 12) + "% " + L(bl - 19 - down * 0.6) + "%)"
   };
 }
-function tint(c, dark){
-  const b = catBias(c);
-  return dark ? "hsl(" + c.h + " 58% " + (24 + b * 10).toFixed(1) + "%)"
-              : "hsl(" + c.h + " 72% " + (89 + b * 6).toFixed(1) + "%)";
-}
 function tintInk(c, dark){
   const b = catBias(c);
   return dark ? "hsl(" + c.h + " 78% " + (76 + b * 14).toFixed(1) + "%)"
@@ -1742,22 +1760,17 @@ function renderAlloc(){
       '" fill="url(#pgGloss)" pointer-events="none"/>' +
     "</svg>";
 
-  /* what the lit slice is, said in words under the chart */
-  const info = $("allocInfo");
+  /* What the lit slice is worth, over the chart itself — the amount belongs on
+     the thing that was clicked, and the shares beside it are left to be shares. */
   if (chosen){
-    const share = total > 0 ? chosen.s.value / total * 100 : 0;
-    info.hidden = false;
-    info.style.background = tint(chosen.s.cat, dark);
-    info.style.color = tintInk(chosen.s.cat, dark);
-    info.innerHTML =
-      `<span class="pi-n">${esc(chosen.s.label)}<span class="pi-s"> · ${share.toFixed(1)}%</span></span>` +
-      `<span class="pi-v">${esc(fmtDisp(chosen.s.value))}</span>`;
-  } else {
-    info.hidden = true;
+    const amt = document.createElement("div");
+    amt.className = "pie-amt";
+    amt.style.color = tintInk(chosen.s.cat, dark);
+    amt.innerHTML = `<span class="pa-v">${esc(fmtDisp(chosen.s.value))}</span>` +
+                    `<span class="pa-n">${esc(chosen.s.label)}</span>`;
+    $("allocPie").appendChild(amt);
   }
 
-  /* The share is what the list is for — until you pick one, and then the
-     question you were asking was how much, so that row answers in money. */
   $("allocLegend").innerHTML = slices.map((s, idx) => {
     const share = total > 0 ? (s.value / total * 100) : 0;
     const on = allocPick === idx;
@@ -1765,7 +1778,7 @@ function renderAlloc(){
         aria-pressed="${on}" title="${esc(s.label)}: ${esc(fmtDisp(s.value))}">
       <span class="dot" style="background:${pieShades(s.cat, false).base}"></span>
       <span class="ln">${esc(s.label)}</span>
-      <span class="lp${on ? " amt" : ""}">${on ? esc(fmtDisp(s.value)) : share.toFixed(0) + "%"}</span>
+      <span class="lp">${share.toFixed(0)}%</span>
     </button>`;
   }).join("");
 

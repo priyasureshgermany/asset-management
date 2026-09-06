@@ -1,5 +1,9 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.6 — 2026-09-06
+- better: The pie sits on the left again with the shares reading down the right, the way it did before the solid arrived.
+- better: Pick a colour and the amount appears over the chart itself rather than in a panel below it; the list beside it goes back to being shares.
+
 ## 1.0.5 — 2026-09-06
 - better: The dashboard chart is the expense tracker's pie: drawn in projection with a wall dropping from its edge, lit across the whole solid rather than slice by slice, and standing on its own shadow.
 - better: Choosing a slice polishes it — a sheen and a hotspot sized to the wedge, the rest falling back — and names it underneath in its own colour, with the amount.
