@@ -1,4 +1,6 @@
 node_modules/
 _test.html
+_test_*
+*.csv
 shot-*.png
 package-lock.json

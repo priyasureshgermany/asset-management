@@ -3,7 +3,7 @@
    on its own. Installing a new worker fills the versioned asset cache and
    leaves SHELL alone; activating purges old asset caches and leaves SHELL
    alone. Only the in-app Update button clears the caches and reloads. */
-const VERSION = "1.0.16";
+const VERSION = "1.0.17";
 const ASSETS = "assetmgr-" + VERSION;   /* icons, manifest — versioned, purged */
 const SHELL = "assetmgr-shell";         /* the page itself — replaced only on request */
 

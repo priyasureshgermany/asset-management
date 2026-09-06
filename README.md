@@ -51,6 +51,28 @@ day needs a server pushing it, and this is a page with no server behind it —
 the browser API for scheduling one locally was abandoned. So the app says it
 when you open it, which is the honest version of the same thing.
 
+### Importing holdings
+
+Settings → Import holdings takes a holdings export from Zerodha Console —
+stocks, ETFs and funds in one file. It is read in the browser with
+`FileReader` and goes nowhere.
+
+Columns are found **by their heading**, not their position, so an export that
+gains a column does not silently shift every figure one to the left. The CSV
+reader handles quoted fields, because a fund named `Kotak, Equity` would
+otherwise arrive as two columns and do the same. An all-capitals ticker is
+taken for a stock or ETF and anything with ordinary words for a fund — a
+guess, changeable afterwards like any other.
+
+Nothing is written until you say so: every row is listed with a tick, marked
+**new** or **update**, with *tick all*, *tick none* and *only the new*.
+Updating a holding writes only what the file knows — what it cost and what it
+is worth — and leaves the SIP, the day it goes out and your notes alone.
+
+Connecting to Zerodha directly is not possible from here: signing the login
+needs an API secret, and there is nowhere in a page that anyone can view-source
+to keep one.
+
 ### App lock
 
 A four-digit PIN, asked for when the app opens and again after five minutes

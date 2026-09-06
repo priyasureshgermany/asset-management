@@ -1,5 +1,10 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.17 — 2026-09-06
+- new: Settings takes a holdings export from Zerodha Console — stocks, ETFs and funds together. Every row is listed with a tick and marked new or update, and nothing is written until you say so.
+- better: Updating a holding from a file writes only what the file knows: what it cost and what it is worth. The SIP you set, the day it goes out and your notes stay as they are.
+- new: A holding can carry its number of units, which the import fills in.
+
 ## 1.0.16 — 2026-09-06
 - new: Both calculators take a starting month, and then say the months rather than counting them: Oct 26 – Sep 27, and Oct 2026 inside it.
 - new: The exchange rate and the gold price are asked for from the internet when the app opens, and you say which karat the gold price is for. Switch it off and the figures are yours again.
