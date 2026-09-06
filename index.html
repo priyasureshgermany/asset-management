@@ -1143,7 +1143,10 @@ html.locked #lockScreen{
       <div class="field"><label>Branch</label><input class="inp" id="ghBranch" placeholder="main"></div>
       <div class="field"><label>File path</label><input class="inp" id="ghPath" placeholder="data/backup.json"></div>
     </div>
-    <button class="btn" id="ghSave">Save &amp; enable</button>
+    <div class="btnrow">
+      <button class="btn" id="ghSave">Save &amp; enable</button>
+      <button class="btn ghost" id="ghCheck">Check it</button>
+    </div>
     <div class="btnrow" style="margin-top:9px">
       <button class="btn ghost" id="ghPull">Pull onto this device</button>
       <button class="btn ghost" id="ghPush">Push now</button>
@@ -1487,7 +1490,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.17";
+const APP_VERSION = "1.0.18";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -2840,6 +2843,12 @@ $("saveProfile").addEventListener("click", () => {
    under every converted total in the app, and a wrong one is worse than a
    stale one. Offline simply means nothing changes.
    ============================================================ */
+const GH_WRITE_HELP =
+  "A fine-grained token needs the repository picked under Repository access " +
+  "and Contents set to Read and write; a classic token needs the repo scope. " +
+  "Reading a public repository needs neither, which is why a token can pass " +
+  "the first half of this and fail the second.";
+
 const FX_URL = "https://open.er-api.com/v6/latest/EUR";
 const GOLD_URL = "https://api.gold-api.com/price/XAU";
 const TROY_OZ_G = 31.1034768;
@@ -3349,8 +3358,8 @@ function b64DecodeUtf8(b64){
   return new TextDecoder().decode(Uint8Array.from(bin, c => c.charCodeAt(0)));
 }
 function ghExplain(status){
-  if (status === 401) return "Token rejected — check it is right and has not expired.";
-  if (status === 403) return "Forbidden — the token needs Contents: read & write on that repo.";
+  if (status === 401) return "Token rejected — it is wrong, or it has expired.";
+  if (status === 403) return "The token can see that repository but not write to it. " + GH_WRITE_HELP;
   if (status === 404) return "Not found — check the repository, branch and path.";
   if (status === 409) return "Conflict — the file moved on. Pull, then push again.";
   if (status === 422) return "GitHub refused it — check the branch name and path.";
@@ -3392,6 +3401,47 @@ $("ghDisable").addEventListener("click", () => {
   fillGithub(); ghTileSub();
   toast("Sync off");
 });
+/* Asks GitHub what this token may actually do, rather than making you find
+   out by pushing. A repository comes back with a permissions block for
+   whoever is asking — and on a public repository a token with no rights to it
+   still reads fine, which is exactly the case that looks like success until
+   the first write. */
+$("ghCheck").addEventListener("click", async () => {
+  const token = $("ghToken").value.trim();
+  const repo = $("ghRepo").value.trim();
+  const branch = $("ghBranch").value.trim() || "main";
+  const st = $("ghStatus");
+  if (!token || !GH_REPO_RE.test(repo)){ st.textContent = "Fill in a token and owner/repo first."; return; }
+  st.textContent = "Asking GitHub…";
+  try{
+    const head = { "Authorization": "Bearer " + token, "Accept": "application/vnd.github+json",
+                   "X-GitHub-Api-Version": "2022-11-28" };
+    const res = await fetch("https://api.github.com/repos/" + repo, { headers: head });
+    if (res.status === 401){ st.textContent = "The token was rejected — it is wrong, or it has expired."; return; }
+    if (res.status === 404){
+      st.textContent = "No repository at " + repo + " that this token can see. " +
+        "Check the spelling, and that a fine-grained token has that repository picked under Repository access.";
+      return;
+    }
+    if (!res.ok){ st.textContent = ghExplain(res.status); return; }
+    const info = await res.json();
+    const canWrite = info.permissions && info.permissions.push;
+    if (!canWrite){
+      st.textContent = "The token can read " + repo + " but not write to it. " + GH_WRITE_HELP;
+      return;
+    }
+    /* it may write — so the only thing left to be wrong is the branch */
+    const br = await fetch("https://api.github.com/repos/" + repo + "/branches/" +
+                           encodeURIComponent(branch), { headers: head });
+    st.textContent = br.ok
+      ? "All set: the token can write to " + repo + ", and the branch " + branch + " is there."
+      : "The token can write to " + repo + ", but there is no branch called " + branch +
+        " — the default is " + (info.default_branch || "main") + ".";
+  }catch(e){
+    st.textContent = "Could not reach GitHub: " + e.message;
+  }
+});
+
 $("ghPull").addEventListener("click", async () => {
   if (!GH.token || !GH.repo){ toast("Set the token and repository first"); return; }
   $("ghStatus").textContent = "Pulling…";

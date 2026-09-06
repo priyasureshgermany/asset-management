@@ -104,7 +104,15 @@ where it is switched on.
   dropped and what you had stays: a rate sits under every converted total in
   the app, and a wrong one is worse than a stale one. Offline changes
   nothing. Switch it off and both figures are yours to set.
-- **GitHub sync** — manual Pull/Push only. Nothing syncs automatically; see
+- **GitHub sync** — manual Pull/Push only, with a **Check it** button that
+  asks GitHub what the token may actually do rather than making you find out
+  by pushing. The repository is public, so a token with no rights to it still
+  *reads* fine — which looks like success right up until the first write. The
+  check reads the `permissions.push` flag and says so.
+
+  A **fine-grained** token needs the repository picked under *Repository
+  access* and *Contents* set to **Read and write**. A **classic** token needs
+  the **repo** scope. Nothing syncs automatically; see
   the pitfall this avoids in the project notes. Needs a personal access token
   with Contents read/write on the target repo, entered in-app (stored in
   `localStorage` on this device only).

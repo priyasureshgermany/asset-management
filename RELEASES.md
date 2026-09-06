@@ -1,5 +1,9 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.18 — 2026-09-06
+- new: A Check it button under GitHub sync asks GitHub what the token may actually do — read, write, and whether the branch is there — rather than leaving you to find out by pushing.
+- fix: The message when a push is refused now says what to change: which permission a fine-grained token needs, and which scope a classic one does.
+
 ## 1.0.17 — 2026-09-06
 - new: Settings takes a holdings export from Zerodha Console — stocks, ETFs and funds together. Every row is listed with a tick and marked new or update, and nothing is written until you say so.
 - better: Updating a holding from a file writes only what the file knows: what it cost and what it is worth. The SIP you set, the day it goes out and your notes stay as they are.
