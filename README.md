@@ -113,17 +113,18 @@ wedges of it would only have to be told apart by a colour that says nothing.
 
 ## The icon
 
-A brass vault door on the same engraved plate the expense tracker uses, so the
-two sit together on a home screen. It is generated, not hand-drawn — edit and
-re-run to change it:
+A rising bar chart with the euro and the rupee in gold over it, no frame. The
+bar colours come from the app's own chart palette, so the icon and the charts
+are one system. It is generated, not hand-drawn — edit and re-run to change it:
 
 ```bash
 python tools/make-icons.py
 ```
 
-That writes all four PNGs in `icons/`, including the maskable one, which drops
-the dashed frame and shrinks the door into the safe circle because Android
-supplies the outline itself. Needs Pillow.
+That writes all four PNGs in `icons/`, including the maskable one, which
+shrinks the mark into the safe circle and bleeds the ground behind it because
+Android supplies the outline itself. Needs Pillow. The brass vault this
+replaced is in the history if it is ever wanted back.
 
 ## Releasing
 

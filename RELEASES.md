@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.12 — 2026-09-06
+- better: A new mark: a rising bar chart with the euro and the rupee in gold over it, no frame. The bars are the app's own chart colours, so the icon and the charts are one system.
+
 ## 1.0.11 — 2026-09-06
 - new: An eye in the top bar hides every amount at once, for reading the app somewhere public. Weights, counts and percentages stay — on their own they give nothing away.
 - new: An asset can carry what you paid for it as well as what it is worth, and shows the difference the way an investment does.

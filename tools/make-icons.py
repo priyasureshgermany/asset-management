@@ -1,263 +1,151 @@
-"""Draws the app icon — a brass vault door — into icons/.
+"""Draws the app icon into icons/.
 
     python tools/make-icons.py
 
 Run it when the mark changes; the four PNGs it writes are what ships. Needs
-Pillow and nothing else.
+Pillow and nothing else. The brass vault this replaced is in the history if
+it is ever wanted back.
 
-The vault door is rendered rather than drawn flat.
+The mark: a rising bar chart with the two currencies over it, no frame.
 
-Everything that reads as metal here is one of three things: a bevel (the shape
-minus itself offset, blurred — light on the top-left sliver, shade on the
-bottom-right), spun brushing (a few thousand faint radial streaks, blurred),
-and a cast shadow. Light comes from the top-left throughout; nothing is shaded
-against it, which is what makes the parts look like one object.
+Same shading grammar as the vault it replaces — a bevel taken from the shape
+minus itself offset, light from the top-left, a cast shadow — so it still
+belongs to the same family without borrowing the frame.
 """
 import math, random
 from PIL import Image, ImageDraw, ImageFilter, ImageChops
 
 S = 512
-K = 2                      # drawn at 2× and downsampled
+K = 2
 W = S * K
-CX, CY = 246 * K, 260 * K  # door centre
 
-STEEL_HI = (238, 206, 126)
-STEEL_MID = (172, 133, 52)
-STEEL_LO = (104, 74, 20)
-STEEL_DEEP = (54, 37, 9)
+GOLD_HI, GOLD_LO = (247, 220, 138), (150, 110, 20)
 
-
-# ---------- helpers ----------
-
-def disc(r, cx=None, cy=None, fill=255, mode="L", size=None):
-    cx = CX if cx is None else cx
-    cy = CY if cy is None else cy
-    img = Image.new(mode, size or (W, W), 0)
-    ImageDraw.Draw(img).ellipse([cx - r, cy - r, cx + r, cy + r], fill=fill)
-    return img
+# Each bar its own colour, taken from the chart palette the app already uses
+# (hsl(h 82% L), the 22–42 band) so the icon and the charts are one system.
+BARS = [
+    # (hue, lightness, height as a fraction of the plot)
+    (199, 34, 0.42),   # blue
+    (152, 36, 0.60),   # green
+    (281, 36, 0.78),   # violet
+    (18,  34, 1.00),   # terracotta
+]
 
 
-def ring_mask(r_out, r_in, cx=None, cy=None):
-    cx = CX if cx is None else cx
-    cy = CY if cy is None else cy
-    m = disc(r_out, cx, cy)
-    ImageDraw.Draw(m).ellipse([cx - r_in, cy - r_in, cx + r_in, cy + r_in], fill=0)
-    return m
+def hsl_rgb(h, s, l):
+    s /= 100; l /= 100
+    c = (1 - abs(2 * l - 1)) * s
+    x = c * (1 - abs((h / 60) % 2 - 1))
+    m = l - c / 2
+    r, g, b = [(c, x, 0), (x, c, 0), (0, c, x), (0, x, c), (x, 0, c), (c, 0, x)][int(h // 60) % 6]
+    return tuple(round((v + m) * 255) for v in (r, g, b))
 
 
-def bevel(mask, off=5 * K, blur=3.5 * K):
-    """Inner light and shade for a raised shape lit from the top-left."""
+def bevel(mask, off, blur):
     down = ImageChops.offset(mask, off, off)
     up = ImageChops.offset(mask, -off, -off)
     hi = ImageChops.multiply(ImageChops.subtract(mask, down), mask)
     sh = ImageChops.multiply(ImageChops.subtract(mask, up), mask)
-    return (hi.filter(ImageFilter.GaussianBlur(blur)),
-            sh.filter(ImageFilter.GaussianBlur(blur)))
+    hi = ImageChops.multiply(hi.filter(ImageFilter.GaussianBlur(blur)), mask)
+    sh = ImageChops.multiply(sh.filter(ImageFilter.GaussianBlur(blur)), mask)
+    return hi, sh
 
 
 def paint(img, mask, colour, alpha=255):
-    layer = Image.new("RGBA", img.size, colour + (alpha,))
-    img.paste(layer, (0, 0), mask)
+    img.paste(Image.new("RGBA", img.size, colour + (alpha,)), (0, 0), mask)
 
 
-def lit_gradient(a, b):
-    """Top-left to bottom-right — the direction the light runs."""
-    g = Image.new("RGB", (W, W))
+def lit(a, b, box):
+    """A gradient running top-left to bottom-right across the given box."""
+    x0, y0, x1, y1 = box
+    g = Image.new("RGB", (W, W), b)
     px = g.load()
-    for y in range(W):
-        fy = y / W
-        for x in range(0, W, 2):
-            t = min(1.0, (x / W) * 0.45 + fy * 0.55)
-            c = (round(a[0] + (b[0] - a[0]) * t),
-                 round(a[1] + (b[1] - a[1]) * t),
-                 round(a[2] + (b[2] - a[2]) * t))
-            px[x, y] = c
-            if x + 1 < W:
-                px[x + 1, y] = c
+    for y in range(max(0, y0), min(W, y1)):
+        fy = (y - y0) / max(1, y1 - y0)
+        for x in range(max(0, x0), min(W, x1)):
+            t = min(1.0, ((x - x0) / max(1, x1 - x0)) * 0.4 + fy * 0.6)
+            px[x, y] = tuple(round(a[i] + (b[i] - a[i]) * t) for i in range(3))
     return g
 
 
-def spun(r, seed=11):
-    """Brushed steel: faint streaks running out from the middle."""
-    random.seed(seed)
-    t = Image.new("L", (W, W), 128)
-    d = ImageDraw.Draw(t)
-    for i in range(2600):
-        a = random.random() * math.tau
-        v = 128 + random.randint(-34, 34)
-        r0 = random.uniform(0, r * 0.25)
-        d.line([CX + math.cos(a) * r0, CY + math.sin(a) * r0,
-                CX + math.cos(a) * r, CY + math.sin(a) * r], fill=v, width=K)
-    return t.filter(ImageFilter.GaussianBlur(1.1 * K))
-
-
-def rounded_bar(d, x0, y0, x1, y1, r, fill=255):
-    d.rounded_rectangle([x0, y0, x1, y1], radius=r, fill=fill)
-
-
-# ---------- the plate everything sits on ----------
-
-def plate(frame=True):
+def plate(transparent):
+    if transparent:
+        return Image.new("RGBA", (W, W), (0, 0, 0, 0))
     base = Image.new("RGB", (W, W))
     px = base.load()
     top, bot = (27, 36, 43), (11, 17, 21)
     for y in range(W):
-        t = y / W
-        c = tuple(round(top[i] + (bot[i] - top[i]) * t) for i in range(3))
+        c = tuple(round(top[i] + (bot[i] - top[i]) * (y / W)) for i in range(3))
         for x in range(W):
             px[x, y] = c
     base = base.convert("RGBA")
-
     random.seed(7)
     n = Image.new("L", (W // 3, W // 3))
     n.putdata([random.randint(120, 136) for _ in range((W // 3) ** 2)])
     n = n.resize((W, W), Image.BICUBIC).filter(ImageFilter.GaussianBlur(0.8 * K))
-    paint(base, n.point(lambda v: max(0, (v - 128) * 5)), (127, 178, 204), 255)
-
-    if not frame:
-        return base
-
-    d = ImageDraw.Draw(base)
-    x0, y0, x1, y1 = 46 * K, 46 * K, 466 * K, 466 * K
-    col, wdt, dash, gap = (159, 199, 222, 128), 3 * K, 9 * K, 9 * K
-    def dashed(ax, ay, bx, by):
-        span = math.hypot(bx - ax, by - ay)
-        ux, uy = (bx - ax) / span, (by - ay) / span
-        t = 0.0
-        while t < span:
-            e = min(t + dash, span)
-            d.line([ax + ux * t, ay + uy * t, ax + ux * e, ay + uy * e], fill=col, width=wdt)
-            t = e + gap
-    dashed(x0, y0, x1, y0); dashed(x1, y0, x1, y1)
-    dashed(x1, y1, x0, y1); dashed(x0, y1, x0, y0)
-    for cx, cy in [(x0, y0), (x1, y0), (x0, y1), (x1, y1)]:
-        d.ellipse([cx - 5 * K, cy - 5 * K, cx + 5 * K, cy + 5 * K], fill=(159, 199, 222, 150))
+    paint(base, n.point(lambda v: max(0, (v - 128) * 5)), (127, 178, 204))
     return base
 
 
-# ---------- the door ----------
+def glyph_mask(ch, size, cx, cy):
+    """A currency sign, drawn from the font and centred where asked."""
+    from PIL import ImageFont
+    m = Image.new("L", (W, W), 0)
+    d = ImageDraw.Draw(m)
+    font = None
+    for path in ("C:/Windows/Fonts/seguisb.ttf", "C:/Windows/Fonts/segoeui.ttf",
+                 "C:/Windows/Fonts/arialbd.ttf", "C:/Windows/Fonts/arial.ttf"):
+        try:
+            font = ImageFont.truetype(path, size)
+            if font.getbbox(ch)[2] > font.getbbox(ch)[0]:
+                break
+        except OSError:
+            continue
+    d.text((cx, cy), ch, font=font, fill=255, anchor="mm")
+    return m
 
-R_FRAME_OUT = 168 * K
-R_FRAME_IN = 137 * K
-R_DOOR = 135 * K
-R_GROOVE = 113 * K
-R_FACE = 104 * K
-R_HUB = 31 * K
 
+def build(transparent=False, scale=1.0, centre=(256, 262)):
+    img = plate(transparent)
+    cx, cy = centre[0] * K, centre[1] * K
 
-def build(scale=1.0, centre=None, frame=True, rounded=True):
-    global CX, CY, R_FRAME_OUT, R_FRAME_IN, R_DOOR, R_GROOVE, R_FACE, R_HUB
-    CX, CY = centre or (246 * K, 260 * K)
-    R_FRAME_OUT = round(168 * K * scale); R_FRAME_IN = round(137 * K * scale)
-    R_DOOR = round(135 * K * scale);      R_GROOVE = round(113 * K * scale)
-    R_FACE = round(104 * K * scale);      R_HUB = round(31 * K * scale)
-    img = plate(frame)
-    steel = lit_gradient(STEEL_HI, STEEL_LO)
-    dark_steel = lit_gradient(STEEL_MID, STEEL_DEEP)
-    brush = spun(R_DOOR)
+    plot_w = 344 * K * scale
+    plot_h = 250 * K * scale
+    base_y = cy + plot_h * 0.52
+    gap = plot_w * 0.075
+    bw = (plot_w - gap * (len(BARS) - 1)) / len(BARS)
 
-    # --- cast shadow of the whole assembly
-    sh = disc(R_FRAME_OUT).filter(ImageFilter.GaussianBlur(14 * K))
-    paint(img, ImageChops.offset(sh, 4 * K, 10 * K), (0, 0, 0), 150)
+    for idx, (h, l, frac) in enumerate(BARS):
+        x0 = cx - plot_w / 2 + idx * (bw + gap)
+        bh = plot_h * frac
+        y0 = base_y - bh
+        box = (round(x0), round(y0), round(x0 + bw), round(base_y))
 
-    # --- recessed frame the door sits in
-    frame = ring_mask(R_FRAME_OUT, R_FRAME_IN)
-    img.paste(dark_steel, (0, 0), frame)
-    fh, fs = bevel(frame, 4 * K, 3 * K)
-    paint(img, fh, (240, 214, 150), 120)
-    paint(img, fs, (28, 17, 4), 190)
+        m = Image.new("L", (W, W), 0)
+        ImageDraw.Draw(m).rounded_rectangle(box, radius=round(bw * 0.22), fill=255)
 
-    # --- the seam behind the door, so the door reads as a separate piece
-    seam = ring_mask(R_FRAME_IN, R_DOOR - 2 * K)
-    paint(img, seam.filter(ImageFilter.GaussianBlur(1.5 * K)), (20, 12, 3), 235)
+        # its own shadow on the ground, so the bars sit rather than float
+        paint(img, ImageChops.offset(m.filter(ImageFilter.GaussianBlur(7 * K)),
+                                     round(3 * K), round(7 * K)), (0, 0, 0), 105)
+        img.paste(lit(hsl_rgb(h, 82, l + 14), hsl_rgb(h, 82, max(8, l - 12)), box), (0, 0), m)
+        hi, sh = bevel(m, round(4 * K * scale), 3 * K * scale)
+        paint(img, hi, (255, 255, 255), 105)
+        paint(img, sh, (0, 0, 0), 120)
 
-    # --- door face: brushed steel, lit from the top-left
-    door = disc(R_DOOR)
-    face = Image.composite(steel, Image.new("RGB", (W, W), STEEL_MID),
-                           brush.point(lambda v: min(255, max(0, (v - 96) * 3))))
-    face = Image.blend(face, steel, 0.45)
-    img.paste(face, (0, 0), door)
-    dh, ds = bevel(door, 6 * K, 4 * K)
-    paint(img, dh, (253, 232, 172), 165)
-    paint(img, ds, (32, 20, 5), 200)
+    # the two currencies, in gold, over the bars they belong to
+    sz = round(168 * K * scale)
+    for ch, gx, gy in (("€", cx - plot_w * 0.30, cy - plot_h * 0.02),
+                       ("₹", cx + plot_w * 0.16, cy - plot_h * 0.36)):
+        m = glyph_mask(ch, sz, gx, gy)
+        paint(img, ImageChops.offset(m.filter(ImageFilter.GaussianBlur(5 * K)),
+                                     round(2 * K), round(5 * K)), (0, 0, 0), 165)
+        box = m.getbbox() or (0, 0, W, W)
+        img.paste(lit(GOLD_HI, GOLD_LO, box), (0, 0), m)
+        hi, sh = bevel(m, round(3 * K * scale), 2.2 * K * scale)
+        paint(img, hi, (255, 244, 198), 190)
+        paint(img, sh, (40, 24, 4), 190)
 
-    # --- concentric grooves cut into the face
-    for r, deep in ((R_GROOVE, True), (R_FACE, False)):
-        g = ring_mask(r, r - 5 * K)
-        gh, gs = bevel(g, 2 * K, 1.6 * K)
-        paint(img, g.filter(ImageFilter.GaussianBlur(1.2 * K)), (46, 29, 8), 175 if deep else 140)
-        paint(img, gs, (242, 214, 146), 110)
-
-    # --- inner face, very slightly proud
-    inner = disc(R_FACE - 5 * K)
-    img.paste(Image.blend(face, steel, 0.25), (0, 0), inner)
-    ih, isd = bevel(inner, 3 * K, 2.4 * K)
-    paint(img, ih, (246, 222, 158), 120)
-    paint(img, isd, (36, 22, 6), 150)
-
-    # --- the handle: eight spokes with rounded ends
-    spokes = Image.new("L", (W, W), 0)
-    sd = ImageDraw.Draw(spokes)
-    for a in range(0, 360, 45):
-        rad = math.radians(a)
-        x1, y1 = CX + math.cos(rad) * 22 * K * scale, CY + math.sin(rad) * 22 * K * scale
-        x2, y2 = CX + math.cos(rad) * 90 * K * scale, CY + math.sin(rad) * 90 * K * scale
-        sd.line([x1, y1, x2, y2], fill=255, width=round(14 * K * scale))
-        for cx, cy, rr in ((x2, y2, 8 * K * scale), (x1, y1, 8 * K * scale)):
-            sd.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill=255)
-    ssh = spokes.filter(ImageFilter.GaussianBlur(4 * K))
-    paint(img, ImageChops.offset(ssh, 3 * K, 5 * K), (26, 16, 4), 175)
-    img.paste(steel, (0, 0), spokes)
-    sph, sps = bevel(spokes, 3 * K, 2.2 * K)
-    paint(img, sph, (255, 238, 180), 190)
-    paint(img, sps, (36, 22, 6), 190)
-
-    # --- hub, domed
-    hub = disc(R_HUB)
-    hsh = hub.filter(ImageFilter.GaussianBlur(5 * K))
-    paint(img, ImageChops.offset(hsh, 3 * K, 6 * K), (26, 16, 4), 190)
-    img.paste(steel, (0, 0), hub)
-    hh, hs = bevel(hub, 5 * K, 3.5 * K)
-    paint(img, hh, (255, 242, 194), 200)
-    paint(img, hs, (36, 22, 6), 195)
-    cap = disc(round(13 * K * scale))
-    paint(img, cap, (198, 158, 70), 255)
-    ch, cs = bevel(cap, 2 * K, 1.6 * K)
-    paint(img, cs, (250, 228, 166), 170)
-    paint(img, ch, (44, 28, 8), 170)
-    # specular on the dome
-    spec = disc(11 * K * scale, CX - 11 * K * scale, CY - 12 * K * scale).filter(ImageFilter.GaussianBlur(6 * K))
-    paint(img, spec, (255, 255, 255), 95)
-
-    # --- rivets around the frame
-    for a in range(0, 360, 45):
-        rad = math.radians(a + 22.5)
-        bx = CX + math.cos(rad) * 152 * K * scale
-        by = CY + math.sin(rad) * 152 * K * scale
-        rv = disc(9 * K * scale, bx, by)
-        img.paste(steel, (0, 0), rv)
-        rh, rs = bevel(rv, 2 * K, 1.5 * K)
-        paint(img, rh, (255, 240, 184), 210)
-        paint(img, rs, (8, 13, 17), 200)
-
-    # --- hinges, so it is a door and not a dial
-    for hy in (CY - 86 * K * scale, CY + 86 * K * scale):
-        hg = Image.new("L", (W, W), 0)
-        hd = ImageDraw.Draw(hg)
-        rounded_bar(hd, CX + 150 * K * scale, hy - 24 * K * scale, CX + 196 * K * scale, hy + 24 * K * scale, 10 * K)
-        img.paste(dark_steel, (0, 0), hg)
-        hh2, hs2 = bevel(hg, 3 * K, 2 * K)
-        paint(img, hh2, (236, 210, 144), 150)
-        paint(img, hs2, (28, 17, 4), 190)
-
-    out = img.resize((S, S), Image.LANCZOS)
-
-    if rounded:
-        corner = Image.new("L", (S * 4, S * 4), 0)
-        ImageDraw.Draw(corner).rounded_rectangle([0, 0, S * 4 - 1, S * 4 - 1],
-                                                 radius=104 * 4, fill=255)
-        out.putalpha(corner.resize((S, S), Image.LANCZOS))
-    return out
+    return img.resize((S, S), Image.LANCZOS)
 
 
 if __name__ == "__main__":
@@ -266,16 +154,17 @@ if __name__ == "__main__":
     icons = os.path.join(here, "..", "icons")
 
     art = build()
-    art.resize((512, 512), Image.LANCZOS).save(os.path.join(icons, "icon-512.png"))
+    art.save(os.path.join(icons, "icon-512.png"))
     art.resize((192, 192), Image.LANCZOS).save(os.path.join(icons, "icon-192.png"))
 
-    # Android crops the maskable one itself, so the plate bleeds to the edge,
-    # the dashed frame comes off, and the door shrinks into the safe circle
-    build(scale=0.66, centre=(256 * K, 256 * K), frame=False, rounded=False)         .convert("RGB").save(os.path.join(icons, "icon-maskable-512.png"))
+    # Android crops the maskable one to a shape of its own, so the mark shrinks
+    # into the safe circle and the ground bleeds to the edges behind it.
+    build(scale=0.72, centre=(256, 256)).save(os.path.join(icons, "icon-maskable-512.png"))
 
     # iOS masks it too, and would rather not be handed an alpha channel
-    flat = Image.new("RGB", (S, S), (12, 18, 22))
-    flat.paste(art, (0, 0), art)
+    flat = Image.new("RGB", (S, S), (14, 20, 25))
+    a = art.convert("RGBA")
+    flat.paste(a, (0, 0), a)
     flat.resize((180, 180), Image.LANCZOS).save(os.path.join(icons, "apple-touch-icon.png"))
 
     print("wrote icon-512, icon-192, icon-maskable-512, apple-touch-icon")
