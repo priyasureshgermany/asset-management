@@ -952,8 +952,8 @@ html.locked #lockScreen{
     <div class="field"><label>Your name</label><input class="inp" id="profName" placeholder="Your name"></div>
     <div class="field"><label>Home currency</label>
       <div class="toggle2" id="profCurTog">
-        <button class="x" data-cur="EUR" aria-pressed="true">€ Euro</button>
-        <button class="x" data-cur="INR" aria-pressed="false">₹ Rupee</button>
+        <button class="x" data-cur="INR" aria-pressed="true">₹ Rupee</button>
+        <button class="x" data-cur="EUR" aria-pressed="false">€ Euro</button>
       </div>
     </div>
     <button class="btn" id="saveProfile">Save</button>
@@ -1025,11 +1025,11 @@ html.locked #lockScreen{
 
     <div id="calcSip">
       <div class="field"><label>Monthly investment</label>
-        <div class="amtfield"><span class="cur" id="sipCur">€</span><input id="sipAmt" type="text" inputmode="decimal" placeholder="500"></div>
+        <div class="amtfield"><span class="cur" id="sipCur">€</span><input id="sipAmt" type="text" inputmode="decimal" value="20000"></div>
       </div>
       <div class="row2">
-        <div class="field"><label>Return % a year</label><input class="inp" id="sipRate" type="text" inputmode="decimal" placeholder="12"></div>
-        <div class="field"><label>Years</label><input class="inp" id="sipYears" type="text" inputmode="decimal" placeholder="10"></div>
+        <div class="field"><label>Return % a year</label><input class="inp" id="sipRate" type="text" inputmode="decimal" value="14"></div>
+        <div class="field"><label>Years</label><input class="inp" id="sipYears" type="text" inputmode="decimal" value="10"></div>
       </div>
       <button class="btn" id="sipCalc">Work it out</button>
       <div class="calcout" id="sipOut" hidden>
@@ -1053,11 +1053,11 @@ html.locked #lockScreen{
 
     <div id="calcLoan" hidden>
       <div class="field"><label>Loan amount</label>
-        <div class="amtfield"><span class="cur" id="loanCur">€</span><input id="loanAmt" type="text" inputmode="decimal" placeholder="200000"></div>
+        <div class="amtfield"><span class="cur" id="loanCur">€</span><input id="loanAmt" type="text" inputmode="decimal" value="3000000"></div>
       </div>
       <div class="row2">
-        <div class="field"><label>Interest % a year</label><input class="inp" id="loanRate" type="text" inputmode="decimal" placeholder="3.8"></div>
-        <div class="field"><label>Years</label><input class="inp" id="loanYears" type="text" inputmode="decimal" placeholder="20"></div>
+        <div class="field"><label>Interest % a year</label><input class="inp" id="loanRate" type="text" inputmode="decimal" value="10.10"></div>
+        <div class="field"><label>Years</label><input class="inp" id="loanYears" type="text" inputmode="decimal" value="20"></div>
       </div>
       <button class="btn" id="loanCalc">Work it out</button>
       <div class="calcout" id="loanOut" hidden>
@@ -1282,7 +1282,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.9";
+const APP_VERSION = "1.0.10";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1290,12 +1290,12 @@ const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
 /* ============================================================
    Currency
    ============================================================ */
-const CURRENCIES = ["EUR", "INR"];
+const CURRENCIES = ["INR", "EUR"];
 const CUR_META = {
   EUR: { sym:"€", locale:"de-DE", label:"€ Euro" },
   INR: { sym:"₹", locale:"en-IN", label:"₹ Rupee" }
 };
-function curSym(c){ return (CUR_META[c] || CUR_META.EUR).sym; }
+function curSym(c){ return (CUR_META[c] || CUR_META.INR).sym; }
 
 /* ============================================================
    Colour — the expense tracker's system, kept to the letter:
@@ -1413,7 +1413,7 @@ const oneOf = (v, list, dflt) => list.includes(v) ? v : dflt;
 function stateFromPayload(p){
   p = p && typeof p === "object" ? p : {};
   const arr = (a) => Array.isArray(a) ? a : [];
-  const home = oneOf(p.profile && p.profile.currency, CURRENCIES, "EUR");
+  const home = oneOf(p.profile && p.profile.currency, CURRENCIES, "INR");
   /* Entries made before currency existed are in the home currency: that is
      what they were entered as, whatever the app calls it now. */
   const cur = (c) => oneOf(c, CURRENCIES, home);
@@ -1498,7 +1498,7 @@ function goldPrice(c){ return state.settings.goldPerGram[c] || 0; }
 
 function fmt(amount, c){
   const cu = c || display();
-  const meta = CUR_META[cu] || CUR_META.EUR;
+  const meta = CUR_META[cu] || CUR_META.INR;
   const abs = Math.abs(amount);
   const digits = abs > 0 && abs < 100 ? 2 : 0;
   return (amount < 0 ? "-" : "") + meta.sym +
@@ -1516,7 +1516,7 @@ function fmtRate(n){
    would stop the rows adding up to the total they came from. */
 function fmtExact(amount, c){
   const cu = c || display();
-  const meta = CUR_META[cu] || CUR_META.EUR;
+  const meta = CUR_META[cu] || CUR_META.INR;
   return (amount < 0 ? "-" : "") + meta.sym +
     Math.abs(amount).toLocaleString(meta.locale, { minimumFractionDigits:2, maximumFractionDigits:2 });
 }
@@ -2404,7 +2404,7 @@ $("profCurTog").querySelectorAll("button").forEach(b =>
 $("saveProfile").addEventListener("click", () => {
   state.profile.name = $("profName").value.trim();
   const on = $("profCurTog").querySelector('[aria-pressed="true"]');
-  state.profile.currency = on ? on.dataset.cur : "EUR";
+  state.profile.currency = on ? on.dataset.cur : "INR";
   save(); render(); toast("Saved");
 });
 

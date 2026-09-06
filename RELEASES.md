@@ -1,5 +1,9 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.10 — 2026-09-06
+- better: Rupees are what the app starts in now, with euro a tap away in the top bar and under Settings → Profile.
+- better: The calculators open on the sums actually being asked rather than an empty form: 20.000 a month at 14% over 10 years, and a 30,00,000 loan at 10.10% over 20.
+
 ## 1.0.9 — 2026-09-06
 - new: A PIN lock: four digits asked for when the app opens and again after five minutes away, with a question of your own to fall back on if the PIN goes.
 - new: Deleting everything now asks for the PIN, and the recovery question is put away while it asks — a question that could authorise a wipe is not a lock.
