@@ -940,7 +940,7 @@ html.locked #lockScreen{
         <button role="tab" data-inv="funds" aria-selected="false">Funds <span class="n" id="nInvFunds">0</span></button>
         <button role="tab" data-inv="stocks" aria-selected="false">Stocks <span class="n" id="nInvStocks">0</span></button>
         <button role="tab" data-inv="gold" aria-selected="false">Gold <span class="n" id="nInvGold">0</span></button>
-        <button role="tab" data-inv="other" aria-selected="false">Other <span class="n" id="nInvOther">0</span></button>
+        <button role="tab" data-inv="other" aria-selected="false">Fixed <span class="n" id="nInvOther">0</span></button>
       </div>
     </div>
     <div class="chips" id="goldFilter" style="padding:12px 14px 0" hidden></div>
@@ -1074,12 +1074,26 @@ html.locked #lockScreen{
     <h3>Rates &amp; gold</h3>
     <p class="ph">Entries keep the currency you enter them in. These figures are what convert them when a total has to be one number, and what a gram of gold is worth today.</p>
     <div class="setsec">
+      <div class="toggle2" id="liveTog" style="margin-bottom:12px">
+        <button class="x" data-live="1" aria-pressed="true">From the internet</button>
+        <button class="x" data-live="0" aria-pressed="false">I'll set them</button>
+      </div>
+      <div class="note" id="liveNote" style="margin-bottom:14px">—</div>
+    </div>
+    <div class="setsec">
       <div class="field"><label>Rupees per euro</label><input class="inp" id="rateInr" type="text" inputmode="decimal" placeholder="90"></div>
       <div class="note">Used for every converted total. A euro entry shown in rupees is multiplied by this; a rupee entry shown in euro is divided by it.</div>
     </div>
     <div class="setsec">
       <div class="field"><label>Gold price per gram (€)</label><input class="inp" id="goldEur" type="text" inputmode="decimal" placeholder="75"></div>
       <div class="field"><label>Gold price per gram (₹)</label><input class="inp" id="goldInr" type="text" inputmode="decimal" placeholder="7200"></div>
+      <div class="field"><label>That price is for</label>
+        <div class="toggle2" id="karatTog">
+          <button class="x" data-k="24K" aria-pressed="false">24K</button>
+          <button class="x" data-k="22K" aria-pressed="true">22K</button>
+          <button class="x" data-k="18K" aria-pressed="false">18K</button>
+        </div>
+      </div>
       <div class="note">Physical gold is valued from its weight, not a figure you keep updating by hand: grams × the price above, in the entry's own currency.</div>
     </div>
     <button class="btn" id="saveRates">Save</button>
@@ -1142,6 +1156,7 @@ html.locked #lockScreen{
         <div class="field"><label>Return % a year</label><input class="inp" id="sipRate" type="text" inputmode="decimal" value="14"></div>
         <div class="field"><label>Years</label><input class="inp" id="sipYears" type="text" inputmode="decimal" value="10"></div>
       </div>
+      <div class="field"><label>Starting</label><input class="inp" id="sipStart" type="month"></div>
       <button class="btn" id="sipCalc">Work it out</button>
       <div class="calcout" id="sipOut" hidden>
         <div class="co-k">Worth at the end</div>
@@ -1170,6 +1185,7 @@ html.locked #lockScreen{
         <div class="field"><label>Interest % a year</label><input class="inp" id="loanRate" type="text" inputmode="decimal" value="10.10"></div>
         <div class="field"><label>Years</label><input class="inp" id="loanYears" type="text" inputmode="decimal" value="20"></div>
       </div>
+      <div class="field"><label>First instalment</label><input class="inp" id="loanStart" type="month"></div>
       <button class="btn" id="loanCalc">Work it out</button>
       <div class="calcout" id="loanOut" hidden>
         <div class="co-k">Every month</div>
@@ -1425,7 +1441,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.15";
+const APP_VERSION = "1.0.16";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1503,7 +1519,7 @@ const INVEST_TYPES = [
 const GOLD_TYPE = "Physical Gold";
 /* Kept in the words these are actually called, so a filter reads the way the
    drawer does. */
-const GOLD_KINDS = ["Necklace","Aram","Chain","Ring","Stud","Dollar","Bangles","Other"];
+const GOLD_KINDS = ["Necklace","Aram","Aruna","Chain","Bracelet","Ring","Stud","Dollar","Bangles","Other"];
 
 function bucketOf(table, key){
   const hit = table.find(x => x.k === key);
@@ -1608,6 +1624,12 @@ function stateFromPayload(p){
         return out;
       })(),
       inrPerEur: num(settings.inrPerEur) > 0 ? num(settings.inrPerEur) : 90,
+      /* Whether the two rates are fetched when the app opens, and which karat
+         the single gold price is taken to mean — the spot price is 24K, and
+         most jewellery is not. */
+      live: settings.live !== false,
+      goldKarat: oneOf(settings.goldKarat, ["24K","22K","18K"], "22K"),
+      liveAt: str(settings.liveAt),
       goldPerGram: {
         EUR: num(gold.EUR) > 0 ? num(gold.EUR) : 75,
         INR: num(gold.INR) > 0 ? num(gold.INR) : 7200
@@ -2435,8 +2457,17 @@ function renderInvest(){
   if (collapseGold) items = items.filter(i => i.type !== GOLD_TYPE);
 
   if (!items.length && !collapseGold){
-    host.innerHTML = emptyBlock(ICON_CHART, "Nothing here yet",
-      "SIPs, stocks, deposits — and physical gold, which is valued by weight.");
+    /* Each tab says what belongs in it. An empty tab with a vague name is a
+       question rather than an answer. */
+    const empties = {
+      all:    ["Nothing invested yet", "Funds, stocks, deposits — and physical gold, which is valued by weight."],
+      funds:  ["No funds yet", "SIPs and mutual funds live here."],
+      stocks: ["No stocks yet", "Shares you hold directly live here."],
+      gold:   ["No gold yet", "Jewellery, coins and bars, valued by weight rather than by a figure you keep updating."],
+      other:  ["Nothing fixed yet", "Fixed deposits, PPF and EPF, bonds — anything that pays a set return rather than moving with a market."]
+    };
+    const e = empties[invTab] || empties.all;
+    host.innerHTML = emptyBlock(ICON_CHART, e[0], e[1]);
     return;
   }
   const rows = document.createElement("div");
@@ -2747,12 +2778,105 @@ $("saveProfile").addEventListener("click", () => {
   save(); render(); toast("Saved");
 });
 
+/* ============================================================
+   Rates from the internet
+
+   Two things nobody wants to keep typing: what a euro is worth in rupees, and
+   what a gram of gold costs. Both are asked for once when the app opens, from
+   services that need no key and allow the request from a page.
+
+   Neither is trusted blindly. A figure that does not parse, or arrives absurd,
+   is dropped and whatever was already set stays — a rate is the multiplier
+   under every converted total in the app, and a wrong one is worse than a
+   stale one. Offline simply means nothing changes.
+   ============================================================ */
+const FX_URL = "https://open.er-api.com/v6/latest/EUR";
+const GOLD_URL = "https://api.gold-api.com/price/XAU";
+const TROY_OZ_G = 31.1034768;
+const KARAT = { "24K": 1, "22K": 22 / 24, "18K": 18 / 24 };
+
+/* Believable bounds. Not a judgement about markets, just a net under an
+   answer that arrived wrong: a rate of 0, or of 100000, is a broken feed. */
+const sane = (v, lo, hi) => Number.isFinite(v) && v > lo && v < hi;
+
+async function fetchRates(){
+  const out = {};
+  try{
+    const fx = await (await fetch(FX_URL, { cache:"no-store" })).json();
+    const inr = fx && fx.rates && Number(fx.rates.INR);
+    const usd = fx && fx.rates && Number(fx.rates.USD);
+    if (sane(inr, 20, 500)) out.inrPerEur = inr;
+    if (sane(usd, 0.1, 10)) out.usdPerEur = usd;
+  }catch(e){ /* offline is not out of date */ }
+  try{
+    const g = await (await fetch(GOLD_URL, { cache:"no-store" })).json();
+    const perOz = g && Number(g.price);
+    if (sane(perOz, 100, 100000)) out.usdPerGram24 = perOz / TROY_OZ_G;
+    if (g && g.updatedAt) out.at = String(g.updatedAt);
+  }catch(e){ /* ditto */ }
+  return out;
+}
+
+/** Writes what came back into settings, at the karat the price is taken as. */
+function applyRates(r){
+  const st = state.settings;
+  let changed = false;
+  if (r.inrPerEur){ st.inrPerEur = Math.round(r.inrPerEur * 100) / 100; changed = true; }
+  if (r.usdPerGram24 && r.usdPerEur){
+    const k = KARAT[st.goldKarat] || 1;
+    const eurPerGram = (r.usdPerGram24 / r.usdPerEur) * k;
+    st.goldPerGram.EUR = Math.round(eurPerGram * 100) / 100;
+    st.goldPerGram.INR = Math.round(eurPerGram * st.inrPerEur);
+    changed = true;
+  }
+  if (changed){
+    st.liveAt = new Date().toISOString();
+    save();
+  }
+  return changed;
+}
+
+let ratesTried = false;
+async function refreshRates(force){
+  if (!state.settings.live || (ratesTried && !force)) return false;
+  ratesTried = true;
+  const r = await fetchRates();
+  const ok = applyRates(r);
+  if (ok){ render(); fillRates(); }
+  return ok;
+}
+
 /* ---------- rates & gold ---------- */
 function fillRates(){
-  $("rateInr").value = state.settings.inrPerEur;
-  $("goldEur").value = state.settings.goldPerGram.EUR;
-  $("goldInr").value = state.settings.goldPerGram.INR;
+  const st = state.settings;
+  $("rateInr").value = st.inrPerEur;
+  $("goldEur").value = st.goldPerGram.EUR;
+  $("goldInr").value = st.goldPerGram.INR;
+  document.querySelectorAll("#liveTog button").forEach(b =>
+    b.setAttribute("aria-pressed", String((b.dataset.live === "1") === !!st.live)));
+  document.querySelectorAll("#karatTog button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.k === st.goldKarat)));
+  [$("rateInr"), $("goldEur"), $("goldInr")].forEach(el => { el.disabled = !!st.live; });
+  $("liveNote").textContent = !st.live
+    ? "The figures below are yours, and stay as you set them."
+    : st.liveAt
+      ? "Fetched " + new Date(st.liveAt).toLocaleString() + ". Asked for once each time the app opens."
+      : "Nothing fetched yet — the app asks once each time it opens, and keeps what you have if it cannot.";
 }
+document.querySelectorAll("#liveTog button").forEach(b =>
+  b.addEventListener("click", async () => {
+    state.settings.live = b.dataset.live === "1";
+    save(); fillRates();
+    if (state.settings.live) await refreshRates(true);
+    toast(state.settings.live ? "Taking rates from the internet" : "Rates are yours to set");
+  }));
+document.querySelectorAll("#karatTog button").forEach(b =>
+  b.addEventListener("click", async () => {
+    state.settings.goldKarat = b.dataset.k;
+    save(); fillRates();
+    if (state.settings.live) await refreshRates(true);
+    else { render(); toast("Set the price for " + b.dataset.k + " yourself"); }
+  }));
 $("saveRates").addEventListener("click", () => {
   const rate = num($("rateInr").value);
   if (rate <= 0){ toast("The rate has to be more than zero"); return; }
@@ -2767,6 +2891,10 @@ $("btnGoldPrice").addEventListener("click", () => { setPane("rates"); sheetOpen(
 function fillCalc(){
   $("sipCur").textContent = curSym(display());
   $("loanCur").textContent = curSym(display());
+  const now = new Date();
+  const thisMonth = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0");
+  if (!$("sipStart").value) $("sipStart").value = thisMonth;
+  if (!$("loanStart").value) $("loanStart").value = thisMonth;
 }
 $("calcTog").querySelectorAll("button").forEach(b =>
   b.addEventListener("click", () => {
@@ -2827,9 +2955,33 @@ function wireYearRows(hostId){
   });
 }
 
-function yearLabel(row, months){
+const MONTHS_SHORT = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+/** The month an input of the form YYYY-MM names, or null. */
+function startMonth(id){
+  const v = ($(id).value || "").trim();
+  const m = v.match(/^(\d{4})-(\d{2})$/);
+  if (!m) return null;
+  const mo = Number(m[2]) - 1;            /* a month counted from zero, once */
+  if (mo < 0 || mo > 11) return null;
+  return { y: Number(m[1]), m: mo };
+}
+/** n months on from a start, as {y, m}. */
+function addMonths(start, n){
+  const total = start.m + n;
+  return { y: start.y + Math.floor(total / 12), m: ((total % 12) + 12) % 12 };
+}
+const monthName = (d) => MONTHS_SHORT[d.m] + " " + d.y;
+const monthShort = (d) => MONTHS_SHORT[d.m] + " " + String(d.y).slice(2);
+
+/** Which months a year of the schedule covers, when a start is known. */
+function yearLabel(row, months, start){
   const last = Math.ceil(months / 12);
-  return row.year === last && months % 12 ? "Year " + row.year + "*" : "Year " + row.year;
+  const partial = row.year === last && months % 12;
+  if (!start) return partial ? "Year " + row.year + "*" : "Year " + row.year;
+  const from = addMonths(start, (row.year - 1) * 12);
+  const toIdx = Math.min(row.year * 12, months) - 1;
+  return monthShort(from) + " – " + monthShort(addMonths(start, toIdx));
 }
 
 $("sipCalc").addEventListener("click", () => {
@@ -2845,13 +2997,14 @@ $("sipCalc").addEventListener("click", () => {
   $("sipReturns").textContent = fmtDisp(earned);
   $("sipBarIn").style.width = (invested / future * 100) + "%";
   $("sipBarRet").style.width = (earned / future * 100) + "%";
+  const sipFrom = startMonth("sipStart");
   $("sipYearRows").innerHTML = rows.map(row => `<tr class="yr-row" data-y="${row.year}" tabindex="0">
-    <td class="yr"><span class="yr-caret"></span>${esc(yearLabel(row, n))}</td>
+    <td class="yr"><span class="yr-caret"></span>${esc(yearLabel(row, n, sipFrom))}</td>
     <td>${esc(fmtExact(row.put))}</td>
     <td>${esc(fmtExact(row.worth))}</td>
     <td class="pos">${esc(fmtExact(row.earned))}</td>
   </tr>` + row.months.map(mo => `<tr class="mo-row" data-y="${row.year}" hidden>
-    <td class="mo">Month ${mo.n}</td>
+    <td class="mo">${esc(sipFrom ? monthName(addMonths(sipFrom, (row.year - 1) * 12 + mo.n - 1)) : "Month " + mo.n)}</td>
     <td>${esc(fmtExact(mo.put))}</td>
     <td>${esc(fmtExact(mo.worth))}</td>
     <td class="pos">${esc(fmtExact(mo.earned))}</td>
@@ -2873,13 +3026,14 @@ $("loanCalc").addEventListener("click", () => {
   $("loanTotal").textContent = fmtDisp(total);
   $("loanBarP").style.width = (P / total * 100) + "%";
   $("loanBarI").style.width = (interest / total * 100) + "%";
+  const loanFrom = startMonth("loanStart");
   $("loanYearRows").innerHTML = rows.map(row => `<tr class="yr-row" data-y="${row.year}" tabindex="0">
-    <td class="yr"><span class="yr-caret"></span>${esc(yearLabel(row, n))}</td>
+    <td class="yr"><span class="yr-caret"></span>${esc(yearLabel(row, n, loanFrom))}</td>
     <td>${esc(fmtExact(row.principal))}</td>
     <td class="neg">${esc(fmtExact(row.interest))}</td>
     <td>${esc(fmtExact(row.left))}</td>
   </tr>` + row.months.map(mo => `<tr class="mo-row" data-y="${row.year}" hidden>
-    <td class="mo">Month ${mo.n}</td>
+    <td class="mo">${esc(loanFrom ? monthName(addMonths(loanFrom, (row.year - 1) * 12 + mo.n - 1)) : "Month " + mo.n)}</td>
     <td>${esc(fmtExact(mo.principal))}</td>
     <td class="neg">${esc(fmtExact(mo.interest))}</td>
     <td>${esc(fmtExact(mo.left))}</td>
@@ -3645,6 +3799,10 @@ syncEye();
 /* Asked once a minute after opening rather than immediately: the first
    moments belong to drawing the app, not to the network. */
 setTimeout(() => checkForUpdate().then(showUpdate), 4000);
+/* Once, when the app opens. Not on every render, and not on a timer: a rate
+   that moves under you while you are reading is worse than one that is a few
+   hours old. */
+setTimeout(() => refreshRates(), 900);
 render();
 </script>
 </body>

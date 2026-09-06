@@ -1,5 +1,11 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.16 — 2026-09-06
+- new: Both calculators take a starting month, and then say the months rather than counting them: Oct 26 – Sep 27, and Oct 2026 inside it.
+- new: The exchange rate and the gold price are asked for from the internet when the app opens, and you say which karat the gold price is for. Switch it off and the figures are yours again.
+- new: Bracelet and Aruna join the kinds of gold.
+- better: The investment tab called Other is called Fixed, and says what belongs in it: deposits, PPF and EPF, bonds — anything paying a set return.
+
 ## 1.0.15 — 2026-09-06
 - new: A SIP can carry the day it goes out, and the dashboard says when one has come round. Tick it off and it stays quiet until its day next month.
 

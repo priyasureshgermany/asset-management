@@ -74,7 +74,14 @@ where it is switched on.
 
 - **Profile** — your name, and the currency new entries start in.
 - **Rates & gold** — rupees per euro, and the gold price per gram in each
-  currency. Everything that converts or weighs reads these two.
+  currency. Everything that converts or weighs reads these two. They are
+  asked for from the internet once when the app opens (`open.er-api.com` for
+  the rate, `api.gold-api.com` for spot gold — no key, no account), and you
+  say which karat the single gold price stands for, since spot is 24K and
+  most jewellery is not. A figure that does not parse or arrives absurd is
+  dropped and what you had stays: a rate sits under every converted total in
+  the app, and a wrong one is worse than a stale one. Offline changes
+  nothing. Switch it off and both figures are yours to set.
 - **GitHub sync** — manual Pull/Push only. Nothing syncs automatically; see
   the pitfall this avoids in the project notes. Needs a personal access token
   with Contents read/write on the target repo, entered in-app (stored in
