@@ -571,6 +571,32 @@ select.inp{appearance:none;background-image:none}
 .calcout .co-r span:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
 .calcbar{display:flex;height:10px;border-radius:99px;overflow:hidden;margin-top:12px;background:var(--surface-sunk)}
 .calcbar i{display:block;height:100%}
+.ytoggle{
+  width:100%;margin-top:12px;padding:10px;border-radius:var(--r-md);
+  background:var(--surface-2);border:1px solid var(--line);
+  font-size:12.5px;font-weight:600;color:var(--ink-2);
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  transition:background .15s,color .15s;
+}
+.ytoggle:hover{background:var(--surface-sunk);color:var(--ink)}
+.ytoggle svg{width:14px;height:14px;stroke-width:2.2;transition:transform .22s}
+.ytoggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+.yscroll{max-height:320px;overflow:auto;margin-top:10px;border:1px solid var(--line);border-radius:var(--r-md)}
+.ytable{width:100%;border-collapse:collapse;font-size:12px}
+.ytable thead th{
+  position:sticky;top:0;background:var(--surface-2);
+  font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:600;text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);
+}
+.ytable th:first-child,.ytable td:first-child{text-align:left}
+.ytable td{
+  padding:8px 10px;border-bottom:1px solid var(--line);text-align:right;
+  font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap;
+}
+.ytable tbody tr:last-child td{border-bottom:none;color:var(--ink);font-weight:600}
+.ytable td.yr{font-family:var(--sans);color:var(--ink-3);font-weight:600}
+.ytable tbody tr:last-child td.yr{color:var(--ink)}
+.ytable td.pos{color:var(--pos)} .ytable td.neg{color:var(--neg)}
 
 /* ---------- Toast ---------- */
 .toast{
@@ -815,12 +841,12 @@ select.inp{appearance:none;background-image:none}
     <h3>Rates &amp; gold</h3>
     <p class="ph">Entries keep the currency you enter them in. These figures are what convert them when a total has to be one number, and what a gram of gold is worth today.</p>
     <div class="setsec">
-      <div class="field"><label>Rupees per euro</label><input class="inp" id="rateInr" type="number" inputmode="decimal" placeholder="90"></div>
+      <div class="field"><label>Rupees per euro</label><input class="inp" id="rateInr" type="text" inputmode="decimal" placeholder="90"></div>
       <div class="note">Used for every converted total. A euro entry shown in rupees is multiplied by this; a rupee entry shown in euro is divided by it.</div>
     </div>
     <div class="setsec">
-      <div class="field"><label>Gold price per gram (€)</label><input class="inp" id="goldEur" type="number" inputmode="decimal" placeholder="75"></div>
-      <div class="field"><label>Gold price per gram (₹)</label><input class="inp" id="goldInr" type="number" inputmode="decimal" placeholder="7200"></div>
+      <div class="field"><label>Gold price per gram (€)</label><input class="inp" id="goldEur" type="text" inputmode="decimal" placeholder="75"></div>
+      <div class="field"><label>Gold price per gram (₹)</label><input class="inp" id="goldInr" type="text" inputmode="decimal" placeholder="7200"></div>
       <div class="note">Physical gold is valued from its weight, not a figure you keep updating by hand: grams × the price above, in the entry's own currency.</div>
     </div>
     <button class="btn" id="saveRates">Save</button>
@@ -877,11 +903,11 @@ select.inp{appearance:none;background-image:none}
 
     <div id="calcSip">
       <div class="field"><label>Monthly investment</label>
-        <div class="amtfield"><span class="cur" id="sipCur">€</span><input id="sipAmt" type="number" inputmode="decimal" placeholder="500"></div>
+        <div class="amtfield"><span class="cur" id="sipCur">€</span><input id="sipAmt" type="text" inputmode="decimal" placeholder="500"></div>
       </div>
       <div class="row2">
-        <div class="field"><label>Return % a year</label><input class="inp" id="sipRate" type="number" inputmode="decimal" placeholder="12"></div>
-        <div class="field"><label>Years</label><input class="inp" id="sipYears" type="number" inputmode="decimal" placeholder="10"></div>
+        <div class="field"><label>Return % a year</label><input class="inp" id="sipRate" type="text" inputmode="decimal" placeholder="12"></div>
+        <div class="field"><label>Years</label><input class="inp" id="sipYears" type="text" inputmode="decimal" placeholder="10"></div>
       </div>
       <button class="btn" id="sipCalc">Work it out</button>
       <div class="calcout" id="sipOut" hidden>
@@ -890,16 +916,26 @@ select.inp{appearance:none;background-image:none}
         <div class="calcbar"><i id="sipBarIn" style="background:var(--accent)"></i><i id="sipBarRet" style="background:var(--pos)"></i></div>
         <div class="co-r"><span>You put in</span><span id="sipInvested">—</span></div>
         <div class="co-r"><span>It earned</span><span id="sipReturns">—</span></div>
+        <button class="ytoggle" id="sipYearBtn" type="button" aria-expanded="false">
+          Year by year
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="yscroll" id="sipYearWrap" hidden>
+          <table class="ytable">
+            <thead><tr><th>Year</th><th>Put in</th><th>Worth</th><th>Earned</th></tr></thead>
+            <tbody id="sipYearRows"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
     <div id="calcLoan" hidden>
       <div class="field"><label>Loan amount</label>
-        <div class="amtfield"><span class="cur" id="loanCur">€</span><input id="loanAmt" type="number" inputmode="decimal" placeholder="200000"></div>
+        <div class="amtfield"><span class="cur" id="loanCur">€</span><input id="loanAmt" type="text" inputmode="decimal" placeholder="200000"></div>
       </div>
       <div class="row2">
-        <div class="field"><label>Interest % a year</label><input class="inp" id="loanRate" type="number" inputmode="decimal" placeholder="3.8"></div>
-        <div class="field"><label>Years</label><input class="inp" id="loanYears" type="number" inputmode="decimal" placeholder="20"></div>
+        <div class="field"><label>Interest % a year</label><input class="inp" id="loanRate" type="text" inputmode="decimal" placeholder="3.8"></div>
+        <div class="field"><label>Years</label><input class="inp" id="loanYears" type="text" inputmode="decimal" placeholder="20"></div>
       </div>
       <button class="btn" id="loanCalc">Work it out</button>
       <div class="calcout" id="loanOut" hidden>
@@ -908,6 +944,16 @@ select.inp{appearance:none;background-image:none}
         <div class="calcbar"><i id="loanBarP" style="background:var(--accent)"></i><i id="loanBarI" style="background:var(--neg)"></i></div>
         <div class="co-r"><span>Interest over the term</span><span id="loanInterest">—</span></div>
         <div class="co-r"><span>Paid in total</span><span id="loanTotal">—</span></div>
+        <button class="ytoggle" id="loanYearBtn" type="button" aria-expanded="false">
+          Year by year
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="yscroll" id="loanYearWrap" hidden>
+          <table class="ytable">
+            <thead><tr><th>Year</th><th>Principal</th><th>Interest</th><th>Left to pay</th></tr></thead>
+            <tbody id="loanYearRows"></tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -954,7 +1000,7 @@ select.inp{appearance:none;background-image:none}
   <div class="sheet-body">
     <input type="hidden" id="assetId">
     <div class="field"><label>What it is worth</label>
-      <div class="amtfield"><span class="cur" id="assetCurSym">€</span><input id="assetValue" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="amtfield"><span class="cur" id="assetCurSym">€</span><input id="assetValue" type="text" inputmode="decimal" placeholder="0"></div>
     </div>
     <div class="field"><label>Currency</label><div class="toggle2" id="assetCurTog"></div></div>
     <div class="field"><label>Name</label><input class="inp" id="assetName" placeholder="Savings account"></div>
@@ -976,12 +1022,12 @@ select.inp{appearance:none;background-image:none}
   <div class="sheet-body">
     <input type="hidden" id="liabId">
     <div class="field"><label>Still owed</label>
-      <div class="amtfield"><span class="cur" id="liabCurSym">€</span><input id="liabAmount" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="amtfield"><span class="cur" id="liabCurSym">€</span><input id="liabAmount" type="text" inputmode="decimal" placeholder="0"></div>
     </div>
     <div class="field"><label>Currency</label><div class="toggle2" id="liabCurTog"></div></div>
     <div class="field"><label>Name</label><input class="inp" id="liabName" placeholder="Home loan"></div>
     <div class="field"><label>Kind</label><div class="chips" id="liabCats"></div></div>
-    <div class="field"><label>Interest % a year (optional)</label><input class="inp" id="liabRate" type="number" inputmode="decimal" placeholder="0"></div>
+    <div class="field"><label>Interest % a year (optional)</label><input class="inp" id="liabRate" type="text" inputmode="decimal" placeholder="0"></div>
     <div class="field"><label>Note (optional)</label><textarea class="inp" id="liabNotes"></textarea></div>
     <button class="btn" id="liabSave">Save</button>
     <button class="btn danger" id="liabDelete" style="margin-top:9px" hidden>Delete this liability</button>
@@ -999,12 +1045,12 @@ select.inp{appearance:none;background-image:none}
   <div class="sheet-body">
     <input type="hidden" id="goalId">
     <div class="field"><label>Target</label>
-      <div class="amtfield"><span class="cur" id="goalCurSym">€</span><input id="goalTarget" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="amtfield"><span class="cur" id="goalCurSym">€</span><input id="goalTarget" type="text" inputmode="decimal" placeholder="0"></div>
     </div>
     <div class="field"><label>Currency</label><div class="toggle2" id="goalCurTog"></div></div>
     <div class="field"><label>What it is for</label><input class="inp" id="goalName" placeholder="House down payment"></div>
     <div class="row2">
-      <div class="field"><label>Saved so far</label><input class="inp" id="goalCurrent" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="field"><label>Saved so far</label><input class="inp" id="goalCurrent" type="text" inputmode="decimal" placeholder="0"></div>
       <div class="field"><label>By when</label><input class="inp" id="goalDate" type="date"></div>
     </div>
     <div class="field"><label>Note (optional)</label><textarea class="inp" id="goalNotes"></textarea></div>
@@ -1029,15 +1075,15 @@ select.inp{appearance:none;background-image:none}
 
     <div id="investPaperFields">
       <div class="row2">
-        <div class="field"><label>Put in</label><input class="inp" id="investInvested" type="number" inputmode="decimal" placeholder="0"></div>
-        <div class="field"><label>Worth now</label><input class="inp" id="investCurrent" type="number" inputmode="decimal" placeholder="0"></div>
+        <div class="field"><label>Put in</label><input class="inp" id="investInvested" type="text" inputmode="decimal" placeholder="0"></div>
+        <div class="field"><label>Worth now</label><input class="inp" id="investCurrent" type="text" inputmode="decimal" placeholder="0"></div>
       </div>
-      <div class="field"><label>Monthly SIP (optional)</label><input class="inp" id="investSip" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="field"><label>Monthly SIP (optional)</label><input class="inp" id="investSip" type="text" inputmode="decimal" placeholder="0"></div>
     </div>
 
     <div id="investGoldFields" hidden>
       <div class="row2">
-        <div class="field"><label>Weight in grams</label><input class="inp" id="investGrams" type="number" inputmode="decimal" placeholder="0"></div>
+        <div class="field"><label>Weight in grams</label><input class="inp" id="investGrams" type="text" inputmode="decimal" placeholder="0"></div>
         <div class="field"><label>Purity</label>
           <select class="inp" id="investPurity">
             <option value="24K">24K</option><option value="22K" selected>22K</option>
@@ -1046,7 +1092,7 @@ select.inp{appearance:none;background-image:none}
         </div>
       </div>
       <div class="field"><label>Description</label><input class="inp" id="investGoldDesc" placeholder="Two bangles, bought in Chennai"></div>
-      <div class="field"><label>What you paid (optional)</label><input class="inp" id="investGoldPaid" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="field"><label>What you paid (optional)</label><input class="inp" id="investGoldPaid" type="text" inputmode="decimal" placeholder="0"></div>
       <div class="note" id="goldValueNote">Worth is worked out from the weight and the gold price in Settings → Rates &amp; gold.</div>
     </div>
 
@@ -1059,7 +1105,7 @@ select.inp{appearance:none;background-image:none}
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.1";
+const APP_VERSION = "1.0.2";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1119,7 +1165,26 @@ function paint(h){ return "hsl(" + h + " 82% 38%)"; }
    construction rather than by everyone remembering.
    ============================================================ */
 function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
-const num = (v) => { const n = Number(v); return Number.isFinite(n) ? n : 0; };
+/* Reads a number the way a person writes one. A German keyboard types 3,8 and
+   a number input hands back "" for it, which is how a rate silently became 0 —
+   so the fields are plain text now and the parsing happens here: comma or dot
+   as the decimal mark, and grouped forms like 1.234,56 or 1,234.56 too. */
+function num(v){
+  if (typeof v === "number") return Number.isFinite(v) ? v : 0;
+  let s = String(v == null ? "" : v).trim().replace(/[\s '’]/g, "");
+  if (!s) return 0;
+  const comma = s.lastIndexOf(","), dot = s.lastIndexOf(".");
+  if (comma > -1 && dot > -1){
+    /* whichever comes last is the decimal mark; the other groups thousands */
+    s = comma > dot ? s.replace(/\./g, "").replace(",", ".") : s.replace(/,/g, "");
+  } else if (comma > -1){
+    /* 1,234 is ambiguous — treat a lone comma as the decimal mark, which is
+       what someone typing a rate or a price on this keyboard means */
+    s = s.replace(",", ".");
+  }
+  const n = Number(s);
+  return Number.isFinite(n) ? n : 0;
+}
 const str = (v) => String(v == null ? "" : v);
 const oneOf = (v, list, dflt) => list.includes(v) ? v : dflt;
 
@@ -1218,7 +1283,21 @@ function fmt(amount, c){
     abs.toLocaleString(meta.locale, { minimumFractionDigits:digits, maximumFractionDigits:digits });
 }
 function fmtDisp(amount){ return fmt(amount, display()); }
-function pct(n){ return (n >= 0 ? "+" : "") + n.toFixed(1) + "%"; }
+function pct(n){ return (n >= 0 ? "+" : "") + fmtRate(n) + "%"; }
+/* A rate keeps its decimal, written with the mark the reader uses: 3,8 on a
+   euro screen, 3.8 on a rupee one. */
+function fmtRate(n){
+  return Number(n).toLocaleString(CUR_META[display()].locale,
+    { minimumFractionDigits:0, maximumFractionDigits:2 });
+}
+/* An exact amount — for a schedule, where rounding every row to whole units
+   would stop the rows adding up to the total they came from. */
+function fmtExact(amount, c){
+  const cu = c || display();
+  const meta = CUR_META[cu] || CUR_META.EUR;
+  return (amount < 0 ? "-" : "") + meta.sym +
+    Math.abs(amount).toLocaleString(meta.locale, { minimumFractionDigits:2, maximumFractionDigits:2 });
+}
 
 function totals(){
   const plain = state.assets.reduce((s,a) => s + toDisp(a.value, a.currency), 0);
@@ -1534,7 +1613,7 @@ function renderDashList(){
       b.innerHTML =
         `<span class="mono" style="background:hsl(${hue} 82% 38% / .14);color:${paint(hue)}">${ICON_DEBT}</span>
          <span class="rowmain"><span class="t1">${esc(l.name || l.category)}</span>
-           <span class="t2"><span class="cn">${esc(l.category)}${l.interestRate ? " · " + l.interestRate + "%" : ""}</span>${curPill(l.currency)}</span></span>
+           <span class="t2"><span class="cn">${esc(l.category)}${l.interestRate ? " · " + esc(fmtRate(l.interestRate)) + "%" : ""}</span>${curPill(l.currency)}</span></span>
          <span class="rowend"><span class="amt out">${esc(fmt(l.amount, l.currency))}</span>
            ${l.currency !== display() ? `<span class="amt-sub flat">${esc(fmtDisp(toDisp(l.amount, l.currency)))}</span>` : ""}</span>`;
       b.addEventListener("click", () => openLiab(l.id));
@@ -1944,18 +2023,63 @@ $("calcTog").querySelectorAll("button").forEach(b =>
     $("calcSip").hidden = b.dataset.calc !== "sip";
     $("calcLoan").hidden = b.dataset.calc !== "loan";
   }));
+/* Both schedules run month by month and the headline figures are read off the
+   last row rather than worked out a second way — a total and its breakdown
+   that are calculated separately are a total and its breakdown that drift. */
+function sipSchedule(P, annual, months){
+  const r = annual / 12 / 100;
+  const rows = [];
+  let worth = 0, put = 0;
+  for (let m = 1; m <= months; m++){
+    worth = (worth + P) * (1 + r);   /* paid at the start of the month */
+    put += P;
+    if (m % 12 === 0 || m === months)
+      rows.push({ year: Math.ceil(m / 12), put, worth, earned: worth - put });
+  }
+  return rows;
+}
+function loanSchedule(P, annual, months, emi){
+  const r = annual / 12 / 100;
+  const rows = [];
+  let left = P, yearP = 0, yearI = 0;
+  for (let m = 1; m <= months; m++){
+    const interest = left * r;
+    /* the last instalment clears whatever rounding has left behind, so the
+       principal column adds up to the loan exactly */
+    const principal = m === months ? left : emi - interest;
+    left = Math.max(0, left - principal);
+    yearP += principal; yearI += interest;
+    if (m % 12 === 0 || m === months){
+      rows.push({ year: Math.ceil(m / 12), principal: yearP, interest: yearI, left });
+      yearP = 0; yearI = 0;
+    }
+  }
+  return rows;
+}
+function yearLabel(row, months){
+  const last = Math.ceil(months / 12);
+  return row.year === last && months % 12 ? "Year " + row.year + "*" : "Year " + row.year;
+}
+
 $("sipCalc").addEventListener("click", () => {
   const P = num($("sipAmt").value), annual = num($("sipRate").value), years = num($("sipYears").value);
-  const r = annual / 12 / 100, n = Math.round(years * 12);
+  const n = Math.round(years * 12);
   if (P <= 0 || n <= 0){ toast("Fill in the amount and the years"); return; }
-  const future = r > 0 ? P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) : P * n;
-  const invested = P * n;
-  const earned = future - invested;
+  const rows = sipSchedule(P, annual, n);
+  const end = rows[rows.length - 1];
+  const future = end.worth, invested = end.put, earned = end.earned;
+
   $("sipFuture").textContent = fmtDisp(future);
   $("sipInvested").textContent = fmtDisp(invested);
   $("sipReturns").textContent = fmtDisp(earned);
   $("sipBarIn").style.width = (invested / future * 100) + "%";
   $("sipBarRet").style.width = (earned / future * 100) + "%";
+  $("sipYearRows").innerHTML = rows.map(row => `<tr>
+    <td class="yr">${esc(yearLabel(row, n))}</td>
+    <td>${esc(fmtExact(row.put))}</td>
+    <td>${esc(fmtExact(row.worth))}</td>
+    <td class="pos">${esc(fmtExact(row.earned))}</td>
+  </tr>`).join("");
   $("sipOut").hidden = false;
 });
 $("loanCalc").addEventListener("click", () => {
@@ -1963,14 +2087,30 @@ $("loanCalc").addEventListener("click", () => {
   const r = annual / 12 / 100, n = Math.round(years * 12);
   if (P <= 0 || n <= 0){ toast("Fill in the amount and the years"); return; }
   const emi = r > 0 ? P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1) : P / n;
-  const total = emi * n;
-  const interest = total - P;
+  const rows = loanSchedule(P, annual, n, emi);
+  const interest = rows.reduce((s, row) => s + row.interest, 0);
+  const total = P + interest;
+
   $("loanEmi").textContent = fmtDisp(emi);
   $("loanInterest").textContent = fmtDisp(interest);
   $("loanTotal").textContent = fmtDisp(total);
   $("loanBarP").style.width = (P / total * 100) + "%";
   $("loanBarI").style.width = (interest / total * 100) + "%";
+  $("loanYearRows").innerHTML = rows.map(row => `<tr>
+    <td class="yr">${esc(yearLabel(row, n))}</td>
+    <td>${esc(fmtExact(row.principal))}</td>
+    <td class="neg">${esc(fmtExact(row.interest))}</td>
+    <td>${esc(fmtExact(row.left))}</td>
+  </tr>`).join("");
   $("loanOut").hidden = false;
+});
+
+[["sipYearBtn","sipYearWrap"], ["loanYearBtn","loanYearWrap"]].forEach(([btn, wrap]) => {
+  $(btn).addEventListener("click", () => {
+    const open = $(wrap).hidden;
+    $(wrap).hidden = !open;
+    $(btn).setAttribute("aria-expanded", String(open));
+  });
 });
 
 /* ---------- backup & restore ---------- */

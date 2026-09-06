@@ -59,6 +59,20 @@ python -m http.server 4174
 Then open `http://localhost:4174`. Or use the `.claude/launch.json`
 configuration with the `run` skill / Claude's browser preview.
 
+## The icon
+
+A brass vault door on the same engraved plate the expense tracker uses, so the
+two sit together on a home screen. It is generated, not hand-drawn — edit and
+re-run to change it:
+
+```bash
+python tools/make-icons.py
+```
+
+That writes all four PNGs in `icons/`, including the maskable one, which drops
+the dashed frame and shrinks the door into the safe circle because Android
+supplies the outline itself. Needs Pillow.
+
 ## Releasing
 
 Same tooling as expense-tracker:
