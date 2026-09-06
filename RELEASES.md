@@ -1,5 +1,10 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.5 — 2026-09-06
+- better: The dashboard chart is the expense tracker's pie: drawn in projection with a wall dropping from its edge, lit across the whole solid rather than slice by slice, and standing on its own shadow.
+- better: Choosing a slice polishes it — a sheen and a hotspot sized to the wedge, the rest falling back — and names it underneath in its own colour, with the amount.
+- better: Nothing goes in or out in this app, so the tracker's money-in and money-out colours are not carried over; the block colour keeps its reasoning without its vocabulary.
+
 ## 1.0.4 — 2026-09-06
 - better: Pick a colour on the dashboard chart and that row answers in money rather than a share — the donut's middle already did, and now the legend beside it agrees.
 

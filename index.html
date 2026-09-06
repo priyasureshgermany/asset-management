@@ -35,9 +35,8 @@
 
   --pos:#0B6B4B;
   --pos-soft:#DFF0E8;
-  --bar-in:#0A5C41;       /* deeper than --pos: a solid block reads lighter
-                             than a thin bar or a word does */
-  --bar-out:#8E2C1D;
+  --pos-block:#0A5C41;    /* deeper than --pos: a solid block of colour reads
+                             lighter than a thin bar or a word does */
   --neg:#A93724;
   --neg-soft:#F8E4E0;
   --warn:#8A5B10;
@@ -64,7 +63,7 @@
     --accent:#5FB0D6; --accent-ink:#06131B; --accent-soft:#152833; --accent-mid:#3D7F9E;
     --pos:#3FCB92; --pos-soft:#0F2A20;
     --neg:#FF7F6B; --neg-soft:#2E1712;
-    --bar-in:#1F9A6B; --bar-out:#C4553F;
+    --pos-block:#1F9A6B;
     --warn:#E5B25B; --warn-soft:#2B2110;
     --gold:#E5C15B; --gold-soft:#2B2410;
     --shadow-sm:0 1px 2px rgba(0,0,0,.4);
@@ -81,7 +80,7 @@
   --accent:#5FB0D6; --accent-ink:#06131B; --accent-soft:#152833; --accent-mid:#3D7F9E;
   --pos:#3FCB92; --pos-soft:#0F2A20;
   --neg:#FF7F6B; --neg-soft:#2E1712;
-  --bar-in:#1F9A6B; --bar-out:#C4553F;
+  --pos-block:#1F9A6B;
   --warn:#E5B25B; --warn-soft:#2B2110;
   --gold:#E5C15B; --gold-soft:#2B2410;
   --shadow-sm:0 1px 2px rgba(0,0,0,.4);
@@ -238,22 +237,22 @@ button.tile:hover .tile-go{color:var(--accent)}
 .barrow.open .barrow-sub{max-height:90px;opacity:1;margin-top:7px}
 
 /* ---------- Donut ---------- */
-.pierow{display:flex;align-items:center;gap:14px;padding-bottom:6px}
-.pie{flex:none;width:132px;height:132px;position:relative}
-.pie svg{display:block;width:100%;height:100%;transform:rotate(-90deg)}
-.pie .slice{
-  fill:none;stroke-width:17;cursor:pointer;
-  transition:stroke-width .18s cubic-bezier(.2,.7,.3,1),opacity .18s;
+/* The pie is drawn in projection and stands on its own wall — see the drawing
+   code for how the light is laid across the whole solid rather than per slice.
+   overflow:visible so the chosen slice's shadow is not clipped. */
+.pie3d{display:grid;place-items:center;padding:6px 0}
+.pie3d svg{width:min(300px,84vw);height:auto;overflow:visible}
+.pie-top{cursor:pointer}
+@media (hover:hover){ .pie-top:hover{filter:brightness(1.08)} }
+.pieinfo{
+  margin:10px 2px 2px;padding:11px 13px;border-radius:var(--r-md);
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  font-size:13px;line-height:1.4;
 }
-.pie .slice.on{stroke-width:23}
-.pie .slice.dim{opacity:.34}
-.pie-mid{
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;text-align:center;pointer-events:none;padding:0 12px;
-}
-.pie-mid .pm-v{font-size:15px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
-.pie-mid .pm-k{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-top:2px}
-.pielegend{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.pieinfo .pi-n{font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pieinfo .pi-v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:700;flex:none}
+.pieinfo .pi-s{font-size:11.5px;opacity:.8}
+.pielegend{min-width:0;display:flex;flex-direction:column;gap:1px;margin-top:4px}
 .legrow{
   display:flex;align-items:center;gap:8px;width:100%;text-align:left;
   padding:5px 6px;border-radius:8px;transition:background .15s;
@@ -659,10 +658,9 @@ select.inp{appearance:none;background-image:none}
         <div class="cb-t">Where your money sits</div>
         <div class="cb-n" id="allocN">—</div>
       </div>
-      <div class="pierow">
-        <div class="pie" id="allocPie"></div>
-        <div class="pielegend" id="allocLegend"></div>
-      </div>
+      <div class="pie3d" id="allocPie"></div>
+      <div class="pieinfo" id="allocInfo" hidden></div>
+      <div class="pielegend" id="allocLegend"></div>
     </section>
 
     <section class="chartblock" id="assetBarBlock">
@@ -1111,7 +1109,7 @@ select.inp{appearance:none;background-image:none}
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.4";
+const APP_VERSION = "1.0.5";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1192,11 +1190,14 @@ function bucketOf(table, key){
   const hit = table.find(x => x.k === key);
   return hit ? hit.b : "Other";
 }
-function swatch(name, table){
+function catOf(name, table){
   const t = table || BUCKETS;
-  const hit = t.find(x => x.k === name) || t[t.length - 1];
-  const l = Math.max(CAT_L_MIN, Math.min(CAT_L_MAX, hit.l));
-  return "hsl(" + hit.h + " " + CAT_SAT + "% " + l + "%)";
+  return t.find(x => x.k === name) || t[t.length - 1];
+}
+function swatch(name, table){
+  const c = catOf(name, table);
+  const l = Math.max(CAT_L_MIN, Math.min(CAT_L_MAX, c.l));
+  return "hsl(" + c.h + " " + CAT_SAT + "% " + l + "%)";
 }
 /* A wash of the same colour, for the square an icon sits on. */
 function swatchSoft(name, table){
@@ -1517,7 +1518,7 @@ function assetSlices(){
   const add = (bucket, amount) => {
     const hit = m.get(bucket);
     if (hit) hit.value += amount;
-    else m.set(bucket, { label: bucket, colour: swatch(bucket), value: amount });
+    else m.set(bucket, { label: bucket, cat: catOf(bucket), colour: swatch(bucket), value: amount });
   };
   state.assets.forEach(a => add(bucketOf(ASSET_CATS, a.category), toDisp(a.value, a.currency)));
   state.investments.forEach(i => add(bucketOf(INVEST_TYPES, i.type), toDisp(investWorth(i), i.currency)));
@@ -1530,9 +1531,98 @@ function liabSlices(){
     const hit = m.get(label);
     const amount = toDisp(l.amount, l.currency);
     if (hit) hit.value += amount;
-    else m.set(label, { label, colour: swatch(label, LIAB_CATS), value: amount });
+    else m.set(label, { label, cat: catOf(label, LIAB_CATS), colour: swatch(label, LIAB_CATS), value: amount });
   });
   return [...m.values()].filter(s => s.value > 0).sort((a,b) => b.value - a.value);
+}
+
+/* ---------- the pie ----------
+   The expense tracker's, drawn the same way: the circle squashed into an
+   ellipse, each slice given a wall dropping from its outer edge. Only the
+   front half of an arc can be seen, so a wall covers whatever part of a
+   slice's range falls in the near half and nothing is drawn for the rest.
+   Walls are painted first and the flat tops over them, which is ordering
+   enough — the tops all sit at one height, so none can hide another.
+
+   What makes it read as one solid object rather than a fan of separate shapes
+   is that the light is applied to the object and not to the pieces: the
+   gradients are laid out in the pie's own coordinates, so the fall of light
+   carries across a boundary instead of restarting at it, and a single sheen
+   goes over the whole top face once every slice is down.
+
+   Choosing a slice lights it rather than moving it. Nothing shifts, so the
+   sheen stays registered with the surface underneath. */
+const PIE = { cx:100, cy:76, rx:80, ry:43, depth:19 };
+const pieX = a => PIE.cx + PIE.rx * Math.cos(a);
+const pieY = a => PIE.cy + PIE.ry * Math.sin(a);
+
+function isDark(){
+  const t = document.documentElement.getAttribute("data-theme");
+  if (t === "dark") return true;
+  if (t === "light") return false;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+const catL = (c) => Math.max(CAT_L_MIN, Math.min(CAT_L_MAX, c.l));
+/** -0.5 (deepest) .. +0.5 (lightest), so a tint can carry the same depth. */
+const catBias = (c) => (catL(c) - 32) / (CAT_L_MAX - CAT_L_MIN);
+
+/**
+ * A wedge's colour built up for a lit solid, keeping its hue so the thing stays
+ * the colour it always is. `on` is the same colour with the light turned up,
+ * for the slice that has been chosen — not simply made lighter: gloss is
+ * contrast, so the top of the range comes up and the bottom goes down.
+ */
+function pieShades(c, on){
+  const up = on ? 6 : 0, down = on ? 5 : 0;
+  const h = c.h, bl = catL(c);
+  const L = v => Math.max(7, Math.min(88, v)).toFixed(1);
+  return {
+    lit:  "hsl(" + h + " " + CAT_SAT + "% " + L(bl + 14 + up) + "%)",
+    top:  "hsl(" + h + " " + CAT_SAT + "% " + L(bl + 6 + up * 0.4) + "%)",
+    base: "hsl(" + h + " " + CAT_SAT + "% " + L(bl - down * 0.6) + "%)",
+    wall: "hsl(" + h + " " + (CAT_SAT - 8) + "% " + L(bl - 11 - down * 0.8) + "%)",
+    foot: "hsl(" + h + " " + (CAT_SAT - 12) + "% " + L(bl - 19 - down * 0.6) + "%)"
+  };
+}
+function tint(c, dark){
+  const b = catBias(c);
+  return dark ? "hsl(" + c.h + " 58% " + (24 + b * 10).toFixed(1) + "%)"
+              : "hsl(" + c.h + " 72% " + (89 + b * 6).toFixed(1) + "%)";
+}
+function tintInk(c, dark){
+  const b = catBias(c);
+  return dark ? "hsl(" + c.h + " 78% " + (76 + b * 14).toFixed(1) + "%)"
+              : "hsl(" + c.h + " 62% " + (34 + b * 12).toFixed(1) + "%)";
+}
+
+/** The wedge of the top face between two angles. */
+function pieTop(a1, a2){
+  if (a2 - a1 >= Math.PI * 2 - 1e-6){
+    /* one wedge holds everything: an arc from a point back to itself draws
+       nothing at all, so the whole ellipse is the face */
+    return "M " + (PIE.cx - PIE.rx) + " " + PIE.cy +
+           " a " + PIE.rx + " " + PIE.ry + " 0 1 0 " + (PIE.rx * 2) + " 0" +
+           " a " + PIE.rx + " " + PIE.ry + " 0 1 0 " + (-PIE.rx * 2) + " 0 Z";
+  }
+  const large = (a2 - a1) > Math.PI ? 1 : 0;
+  return "M " + PIE.cx + " " + PIE.cy +
+         " L " + pieX(a1).toFixed(2) + " " + pieY(a1).toFixed(2) +
+         " A " + PIE.rx + " " + PIE.ry + " 0 " + large + " 1 " +
+         pieX(a2).toFixed(2) + " " + pieY(a2).toFixed(2) + " Z";
+}
+
+/** The wall below the outer edge, over whatever part of it faces the front. */
+function pieWall(a1, a2){
+  const b1 = Math.max(a1, 0), b2 = Math.min(a2, Math.PI);
+  if (b2 <= b1) return "";                       /* this slice is round the back */
+  const large = (b2 - b1) > Math.PI ? 1 : 0;
+  const d = PIE.depth;
+  return "M " + pieX(b1).toFixed(2) + " " + pieY(b1).toFixed(2) +
+         " A " + PIE.rx + " " + PIE.ry + " 0 " + large + " 1 " +
+         pieX(b2).toFixed(2) + " " + pieY(b2).toFixed(2) +
+         " L " + pieX(b2).toFixed(2) + " " + (pieY(b2) + d).toFixed(2) +
+         " A " + PIE.rx + " " + PIE.ry + " 0 " + large + " 0 " +
+         pieX(b1).toFixed(2) + " " + (pieY(b1) + d).toFixed(2) + " Z";
 }
 
 let allocPick = null;
@@ -1545,24 +1635,126 @@ function renderAlloc(){
 
   $("allocN").textContent = slices.length + (slices.length === 1 ? " kind" : " kinds");
 
-  const R = 42, C = 2 * Math.PI * R;
-  let at = 0;
-  const arcs = slices.map((s, idx) => {
-    const frac = total > 0 ? s.value / total : 0;
-    const len = frac * C;
-    const dash = `${Math.max(len - 1.5, 0.6)} ${C - Math.max(len - 1.5, 0.6)}`;
-    const off = -at;
-    at += len;
-    const cls = "slice" + (allocPick === idx ? " on" : allocPick != null ? " dim" : "");
-    return `<circle class="${cls}" data-i="${idx}" cx="60" cy="60" r="${R}" stroke="${s.colour}"
-      stroke-dasharray="${dash}" stroke-dashoffset="${off}" stroke-linecap="butt"></circle>`;
-  }).join("");
+  const dark = isDark();
+  /* twelve o'clock is -90 degrees, and the angle runs clockwise from there */
+  let at = -Math.PI / 2;
+  const spans = slices.map((s, i) => {
+    const span = total > 0 ? (s.value / total) * Math.PI * 2 : 0;
+    const out = { s, i, a1: at, a2: at + span, on: allocPick === i };
+    at += span;
+    return out;
+  });
 
-  const shown = allocPick != null ? slices[allocPick] : null;
+  /* laid out over the pie, not over each slice's box, so the light falls one
+     way across the whole solid and does not restart at every boundary */
+  const yTop = PIE.cy - PIE.ry, yBot = PIE.cy + PIE.ry + PIE.depth;
+  const chosen = spans.find(x => x.on);
+  const defs = spans.map((x, i) => {
+    const k = pieShades(x.s.cat, x.on);
+    return '<linearGradient id="pgt' + i + '" gradientUnits="userSpaceOnUse" ' +
+             'x1="0" y1="' + yTop + '" x2="0" y2="' + (PIE.cy + PIE.ry) + '">' +
+             '<stop offset="0" stop-color="' + k.lit + '"/>' +
+             '<stop offset="0.44" stop-color="' + k.top + '"/>' +
+             '<stop offset="1" stop-color="' + k.base + '"/></linearGradient>' +
+           '<linearGradient id="pgw' + i + '" gradientUnits="userSpaceOnUse" ' +
+             'x1="0" y1="' + PIE.cy + '" x2="0" y2="' + yBot + '">' +
+             '<stop offset="0" stop-color="' + k.base + '"/>' +
+             '<stop offset="0.28" stop-color="' + k.wall + '"/>' +
+             '<stop offset="1" stop-color="' + k.foot + '"/></linearGradient>';
+  }).join("") +
+  '<radialGradient id="pgShadow">' +
+    '<stop offset="0" stop-color="' + (dark ? "rgba(0,0,0,.6)" : "rgba(15,25,34,.24)") + '"/>' +
+    '<stop offset="1" stop-color="rgba(0,0,0,0)"/></radialGradient>' +
+  '<radialGradient id="pgGloss" cx="0.34" cy="0.20" r="0.78">' +
+    '<stop offset="0" stop-color="rgba(255,255,255,' + (dark ? ".17" : ".30") + ')"/>' +
+    '<stop offset="0.5" stop-color="rgba(255,255,255,' + (dark ? ".04" : ".08") + ')"/>' +
+    '<stop offset="1" stop-color="rgba(255,255,255,0)"/></radialGradient>' +
+  /* The chosen slice is polished, not outlined: a soft shadow, which is the
+     whole of the emboss, and a second helping of the sheen the pie already
+     carries — laid out in the pie's coordinates, so the shine continues the
+     light already crossing the object rather than starting again mid-wedge. */
+  (chosen
+    ? '<filter id="pgLit" x="-25%" y="-25%" width="150%" height="150%">' +
+        '<feDropShadow dx="0" dy="1.3" stdDeviation="2.1" flood-color="' +
+          (dark ? "#000" : "#0F1922") + '" flood-opacity="' + (dark ? "0.55" : "0.34") +
+          '"/></filter>' +
+      '<radialGradient id="pgSheen" gradientUnits="userSpaceOnUse" ' +
+        'cx="' + (PIE.cx - PIE.rx * 0.30).toFixed(1) + '" ' +
+        'cy="' + (PIE.cy - PIE.ry * 0.62).toFixed(1) + '" ' +
+        'r="' + (PIE.rx * 0.98).toFixed(1) + '">' +
+        '<stop offset="0" stop-color="rgba(255,255,255,' + (dark ? ".72" : ".8") + ')"/>' +
+        '<stop offset="0.22" stop-color="rgba(255,255,255,' + (dark ? ".34" : ".42") + ')"/>' +
+        '<stop offset="0.55" stop-color="rgba(255,255,255,.10)"/>' +
+        '<stop offset="1" stop-color="rgba(255,255,255,0)"/></radialGradient>' +
+      /* the hotspot: small, near-white, gone within a fifth of its radius. A
+         slow fade reads as haze; the sharpness of the falloff is what reads
+         as wet, so this one stops almost as soon as it starts. */
+      '<radialGradient id="pgHot">' +
+        '<stop offset="0" stop-color="rgba(255,255,255,.96)"/>' +
+        '<stop offset="0.18" stop-color="rgba(255,255,255,.62)"/>' +
+        '<stop offset="0.46" stop-color="rgba(255,255,255,.16)"/>' +
+        '<stop offset="1" stop-color="rgba(255,255,255,0)"/></radialGradient>' +
+      '<clipPath id="pgClip"><path d="' + pieTop(chosen.a1, chosen.a2) + '"/></clipPath>'
+    : "");
+
+  const hair = dark ? "rgba(255,255,255,.16)" : "rgba(255,255,255,.5)";
+  const walls = [], tops = [];
+  spans.forEach((x, i) => {
+    const dim = allocPick != null && !x.on ? ' opacity="0.42"' : "";
+    const glow = x.on ? ' filter="url(#pgLit)"' : "";
+    const edge = ' stroke="' + hair + '" stroke-width="0.7"';
+    const w = pieWall(x.a1, x.a2);
+    if (w) walls.push('<path class="pie-wall" d="' + w + '" fill="url(#pgw' + i + ')"' + edge + dim + glow + "></path>");
+    tops.push('<path class="pie-top" d="' + pieTop(x.a1, x.a2) + '" fill="url(#pgt' + i + ')"' +
+              edge + dim + glow + ' data-i="' + i + '">' +
+              "<title>" + esc(x.s.label) + " · " + esc(fmtDisp(x.s.value)) + "</title></path>");
+  });
+
   $("allocPie").innerHTML =
-    `<svg viewBox="0 0 120 120" aria-hidden="true">${arcs}</svg>` +
-    `<div class="pie-mid"><div class="pm-v">${esc(shown ? fmtDisp(shown.value) : fmtDisp(total))}</div>` +
-    `<div class="pm-k">${esc(shown ? shown.label : "Total")}</div></div>`;
+    '<svg viewBox="0 0 200 158" role="img" aria-label="Where your money sits">' +
+    "<defs>" + defs + "</defs>" +
+    '<ellipse cx="' + PIE.cx + '" cy="' + (PIE.cy + PIE.depth + 8) + '" rx="' + (PIE.rx * 1.04) +
+      '" ry="' + (PIE.ry * 0.46) + '" fill="url(#pgShadow)"/>' +
+    walls.join("") + tops.join("") +
+    /* the chosen slice takes its polish over the top of the flat faces. The
+       hotspot is placed against the slice's own middle rather than the pie's,
+       so a slice on the dark side still shows one — a cheat, but a highlight
+       nobody can see is no use as a highlight. */
+    (chosen
+      ? (function(){
+          const mid = (chosen.a1 + chosen.a2) / 2;
+          /* sized to the slice: left at one size it swallowed a narrow one
+             whole, which is the opposite of pointing at it */
+          const k = Math.max(0.3, Math.min(1, (chosen.a2 - chosen.a1) / (Math.PI / 3.2)));
+          const hx = PIE.cx + Math.cos(mid) * PIE.rx * 0.5 - PIE.rx * 0.09 * k;
+          const hy = PIE.cy + Math.sin(mid) * PIE.ry * 0.5 - PIE.ry * 0.22 * k;
+          return '<g clip-path="url(#pgClip)" pointer-events="none">' +
+                 '<path d="' + pieTop(chosen.a1, chosen.a2) + '" fill="url(#pgSheen)"/>' +
+                 '<ellipse cx="' + hx.toFixed(1) + '" cy="' + hy.toFixed(1) +
+                   '" rx="' + (PIE.rx * 0.30 * k).toFixed(1) +
+                   '" ry="' + (PIE.ry * 0.34 * k).toFixed(1) + '" fill="url(#pgHot)"/>' +
+                 "</g>";
+        })()
+      : "") +
+    /* the pie's own sheen goes on last and takes no clicks, so the slices under
+       it stay tappable and the polish underneath still shows through */
+    '<ellipse cx="' + PIE.cx + '" cy="' + PIE.cy + '" rx="' + PIE.rx + '" ry="' + PIE.ry +
+      '" fill="url(#pgGloss)" pointer-events="none"/>' +
+    "</svg>";
+
+  /* what the lit slice is, said in words under the chart */
+  const info = $("allocInfo");
+  if (chosen){
+    const share = total > 0 ? chosen.s.value / total * 100 : 0;
+    info.hidden = false;
+    info.style.background = tint(chosen.s.cat, dark);
+    info.style.color = tintInk(chosen.s.cat, dark);
+    info.innerHTML =
+      `<span class="pi-n">${esc(chosen.s.label)}<span class="pi-s"> · ${share.toFixed(1)}%</span></span>` +
+      `<span class="pi-v">${esc(fmtDisp(chosen.s.value))}</span>`;
+  } else {
+    info.hidden = true;
+  }
 
   /* The share is what the list is for — until you pick one, and then the
      question you were asking was how much, so that row answers in money. */
@@ -1571,14 +1763,14 @@ function renderAlloc(){
     const on = allocPick === idx;
     return `<button class="legrow${on ? " on" : ""}" type="button" data-i="${idx}"
         aria-pressed="${on}" title="${esc(s.label)}: ${esc(fmtDisp(s.value))}">
-      <span class="dot" style="background:${s.colour}"></span>
+      <span class="dot" style="background:${pieShades(s.cat, false).base}"></span>
       <span class="ln">${esc(s.label)}</span>
       <span class="lp${on ? " amt" : ""}">${on ? esc(fmtDisp(s.value)) : share.toFixed(0) + "%"}</span>
     </button>`;
   }).join("");
 
   const pick = (idx) => { allocPick = allocPick === idx ? null : idx; renderAlloc(); };
-  $("allocPie").querySelectorAll(".slice").forEach(el =>
+  $("allocPie").querySelectorAll(".pie-top").forEach(el =>
     el.addEventListener("click", () => pick(Number(el.dataset.i))));
   $("allocLegend").querySelectorAll(".legrow").forEach(el =>
     el.addEventListener("click", () => pick(Number(el.dataset.i))));
@@ -2362,7 +2554,7 @@ function renderReports(){
     repBars("Where it is held", byCurrency, byCurrency.reduce((s,x) => s + x.value, 0)) +
     (state.investments.length ? repBars("Investments: paid in against worth now", [
       { label:"Paid in", colour:"var(--accent)", value: invPaid },
-      { label:"Worth now", colour:"var(--bar-in)", value: invWorth }
+      { label:"Worth now", colour:"var(--pos-block)", value: invWorth }
     ], Math.max(invPaid, invWorth)) : "") +
     (state.goals.length ? `<div class="chartblock" style="margin:0 0 14px">
       <div class="chartblock-h"><div class="cb-t">Goals</div></div>
@@ -2442,8 +2634,14 @@ function applyTheme(t){
   document.querySelectorAll("#themeTog button").forEach(b =>
     b.setAttribute("aria-pressed", String(b.dataset.v === t)));
 }
+/* The pie is lit for the theme it is drawn in — the shadow under it, the sheen
+   over it and the hairline between slices all differ — so a change of theme
+   has to redraw it rather than just recolour what is on screen. */
 document.querySelectorAll("#themeTog button").forEach(b =>
-  b.addEventListener("click", () => applyTheme(b.dataset.v)));
+  b.addEventListener("click", () => { applyTheme(b.dataset.v); render(); }));
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+  if (!document.documentElement.hasAttribute("data-theme")) render();
+});
 applyTheme(localStorage.getItem("assetmgr.theme") || "system");
 
 /* ---------- dashboard tiles jump to their list ---------- */

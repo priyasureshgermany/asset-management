@@ -65,9 +65,15 @@ The expense tracker's system, kept to the letter: `hsl(h 82% L)` with `L`
 inside a 22–42 band, and colours placed so no two are near each other in
 **OkLab**, which is what the eye actually separates — hue degrees lie, since
 10° apart in the greens is invisible where the same 10° in the reds is
-obvious. Figures that mean income or debt take the shared tokens
-(`--pos`, `--neg`, `--bar-in`, `--bar-out`, `--warn`, `--accent`) instead,
-the way the tracker's own dashboard chart does.
+obvious.
+
+What is borrowed is the *drawing*, not the subject. Nothing here goes in or
+out: there is no income and no spending, only things held and what they are
+worth, so the tracker's money-in/money-out pair has no meaning in this app
+and is not carried over. A figure that is not a category takes a plain token
+(`--pos`, `--pos-block`, `--neg`, `--warn`, `--accent`) — `--pos-block` being
+the deeper one for a solid block, since a block of colour reads lighter than
+a thin bar or a word does.
 
 The palettes in `index.html` (`BUCKETS`, `LIAB_CATS`) were solved against
 that metric and are checked by:
