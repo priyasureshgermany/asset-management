@@ -243,9 +243,12 @@ button.tile:hover .tile-go{color:var(--accent)}
 /* The pie sits left and the shares read down the right, as they did before the
    solid arrived. It keeps the larger share of the row: a projected pie loses
    height to the projection, so it needs the width to stay legible. */
-.pierow{display:flex;align-items:center;gap:10px}
-.pie3d{flex:1 1 57%;min-width:0;display:grid;place-items:center;padding:2px 0;position:relative}
-.pie3d svg{width:100%;max-width:250px;height:auto;overflow:visible}
+.pierow{display:flex;align-items:center;gap:8px}
+/* Both sit to the left: the pie takes the width it wants up to 250 and no
+   more, and the shares take only what they need beside it, rather than the
+   two of them being spread to the far edges of the card. */
+.pie3d{flex:0 1 250px;min-width:0;display:grid;justify-items:start;align-items:center;padding:2px 0;position:relative}
+.pie3d svg{width:100%;height:auto;overflow:visible}
 @media (max-width:360px){
   /* below this the two of them start squeezing each other rather than sharing */
   .pierow{flex-direction:column;align-items:stretch;gap:4px}
@@ -275,7 +278,7 @@ button.tile:hover .tile-go{color:var(--accent)}
   font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
   font-weight:600;margin-top:1px;display:block;white-space:nowrap;
 }
-.pielegend{min-width:0;display:flex;flex-direction:column;gap:1px;margin-top:4px}
+.pielegend{flex:0 1 auto;min-width:0;display:flex;flex-direction:column;gap:1px}
 .legrow{
   display:flex;align-items:center;gap:8px;width:100%;text-align:left;
   padding:5px 6px;border-radius:8px;transition:background .15s;
@@ -1132,7 +1135,7 @@ select.inp{appearance:none;background-image:none}
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.6";
+const APP_VERSION = "1.0.7";
 const APP_BUILT = "2026-09-06";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;

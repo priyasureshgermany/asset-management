@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.0.7 — 2026-09-06
+- better: The pie and the shares sit together at the left of the card rather than being spread to its two edges — the pie takes the width it wants and no more, and the shares take only what they need beside it.
+
 ## 1.0.6 — 2026-09-06
 - better: The pie sits on the left again with the shares reading down the right, the way it did before the solid arrived.
 - better: Pick a colour and the amount appears over the chart itself rather than in a panel below it; the list beside it goes back to being shares.
