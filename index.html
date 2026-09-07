@@ -1203,6 +1203,7 @@ html.locked #lockScreen{
       <button class="btn ghost" id="ghPull">Pull onto this device</button>
       <button class="btn" id="ghPush">Push now</button>
     </div>
+    <button class="btn ghost" id="ghReview" style="margin-top:9px" hidden>See what would be pushed</button>
     <button class="btn danger" id="ghDisable" style="margin-top:9px" hidden>Turn sync off</button>
   </div>
 
@@ -1497,6 +1498,21 @@ html.locked #lockScreen{
   </div>
 </section>
 
+<!-- ============ WHAT WOULD BE PUSHED ============ -->
+<section class="sheet" id="shDiff" role="dialog" aria-modal="true" aria-labelledby="diffTitle">
+  <div class="sheet-head">
+    <h2 id="diffTitle">Waiting to be pushed</h2>
+    <button class="iconbtn" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body">
+    <p class="ph" id="diffLead"></p>
+    <div class="rows" id="diffRows"></div>
+    <div class="note" style="margin-top:14px">This is what is here and not in the backup. Pushing sends the whole book, not only these — they are simply what has moved since the last one.</div>
+  </div>
+</section>
+
 <!-- ============ SIPS DUE ============ -->
 <section class="sheet" id="shDue" role="dialog" aria-modal="true" aria-labelledby="dueTitle">
   <div class="sheet-head">
@@ -1542,7 +1558,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.2";
+const APP_VERSION = "1.1.3";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -3557,26 +3573,54 @@ function ghFingerprint(){
   add("g", state.goals, g => [g.name, g.targetAmount, g.currentAmount, g.currency, g.targetDate, g.notes].join("|"));
   add("i", state.investments, i => [i.name, i.type, i.investedAmount, i.currentValue, i.currency,
     i.units, i.sipAmount, i.sipDay, i.sipDone, i.grams, i.purity, i.goldKind, i.boughtOn, i.notes].join("|"));
-  return { sig, misc: JSON.stringify([state.profile, state.settings]) };
+  /* Only the settings a person sets. The rates and the time they were fetched
+     are rewritten on every open by the live feed, and counting those made the
+     app permanently one change behind its own backup — a badge that is always
+     lit says nothing. What is typed by hand still counts: with the live feed
+     off, the rates are yours and a change to them is a change. */
+  const st = state.settings;
+  return { sig, misc: JSON.stringify([
+    state.profile, st.targets, st.goldKarat, st.live,
+    st.live ? null : [st.inrPerEur, st.goldPerGram]
+  ]) };
 }
 function ghSaveSnapshot(){
   try{ localStorage.setItem(GH_SNAP, JSON.stringify(ghFingerprint())); }
   catch(e){ /* storage full: the count degrades, the data does not */ }
 }
-function ghUnpushed(){
-  if (!GH.enabled) return 0;
+const GH_KIND = { a:"Asset", l:"Liability", g:"Goal", i:"Investment" };
+
+/** Everything this device holds that the last push did not, named. */
+function ghChanges(){
+  if (!GH.enabled) return [];
   let snap = null;
   try{ snap = JSON.parse(localStorage.getItem(GH_SNAP) || "null"); }catch(e){}
-  /* Never pushed from here, so there is nothing to compare against and
-     everything counts as waiting. */
   const now = ghFingerprint();
-  if (!snap || !snap.sig) return Object.keys(now.sig).length;
-  let n = 0;
-  Object.keys(now.sig).forEach(k => { if (snap.sig[k] !== now.sig[k]) n++; });
-  Object.keys(snap.sig).forEach(k => { if (now.sig[k] == null) n++; });
-  if (snap.misc !== now.misc) n++;
-  return n;
+  /* The name leads every signature, so a record that has since been deleted
+     can still be named from the snapshot alone. */
+  const nameOf = (sig) => String(sig).split("|")[0] || "Untitled";
+  const out = [];
+
+  if (!snap || !snap.sig){
+    /* Never pushed from this device: there is nothing to compare against, so
+       the whole book is what is waiting. */
+    Object.keys(now.sig).forEach(k =>
+      out.push({ kind: GH_KIND[k[0]], name: nameOf(now.sig[k]), how: "not backed up yet" }));
+    return out;
+  }
+  Object.keys(now.sig).forEach(k => {
+    if (snap.sig[k] == null) out.push({ kind: GH_KIND[k[0]], name: nameOf(now.sig[k]), how: "added" });
+    else if (snap.sig[k] !== now.sig[k]) out.push({ kind: GH_KIND[k[0]], name: nameOf(now.sig[k]), how: "changed" });
+  });
+  Object.keys(snap.sig).forEach(k => {
+    if (now.sig[k] == null) out.push({ kind: GH_KIND[k[0]], name: nameOf(snap.sig[k]), how: "removed" });
+  });
+  if (snap.misc !== now.misc)
+    out.push({ kind: "Settings", name: "Your name, targets and preferences", how: "changed" });
+  return out;
 }
+/* One list, counted — so the number and the list can never disagree. */
+function ghUnpushed(){ return ghChanges().length; }
 
 function ghStatusText(){
   if (!GH.enabled) return "Off — what is here stays on this device.";
@@ -3596,6 +3640,10 @@ function fillGithub(){
   $("ghSave").textContent = on ? "Update these settings" : "Save & enable";
   $("ghOnRow").hidden = !on;
   $("ghDisable").hidden = !on;
+  const waiting = on ? ghUnpushed() : 0;
+  $("ghReview").hidden = !waiting;
+  if (waiting) $("ghReview").textContent =
+    "See the " + waiting + (waiting === 1 ? " change" : " changes") + " waiting";
   ghTileSub();
 }
 function ghTileSub(){
@@ -3659,6 +3707,26 @@ $("ghCheck").addEventListener("click", async () => {
   }catch(e){
     st.textContent = "Could not reach GitHub: " + e.message;
   }
+});
+
+$("ghReview").addEventListener("click", () => {
+  const list = ghChanges();
+  if (!list.length){ toast("Nothing waiting"); return; }
+  $("diffLead").textContent = list.length === 1
+    ? "One thing here is not in the backup."
+    : list.length + " things here are not in the backup.";
+  const order = { added:0, changed:1, removed:2 };
+  $("diffRows").innerHTML = list
+    .slice()
+    .sort((x, y) => (order[x.how] ?? 3) - (order[y.how] ?? 3) || x.kind.localeCompare(y.kind))
+    .map(c => `<div class="improw">
+        <span class="im-m">
+          <span class="im-n">${esc(c.name)}</span>
+          <span class="im-d">${esc(c.kind)}</span>
+        </span>
+        <span class="im-tag ${c.how === "removed" ? "upd" : c.how === "changed" ? "upd" : "add"}">${esc(c.how)}</span>
+      </div>`).join("");
+  sheetOpen("shDiff");
 });
 
 $("ghPull").addEventListener("click", async () => {

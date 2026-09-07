@@ -1,5 +1,9 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.3 — 2026-09-07
+- fix: The sync tile carried a mark every time Settings was opened. The live rates rewrite themselves and their timestamp on each open, and that counted as something to push — so the mark was always lit and said nothing. Only what you change counts now.
+- new: See what would be pushed: the things here that are not in the backup, each named, and whether it was added, changed or removed.
+
 ## 1.1.2 — 2026-09-07
 - better: In depth shows two bars a kind at a time, one labelled now and one labelled target, on the same scale. The mark that stood for the target is gone — it was read as a fault once and as progress toward a goal the next time, and two lengths need no explaining.
 - fix: A row said 91.0% of 20%, which reads as most of the way to a target when it means a share against one. It says the amount at the top and labels each bar instead.
