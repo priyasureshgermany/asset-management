@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.16 — 2026-09-07
+- better: Indian shares are priced too — one Refresh now brings back every NSE ticker, every European one and every linked fund NAV together
+
 ## 1.1.15 — 2026-09-07
 - better: Settings carries a Refresh now button that brings the rate, the gold price, every fund NAV and every share price up to date in one go
 

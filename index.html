@@ -1622,7 +1622,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.15";
+const APP_VERSION = "1.1.16";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -3291,7 +3291,10 @@ function openInvest(id, preset){
   $("investUnits").value = i && i.units ? i.units : "";
   $("investScheme").value = i ? (i.schemeCode || "") : "";
   $("investTicker").value = i ? (i.symbol || "") : "";
-  $("investFundQ").value = "";
+  /* Prefilled with the holding's own name, so tying it to a scheme is one
+     press rather than retyping what the app already knows. Cleared once a
+     scheme is chosen, since the box has nothing left to look for. */
+  $("investFundQ").value = i && !i.schemeCode ? (i.name || "") : "";
   $("investFundHits").innerHTML = "";
   $("investSip").value = i && i.sipAmount ? i.sipAmount : "";
   $("investSipDay").value = i && i.sipDay ? i.sipDay : "";
