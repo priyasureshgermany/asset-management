@@ -868,6 +868,14 @@ select.inp{appearance:none;background-image:none}
    the same call as the holding rows, where the flag belongs to the kind and
    not to the thing being named. */
 .goal-made{margin-top:2px;opacity:.72}
+.gm-open{display:inline-flex;align-items:center;gap:6px;cursor:pointer;border-radius:7px;padding:2px 5px;margin:-2px -5px}
+.gm-open:hover{background:var(--surface-sunk)}
+.gm-n{
+  font-family:var(--mono);font-size:10.5px;color:var(--ink-3);
+  background:var(--surface-sunk);border-radius:99px;padding:1px 6px;
+}
+.gm-chev{width:13px;height:13px;flex:none;transition:transform .2s;color:var(--ink-3)}
+.gm-open[aria-expanded="true"] .gm-chev{transform:rotate(180deg)}
 /* The holdings behind a goal, listed on the goal itself. Ruled off from the
    figures above so the card reads as a claim and then its evidence. */
 .goal-items{
@@ -1721,7 +1729,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.27";
+const APP_VERSION = "1.1.28";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -3115,6 +3123,7 @@ function renderGoals(){
   state.goals.forEach(g => {
     const has = goalSaved(g);
     const src = g.source || ((g.holdings || []).length ? "picked" : "manual");
+    const items = goalItems(g);
     const share = g.targetAmount > 0 ? Math.min(100, has / g.targetAmount * 100) : 0;
     const done = share >= 100;
     const b = document.createElement("button");
@@ -3135,13 +3144,18 @@ function renderGoals(){
          <span>${g.targetDate ? "by " + esc(g.targetDate) : ""}</span>
        </div>
        <div class="goal-sub goal-made">
-         <span>${flagForGoal(g)}${esc(goalSourceLabel(g.source))}</span>
+         <span class="gm-open" data-open="${esc(g.id)}" role="button" tabindex="-1"
+               aria-expanded="${goalOpen[g.id] ? "true" : "false"}">
+           ${flagForGoal(g)}${esc(goalSourceLabel(g.source))}${items.length
+             ? `<span class="gm-n">${items.length}</span>
+                <svg class="gm-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>` : ""}
+         </span>
        </div>
        ${(function(){
-         /* What the goal is actually made of, on the goal itself. A figure
-            with nothing behind it is a claim; the same figure with the
-            accounts and holdings under it is something you can check. */
-         const items = goalItems(g);
+         /* Folded until asked for. A goal is a figure and a bar at a glance;
+            its workings are there when you want to check them and in the way
+            when you do not. */
+         if (!goalOpen[g.id]) return "";
          if (!items.length){
            return src === "manual" ? "" :
              `<div class="goal-items"><div class="gi-none">Nothing in the book matches this yet.</div></div>`;
@@ -3156,13 +3170,26 @@ function renderGoals(){
               <span class="gi-k">${esc(x.kind)}</span>
               <span class="gi-a">${esc(fmt(x.worth, x.currency))}</span>
             </div>`).join("")}${rest > 0
-              ? `<div class="gi-none">and ${rest} more — open the goal to see them all</div>` : ""}</div>`;
+              ? `<div class="gi-none">and ${rest} more</div>` : ""}</div>`;
        })()}`;
     b.addEventListener("click", () => { if (!goalDragMoved) openGoal(g.id); });
+    /* Its own line opens it, so tapping the card still means edit. */
+    b.querySelector("[data-open]").addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!goalItems(g).length) return;
+      goalOpen[g.id] = !goalOpen[g.id];
+      renderGoals();
+    });
     b.querySelector("[data-grip]").addEventListener("pointerdown", (e) => goalDragStart(e, b));
     host.appendChild(b);
   });
 }
+
+/* Which goals are showing their workings. Kept in memory rather than saved:
+   folded is the resting state, and a card left open a week ago is not a
+   preference worth remembering. */
+const goalOpen = {};
 
 /* ---------- putting the goals in your own order ----------
    Pointer events rather than HTML5 drag-and-drop, which does not exist on
