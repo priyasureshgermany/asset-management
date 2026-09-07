@@ -118,6 +118,13 @@ rather than preventing it — there may be a reason — but not silently, which 
 how a total quietly doubles. A hand-picked list still refuses holdings behind
 another goal outright, since that one has no reason to be deliberate.
 
+Each goal card carries what it is made of, with the flag of the book it draws
+on. That flag is read from **what it actually counts**, not from what the goal
+is called: a goal of Indian shares is Indian because every holding in it is
+held in rupees. One reaching across both books gets no flag, since claiming
+either would be half wrong. With nothing in it yet, its own currency is the
+best answer available.
+
 ### Which book a holding is in
 
 Funds and shares carry a small flag **on the line naming the kind** — beside

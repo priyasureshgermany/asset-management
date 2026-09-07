@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.24 — 2026-09-07
+- better: Each goal shows what it is made of, with the flag of the book it draws on
+
 ## 1.1.23 — 2026-09-07
 - better: A goal says what it is made of — mutual funds, Indian shares, European shares, cash in India or Europe — and counts every one of them, keeping up as they change
 
