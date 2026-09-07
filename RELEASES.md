@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.26 — 2026-09-07
+- better: Goals can be dragged into whatever order you want them in, and the order is kept
+
 ## 1.1.25 — 2026-09-07
 - better: Each goal lists the accounts, funds or shares behind it, on the goal itself
 
