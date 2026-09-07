@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.12 — 2026-09-07
+- better: An instalment can be monthly, quarterly, half-yearly or yearly, so an annual insurance premium reminds you in its own month rather than every month
+
 ## 1.1.11 — 2026-09-07
 - better: ULIP becomes Cash, sharing the wedge cash assets already use; cash counts towards what you own but never towards a target allocation
 
