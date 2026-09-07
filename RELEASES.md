@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.20 — 2026-09-07
+- better: Funds find their own scheme by name and start pricing themselves, so nothing has to be linked by hand
+
 ## 1.1.19 — 2026-09-07
 - better: The portfolio value, what went in and the gain now belong to the tab you have selected rather than to the whole book
 

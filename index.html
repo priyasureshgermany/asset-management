@@ -1622,7 +1622,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.19";
+const APP_VERSION = "1.1.20";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -3604,6 +3604,55 @@ async function fetchQuotes(){
     return j && j.quotes && typeof j.quotes === "object" ? j : null;
   }catch(e){ return null; }
 }
+/* Names compared with the noise taken out — case, spaces, punctuation — so
+   "Parag Parikh Flexi Cap Fund" and "PARAG PARIKH FLEXI CAP FUND-DIRECT" are
+   recognisably the same thing. */
+const flatName = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+
+/* A fund with no scheme is looked up by its own name and tied automatically —
+   but only where the answer is not in doubt.
+
+   The danger is real: Direct against Regular and Growth against IDCW are
+   different schemes at different NAVs, and a wrong one would price the
+   holding wrongly and look perfectly fine doing it. So a match must be a
+   Direct Growth scheme whose name *starts with* the holding's name, and there
+   must be exactly one. That prefix rule is what separates "Navi Nifty 50
+   Index Fund" from "Navi Nifty Next 50", and the Zerodha index fund from its
+   ELSS sibling — neither of which starts with the other's name.
+
+   Anything ambiguous is left unlinked, because visibly unset beats quietly
+   wrong. */
+async function resolveScheme(name){
+  let hits;
+  try{
+    hits = await (await fetch(MF_SEARCH + encodeURIComponent(name))).json();
+  }catch(e){ return ""; }
+  if (!Array.isArray(hits)) return "";
+  const want = flatName(name);
+  const good = hits.filter(h => {
+    const n = String(h.schemeName || "");
+    const flat = flatName(n);
+    return /direct/i.test(n) && /growth/i.test(n) && !/idcw|dividend|payout|reinvest/i.test(n)
+      && flat.startsWith(want);
+  });
+  return good.length === 1 ? String(good[0].schemeCode) : "";
+}
+
+/* Every fund still waiting for one, done once and then never again. */
+async function autoLinkFunds(){
+  const waiting = state.investments.filter(i =>
+    !isGold(i) && i.units > 0 && !i.schemeCode &&
+    bucketOf(INVEST_TYPES, i.type) === "Funds");
+  if (!waiting.length) return 0;
+  let tied = 0;
+  for (const inv of waiting){
+    const code = await resolveScheme(inv.name);
+    if (code){ inv.schemeCode = code; inv.updatedAt = new Date().toISOString(); tied++; }
+  }
+  if (tied) save();
+  return tied;
+}
+
 function linkedSchemes(){
   return [...new Set(state.investments
     .filter(i => !isGold(i) && i.schemeCode && i.units > 0)
@@ -3636,6 +3685,9 @@ async function refreshRates(force){
   ratesTried = true;
   const r = await fetchRates();
   let ok = applyRates(r);
+  /* Tied before the NAVs are asked for, so a fund linked on this pass is
+     priced on this pass rather than on the next one. */
+  await autoLinkFunds();
   const codes = linkedSchemes();
   if (codes.length){
     const navs = await fetchNavs(codes);
