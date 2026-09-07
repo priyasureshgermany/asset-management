@@ -46,14 +46,25 @@ currency, from Settings → Rates & gold, worked out fresh every time it is
 read (`investWorth()`). The Investment tab totals the grams across every
 gold holding and what they come to at today's price.
 
-### SIPs coming due
+### Payments coming due
 
-An investment can carry the day of the month its SIP goes out. On or after
-that day the dashboard says so, and the banner opens onto the list with a
-tick against each. Ticking one records the *month* it went out, so it stays
-quiet for the rest of that month and comes back on its day in the next. A
-SIP set for the 31st falls on the 28th, 29th or 30th where the month is
-shorter.
+An investment can carry an instalment: an amount, the day of the month it
+goes out, and how often — **monthly, quarterly, half-yearly or yearly**. On
+or after that day the dashboard says so, and the banner opens onto the list
+with a tick against each. Ticking one records the *month* it went out, so it
+stays quiet for the rest of that month and comes back when its turn is next.
+An instalment set for the 31st falls on the 28th, 29th or 30th where the
+month is shorter.
+
+Anything but monthly is anchored to a month, and comes round only on months a
+whole number of steps away from it — an August premium is due each August and
+silent for the other eleven. The modulo is written the long way in
+`fallsThisMonth()` because a plain `%` goes negative for months before the
+anchor. Records written before frequency existed read as monthly, which is
+what they were.
+
+The banner says *payment*, not *SIP*: an insurance premium falls due the same
+way and the old wording named it wrongly.
 
 **It cannot reach a phone with the app shut.** A notification arriving on the
 day needs a server pushing it, and this is a page with no server behind it —
