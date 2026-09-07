@@ -1,0 +1,49 @@
+name: Quotes
+
+# Share prices, fetched where CORS does not apply. A browser cannot reach
+# Yahoo, Stooq or Frankfurter — checked from the live Pages origin, not
+# assumed — so the fetch happens on a runner and the app reads the result
+# from its own origin, where there are no headers to argue about.
+
+on:
+  schedule:
+    # After the European close on weekdays. The US close lands later, so a
+    # US price here is that day's last European-hours print rather than the
+    # closing one — near enough for a book you look at now and then, and
+    # honest about being a daily figure rather than a live quote.
+    - cron: "30 17 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# A run already in flight should finish rather than be cancelled: it commits
+# a file, and half-writing one is worse than being a minute late.
+concurrency:
+  group: quotes
+  cancel-in-progress: false
+
+jobs:
+  quotes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch the prices
+        run: node tools/fetch-quotes.mjs
+
+      - name: Commit only if something moved
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quotes.json
+          if git diff --staged --quiet; then
+            echo "No change in the prices — nothing to commit."
+          else
+            git commit -m "Quotes for $(date -u +%Y-%m-%d)"
+            git push
+          fi

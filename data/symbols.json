@@ -1,0 +1,13 @@
+{
+  "note": "Shares to fetch a price for. Yahoo symbols: plain for US listings, .AS for Amsterdam, .ST for Stockholm, .NS for the NSE. This list is public because the workflow that reads it is; it says which companies are held, never how many or how much.",
+  "display": ["EUR", "INR"],
+  "symbols": [
+    "INTU",
+    "MSFT",
+    "AMZN",
+    "NDAQ",
+    "NOW",
+    "WKL.AS",
+    "LIME.ST"
+  ]
+}

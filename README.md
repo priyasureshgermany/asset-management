@@ -167,10 +167,30 @@ scheme are at one price, and storing it twice invites them to disagree. They
 are fetched rather than typed, so they stay out of what counts as a change
 worth pushing, for the same reason the rates and their timestamp do.
 
-**Shares have no equivalent.** Fund NAVs are public because AMFI publishes
-them. Stooq, Yahoo Finance and Frankfurter were all tried from the page and
-none is reachable from a browser, so a holding in shares keeps the worth you
-give it.
+### Share prices, fetched the long way round
+
+A browser cannot fetch a share price. Stooq, Yahoo and Frankfurter were each
+tried **from the live Pages origin in a real browser**, not assumed about, and
+all three refuse cross-origin requests; only MFapi answers. No amount of app
+code changes that.
+
+So the fetch happens somewhere that is not a browser. `.github/workflows/
+quotes.yml` runs `tools/fetch-quotes.mjs` on a schedule, which reads the
+symbols from `data/symbols.json`, asks Yahoo for each price and the exchange
+rates, restates every price in each currency the app displays, and writes
+`data/quotes.json`. The app reads that file **from its own origin** when it
+opens — same origin, so there is no CORS to satisfy, no key to hide in a
+public repo, and nothing anyone else has to keep running.
+
+A holding carries a ticker, and is then worth `units × price`, exactly as a
+fund is worth `units × NAV` and gold is worth `grams × rate`. Prices are
+converted in the workflow rather than in the app, so the app never holds a
+second opinion about an exchange rate.
+
+A symbol that fails to fetch keeps the price it had rather than vanishing, and
+a run that prices nothing at all exits non-zero instead of committing an empty
+file. `data/symbols.json` is public because the workflow reading it is: it
+says **which** companies are held, never how many or how much.
 
 ### Sectors and mandates
 
