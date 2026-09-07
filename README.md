@@ -147,6 +147,31 @@ Connecting to Zerodha directly is not possible from here: signing the login
 needs an API secret, and there is nowhere in a page that anyone can view-source
 to keep one.
 
+### Live fund NAVs
+
+A fund can be tied to its AMFI scheme, and is then priced the way gold is:
+`units × NAV`, worked out fresh every time it is read rather than kept by
+hand and quietly going stale. The NAV is fetched on app open, alongside the
+exchange and gold rates and under the same switch.
+
+The source is [MFapi.in](https://www.mfapi.in/), which serves AMFI's daily
+NAVs as JSON with `access-control-allow-origin: *`, no key and no account —
+the only shape of source usable from a page with no server behind it. Its
+`/mf/search` endpoint finds the scheme code from a name typed into the entry
+sheet. The whole scheme name is shown in the results, never trimmed: Direct
+against Regular and Growth against IDCW are different schemes at different
+prices, and picking the wrong one is the failure mode worth guarding against.
+
+NAVs are cached per scheme rather than per holding — two holdings of one
+scheme are at one price, and storing it twice invites them to disagree. They
+are fetched rather than typed, so they stay out of what counts as a change
+worth pushing, for the same reason the rates and their timestamp do.
+
+**Shares have no equivalent.** Fund NAVs are public because AMFI publishes
+them. Stooq, Yahoo Finance and Frankfurter were all tried from the page and
+none is reachable from a browser, so a holding in shares keeps the worth you
+give it.
+
 ### Sectors and mandates
 
 Stocks carry a **sector**, funds a **mandate** — two lists rather than one,
