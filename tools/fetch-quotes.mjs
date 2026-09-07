@@ -15,6 +15,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
 const CHART = "https://query1.finance.yahoo.com/v8/finance/chart/";
+const SEARCH = "https://query1.finance.yahoo.com/v1/finance/search";
 const UA = { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" };
 
 /* Believable bounds, the same net the app puts under a fetched rate: a price
@@ -28,6 +29,25 @@ async function meta(symbol){
   const m = (await r.json())?.chart?.result?.[0]?.meta;
   if (!m) throw new Error(`${symbol}: no result`);
   return m;
+}
+
+/* The sector a company trades in, taken from the same place its price is.
+   Yahoo's own taxonomy is used verbatim rather than translated into a list of
+   my own: it is the same eleven names for a bank in Mumbai and a software
+   house in Stockholm, which is exactly what a chart comparing them needs, and
+   a translation table would be one more thing to keep true.
+
+   The profile endpoint wants a crumb these days; search does not. */
+async function sector(symbol){
+  try{
+    const url = SEARCH + "?q=" + encodeURIComponent(symbol) + "&quotesCount=6&newsCount=0";
+    const r = await fetch(url, { headers: UA });
+    if (!r.ok) return "";
+    const quotes = (await r.json()).quotes || [];
+    const hit = quotes.find(q => String(q.symbol || "").toUpperCase() === symbol.toUpperCase())
+             || quotes[0];
+    return hit && hit.sector ? String(hit.sector) : "";
+  }catch{ return ""; }
 }
 
 async function price(symbol){
@@ -66,6 +86,9 @@ const needed = new Set();
 for (const s of symbols){
   try {
     const p = await price(s);
+    /* Kept from last time if the lookup fails: a sector does not change, and
+       a blank one would empty a chart for no reason. */
+    p.sector = (await sector(s)) || (previous[s] && previous[s].sector) || "";
     quotes[s] = p;
     if (p.currency && p.currency !== "EUR") needed.add("EUR" + p.currency + "=X");
   } catch (e){

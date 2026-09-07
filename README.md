@@ -363,15 +363,23 @@ single holding. Holdings nobody has classified stay in the chart as their own
 grey wedge — dropping them would inflate every other share, and the size of
 what is unknown is worth seeing.
 
-Tagging happens on that screen, where the gap is visible: a dropdown per
-untagged holding, and a button that reads the sector out of the name where the
-name actually says it. That last part is deliberately literal. An Indian fund
-states its mandate in its own title (*Nifty 50 Index*, *Flexi Cap*) and some
-companies state their trade, so those are read; a Zerodha export names stocks
-by ticker, and `RELIANCE` or `TCS` says nothing a rule could read. There is no
-ticker-to-sector table here on purpose — one would have to be kept correct
-forever, and a sector guessed wrong silently moves every share above it, while
-a blank one only says that nobody has said yet.
+Nothing is tagged by hand. A share takes the sector that came with its price
+— the quotes workflow asks Yahoo's search endpoint, which answers without a
+crumb where the profile endpoint no longer does — and a fund takes the mandate
+its own registrar files it under, from MFapi's `scheme_category`. A sector
+typed by hand still wins, because it is the only thing anybody said on
+purpose, but nothing has to be typed.
+
+The sector names are **Yahoo's own eleven**, used verbatim rather than
+translated into a list of this app's own. They are the same names for a bank
+in Mumbai and a software house in Stockholm, which is what a chart comparing
+the two needs, and a hand-made list would have to be kept in step with the
+feed for ever. The dropdown offers the same names, so a typed sector and a
+fetched one can never disagree.
+
+An index ETF carries no sector, and the feed says so rather than guessing.
+Those show as their own share under *Not tagged* rather than being folded
+quietly into the rest.
 
 ### App lock
 

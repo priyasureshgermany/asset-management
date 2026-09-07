@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.31 — 2026-09-07
+- better: Shares and funds tag their own sector — a share from the feed that prices it, a fund from the category its registrar files it under
+
 ## 1.1.30 — 2026-09-07
 - fix: This update installs itself, because the build before it hid the Update button
 

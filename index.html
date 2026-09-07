@@ -1730,7 +1730,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.30";
+const APP_VERSION = "1.1.31";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1868,9 +1868,15 @@ const GOLD_KINDS = ["Necklace","Aram","Aruna","Chain","Bracelet","Ring","Stud","
 /* What a holding is exposed to. Two lists and not one, because "Large cap" is
    not a sector and "Banking" is not a mandate — folded together, each would be
    wrong about half the portfolio. */
-const STOCK_SECTORS = ["Banking","Financial services","IT","Pharma & healthcare",
-  "Auto","FMCG","Energy & oil","Metals & mining","Infrastructure","Telecom",
-  "Chemicals","Realty","Media","Other"];
+/* Yahoo's own eleven, used verbatim rather than translated into a list of my
+   own. They are the same names for a bank in Mumbai and a software house in
+   Stockholm, which is what a chart comparing the two needs — and a hand-made
+   list would have to be kept in step with the feed for ever. Typing one by
+   hand is still allowed, and picks from the same names so the two can never
+   disagree. */
+const STOCK_SECTORS = ["Basic Materials","Communication Services","Consumer Cyclical",
+  "Consumer Defensive","Energy","Financial Services","Healthcare","Industrials",
+  "Real Estate","Technology","Utilities","Other"];
 const FUND_CATS = ["Index","Large cap","Mid cap","Small cap","Flexi cap",
   "ELSS (tax saving)","Debt","Hybrid","International","Sectoral / thematic","Other"];
 /* Both stock buckets take the same list — a bank is a bank in Frankfurt as
@@ -1883,52 +1889,43 @@ function sectorList(bucket){
   const fam = sectorFamily(bucket);
   return fam === "Stocks" ? STOCK_SECTORS : fam === "Funds" ? FUND_CATS : [];
 }
-/* The word this app uses for both, so a report can ask once. */
-const sectorOf = (i) => (i && i.sector) || "";
-
-/* Read the sector out of the name, and only out of the name. An Indian fund
-   states its mandate in its own title — "Nifty 50 Index", "Small Cap" — and
-   many companies state their trade. What a name does not say is left blank
-   rather than guessed from a table of tickers I would have to keep correct:
-   a wrong sector quietly skews every share on this report, and a blank one
-   says plainly that nobody has said yet. Order matters — an index fund that
-   tracks smallcaps is an index fund, so Index is asked before the cap sizes. */
-const SECTOR_HINTS = [
-  ["Funds", /index|nifty|sensex|\betf\b/i,                     "Index"],
-  ["Funds", /elss|tax\s*sav/i,                                 "ELSS (tax saving)"],
-  ["Funds", /liquid|debt|gilt|bond|overnight|money\s*market/i, "Debt"],
-  ["Funds", /hybrid|balanced|asset\s*alloc/i,                  "Hybrid"],
-  ["Funds", /internation|global|nasdaq|overseas|world/i,       "International"],
-  ["Funds", /flexi\s*-?\s*cap|multi\s*-?\s*cap/i,              "Flexi cap"],
-  ["Funds", /small\s*-?\s*cap/i,                               "Small cap"],
-  ["Funds", /mid\s*-?\s*cap/i,                                 "Mid cap"],
-  ["Funds", /large\s*-?\s*cap|blue\s*-?\s*chip/i,              "Large cap"],
-  ["Funds", /pharma|banking|infra|technolog|digital|energy|consum|defence|psu/i,
-                                                               "Sectoral / thematic"],
-  /* No word boundaries on this side. A Zerodha export names holdings by
-     ticker, so the only readable word is welded into the middle of the
-     thing — HDFCBANK, KPITTECH — and a boundary would find neither. */
-  ["Stocks", /pharma|health|hospital|\blabs?\b|life\s*scien/i, "Pharma & healthcare"],
-  ["Stocks", /bank/i,                                          "Banking"],
-  ["Stocks", /financ|finserv|capital|insur|securit|broking/i,  "Financial services"],
-  ["Stocks", /motors?|automob|tyre|mobility/i,                 "Auto"],
-  ["Stocks", /steel|metal|mining|zinc|copper|alumin/i,         "Metals & mining"],
-  ["Stocks", /power|energy|petro|coal|solar|renew|\boil\b/i,   "Energy & oil"],
-  ["Stocks", /infra|cement|construct|engineer|projects/i,      "Infrastructure"],
-  ["Stocks", /telecom|communicat|airtel/i,                     "Telecom"],
-  ["Stocks", /chemical|fertil|paints/i,                        "Chemicals"],
-  ["Stocks", /realty|estate|developers/i,                      "Realty"],
-  ["Stocks", /media|entertain|broadcast/i,                     "Media"],
-  ["Stocks", /consumer|foods|beverage|dairy/i,                 "FMCG"],
-  ["Stocks", /tech|infotech|systems|softw|digital|computer/i,  "IT"]
-];
-function guessSector(name, bucket){
-  const n = String(name || "");
-  const fam = sectorFamily(bucket);
-  if (!fam) return "";
-  for (const [only, re, label] of SECTOR_HINTS)
-    if (only === fam && re.test(n)) return label;
+/* What a holding is exposed to, worked out rather than tagged. A sector typed
+   by hand still wins — it is the only thing anybody said on purpose — but
+   nothing has to be typed: a share takes the sector that came with its price,
+   and a fund takes the mandate its own registrar files it under. */
+function sectorOf(i){
+  if (!i) return "";
+  if (i.sector) return i.sector;
+  const sym = symbolOf(i);
+  if (sym){
+    const q = quoteMeta(sym);
+    if (q && q.sector) return q.sector;
+  }
+  if (i.schemeCode){
+    const n = navMeta(i.schemeCode);
+    if (n && n.cat) return mandateFromCategory(n.cat);
+  }
   return "";
+}
+
+/* A fund's mandate as its own registrar states it. AMFI's category is the
+   authority on what a scheme is, and reading it beats reading the name: a
+   fund called "Navi Nifty 50" is an index fund because its category says
+   Index Funds, not because the words look like one. */
+function mandateFromCategory(cat){
+  const c = String(cat || "").toLowerCase();
+  if (!c) return "";
+  if (c.includes("index")) return "Index";
+  if (c.includes("elss") || c.includes("tax sav")) return "ELSS (tax saving)";
+  if (c.includes("flexi") || c.includes("multi cap")) return "Flexi cap";
+  if (c.includes("small")) return "Small cap";
+  if (c.includes("mid")) return "Mid cap";
+  if (c.includes("large")) return "Large cap";
+  if (c.includes("sectoral") || c.includes("thematic")) return "Sectoral / thematic";
+  if (c.includes("overseas") || c.includes("internation") || c.includes("global")) return "International";
+  if (c.includes("hybrid") || c.includes("balanced") || c.includes("arbitrage")) return "Hybrid";
+  if (/debt|gilt|liquid|money market|bond|duration|credit|overnight/.test(c)) return "Debt";
+  return "Other";
 }
 
 function bucketOf(table, key){
@@ -2077,7 +2074,7 @@ function stateFromPayload(p){
         Object.keys(n).forEach(k => {
           const v = n[k] && typeof n[k] === "object" ? n[k] : null;
           const nav = v ? num(v.nav) : 0;
-          if (nav > 0) out[String(k)] = { nav, on: str(v.on), name: str(v.name) };
+          if (nav > 0) out[String(k)] = { nav, on: str(v.on), name: str(v.name), cat: str(v.cat) };
         });
         return out;
       })(),
@@ -2094,7 +2091,8 @@ function stateFromPayload(p){
           if (!inn) return;
           const kept = {};
           CURRENCIES.forEach(c => { const n = num(inn[c]); if (n > 0) kept[c] = n; });
-          if (Object.keys(kept).length) out[String(k).toUpperCase()] = { name: str(v.name), in: kept };
+          if (Object.keys(kept).length)
+            out[String(k).toUpperCase()] = { name: str(v.name), sector: str(v.sector), in: kept };
         });
         return out;
       })(),
@@ -4034,7 +4032,9 @@ async function fetchNavs(codes){
       const nav = row && Number(row.nav);
       if (sane(nav, 0, 1000000))
         out[String(code)] = { nav, on: String(row.date || ""),
-                              name: (j.meta && j.meta.scheme_name) || "" };
+                              name: (j.meta && j.meta.scheme_name) || "",
+                              /* what AMFI files the scheme under */
+                              cat: (j.meta && j.meta.scheme_category) || "" };
     }catch(e){ /* leave the last one standing */ }
   }));
   return out;
@@ -5459,7 +5459,7 @@ function repSectorSection(bucket){
 
   const key = "repS" + bucket.replace(/\W/g, "");
   const untagged = held.filter(i => !sectorOf(i));
-  const guessable = untagged.filter(i => guessSector(i.name, bucket)).length;
+
   const named = groups.filter(g => g.label !== "Not tagged");
   const ranked = held.slice().sort((a, b) =>
     toDisp(investWorth(b), b.currency) - toDisp(investWorth(a), a.currency));
@@ -5501,7 +5501,7 @@ function repSectorSection(bucket){
          <div class="cb-t">Not tagged yet</div>
          <div class="cb-n">${untagged.length}</div>
        </div>
-       ${guessable ? `<button class="btn ghost" type="button" data-guess="${esc(bucket)}" style="margin-bottom:10px">Read ${guessable} from ${guessable === 1 ? "its name" : "their names"}</button>` : ""}
+
        ${untagged.map(i => `<div class="improw">
           <span class="im-m"><span class="im-n">${esc(i.name || i.type)}</span>
             <span class="im-d">${esc(fmtDisp(toDisp(investWorth(i), i.currency)))}</span></span>
@@ -5511,7 +5511,7 @@ function repSectorSection(bucket){
             ${sectorList(bucket).map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join("")}
           </select>
         </div>`).join("")}
-       <div class="note" style="margin-top:12px">Reading from a name only catches what the name actually says — an index fund that calls itself one, a company with its trade in its title. Anything else is left for you, because a sector guessed wrong moves every share above it.</div>
+       <div class="note" style="margin-top:12px">These carry no sector in the price feed — an index ETF is not in one, and some listings simply have none recorded. Set one here if you want them counted, or leave them; they are shown as their own share rather than quietly folded into the rest.</div>
      </div>` : "");
 }
 
@@ -5605,19 +5605,6 @@ function repDepth(){
       save(); renderReports();
     });
   });
-  $("repBody").querySelectorAll("[data-guess]").forEach(b =>
-    b.addEventListener("click", () => {
-      const bucket = b.dataset.guess;
-      let n = 0;
-      investOnly().forEach(i => {
-        if (bucketOf(INVEST_TYPES, i.type) !== bucket || sectorOf(i)) return;
-        const g = guessSector(i.name, bucket);
-        if (g){ i.sector = g; i.updatedAt = new Date().toISOString(); n++; }
-      });
-      if (!n){ toast("No names said enough"); return; }
-      save(); renderReports();
-      toast("Tagged " + n + " from " + (n === 1 ? "its name" : "their names"));
-    }));
 
   $("repBody").querySelectorAll(".al-in").forEach(inp => {
     const commit = () => {
