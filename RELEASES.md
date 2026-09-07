@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.8 — 2026-09-07
+- better: Investment tabs are All, Mutual Funds, IN stocks, EU stocks, ULIP and Debt; gold asks for the month it was bought instead of a purity that never changed; physical gold and fixed deposits are no longer offered as investment kinds
+
 ## 1.1.7 — 2026-09-07
 - better: The investment panel offers IN stocks, EU stocks, ULIP and Debt; DE stocks became EU stocks and Bonds became Debt, with what you already hold carried across
 

@@ -15,9 +15,10 @@ family rather than two apps by the same person.
   where the money sits, category bars that open for their share, and the list
   of individual assets/liabilities (added and edited from here, via +).
 - **Goal** — savings goals with a target, what is saved so far, and a date.
-- **Investment** — SIP/mutual funds, stocks, fixed deposits, PPF/EPF, bonds
-  and physical gold: what went in against what it is worth, per holding and
-  in total.
+- **Investment** — mutual funds, Indian and European shares, ULIPs and debt:
+  what went in against what it is worth, per holding and in total. Tabs for
+  All, Mutual Funds, IN stocks, EU stocks, ULIP and Debt; the bar scrolls
+  rather than shrinking six labels into initials.
 - **More** — Settings, Reports, What's new, About.
 
 ### Two currencies
@@ -30,8 +31,13 @@ display is tagged, and shows its converted figure underneath.
 
 ### Physical gold
 
-Gold is held by weight, so it is entered that way: grams, purity, a
-description, and optionally what was paid. Its worth is never a number you
+Gold is held by weight, so it is entered that way: grams, the month it was
+bought, a description, and optionally what was paid. No purity field — the
+karat that decides worth is the single one in Settings, and per-entry purity
+never fed the calculation anyway. No kind chips either: you reach this sheet
+from the Gold tab, so the answer is already known. The month is stored as
+`YYYY-MM`; entries made when this was a full date are trimmed on the way in,
+so an old one still shows rather than arriving empty. Its worth is never a number you
 keep updating by hand — it is `grams × price per gram` in the entry's own
 currency, from Settings → Rates & gold, worked out fresh every time it is
 read (`investWorth()`). The Investment tab totals the grams across every
@@ -130,8 +136,16 @@ to keep one.
 
 Stocks carry a **sector**, funds a **mandate** — two lists rather than one,
 because "Large cap" is not a sector and "Banking" is not a mandate. The field
-appears on a holding only where it means something, so a fixed deposit is
-never asked for one.
+appears on a holding only where it means something, so a ULIP is never asked
+for one.
+
+Physical gold and fixed deposits are no longer offered when adding an
+investment — gold has its own tab, and a deposit is something held rather
+than traded, so it belongs in assets. Both stay in `INVEST_TYPES` marked
+`offer:false`, because everything already filed under them must still resolve
+to a bucket and a colour; delete the row and every one of them silently
+becomes Other. Opening such a holding shows its own kind alongside the
+offered ones, so saving cannot quietly refile it.
 
 Reports → In depth breaks each kind down by it: a pie, a bar per group with
 its share and its gain, and a line naming the largest group and the largest

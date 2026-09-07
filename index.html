@@ -380,6 +380,14 @@ button.tile:hover .tile-go{color:var(--accent)}
 .seg button .n{font-family:var(--mono);font-size:10px;font-variant-numeric:tabular-nums;color:var(--ink-3);flex:none}
 .seg button[aria-selected="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:var(--shadow-sm)}
 .seg button[aria-selected="true"] .n{color:var(--accent)}
+/* Six tabs will not sit side by side on a phone at a readable size, so this
+   one scrolls instead of shrinking its labels to initials. The scrollbar is
+   hidden because the row is short and obviously slideable once touched. */
+.seg.segwide{
+  display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.seg.segwide::-webkit-scrollbar{display:none}
+.seg.segwide button{flex:0 0 auto;padding-left:13px;padding-right:13px;white-space:nowrap}
 
 /* ---------- List ---------- */
 .list{padding:14px 14px 0;display:flex;flex-direction:column;gap:18px;flex:1}
@@ -995,11 +1003,13 @@ html.locked #lockScreen{
     </section>
 
     <div class="segwrap">
-      <div class="seg" id="invSeg" role="tablist">
+      <div class="seg segwide" id="invSeg" role="tablist">
         <button role="tab" data-inv="all" aria-selected="true">All <span class="n" id="nInvAll">0</span></button>
-        <button role="tab" data-inv="funds" aria-selected="false">Funds <span class="n" id="nInvFunds">0</span></button>
-        <button role="tab" data-inv="stocks" aria-selected="false">Stocks <span class="n" id="nInvStocks">0</span></button>
-        <button role="tab" data-inv="other" aria-selected="false">Fixed <span class="n" id="nInvOther">0</span></button>
+        <button role="tab" data-inv="funds" aria-selected="false">Mutual Funds <span class="n" id="nInvFunds">0</span></button>
+        <button role="tab" data-inv="in" aria-selected="false">IN stocks <span class="n" id="nInvIN">0</span></button>
+        <button role="tab" data-inv="eu" aria-selected="false">EU stocks <span class="n" id="nInvEU">0</span></button>
+        <button role="tab" data-inv="ulip" aria-selected="false">ULIP <span class="n" id="nInvUlip">0</span></button>
+        <button role="tab" data-inv="debt" aria-selected="false">Debt <span class="n" id="nInvDebt">0</span></button>
       </div>
     </div>
     <div class="list" id="investList"></div>
@@ -1461,7 +1471,7 @@ html.locked #lockScreen{
   </div>
   <div class="sheet-body">
     <input type="hidden" id="investId">
-    <div class="field"><label>Kind</label><div class="chips" id="investTypes"></div></div>
+    <div class="field" id="investKindField"><label>Kind</label><div class="chips" id="investTypes"></div></div>
     <div class="field"><label>Currency</label><div class="toggle2" id="investCurTog"></div></div>
     <div class="field"><label>Name</label><input class="inp" id="investName" placeholder="Index fund"></div>
 
@@ -1483,16 +1493,11 @@ html.locked #lockScreen{
     <div id="investGoldFields" hidden>
       <div class="row2">
         <div class="field"><label>Weight in grams</label><input class="inp" id="investGrams" type="text" inputmode="decimal" placeholder="0"></div>
-        <div class="field"><label>Purity</label>
-          <select class="inp" id="investPurity">
-            <option value="24K">24K</option><option value="22K" selected>22K</option>
-            <option value="18K">18K</option><option value="">Not stated</option>
-          </select>
-        </div>
+        <div class="field"><label>Bought</label>
+          <input class="inp" id="investGoldDate" type="month"></div>
       </div>
       <div class="field"><label>What it is</label><div class="chips" id="goldKinds"></div></div>
       <div class="field"><label>Description</label><input class="inp" id="investGoldDesc" placeholder="Two bangles, bought in Chennai"></div>
-      <div class="field"><label>Bought on (optional)</label><input class="inp" id="investGoldDate" type="date"></div>
       <div class="field"><label>What you paid (optional)</label><input class="inp" id="investGoldPaid" type="text" inputmode="decimal" placeholder="0"></div>
       <div class="note" id="goldValueNote">Worth is worked out from the weight and the gold price in Settings → Rates &amp; gold.</div>
     </div>
@@ -1563,7 +1568,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.7";
+const APP_VERSION = "1.1.8";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1646,11 +1651,31 @@ const INVEST_TYPES = [
   { k:"EU stocks",         b:"EU stocks" },
   { k:"ULIP",              b:"ULIP" },
   { k:"Debt",              b:"Debt" },
-  { k:"Physical Gold",     b:"Gold" },
-  { k:"Fixed deposit",     b:"Fixed deposit" },
   { k:"PPF / EPF",         b:"PPF / EPF" },
-  { k:"Other",             b:"Other" }
+  { k:"Other",             b:"Other" },
+  /* Known, but no longer offered. Gold is added from its own tab, and a fixed
+     deposit is something held rather than traded, so it belongs in assets.
+     Both stay in this table because everything already filed under them still
+     has to resolve to a bucket and a colour — delete the row and every one of
+     them silently becomes Other. */
+  { k:"Physical Gold",     b:"Gold",          offer:false },
+  { k:"Fixed deposit",     b:"Fixed deposit", offer:false }
 ];
+/* What the entry sheet puts in front of you, as opposed to what the app can
+   still make sense of. */
+const offeredTypes = () => INVEST_TYPES.filter(t => t.offer !== false);
+
+/* "2026-09" as "Sep 2026". Anything else is handed back as it came, so an
+   entry from before this was a month still reads as whatever it holds.
+   Not monthName: that name is already taken by the one the schedules use,
+   which speaks in {m, y} rather than in a stored string. */
+function boughtMonth(v){
+  const m = /^(\d{4})-(\d{2})/.exec(String(v || ""));
+  if (!m) return String(v || "");
+  const d = new Date(Number(m[1]), Number(m[2]) - 1, 1);
+  return isNaN(d) ? String(v) :
+    d.toLocaleDateString(undefined, { month: "short", year: "numeric" });
+}
 const GOLD_TYPE = "Physical Gold";
 /* Words that used to mean something else. "Stocks" predates the split into an
    Indian and a German book, and everything entered under it is Indian — that
@@ -2735,20 +2760,24 @@ function renderInvest(){
     ? holdings.length + (holdings.length === 1 ? " holding" : " holdings")
     : "Funds, stocks and deposits";
 
-  const inTab = (i, tab) =>
-    tab === "all"    ? true :
-    tab === "funds"  ? i.type === "SIP / Mutual fund" :
-    /* One tab over both books: the split is about reporting, and a list of
-       everything you hold in shares is still one list. Each row names its own
-       kind underneath. */
-    tab === "stocks" ? isStockBucket(bucketOf(INVEST_TYPES, i.type)) :
-                       !isStockBucket(bucketOf(INVEST_TYPES, i.type))
-                       && i.type !== "SIP / Mutual fund";
+  /* Every tab but All is one bucket, named here beside the count it fills so
+     a tab and the holdings it shows cannot drift apart. Anything in a bucket
+     without a tab — PPF, Other, a fixed deposit from before it moved to
+     assets — still appears under All. */
+  const INV_TABS = {
+    funds: { bucket:"Funds",     count:"nInvFunds" },
+    in:    { bucket:"IN stocks", count:"nInvIN" },
+    eu:    { bucket:"EU stocks", count:"nInvEU" },
+    ulip:  { bucket:"ULIP",      count:"nInvUlip" },
+    debt:  { bucket:"Debt",      count:"nInvDebt" }
+  };
+  const inTab = (i, tab) => tab === "all" ||
+    (INV_TABS[tab] && bucketOf(INVEST_TYPES, i.type) === INV_TABS[tab].bucket);
   $("nInvAll").textContent = holdings.length;
-  $("nInvFunds").textContent = holdings.filter(i => inTab(i, "funds")).length;
-  $("nInvStocks").textContent = holdings.filter(i => inTab(i, "stocks")).length;
-  $("nInvOther").textContent = holdings.filter(i => inTab(i, "other")).length;
-  if (invTab === "gold") invTab = "all";     /* the tab it named is gone */
+  Object.keys(INV_TABS).forEach(t =>
+    $(INV_TABS[t].count).textContent = holdings.filter(i => inTab(i, t)).length);
+  /* A tab that no longer exists cannot stay selected. */
+  if (invTab !== "all" && !INV_TABS[invTab]) invTab = "all";
   document.querySelectorAll("#invSeg button").forEach(b =>
     b.setAttribute("aria-selected", String(b.dataset.inv === invTab)));
 
@@ -2760,10 +2789,12 @@ function renderInvest(){
     /* Each tab says what belongs in it. An empty tab with a vague name is a
        question rather than an answer. */
     const empties = {
-      all:    ["Nothing invested yet", "Funds, stocks and deposits. Gold lives on its own tab — it is held, not invested in."],
-      funds:  ["No funds yet", "SIPs and mutual funds live here."],
-      stocks: ["No stocks yet", "Shares you hold directly live here."],
-      other:  ["Nothing fixed yet", "Fixed deposits, PPF and EPF, bonds — anything that pays a set return rather than moving with a market."]
+      all:   ["Nothing invested yet", "Funds, shares and the rest. Gold lives on its own tab — it is held, not invested in."],
+      funds: ["No mutual funds yet", "SIPs and mutual funds live here."],
+      in:    ["No Indian shares yet", "Shares held in rupees live here."],
+      eu:    ["No European shares yet", "Shares held in euros live here."],
+      ulip:  ["No ULIPs yet", "Unit-linked plans — insurance and investment in one — live here."],
+      debt:  ["Nothing in debt yet", "Bonds, debt funds and anything else that pays a set return rather than moving with a market."]
     };
     const e = empties[invTab] || empties.all;
     host.innerHTML = emptyBlock(ICON_CHART, e[0], e[1]);
@@ -2857,7 +2888,7 @@ function renderGold(){
       const now = investWorth(i);
       const paid = i.investedAmount;
       const diff = now - paid;
-      const sub = [i.goldKind, i.grams ? i.grams + " g" : "", i.purity, i.boughtOn, i.goldDesc]
+      const sub = [i.goldKind, i.grams ? i.grams + " g" : "", boughtMonth(i.boughtOn), i.goldDesc]
         .filter(Boolean).join(" · ");
       const b = document.createElement("button");
       b.type = "button";
@@ -3022,6 +3053,9 @@ function investFormMode(type, cur){
   $("investGoldFields").hidden = !gold;
   /* Only the two kinds that have one. A fixed deposit has no sector, and an
      empty dropdown asking for one is a question with no answers. */
+  /* Gold has one kind and you reached this sheet from the Gold tab, so the
+     question does not need asking. */
+  $("investKindField").hidden = gold;
   const list = sectorList(bucketOf(INVEST_TYPES, type));
   $("investSectorField").hidden = gold || !list.length;
   if (list.length){
@@ -3052,9 +3086,11 @@ function openInvest(id, preset){
   $("investSip").value = i && i.sipAmount ? i.sipAmount : "";
   $("investSipDay").value = i && i.sipDay ? i.sipDay : "";
   $("investGrams").value = i && i.grams ? i.grams : "";
-  $("investPurity").value = i ? i.purity : "22K";
   $("investGoldDesc").value = i ? i.goldDesc : "";
-  $("investGoldDate").value = i ? i.boughtOn : "";
+  /* A month input only understands YYYY-MM, and entries made when this was a
+     full date carry the day as well — trimmed so an old one still shows
+     rather than arriving empty and looking lost. */
+  $("investGoldDate").value = i ? String(i.boughtOn || "").slice(0, 7) : "";
   buildChips("goldKinds", GOLD_KINDS.map(k => ({ k })), i && i.goldKind ? i.goldKind : "Necklace");
   $("investGoldPaid").value = i && isGold(i) && i.investedAmount ? i.investedAmount : "";
   $("investNotes").value = i ? i.notes : "";
@@ -3063,7 +3099,13 @@ function openInvest(id, preset){
   const cur = i ? i.currency : state.profile.currency;
   const type = i ? i.type : (preset || "SIP / Mutual fund");
   buildCurTog("investCurTog", cur, c => investFormMode(pickedChip("investTypes", type), c));
-  buildChips("investTypes", INVEST_TYPES, type, k => investFormMode(k, pickedCur("investCurTog")));
+  /* What is on offer, plus whatever this record already is. A holding filed
+     under a kind that is no longer offered has to keep it — otherwise opening
+     it would leave no chip selected and saving would quietly refile it. */
+  const offer = offeredTypes();
+  const kinds = offer.some(t => t.k === type)
+    ? offer : offer.concat(INVEST_TYPES.filter(t => t.k === type));
+  buildChips("investTypes", kinds, type, k => investFormMode(k, pickedCur("investCurTog")));
   investFormMode(type, cur);
   $("investDelete").hidden = !i;
   sheetOpen("shInvest");
@@ -3085,7 +3127,10 @@ $("investSave").addEventListener("click", () => {
     /* editing a holding is not paying its SIP, so the tick stands */
     sipDone: gold ? "" : (state.investments.find(x => x.id === id) || {}).sipDone || "",
     grams: gold ? num($("investGrams").value) : 0,
-    purity: gold ? $("investPurity").value : "",
+    /* Not asked for any more: the karat that decides worth is the one in
+       Settings, and here it was always 22K. Whatever an older entry recorded
+       is carried through untouched rather than blanked. */
+    purity: gold ? ((state.investments.find(x => x.id === id) || {}).purity || "") : "",
     goldDesc: gold ? $("investGoldDesc").value.trim() : "",
     goldKind: gold ? pickedChip("goldKinds", "Other") : "",
     /* Asked of the list rather than of the hidden field, so a sector left over
