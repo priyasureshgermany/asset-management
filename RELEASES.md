@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.34 — 2026-09-07
+- new: In depth: a sector opens to show the holdings inside it, each with its share of that sector
+
 ## 1.1.33 — 2026-09-07
 - better: Every share and fund carries a sector — trackers are Index, a gold fund of funds is Gold, and nothing is filed under Other
 

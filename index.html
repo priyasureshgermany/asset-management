@@ -300,6 +300,16 @@ button.tile:hover .tile-go{color:var(--accent)}
   transition:max-height .28s ease,opacity .22s ease,margin-top .28s ease;
 }
 .barrow.open .barrow-sub{max-height:90px;opacity:1;margin-top:7px}
+/* A bar answers "how much"; the only question it provokes is "in what", so
+   the answer sits under the bar rather than on another screen. The rows are
+   the same shape as the ones on a goal card — a holding, its kind, its worth
+   — because they are the same thing being asked about. */
+.barrow .gm-chev{vertical-align:-2px;margin-left:5px}
+.barrow[aria-expanded="true"] .gm-chev{transform:rotate(180deg)}
+.sec-items{
+  margin-top:9px;padding-top:9px;border-top:1px solid var(--line);
+  display:flex;flex-direction:column;gap:7px;
+}
 
 /* ---------- Donut ---------- */
 /* The pie is drawn in projection and stands on its own wall — see the drawing
@@ -1730,7 +1740,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.33";
+const APP_VERSION = "1.1.34";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -5499,6 +5509,38 @@ function sectorGroups(bucket){
     }));
 }
 
+/* Which sector bars are showing what is inside them. Held in memory, not
+   saved: shut is the resting state, and a bar left open last week is not a
+   preference worth keeping. */
+const sectorOpen = {};
+const secKey = (bucket, label) => bucket + "|" + label;
+
+/* The holdings one bar is made of, biggest first, each in the currency the
+   bars themselves are drawn in so a row and its bar cannot disagree. */
+function sectorItems(bucket, label){
+  return investOnly()
+    .filter(i => bucketOf(INVEST_TYPES, i.type) === bucket
+              && (sectorOf(i) || "Not tagged") === label)
+    .map(i => ({ name: i.name || i.type, kind: i.type,
+                 worth: toDisp(investWorth(i), i.currency) }))
+    .sort((a, b) => b.worth - a.worth);
+}
+
+/* Rendered on the way open rather than drawn hidden, so a report with a
+   dozen sectors carries no rows nobody asked to see. */
+function sectorItemsHTML(bucket, label){
+  const rows = sectorItems(bucket, label);
+  if (!rows.length) return "";
+  const sum = rows.reduce((t, x) => t + x.worth, 0);
+  return `<div class="sec-items">${rows.map(x =>
+    `<div class="gi">
+       <span class="gi-n">${esc(x.name)}</span>
+       <span class="gi-k">${
+         sum > 0 ? (x.worth / sum * 100).toFixed(1) + "% of " + esc(label) : esc(x.kind)}</span>
+       <span class="gi-a">${esc(fmtDisp(x.worth))}</span>
+     </div>`).join("")}</div>`;
+}
+
 /* Funds are not held by sector and stocks are not held by mandate, so the
    heading says which question is being answered. */
 const sectorWord = (b) => b === "Funds" ? "mandate" : "sector";
@@ -5534,9 +5576,11 @@ function repSectorSection(bucket){
        ${groups.map(g => {
          const share = g.value / total * 100;
          const gain = g.value - g.cost;
-         return `<div class="barrow" style="cursor:default">
+         const open = !!sectorOpen[secKey(bucket, g.label)];
+         return `<button type="button" class="barrow" data-sect="${esc(bucket)}"
+                         data-lab="${esc(g.label)}" aria-expanded="${open}">
            <div class="barrow-head">
-             <span class="barrow-l"><span class="dot" style="background:${swatchOf(g.cat)}"></span>${esc(g.label)}</span>
+             <span class="barrow-l"><span class="dot" style="background:${swatchOf(g.cat)}"></span>${esc(g.label)}<svg class="gm-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
              <span class="barrow-v">${share.toFixed(1)}%</span>
            </div>
            <div class="barrow-track"><i style="width:${share.toFixed(1)}%;background:${swatchOf(g.cat)}"></i></div>
@@ -5545,7 +5589,8 @@ function repSectorSection(bucket){
                g.cost > 0 ? " · " + (gain >= 0 ? "up " : "down ") + esc(fmtDisp(Math.abs(gain)))
                             + " (" + esc(pct(gain / g.cost * 100)) + ")" : ""}
            </div>
-         </div>`;
+           ${open ? sectorItemsHTML(bucket, g.label) : ""}
+         </button>`;
        }).join("")}
      </div>
      <div class="aboutbox">
@@ -5649,6 +5694,20 @@ function repDepth(){
     const groups = sectorGroups(b);
     if (groups.length) repDrawPie("repS" + b.replace(/\W/g, ""), groups,
       b + " by " + sectorWord(b));
+  });
+
+  /* Opened in place rather than by redrawing the tab: the pies below would
+     replay their whole animation to answer a question about one bar. */
+  $("repBody").querySelectorAll("[data-sect]").forEach(row => {
+    row.addEventListener("click", () => {
+      const bucket = row.dataset.sect, label = row.dataset.lab;
+      const on = !sectorOpen[secKey(bucket, label)];
+      sectorOpen[secKey(bucket, label)] = on;
+      row.setAttribute("aria-expanded", String(on));
+      const shown = row.querySelector(".sec-items");
+      if (shown) shown.remove();
+      if (on) row.insertAdjacentHTML("beforeend", sectorItemsHTML(bucket, label));
+    });
   });
 
   /* Tagging happens here because here is where the gap is visible. */
