@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.32 — 2026-09-07
+- fix: A book with goals in it failed to load and was then saved over as empty — the cause is fixed, and an unreadable book can no longer be overwritten or pushed
+
 ## 1.1.31 — 2026-09-07
 - better: Shares and funds tag their own sector — a share from the feed that prices it, a fund from the category its registrar files it under
 
