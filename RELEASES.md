@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.27 — 2026-09-07
+- better: The GitHub sync pane is laid out like the expense tracker's, a push that would shrink the backup has to be confirmed, and any earlier backup can be restored
+
 ## 1.1.26 — 2026-09-07
 - better: Goals can be dragged into whatever order you want them in, and the order is kept
 
