@@ -167,6 +167,19 @@ scheme are at one price, and storing it twice invites them to disagree. They
 are fetched rather than typed, so they stay out of what counts as a change
 worth pushing, for the same reason the rates and their timestamp do.
 
+### Bringing the figures up to date by hand
+
+Settings → Rates & gold carries **Refresh now**, which fetches everything the
+app takes from outside itself in one go: the exchange rate, the gold price,
+every linked fund's NAV and every share price. The open-time refresh asks once
+and then holds its peace, which is right for something nobody asked for — but
+when someone presses a button, they mean now.
+
+It appears only while the live feed is on. With the feed off the figures are
+yours, and a button promising to fetch them would be promising to overwrite
+what you just typed. The line above it names what was last fetched and when,
+so a figure you can see the source of is one you can tell is wrong.
+
 ### Share prices, fetched the long way round
 
 A browser cannot fetch a share price. Stooq, Yahoo and Frankfurter were each

@@ -1197,7 +1197,8 @@ html.locked #lockScreen{
         <button class="x" data-live="1" aria-pressed="true">From the internet</button>
         <button class="x" data-live="0" aria-pressed="false">I'll set them</button>
       </div>
-      <div class="note" id="liveNote" style="margin-bottom:14px">—</div>
+      <div class="note" id="liveNote" style="margin-bottom:10px">—</div>
+      <button class="btn ghost" id="ratesNow" hidden>Refresh now</button>
     </div>
     <div class="setsec">
       <div class="field"><label>Rupees per euro</label><input class="inp" id="rateInr" type="text" inputmode="decimal" placeholder="90"></div>
@@ -1621,7 +1622,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.14";
+const APP_VERSION = "1.1.15";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -3580,6 +3581,26 @@ function linkedSchemes(){
     .map(i => String(i.schemeCode)))];
 }
 
+/* Everything the app takes from outside itself, in one go and on demand.
+   The open-time refresh happens once and then holds its peace, which is right
+   for something nobody asked for — but when someone does ask, they mean now. */
+async function refreshAll(){
+  const b = $("ratesNow");
+  const said = b.textContent;
+  b.disabled = true;
+  b.textContent = "Fetching…";
+  ratesTried = false;
+  let ok = false;
+  try{ ok = await refreshRates(true); }
+  finally{
+    b.disabled = false;
+    b.textContent = said;
+  }
+  toast(ok ? "Rates and prices brought up to date"
+           : "Nothing came back — the figures stand as they were");
+  fillRates();
+}
+
 let ratesTried = false;
 async function refreshRates(force){
   if (!state.settings.live || (ratesTried && !force)) return false;
@@ -3619,12 +3640,27 @@ function fillRates(){
   document.querySelectorAll("#karatTog button").forEach(b =>
     b.setAttribute("aria-pressed", String(b.dataset.k === st.goldKarat)));
   [$("rateInr"), $("goldEur"), $("goldInr")].forEach(el => { el.disabled = !!st.live; });
+  /* Only offered where it means something. With the live feed off the figures
+     are yours, and a button promising to fetch them would be promising to
+     overwrite what you just typed. */
+  $("ratesNow").hidden = !st.live;
   $("liveNote").textContent = !st.live
     ? "The figures below are yours, and stay as you set them."
     : st.liveAt
-      ? "Fetched " + new Date(st.liveAt).toLocaleString() + ". Asked for once each time the app opens."
+      ? "Fetched " + new Date(st.liveAt).toLocaleString() + ". Asked for once each time the app opens" +
+        (function(){
+          /* Named rather than counted: a figure you can see the source of is
+             one you can tell is wrong. */
+          const bits = [];
+          const navs = Object.keys(st.navs || {}).length;
+          const quotes = Object.keys(st.quotes || {}).length;
+          if (navs) bits.push(navs + (navs === 1 ? " fund NAV" : " fund NAVs"));
+          if (quotes) bits.push(quotes + (quotes === 1 ? " share price" : " share prices"));
+          return bits.length ? ", along with " + bits.join(" and ") + "." : ".";
+        })()
       : "Nothing fetched yet — the app asks once each time it opens, and keeps what you have if it cannot.";
 }
+$("ratesNow").addEventListener("click", refreshAll);
 document.querySelectorAll("#liveTog button").forEach(b =>
   b.addEventListener("click", async () => {
     state.settings.live = b.dataset.live === "1";

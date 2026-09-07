@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.15 — 2026-09-07
+- better: Settings carries a Refresh now button that brings the rate, the gold price, every fund NAV and every share price up to date in one go
+
 ## 1.1.14 — 2026-09-07
 - better: Share prices arrive daily: a workflow fetches them where CORS does not apply and writes a file the app reads from its own origin, so a holding with a ticker is worth units times price
 
