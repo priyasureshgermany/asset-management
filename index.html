@@ -1212,7 +1212,7 @@ html.locked #lockScreen{
 
   <div class="sheet-body setpane" id="pane-import" hidden>
     <h3>Import holdings</h3>
-    <p class="ph">A holdings export from Zerodha Console — stocks, ETFs and funds together. The file is read here on this device and goes nowhere.</p>
+    <p class="ph">A holdings export from Zerodha Console, or a transactions export from Trade Republic — whichever it is, it will be recognised from the file itself. Read here on this device and goes nowhere.</p>
     <div class="field">
       <label>The file</label>
       <input class="inp" id="impFile" type="file" accept=".csv,text/csv">
@@ -1563,7 +1563,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.5";
+const APP_VERSION = "1.1.6";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1603,7 +1603,14 @@ const BUCKETS = [
   { k:"Cash",          h:152, l:35 },
   { k:"Property",      h:18,  l:32 },
   { k:"Bank account",  h:214, l:32 },
-  { k:"Stocks",        h:190, l:32 },
+  /* Two stock buckets. A portfolio held in two countries is two things: they
+     move on different exchanges, in different currencies, and one number over
+     both can hide being all-in on one of them. The Indian bucket keeps the
+     hue Stocks always had, so nobody's existing chart changes colour; the
+     German one took the widest gap left in the palette (18.1 in OkLab, where
+     the tightest existing pair sits at 14.3). */
+  { k:"IN stocks",     h:190, l:32 },
+  { k:"DE stocks",     h:60,  l:40 },
   { k:"Fixed deposit", h:180, l:42 },
   { k:"PPF / EPF",     h:124, l:24 },
   { k:"Funds",         h:281, l:32 },
@@ -1631,7 +1638,8 @@ const ASSET_CATS = [
 ];
 const INVEST_TYPES = [
   { k:"SIP / Mutual fund", b:"Funds" },
-  { k:"Stocks",            b:"Stocks" },
+  { k:"IN stocks",         b:"IN stocks" },
+  { k:"DE stocks",         b:"DE stocks" },
   { k:"Physical Gold",     b:"Gold" },
   { k:"Fixed deposit",     b:"Fixed deposit" },
   { k:"PPF / EPF",         b:"PPF / EPF" },
@@ -1639,6 +1647,12 @@ const INVEST_TYPES = [
   { k:"Other",             b:"Other" }
 ];
 const GOLD_TYPE = "Physical Gold";
+/* Words that used to mean something else. "Stocks" predates the split into an
+   Indian and a German book, and everything entered under it is Indian — that
+   is all the app could hold at the time. Translated at the one place a payload
+   becomes state, so nothing else has to know the old word ever existed. */
+const LEGACY_INVEST_TYPES = { "Stocks": "IN stocks" };
+const investType = (t) => LEGACY_INVEST_TYPES[t] || t;
 /* Gold is held, not invested in. It shares the investments array because that
    is where it has always been stored and moving it would rewrite everybody's
    backup for no gain — but it is not an investment anywhere it is counted or
@@ -1660,8 +1674,15 @@ const STOCK_SECTORS = ["Banking","Financial services","IT","Pharma & healthcare"
   "Chemicals","Realty","Media","Other"];
 const FUND_CATS = ["Index","Large cap","Mid cap","Small cap","Flexi cap",
   "ELSS (tax saving)","Debt","Hybrid","International","Sectoral / thematic","Other"];
+/* Both stock buckets take the same list — a bank is a bank in Frankfurt as
+   much as in Mumbai — so the hints below stay written once, against the
+   family rather than against each bucket. */
+const STOCK_BUCKETS = ["IN stocks", "DE stocks"];
+const isStockBucket = (b) => STOCK_BUCKETS.includes(b);
+const sectorFamily = (b) => isStockBucket(b) ? "Stocks" : b === "Funds" ? "Funds" : "";
 function sectorList(bucket){
-  return bucket === "Stocks" ? STOCK_SECTORS : bucket === "Funds" ? FUND_CATS : [];
+  const fam = sectorFamily(bucket);
+  return fam === "Stocks" ? STOCK_SECTORS : fam === "Funds" ? FUND_CATS : [];
 }
 /* The word this app uses for both, so a report can ask once. */
 const sectorOf = (i) => (i && i.sector) || "";
@@ -1704,8 +1725,10 @@ const SECTOR_HINTS = [
 ];
 function guessSector(name, bucket){
   const n = String(name || "");
+  const fam = sectorFamily(bucket);
+  if (!fam) return "";
   for (const [only, re, label] of SECTOR_HINTS)
-    if (only === bucket && re.test(n)) return label;
+    if (only === fam && re.test(n)) return label;
   return "";
 }
 
@@ -1793,7 +1816,7 @@ function stateFromPayload(p){
       updatedAt: g.updatedAt || new Date().toISOString()
     })),
     investments: arr(p.investments).map(i => ({
-      id: i.id || uid(), name: str(i.name), type: str(i.type || "Other"),
+      id: i.id || uid(), name: str(i.name), type: investType(str(i.type || "Other")),
       investedAmount: num(i.investedAmount), currentValue: num(i.currentValue),
       currency: cur(i.currency), sipAmount: num(i.sipAmount),
       units: num(i.units),
@@ -1816,6 +1839,14 @@ function stateFromPayload(p){
       targets: (function(){
         const t = settings.targets && typeof settings.targets === "object" ? settings.targets : {};
         const out = {};
+        /* A target set against the old single Stocks bucket belongs to the
+           Indian one now — the same translation the holdings get, or the
+           number would be quietly dropped for naming a bucket that no longer
+           exists. */
+        Object.keys(LEGACY_INVEST_TYPES).forEach(old => {
+          const now = LEGACY_INVEST_TYPES[old];
+          if (t[old] != null && t[now] == null) t[now] = t[old];
+        });
         BUCKETS.forEach(b => { const v = num(t[b.k]); if (v > 0) out[b.k] = Math.min(100, v); });
         return out;
       })(),
@@ -2698,8 +2729,12 @@ function renderInvest(){
   const inTab = (i, tab) =>
     tab === "all"    ? true :
     tab === "funds"  ? i.type === "SIP / Mutual fund" :
-    tab === "stocks" ? i.type === "Stocks" :
-                       i.type !== "Stocks" && i.type !== "SIP / Mutual fund";
+    /* One tab over both books: the split is about reporting, and a list of
+       everything you hold in shares is still one list. Each row names its own
+       kind underneath. */
+    tab === "stocks" ? isStockBucket(bucketOf(INVEST_TYPES, i.type)) :
+                       !isStockBucket(bucketOf(INVEST_TYPES, i.type))
+                       && i.type !== "SIP / Mutual fund";
   $("nInvAll").textContent = holdings.length;
   $("nInvFunds").textContent = holdings.filter(i => inTab(i, "funds")).length;
   $("nInvStocks").textContent = holdings.filter(i => inTab(i, "stocks")).length;
@@ -3404,7 +3439,20 @@ $("loanCalc").addEventListener("click", () => {
 
 /** A CSV reader that survives quoted fields — a fund named "Kotak, Equity"
     would otherwise arrive as two columns and shift every figure one left. */
-function parseCSV(text){
+/* Which character separates the fields. A European export often uses the
+   semicolon, because the comma is already busy being a decimal point. The
+   header line decides it, and the right answer there is simply whichever
+   character cuts it into the most pieces. */
+function sniffDelimiter(text){
+  const head = String(text).replace(/\r\n?/g, "\n").split("\n")[0] || "";
+  const best = [",", ";", "\t", "|"]
+    .map(d => ({ d, n: head.split(d).length }))
+    .sort((a, b) => b.n - a.n)[0];
+  return best && best.n > 1 ? best.d : ",";
+}
+
+function parseCSV(text, delim){
+  const sep = delim || ",";
   const rows = [];
   let row = [], field = "", quoted = false;
   const src = text.replace(/\r\n?/g, "\n");
@@ -3416,7 +3464,7 @@ function parseCSV(text){
         else quoted = false;
       } else field += c;
     } else if (c === '"') quoted = true;
-    else if (c === ","){ row.push(field); field = ""; }
+    else if (c === sep){ row.push(field); field = ""; }
     else if (c === "\n"){ row.push(field); rows.push(row); row = []; field = ""; }
     else field += c;
   }
@@ -3435,27 +3483,124 @@ function headerMap(head){
     return -1;
   };
   return {
-    name: pick("instrument", "symbol", "scrip", "name"),
-    qty: pick("qty", "quantity", "units"),
-    invested: pick("invested", "investedvalue", "buyvalue", "cost"),
-    current: pick("curval", "currentvalue", "marketvalue", "presentvalue"),
-    avg: pick("avgcost", "averagecost", "avgprice", "buyavg"),
-    ltp: pick("ltp", "lasttradedprice", "nav", "closingprice")
+    /* The readable name first and the code separately: a file that carries
+       both — Trade Republic carries "Intuit" and "US4612021034" — should be
+       listed under the one a person recognises. */
+    name: pick("instrument", "name", "bezeichnung", "wertpapier", "produkt",
+               "titel", "scrip", "security"),
+    symbol: pick("symbol", "isin", "wkn", "ticker"),
+    qty: pick("qty", "quantity", "units", "shares", "anzahl", "stck", "stueck",
+              "menge", "nominal"),
+    invested: pick("invested", "investedvalue", "buyvalue", "cost", "costbasis",
+                   "totalcost", "einstandswert", "kaufwert", "einstand"),
+    current: pick("curval", "currentvalue", "marketvalue", "presentvalue",
+                  "marktwert", "kurswert", "aktuellerwert", "positionvalue"),
+    avg: pick("avgcost", "averagecost", "avgprice", "buyavg", "avgbuyprice",
+              "einstandskurs", "durchschnittskurs"),
+    ltp: pick("ltp", "lasttradedprice", "nav", "closingprice", "price", "kurs",
+              "lastprice", "marketprice"),
+    /* Only a ledger has these, and having them is what marks it as one. */
+    kind: pick("type", "transactiontype", "art"),
+    klass: pick("assetclass", "instrumenttype", "assettype"),
+    amount: pick("amount", "betrag"),
+    fee: pick("fee", "commission", "brokerage", "gebuehr", "gebhr"),
+    currency: pick("currency", "waehrung", "whrung", "ccy")
   };
 }
 
 /* An all-capitals ticker with no spaces is a stock or an ETF; anything with
    ordinary words in it is a fund. It is a guess, and it can be changed on the
    holding afterwards like any other. */
-function guessType(name){
-  return /^[A-Z0-9&.\-]+$/.test(String(name).trim()) ? "Stocks" : "SIP / Mutual fund";
+function guessType(name, cur){
+  const stock = cur === "EUR" ? "DE stocks" : "IN stocks";
+  return /^[A-Z0-9&.\-]+$/.test(String(name).trim()) ? stock : "SIP / Mutual fund";
+}
+
+/* A ledger states what kind of thing each trade was in, which beats reading
+   the name — "Intuit" and "Wolters Kluwer" are ordinary words, and the
+   name-reading guess above would file both as funds. */
+function typeFromClass(klass, cur){
+  const k = String(klass || "").toUpperCase();
+  const stock = cur === "EUR" ? "DE stocks" : "IN stocks";
+  if (k.includes("FUND") && !k.includes("ETF")) return "SIP / Mutual fund";
+  return stock;
+}
+
+/* A holdings file and a ledger are different animals. One states positions —
+   what is held, what it cost, what it is worth. The other states events, and
+   the position is whatever is left once they are added up. Which arrived is
+   decided by looking for trades in the file rather than by asking, because
+   the file already knows and the person does not need to be quizzed. */
+function looksLikeLedger(rows, col){
+  if (col.kind < 0) return false;
+  return rows.slice(1, 400).some(r => /^(buy|sell)$/i.test(String(r[col.kind] || "").trim()));
+}
+
+/* Fold trades into the positions they add up to. A buy adds shares and the
+   money that left the account for them, the fee included — that is what was
+   put in. A sell takes shares away and the same proportion of the cost with
+   them, which is the average-cost view and the only one this kind of file
+   supports, since it never says which lot was sold.
+
+   Everything that is not a buy or a sell is skipped, and that matters more
+   than it sounds: a dividend row carries the size of the position it was paid
+   on, so counting those would quietly double every holding. */
+function foldTrades(rows, col){
+  const book = new Map();
+  rows.forEach(r => {
+    const kind = String(col.kind >= 0 ? r[col.kind] : "").trim().toUpperCase();
+    if (kind !== "BUY" && kind !== "SELL") return;
+    const code = col.symbol >= 0 ? String(r[col.symbol] || "").trim() : "";
+    const nice = col.name >= 0 ? String(r[col.name] || "").trim() : "";
+    const key = (code || nice).toLowerCase();
+    if (!key) return;
+    const shares = col.qty >= 0 ? Math.abs(num(r[col.qty])) : 0;
+    if (!shares) return;
+    const gross = col.amount >= 0 ? Math.abs(num(r[col.amount]))
+                : col.ltp >= 0 ? Math.abs(num(r[col.ltp])) * shares : 0;
+    const fee = col.fee >= 0 ? Math.abs(num(r[col.fee])) : 0;
+    const hit = book.get(key) || {
+      name: nice || code, units: 0, cost: 0,
+      klass: col.klass >= 0 ? String(r[col.klass] || "").trim() : "",
+      currency: col.currency >= 0 ? String(r[col.currency] || "").trim().toUpperCase() : ""
+    };
+    if (kind === "BUY"){ hit.units += shares; hit.cost += gross + fee; }
+    else {
+      const part = hit.units > 0 ? Math.min(1, shares / hit.units) : 1;
+      hit.cost -= hit.cost * part;
+      hit.units -= shares;
+    }
+    book.set(key, hit);
+  });
+  /* Anything sold down to nothing is not a holding any more. */
+  return [...book.values()].filter(h => h.units > 1e-9 && h.cost > 0.005);
 }
 
 let impRows = [];
 let impCur = "INR";
+/* What the last file was read as, so the screen can say so before anything
+   is written. A detection nobody can see is a detection nobody can correct. */
+let impRead = null;
+
+function setImpCur(c){
+  if (!CURRENCIES.includes(c)) return;
+  impCur = c;
+  document.querySelectorAll("#impCurTog button").forEach(x =>
+    x.setAttribute("aria-pressed", String(x.dataset.cur === c)));
+}
+/* The kind a row lands in follows the currency, so flipping the toggle moves
+   a whole file between the two books without re-reading it. */
+function retypeImport(){
+  impRows.forEach(r => {
+    if (r.existing) return;
+    r.type = r.klass === undefined ? guessType(r.name, impCur)
+                                   : typeFromClass(r.klass, impCur);
+  });
+}
 
 function fillImport(){
   impRows = [];
+  impRead = null;
   $("impResult").innerHTML = "";
   $("impCurWrap").hidden = true;
   $("impFile").value = "";
@@ -3473,43 +3618,98 @@ $("impFile").addEventListener("change", (e) => {
   reader.readAsText(file);
 });
 
-function readHoldings(text){
-  const rows = parseCSV(text);
-  if (rows.length < 2){ $("impResult").innerHTML = '<div class="note warn">There is nothing in that file.</div>'; return; }
-  const col = headerMap(rows[0]);
-  if (col.name < 0 || (col.invested < 0 && col.current < 0)){
-    $("impResult").innerHTML = '<div class="note warn">That does not look like a holdings export — no instrument and value columns in it.</div>';
-    return;
-  }
-  impRows = rows.slice(1).map(r => {
-    const name = String(r[col.name] || "").trim();
-    if (!name) return null;
-    const existing = state.investments.find(i =>
-      i.name.trim().toLowerCase() === name.toLowerCase());
-    return {
-      name,
-      units: col.qty >= 0 ? num(r[col.qty]) : 0,
-      invested: col.invested >= 0 ? num(r[col.invested]) : 0,
-      current: col.current >= 0 ? num(r[col.current]) : (col.invested >= 0 ? num(r[col.invested]) : 0),
-      type: existing ? existing.type : guessType(name),
-      existing: existing || null,
-      take: true
-    };
-  }).filter(Boolean).filter(r => r.invested > 0 || r.current > 0);
+const warn = (m) => { $("impResult").innerHTML = '<div class="note warn">' + m + "</div>"; };
+const sameName = (n) => state.investments.find(i =>
+  i.name.trim().toLowerCase() === String(n).trim().toLowerCase()) || null;
 
-  if (!impRows.length){ $("impResult").innerHTML = '<div class="note warn">No holdings with a value in that file.</div>'; return; }
+function readHoldings(text){
+  const rows = parseCSV(text, sniffDelimiter(text));
+  if (rows.length < 2){ warn("There is nothing in that file."); return; }
+  const col = headerMap(rows[0]);
+  impRead = null;
+  /* Every read starts from your own currency, never from whatever the last
+     file happened to be. Otherwise a Zerodha export opened after a Trade
+     Republic one inherits euros, and files Indian holdings in the German
+     book — the toggle only appears once a file is read, so there is no
+     deliberate setting here to trample. */
+  setImpCur(state.profile.currency);
+
+  /* If the file states a currency and agrees with itself, take its word for
+     it rather than leaving someone to find the toggle. */
+  if (col.currency >= 0){
+    const said = [...new Set(rows.slice(1)
+      .map(r => String(r[col.currency] || "").trim().toUpperCase()).filter(Boolean))];
+    if (said.length === 1 && CURRENCIES.includes(said[0])) setImpCur(said[0]);
+  }
+
+  if (looksLikeLedger(rows, col)){
+    const held = foldTrades(rows.slice(1), col);
+    if (!held.length){ warn("That looks like a list of transactions, but there are no trades left holding anything."); return; }
+    impRows = held.map(h => {
+      const existing = sameName(h.name);
+      return {
+        name: h.name, klass: h.klass,
+        units: h.units, invested: h.cost,
+        /* A ledger records what things cost, never what they are worth today.
+           Worth stands at cost rather than at zero, and the screen says so. */
+        current: h.cost, noValue: true,
+        type: existing ? existing.type : typeFromClass(h.klass, impCur),
+        existing, take: true
+      };
+    });
+    impRead = { how: "a list of transactions", extra: held.length + " still held, added up from the buys" };
+  } else {
+    if (col.name < 0 && col.symbol < 0){ warn("That does not look like a holdings export — nothing in it names an instrument."); return; }
+    const hasValue = col.invested >= 0 || col.current >= 0 ||
+                     (col.qty >= 0 && (col.avg >= 0 || col.ltp >= 0));
+    if (!hasValue){ warn("That does not look like a holdings export — no value columns in it."); return; }
+
+    impRows = rows.slice(1).map(r => {
+      const name = String((col.name >= 0 ? r[col.name] : "") ||
+                          (col.symbol >= 0 ? r[col.symbol] : "")).trim();
+      if (!name) return null;
+      const existing = sameName(name);
+      const units = col.qty >= 0 ? num(r[col.qty]) : 0;
+      const avg = col.avg >= 0 ? num(r[col.avg]) : 0;
+      const ltp = col.ltp >= 0 ? num(r[col.ltp]) : 0;
+      /* Totals when the file gives them, and worked out from price × quantity
+         when it only gives those — which is how plenty of exports state it. */
+      const invested = col.invested >= 0 ? num(r[col.invested]) : (avg * units);
+      const current = col.current >= 0 ? num(r[col.current])
+                    : (ltp * units) || invested;
+      return {
+        name, units, invested, current,
+        type: existing ? existing.type : guessType(name, impCur),
+        existing, take: true
+      };
+    }).filter(Boolean).filter(r => r.invested > 0 || r.current > 0);
+    impRead = { how: "a list of holdings", extra: impRows.length + " read" };
+  }
+
+  if (!impRows.length){ warn("No holdings with a value in that file."); return; }
   $("impCurWrap").hidden = false;
   drawImport();
 }
 
+/* 3 rather than 3.0000000000, and 0.065713 rather than what the float says. */
+const showUnits = (u) => {
+  const n = Number(u) || 0;
+  return n % 1 === 0 ? String(n) : String(+n.toFixed(6));
+};
+
 function drawImport(){
   const add = impRows.filter(r => r.take && !r.existing).length;
   const upd = impRows.filter(r => r.take && r.existing).length;
+  const kinds = [...new Set(impRows.filter(r => r.take && !r.existing).map(r => r.type))];
+  const noValue = impRows.some(r => r.noValue);
   $("impResult").innerHTML =
     `<div class="aboutbox">
-       <div><b>${impRows.length}</b> holdings read${add ? " · " + add + " to add" : ""}${upd ? " · " + upd + " to update" : ""}</div>
-       <div>${esc(fmt(impRows.filter(r=>r.take).reduce((s,r)=>s+r.current,0), impCur))} worth, of what is ticked</div>
+       ${impRead ? `<div>Read as <b>${esc(impRead.how)}</b> · ${esc(impRead.extra)}</div>` : ""}
+       <div><b>${impRows.length}</b> holdings${add ? " · " + add + " to add" : ""}${upd ? " · " + upd + " to update" : ""}</div>
+       <div>${esc(fmt(impRows.filter(r=>r.take).reduce((s,r)=>s+r.current,0), impCur))}${noValue ? " put in" : " worth"}, of what is ticked</div>
+       ${kinds.length ? `<div>New ones will be filed under ${esc(kinds.join(" and "))} — the currency above decides which.</div>` : ""}
      </div>
+     ${noValue ? `<div class="note" style="margin-bottom:12px">This file records trades, not values: it says what each holding cost, never what it is worth today. Worth is set to what you paid, and an update leaves any worth you already had alone — put the real figure on the holding, or let a fresh export carry it.</div>` : ""}
      <div class="btnrow" style="margin-bottom:12px">
        <button class="btn ghost sm" id="impAll">Tick all</button>
        <button class="btn ghost sm" id="impNone">Tick none</button>
@@ -3522,7 +3722,7 @@ function drawImport(){
          </span>
          <span class="im-m">
            <span class="im-n">${esc(r.name)}</span>
-           <span class="im-d">${esc(r.type)}${r.units ? " · " + r.units + " units" : ""}${r.existing ? "" : ""}</span>
+           <span class="im-d">${esc(r.type)}${r.units ? " · " + showUnits(r.units) + " units" : ""}</span>
          </span>
          <span class="im-tag ${r.existing ? "upd" : "add"}">${r.existing ? "update" : "new"}</span>
          <span class="im-a">${esc(fmt(r.current, impCur))}</span>
@@ -3540,10 +3740,8 @@ function drawImport(){
 
 document.querySelectorAll("#impCurTog button").forEach(b =>
   b.addEventListener("click", () => {
-    impCur = b.dataset.cur;
-    document.querySelectorAll("#impCurTog button").forEach(x =>
-      x.setAttribute("aria-pressed", String(x === b)));
-    if (impRows.length) drawImport();
+    setImpCur(b.dataset.cur);
+    if (impRows.length){ retypeImport(); drawImport(); }
   }));
 
 function applyImport(){
@@ -3552,9 +3750,11 @@ function applyImport(){
   let added = 0, updated = 0;
   take.forEach(r => {
     if (r.existing){
-      /* only what the file actually knows */
+      /* only what the file actually knows — and a ledger does not know what
+         anything is worth today, so an import from one must not overwrite a
+         worth that was already there with a cost. */
       r.existing.investedAmount = r.invested;
-      r.existing.currentValue = r.current;
+      if (!r.noValue) r.existing.currentValue = r.current;
       if (r.units) r.existing.units = r.units;
       r.existing.updatedAt = new Date().toISOString();
       updated++;
@@ -3564,7 +3764,7 @@ function applyImport(){
         investedAmount: r.invested, currentValue: r.current,
         units: r.units, sipAmount: 0, sipDay: 0, sipDone: "",
         grams: 0, purity: "", goldDesc: "", goldKind: "", boughtOn: "",
-        notes: "", updatedAt: new Date().toISOString()
+        sector: "", notes: "", updatedAt: new Date().toISOString()
       });
       added++;
     }
@@ -4125,6 +4325,11 @@ function sectorGroups(bucket){
    heading says which question is being answered. */
 const sectorWord = (b) => b === "Funds" ? "mandate" : "sector";
 
+/* A bucket dropped into the middle of a sentence. Most read better lowercased
+   — "the largest share of your funds" — but "IN stocks" and "PPF / EPF" open
+   with an initialism that must survive, so those are left as they are. */
+const bucketPhrase = (b) => /^[A-Z]{2,}/.test(b) ? b : String(b).toLowerCase();
+
 function repSectorSection(bucket){
   const held = investOnly().filter(i => bucketOf(INVEST_TYPES, i.type) === bucket);
   if (!held.length) return "";
@@ -4145,7 +4350,7 @@ function repSectorSection(bucket){
   return repPieBlock(key, bucket + " by " + sectorWord(bucket), fmtDisp(total)) +
     `<div class="chartblock" style="margin:0 0 14px">
        <div class="chartblock-h">
-         <div class="cb-t">Where the ${esc(bucket.toLowerCase())} sit</div>
+         <div class="cb-t">Where the ${esc(bucketPhrase(bucket))} sit</div>
          <div class="cb-n">share · gain</div>
        </div>
        ${groups.map(g => {
@@ -4166,7 +4371,7 @@ function repSectorSection(bucket){
        }).join("")}
      </div>
      <div class="aboutbox">
-       ${biggest ? `<div><b>${esc(biggest.label)}</b> is the largest at ${(biggest.value / total * 100).toFixed(1)}% of your ${esc(bucket.toLowerCase())}</div>` : ""}
+       ${biggest ? `<div><b>${esc(biggest.label)}</b> is the largest at ${(biggest.value / total * 100).toFixed(1)}% of your ${esc(bucketPhrase(bucket))}</div>` : ""}
        ${top ? `<div>Your single biggest holding, ${esc(top.name || top.type)}, is ${topShare.toFixed(1)}% of them</div>` : ""}
        <div>${named.length} ${named.length === 1 ? sectorWord(bucket) : sectorWord(bucket) + "s"} across ${held.length} ${held.length === 1 ? "holding" : "holdings"}${
          untagged.length ? ` · ${untagged.length} still untagged` : ""}</div>

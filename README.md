@@ -51,11 +51,53 @@ day needs a server pushing it, and this is a page with no server behind it —
 the browser API for scheduling one locally was abandoned. So the app says it
 when you open it, which is the honest version of the same thing.
 
+### Two stock books
+
+Shares are held as **IN stocks** and **DE stocks**, because a portfolio held
+in two countries is two things: they move on different exchanges, in different
+currencies, and one number over both can hide being all-in on one. They are
+separate buckets, so each gets its own share of the chart, its own target and
+its own sector breakdown. The Investments tab still lists them together —
+the split is about reporting, and a list of what you hold in shares is still
+one list.
+
+Holdings entered before the split read as `Stocks`, and everything under that
+name is Indian, because that is all the app could hold at the time. The
+translation happens in `stateFromPayload` — the one place a payload becomes
+state — so nothing else has to know the old word existed. A target set against
+the old bucket moves with it, or it would be silently dropped for naming a
+bucket that no longer exists.
+
 ### Importing holdings
 
-Settings → Import holdings takes a holdings export from Zerodha Console —
-stocks, ETFs and funds in one file. It is read in the browser with
-`FileReader` and goes nowhere.
+Settings → Import holdings reads two shapes of file, and works out which
+arrived rather than asking:
+
+- **A list of positions** — a Zerodha Console export. It states what is held,
+  what it cost and what it is worth.
+- **A ledger** — a Trade Republic transactions export. It states events, and
+  the position is whatever is left when they are added up.
+
+A ledger is recognised by having a type column with `BUY`/`SELL` in it. Buys
+add shares and the money that left the account, the fee included; sells take
+shares away along with the same proportion of the cost, which is the
+average-cost view and the only one such a file supports, since it never says
+which lot was sold. Everything that is not a trade is skipped — and that
+matters more than it sounds, because a **dividend row carries the size of the
+position it was paid on**, so counting those would quietly double every
+holding.
+
+A ledger knows what things cost and never what they are worth today. Worth is
+set to cost, the screen says so, and re-importing one **will not overwrite a
+worth already on a holding** with a cost.
+
+The file's own currency column decides which book a new holding lands in —
+euro to DE stocks, rupee to IN stocks — and every read starts from your home
+currency rather than from whatever the last file was, or a Zerodha export
+opened after a Trade Republic one would inherit euros. The toggle moves a
+whole file between the books if the guess is ever wrong.
+
+It is read in the browser with `FileReader` and goes nowhere.
 
 Columns are found **by their heading**, not their position, so an export that
 gains a column does not silently shift every figure one to the left. The CSV
