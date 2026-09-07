@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.17 — 2026-09-07
+- better: The rates refresh themselves when you come back to the app, not only when it is loaded from scratch; Indian tickers are worked out from the holding name, so nothing needs typing
+
 ## 1.1.16 — 2026-09-07
 - better: Indian shares are priced too — one Refresh now brings back every NSE ticker, every European one and every linked fund NAV together
 

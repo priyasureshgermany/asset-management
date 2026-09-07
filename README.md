@@ -169,6 +169,14 @@ worth pushing, for the same reason the rates and their timestamp do.
 
 ### Bringing the figures up to date by hand
 
+The app also asks on its own: once when the page loads, and again whenever it
+comes back to the foreground **after a gap of half an hour**. That second one
+matters more than it sounds. An installed app is resumed far more often than
+it is loaded — tapping its icon brings the page back rather than running it
+again — so a fetch wired only to load fired once on the day it was installed
+and never again. The gap is there so nothing moves under you while you are
+reading it.
+
 Settings → Rates & gold carries **Refresh now**, which fetches everything the
 app takes from outside itself in one go: the exchange rate, the gold price,
 every linked fund's NAV and every share price. The open-time refresh asks once
@@ -204,6 +212,14 @@ Both books are covered: NSE tickers carry `.NS` and are priced in rupees,
 Amsterdam `.AS`, Stockholm `.ST`, US listings plain. A holding is priced only
 when the ticker on it also appears in `data/symbols.json`, so adding a share
 to the book means adding it to that file too.
+
+**Indian tickers need no typing.** A Zerodha export names holdings by their
+ticker already, so `symbolOf()` derives the symbol as the name plus `.NS`.
+Derived rather than stored, so it follows the name instead of going stale
+beside it — and only where the name really is a ticker: anything with spaces
+or lower case is words, and gets nothing. A ticker typed by hand always wins.
+European listings still need theirs typed, because the suffix depends on the
+exchange rather than the country.
 
 A symbol that fails to fetch keeps the price it had rather than vanishing, and
 a run that prices nothing at all exits non-zero instead of committing an empty

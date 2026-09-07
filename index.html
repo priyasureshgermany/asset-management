@@ -1622,7 +1622,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.16";
+const APP_VERSION = "1.1.17";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -2043,8 +2043,9 @@ function investWorth(inv){
     const nav = navOf(inv.schemeCode);
     if (nav) return inv.units * nav;
   }
-  if (inv.symbol && inv.units > 0){
-    const px = quoteFor(inv.symbol, inv.currency);
+  const sym = symbolOf(inv);
+  if (sym && inv.units > 0){
+    const px = quoteFor(sym, inv.currency);
     if (px) return inv.units * px;
   }
   return inv.currentValue;
@@ -2064,6 +2065,19 @@ function navMeta(code){
    here has to hold a second opinion about an exchange rate. */
 function quoteMeta(sym){
   return (state.settings.quotes && state.settings.quotes[String(sym).toUpperCase()]) || null;
+}
+/* The Yahoo symbol for a holding. A Zerodha export names Indian holdings by
+   their ticker already — HDFCBANK, TCS — so the symbol is that name with .NS
+   after it, and nothing needs typing. Derived rather than stored, so it
+   follows the name instead of going stale beside it, and only when the name
+   really is a ticker: anything with spaces or lower case is words, not a
+   symbol, and gets nothing. A ticker typed by hand always wins. */
+function symbolOf(inv){
+  if (inv.symbol) return String(inv.symbol).toUpperCase();
+  if (bucketOf(INVEST_TYPES, inv.type) !== "IN stocks") return "";
+  const n = String(inv.name || "").trim().toUpperCase();
+  return /^[A-Z0-9&-]{2,20}$/.test(n) && n === String(inv.name || "").trim()
+    ? n + ".NS" : "";
 }
 function quoteFor(sym, cur){
   const q = quoteMeta(sym);
@@ -3249,16 +3263,21 @@ function syncFund(){
                    : " · add the units and worth will follow the NAV.");
   }
 
-  const sym = String($("investTicker").value || "").trim().toUpperCase();
+  const typed = String($("investTicker").value || "").trim().toUpperCase();
+  /* What this holding would be priced by if nothing is typed. */
+  const derived = symbolOf({ symbol: "", type: pickedChip("investTypes", "Other"),
+                             name: $("investName").value });
+  const sym = typed || derived;
   const q = sym ? quoteMeta(sym) : null;
   const cur = pickedCur("investCurTog");
   const px = sym ? quoteFor(sym, cur) : 0;
   const pricedShare = !!sym && units > 0 && !!px;
   $("investTickerNote").hidden = !sym;
   if (sym){
+    const how = typed ? "" : " — taken from the name; type one here to override";
     $("investTickerNote").textContent = !q
-      ? sym + " has no price yet. Add it to data/symbols.json in the repo and the daily run will pick it up."
-      : (q.name || sym) + " · " + fmt(px, cur) +
+      ? sym + " has no price yet" + how + ". Add it to data/symbols.json in the repo and the daily run will pick it up."
+      : (q.name || sym) + " · " + fmt(px, cur) + how +
         (units > 0 ? " · worth is units × price, so the box above is not used."
                    : " · add the units and worth will follow the price.");
   }
@@ -3619,7 +3638,7 @@ async function refreshRates(force){
       ok = true;
     }
   }
-  if (state.investments.some(i => i.symbol && i.units > 0)){
+  if (state.investments.some(i => symbolOf(i) && i.units > 0)){
     const q = await fetchQuotes();
     if (q){
       state.settings.quotes = stateFromPayload({ settings: { quotes: q.quotes } }).settings.quotes;
@@ -5319,6 +5338,24 @@ setTimeout(() => checkForUpdate().then(showUpdate), 4000);
    that moves under you while you are reading is worse than one that is a few
    hours old. */
 setTimeout(() => refreshRates(), 900);
+
+/* An installed app is resumed far more often than it is loaded. Tapping its
+   icon brings the page back rather than running it again, so a fetch wired
+   only to load fired once on the day it was installed and then never again —
+   which is exactly how it looked: the figures moved only when the button was
+   pressed.
+
+   Coming back after a while is a fresh look at the app and deserves fresh
+   figures. After a gap, and only after a gap, so nothing still moves under
+   you while you are reading it. */
+const RESUME_STALE_MS = 30 * 60 * 1000;
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) return;
+  const at = Date.parse(state.settings.liveAt || "") || 0;
+  if (Date.now() - at < RESUME_STALE_MS) return;
+  ratesTried = false;                      /* a return is a fresh chance to ask */
+  refreshRates();
+});
 render();
 </script>
 </body>
