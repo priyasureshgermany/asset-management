@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.11 — 2026-09-07
+- better: ULIP becomes Cash, sharing the wedge cash assets already use; cash counts towards what you own but never towards a target allocation
+
 ## 1.1.10 — 2026-09-07
 - better: The IN and EU tabs say stocks underneath, so a country code on its own does not have to carry the meaning
 
