@@ -53,7 +53,7 @@ when you open it, which is the honest version of the same thing.
 
 ### Two stock books
 
-Shares are held as **IN stocks** and **DE stocks**, because a portfolio held
+Shares are held as **IN stocks** and **EU stocks**, because a portfolio held
 in two countries is two things: they move on different exchanges, in different
 currencies, and one number over both can hide being all-in on one. They are
 separate buckets, so each gets its own share of the chart, its own target and
@@ -61,12 +61,23 @@ its own sector breakdown. The Investments tab still lists them together —
 the split is about reporting, and a list of what you hold in shares is still
 one list.
 
-Holdings entered before the split read as `Stocks`, and everything under that
-name is Indian, because that is all the app could hold at the time. The
-translation happens in `stateFromPayload` — the one place a payload becomes
-state — so nothing else has to know the old word existed. A target set against
-the old bucket moves with it, or it would be silently dropped for naming a
-bucket that no longer exists.
+Alongside them the panel offers **ULIP** and **Debt**. Debt replaced Bonds
+rather than joining it: a bond is one kind of debt, and two buckets that
+overlap only make a person choose between them for no gain. It keeps the hue
+Bonds had, so a chart that already showed one does not change colour.
+
+Names that have changed meaning are translated in `stateFromPayload`, the one
+place a payload becomes state, so nothing else has to know an old word ever
+existed:
+
+| written as | read as | why |
+|---|---|---|
+| `Stocks` | `IN stocks` | before the book was split by country, Indian was all it could hold |
+| `DE stocks` | `EU stocks` | the holdings are European, not only German |
+| `Bonds` | `Debt` | a bond is one kind of debt, not a kind apart |
+
+A target set against an old bucket moves with it, or it would be silently
+dropped for naming a bucket that no longer exists.
 
 ### Importing holdings
 
@@ -92,7 +103,7 @@ set to cost, the screen says so, and re-importing one **will not overwrite a
 worth already on a holding** with a cost.
 
 The file's own currency column decides which book a new holding lands in —
-euro to DE stocks, rupee to IN stocks — and every read starts from your home
+euro to EU stocks, rupee to IN stocks — and every read starts from your home
 currency rather than from whatever the last file was, or a Zerodha export
 opened after a Trade Republic one would inherit euros. The toggle moves a
 whole file between the books if the guess is ever wrong.
