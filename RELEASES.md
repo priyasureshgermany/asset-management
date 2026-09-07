@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.30 — 2026-09-07
+- fix: This update installs itself, because the build before it hid the Update button
+
 ## 1.1.29 — 2026-09-07
 - fix: Settings panes after GitHub sync opened empty — import holdings, backup and restore, the lock, the calculator and about were all swallowed by an unclosed tag
 - better: Share prices are read fresh rather than from a cache that never expired

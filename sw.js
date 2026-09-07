@@ -3,9 +3,23 @@
    on its own. Installing a new worker fills the versioned asset cache and
    leaves SHELL alone; activating purges old asset caches and leaves SHELL
    alone. Only the in-app Update button clears the caches and reloads. */
-const VERSION = "1.1.29";
+const VERSION = "1.1.30";
 const ASSETS = "assetmgr-" + VERSION;   /* icons, manifest — versioned, purged */
 const SHELL = "assetmgr-shell";         /* the page itself — replaced only on request */
+
+/* One release, once per device, and never again.
+
+   1.1.28 shipped an unclosed tag that folded every settings pane after GitHub
+   sync inside it — including About, which is where the Update button lives.
+   The rule that the page changes only when you ask it to is a good rule, but
+   it assumes you can still reach the thing that asks. Anyone on that build
+   cannot, so this worker lets go of the shell on its own, once, and fetches
+   the fixed page.
+
+   Keyed to a cache of its own so it happens a single time per device: a
+   later release finding this marker already there leaves the shell alone and
+   the usual rule stands. */
+const RESCUE = "assetmgr-rescue-1.1.30";
 
 function freshPage(){
   return fetch(new Request("./index.html", { cache: "reload" }));
@@ -34,9 +48,15 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys()
+    caches.has(RESCUE)
+      .then((done) => done ? null
+        : caches.delete(SHELL)
+            .then(() => caches.open(RESCUE))
+            .then((c) => c.put("./rescued", new Response("1.1.30"))))
+      .then(() => caches.keys())
       .then((keys) => Promise.all(
-        keys.filter((k) => k !== ASSETS && k !== SHELL).map((k) => caches.delete(k))))
+        keys.filter((k) => k !== ASSETS && k !== SHELL && k !== RESCUE)
+            .map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
