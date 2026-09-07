@@ -808,6 +808,9 @@ select.inp{appearance:none;background-image:none}
 .improw .im-n{font-size:13.5px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .improw .im-d{font-size:11px;color:var(--ink-3)}
 .improw .im-a{font-family:var(--mono);font-size:12.5px;font-weight:600;flex:none;text-align:right}
+/* The dropdown that tags a holding — sized to sit beside the name rather than
+   stack under it, since the whole point is to work down a list quickly. */
+.improw .im-sel{flex:none;width:148px;padding:7px 9px;font-size:12.5px}
 .im-box{
   width:24px;height:24px;flex:none;border-radius:7px;border:1.6px solid var(--line-strong);
   display:grid;place-items:center;color:transparent;transition:all .15s;
@@ -1473,6 +1476,8 @@ html.locked #lockScreen{
         <div class="field"><label>Goes out on day</label>
           <input class="inp" id="investSipDay" type="text" inputmode="numeric" placeholder="5"></div>
       </div>
+      <div class="field" id="investSectorField"><label>Sector</label>
+        <select class="inp" id="investSector"></select></div>
     </div>
 
     <div id="investGoldFields" hidden>
@@ -1558,7 +1563,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.4";
+const APP_VERSION = "1.1.5";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1647,6 +1652,63 @@ function goldOnly(){ return state.investments.filter(isGold); }
    drawer does. */
 const GOLD_KINDS = ["Necklace","Aram","Aruna","Chain","Bracelet","Ring","Stud","Dollar","Bangles","Other"];
 
+/* What a holding is exposed to. Two lists and not one, because "Large cap" is
+   not a sector and "Banking" is not a mandate — folded together, each would be
+   wrong about half the portfolio. */
+const STOCK_SECTORS = ["Banking","Financial services","IT","Pharma & healthcare",
+  "Auto","FMCG","Energy & oil","Metals & mining","Infrastructure","Telecom",
+  "Chemicals","Realty","Media","Other"];
+const FUND_CATS = ["Index","Large cap","Mid cap","Small cap","Flexi cap",
+  "ELSS (tax saving)","Debt","Hybrid","International","Sectoral / thematic","Other"];
+function sectorList(bucket){
+  return bucket === "Stocks" ? STOCK_SECTORS : bucket === "Funds" ? FUND_CATS : [];
+}
+/* The word this app uses for both, so a report can ask once. */
+const sectorOf = (i) => (i && i.sector) || "";
+
+/* Read the sector out of the name, and only out of the name. An Indian fund
+   states its mandate in its own title — "Nifty 50 Index", "Small Cap" — and
+   many companies state their trade. What a name does not say is left blank
+   rather than guessed from a table of tickers I would have to keep correct:
+   a wrong sector quietly skews every share on this report, and a blank one
+   says plainly that nobody has said yet. Order matters — an index fund that
+   tracks smallcaps is an index fund, so Index is asked before the cap sizes. */
+const SECTOR_HINTS = [
+  ["Funds", /index|nifty|sensex|\betf\b/i,                     "Index"],
+  ["Funds", /elss|tax\s*sav/i,                                 "ELSS (tax saving)"],
+  ["Funds", /liquid|debt|gilt|bond|overnight|money\s*market/i, "Debt"],
+  ["Funds", /hybrid|balanced|asset\s*alloc/i,                  "Hybrid"],
+  ["Funds", /internation|global|nasdaq|overseas|world/i,       "International"],
+  ["Funds", /flexi\s*-?\s*cap|multi\s*-?\s*cap/i,              "Flexi cap"],
+  ["Funds", /small\s*-?\s*cap/i,                               "Small cap"],
+  ["Funds", /mid\s*-?\s*cap/i,                                 "Mid cap"],
+  ["Funds", /large\s*-?\s*cap|blue\s*-?\s*chip/i,              "Large cap"],
+  ["Funds", /pharma|banking|infra|technolog|digital|energy|consum|defence|psu/i,
+                                                               "Sectoral / thematic"],
+  /* No word boundaries on this side. A Zerodha export names holdings by
+     ticker, so the only readable word is welded into the middle of the
+     thing — HDFCBANK, KPITTECH — and a boundary would find neither. */
+  ["Stocks", /pharma|health|hospital|\blabs?\b|life\s*scien/i, "Pharma & healthcare"],
+  ["Stocks", /bank/i,                                          "Banking"],
+  ["Stocks", /financ|finserv|capital|insur|securit|broking/i,  "Financial services"],
+  ["Stocks", /motors?|automob|tyre|mobility/i,                 "Auto"],
+  ["Stocks", /steel|metal|mining|zinc|copper|alumin/i,         "Metals & mining"],
+  ["Stocks", /power|energy|petro|coal|solar|renew|\boil\b/i,   "Energy & oil"],
+  ["Stocks", /infra|cement|construct|engineer|projects/i,      "Infrastructure"],
+  ["Stocks", /telecom|communicat|airtel/i,                     "Telecom"],
+  ["Stocks", /chemical|fertil|paints/i,                        "Chemicals"],
+  ["Stocks", /realty|estate|developers/i,                      "Realty"],
+  ["Stocks", /media|entertain|broadcast/i,                     "Media"],
+  ["Stocks", /consumer|foods|beverage|dairy/i,                 "FMCG"],
+  ["Stocks", /tech|infotech|systems|softw|digital|computer/i,  "IT"]
+];
+function guessSector(name, bucket){
+  const n = String(name || "");
+  for (const [only, re, label] of SECTOR_HINTS)
+    if (only === bucket && re.test(n)) return label;
+  return "";
+}
+
 function bucketOf(table, key){
   const hit = table.find(x => x.k === key);
   return hit ? hit.b : "Other";
@@ -1661,6 +1723,11 @@ function swatch(name, table){
   return "hsl(" + c.h + " " + CAT_SAT + "% " + l + "%)";
 }
 /* A wash of the same colour, for the square an icon sits on. */
+/* For slices whose category was built on the spot rather than looked up. */
+function swatchOf(c){
+  return "hsl(" + c.h + " " + (c.s == null ? CAT_SAT : c.s) + "% " +
+         Math.max(CAT_L_MIN, Math.min(CAT_L_MAX, c.l)) + "%)";
+}
 function swatchSoft(name, table){
   const t = table || BUCKETS;
   const hit = t.find(x => x.k === name) || t[t.length - 1];
@@ -1730,6 +1797,8 @@ function stateFromPayload(p){
       investedAmount: num(i.investedAmount), currentValue: num(i.currentValue),
       currency: cur(i.currency), sipAmount: num(i.sipAmount),
       units: num(i.units),
+      /* What it is exposed to — a sector for a stock, a mandate for a fund. */
+      sector: str(i.sector),
       sipDay: Math.min(31, Math.max(0, Math.round(num(i.sipDay)))),
       /* the month last ticked off, as YYYY-MM — a date would invite the
          question of which date, and the answer is only ever the month */
@@ -2123,13 +2192,17 @@ const catBias = (c) => (catL(c) - 32) / (CAT_L_MAX - CAT_L_MIN);
 function pieShades(c, on){
   const up = on ? 6 : 0, down = on ? 5 : 0;
   const h = c.h, bl = catL(c);
+  /* A category may carry its own saturation. Only one thing asks for it — the
+     wedge standing for holdings nobody has classified — and it asks because a
+     gap drawn as vividly as a real sector reads as one. */
+  const S = c.s == null ? CAT_SAT : c.s;
   const L = v => Math.max(7, Math.min(88, v)).toFixed(1);
   return {
-    lit:  "hsl(" + h + " " + CAT_SAT + "% " + L(bl + 14 + up) + "%)",
-    top:  "hsl(" + h + " " + CAT_SAT + "% " + L(bl + 6 + up * 0.4) + "%)",
-    base: "hsl(" + h + " " + CAT_SAT + "% " + L(bl - down * 0.6) + "%)",
-    wall: "hsl(" + h + " " + (CAT_SAT - 8) + "% " + L(bl - 11 - down * 0.8) + "%)",
-    foot: "hsl(" + h + " " + (CAT_SAT - 12) + "% " + L(bl - 19 - down * 0.6) + "%)"
+    lit:  "hsl(" + h + " " + S + "% " + L(bl + 14 + up) + "%)",
+    top:  "hsl(" + h + " " + S + "% " + L(bl + 6 + up * 0.4) + "%)",
+    base: "hsl(" + h + " " + S + "% " + L(bl - down * 0.6) + "%)",
+    wall: "hsl(" + h + " " + Math.max(0, S - 8) + "% " + L(bl - 11 - down * 0.8) + "%)",
+    foot: "hsl(" + h + " " + Math.max(0, S - 12) + "% " + L(bl - 19 - down * 0.6) + "%)"
   };
 }
 function tintInk(c, dark){
@@ -2903,12 +2976,25 @@ function investFormMode(type, cur){
   const gold = type === GOLD_TYPE;
   $("investPaperFields").hidden = gold;
   $("investGoldFields").hidden = !gold;
+  /* Only the two kinds that have one. A fixed deposit has no sector, and an
+     empty dropdown asking for one is a question with no answers. */
+  const list = sectorList(bucketOf(INVEST_TYPES, type));
+  $("investSectorField").hidden = gold || !list.length;
+  if (list.length){
+    $("investSector").innerHTML = '<option value="">Not set</option>' +
+      list.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join("");
+    $("investSector").value = list.includes(investSectorPick) ? investSectorPick : "";
+  }
   if (gold){
     $("goldValueNote").textContent =
       "Worth is worked out from the weight: grams × " + fmt(goldPrice(cur), cur) +
       " a gram, which you set in Settings → Rates & gold.";
   }
 }
+/* Held across a change of type, so switching from Stocks to Funds and back
+   does not silently forget what was chosen. */
+let investSectorPick = "";
+
 /** @param preset the type a new entry starts on — the Gold tab adds gold. */
 function openInvest(id, preset){
   const i = id ? state.investments.find(x => x.id === id) : null;
@@ -2928,6 +3014,7 @@ function openInvest(id, preset){
   buildChips("goldKinds", GOLD_KINDS.map(k => ({ k })), i && i.goldKind ? i.goldKind : "Necklace");
   $("investGoldPaid").value = i && isGold(i) && i.investedAmount ? i.investedAmount : "";
   $("investNotes").value = i ? i.notes : "";
+  investSectorPick = i ? sectorOf(i) : "";
 
   const cur = i ? i.currency : state.profile.currency;
   const type = i ? i.type : (preset || "SIP / Mutual fund");
@@ -2957,6 +3044,10 @@ $("investSave").addEventListener("click", () => {
     purity: gold ? $("investPurity").value : "",
     goldDesc: gold ? $("investGoldDesc").value.trim() : "",
     goldKind: gold ? pickedChip("goldKinds", "Other") : "",
+    /* Asked of the list rather than of the hidden field, so a sector left over
+       from a type that had one cannot ride along on a type that has none. */
+    sector: !gold && sectorList(bucketOf(INVEST_TYPES, type)).length
+      ? $("investSector").value : "",
     boughtOn: gold ? $("investGoldDate").value : "",
     notes: $("investNotes").value.trim(), updatedAt: new Date().toISOString()
   };
@@ -3572,7 +3663,8 @@ function ghFingerprint(){
   add("l", state.liabilities, l => [l.name, l.category, l.amount, l.interestRate, l.currency, l.notes].join("|"));
   add("g", state.goals, g => [g.name, g.targetAmount, g.currentAmount, g.currency, g.targetDate, g.notes].join("|"));
   add("i", state.investments, i => [i.name, i.type, i.investedAmount, i.currentValue, i.currency,
-    i.units, i.sipAmount, i.sipDay, i.sipDone, i.grams, i.purity, i.goldKind, i.boughtOn, i.notes].join("|"));
+    i.units, i.sipAmount, i.sipDay, i.sipDone, i.grams, i.purity, i.goldKind, i.boughtOn,
+    i.sector, i.notes].join("|"));
   /* Only the settings a person sets. The rates and the time they were fetched
      are rewritten on every open by the live feed, and counting those made the
      app permanently one change behind its own backup — a badge that is always
@@ -3820,6 +3912,46 @@ function currencySlices(){
   }).filter(x => x.value > 0);
 }
 
+/* How many holdings a pie will name before it stops being readable. Past this
+   the remainder becomes one wedge, which is honest: it says there is more
+   without pretending nine slivers can be told apart. */
+const PIE_HOLDINGS = 9;
+
+/* Holdings have no category to take a colour from the way kinds do, so they
+   are given hues spread by the golden angle — the arrangement that keeps
+   successive values as far apart as a circle allows — inside the same
+   saturation and lightness band everything else is drawn in. Rank decides the
+   hue, so a holding is the same colour in the pie and in the bar beneath it
+   without either having to be told about the other. */
+function holdingCat(n){
+  const r = Math.min(n, PIE_HOLDINGS);
+  return { k: "hold" + r, h: Math.round((196 + r * 137.508) % 360), l: r % 2 ? 37 : 27 };
+}
+function holdingSwatch(n){
+  const c = holdingCat(n);
+  return "hsl(" + c.h + " " + CAT_SAT + "% " +
+         Math.max(CAT_L_MIN, Math.min(CAT_L_MAX, c.l)) + "%)";
+}
+
+/* The holdings of one kind, largest first, with everything past the pie's
+   limit folded into a single wedge. `ranked` is already sorted by worth, so
+   the holdings worth nothing sit at the end and dropping them cannot disturb
+   the ranks the colours are taken from. */
+function holdingSlices(ranked){
+  const vals = ranked
+    .map((i, n) => ({ label: i.name || i.type, value: toDisp(investWorth(i), i.currency), n }))
+    .filter(x => x.value > 0);
+  const out = vals.slice(0, PIE_HOLDINGS)
+    .map(x => ({ label: x.label, cat: holdingCat(x.n), value: x.value }));
+  const rest = vals.slice(PIE_HOLDINGS);
+  if (rest.length) out.push({
+    label: rest.length + " smaller " + (rest.length === 1 ? "holding" : "holdings"),
+    cat: holdingCat(PIE_HOLDINGS),
+    value: rest.reduce((s, x) => s + x.value, 0)
+  });
+  return out;
+}
+
 /* Investments only, by kind — the dashboard pie folds them in with everything
    else, and on this tab they are the whole subject. */
 function investSlices(filter){
@@ -3897,6 +4029,13 @@ function repInvestments(){
   const worth = rows.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
   const paid = rows.reduce((s,i) => s + toDisp(i.investedAmount, i.currency), 0);
   const gain = worth - paid;
+  /* With one kind chosen, a pie of kinds is a single wedge reading 100% — it
+     answers a question nobody asked. What is being asked at that point is
+     which holdings make up the kind, so the pie changes subject rather than
+     sitting there saying nothing. */
+  const single = repInvFilter !== "all";
+  const ranked = rows.slice().sort((a,b) =>
+    toDisp(investWorth(b), b.currency) - toDisp(investWorth(a), a.currency));
 
   $("repBody").innerHTML =
     `<div class="chips" style="margin-bottom:14px">${kinds.map(k =>
@@ -3906,11 +4045,10 @@ function repInvestments(){
        <div>${gain >= 0 ? "Up" : "Down"} ${esc(fmtDisp(Math.abs(gain)))}${paid > 0 ? " · " + esc(pct(gain / paid * 100)) : ""}</div>
        <div>${rows.length} ${rows.length === 1 ? "holding" : "holdings"}</div>
      </div>` +
-    repPieBlock("repI", "By kind", fmtDisp(worth)) +
+    repPieBlock("repI", single ? "By holding" : "By kind", fmtDisp(worth)) +
     `<div class="chartblock" style="margin:0 0 14px">
       <div class="chartblock-h"><div class="cb-t">Every holding</div><div class="cb-n">worth · gain</div></div>
-      ${rows.slice().sort((a,b) => toDisp(investWorth(b), b.currency) - toDisp(investWorth(a), a.currency))
-        .map(i => {
+      ${ranked.map((i, n) => {
           const now = investWorth(i);
           const cost = i.investedAmount;
           const g = now - cost;
@@ -3918,7 +4056,7 @@ function repInvestments(){
           return `<div class="barrow" style="cursor:default">
             <div class="barrow-head"><span class="barrow-l">${esc(i.name || i.type)}</span>
               <span class="barrow-v">${esc(fmt(now, i.currency))}</span></div>
-            <div class="barrow-track"><i style="width:${share.toFixed(1)}%;background:${swatch(bucketOf(INVEST_TYPES, i.type))}"></i></div>
+            <div class="barrow-track"><i style="width:${share.toFixed(1)}%;background:${single ? holdingSwatch(n) : swatch(bucketOf(INVEST_TYPES, i.type))}"></i></div>
             <div class="barrow-sub" style="max-height:none;opacity:1;margin-top:6px">
               ${esc(i.type)} ·
               ${cost ? (g >= 0 ? "up " : "down ") + esc(fmt(Math.abs(g), i.currency)) +
@@ -3928,7 +4066,8 @@ function repInvestments(){
         }).join("")}
     </div>`;
 
-  repDrawPie("repI", investSlices(match), "Investments by kind");
+  repDrawPie("repI", single ? holdingSlices(ranked) : investSlices(match),
+    single ? repInvFilter + " by holding" : "Investments by kind");
   $("repBody").querySelectorAll("[data-f]").forEach(b =>
     b.addEventListener("click", () => { repInvFilter = b.dataset.f; renderReports(); }));
 }
@@ -3942,6 +4081,113 @@ function repInvestments(){
    again here, so a kind added there turns up here without being remembered. */
 function investBuckets(){
   return [...new Set(INVEST_TYPES.filter(t => t.k !== GOLD_TYPE).map(t => t.b))];
+}
+/* The kinds that have a sector vocabulary — asked of the vocabulary rather
+   than listed, so giving bonds a list one day is all it would take. */
+function sectorKinds(){
+  return investBuckets().filter(b => sectorList(b).length);
+}
+
+/* What one kind is actually exposed to, gathered by sector or by mandate.
+   The untagged part is a group like any other rather than quietly dropped
+   from the denominator: a report that leaves out what it does not know reads
+   as a certainty it has not earned, and the share it hides is exactly the
+   share you would want to see. */
+function sectorGroups(bucket){
+  const m = new Map();
+  investOnly()
+    .filter(i => bucketOf(INVEST_TYPES, i.type) === bucket)
+    .forEach(i => {
+      const key = sectorOf(i) || "Not tagged";
+      const v = toDisp(investWorth(i), i.currency);
+      const c = toDisp(i.investedAmount, i.currency);
+      const hit = m.get(key);
+      if (hit){ hit.value += v; hit.cost += c; hit.n++; }
+      else m.set(key, { label: key, value: v, cost: c, n: 1 });
+    });
+  return [...m.values()]
+    .filter(x => x.value > 0)
+    /* untagged last wherever it falls by size — it is a gap, not a holding */
+    .sort((a, b) => (a.label === "Not tagged") - (b.label === "Not tagged")
+                    || b.value - a.value)
+    /* The untagged wedge is drawn nearly grey. It has to stay in the chart —
+       leaving it out would inflate every other share — but it is the absence
+       of an answer, and colouring it like an answer makes the chart claim
+       something it does not know. */
+    .map((x, n) => Object.assign(x, {
+      cat: x.label === "Not tagged"
+        ? { k: "untagged", h: 214, l: 30, s: 5 }
+        : holdingCat(n)
+    }));
+}
+
+/* Funds are not held by sector and stocks are not held by mandate, so the
+   heading says which question is being answered. */
+const sectorWord = (b) => b === "Funds" ? "mandate" : "sector";
+
+function repSectorSection(bucket){
+  const held = investOnly().filter(i => bucketOf(INVEST_TYPES, i.type) === bucket);
+  if (!held.length) return "";
+  const groups = sectorGroups(bucket);
+  const total = groups.reduce((s, x) => s + x.value, 0);
+  if (!total) return "";
+
+  const key = "repS" + bucket.replace(/\W/g, "");
+  const untagged = held.filter(i => !sectorOf(i));
+  const guessable = untagged.filter(i => guessSector(i.name, bucket)).length;
+  const named = groups.filter(g => g.label !== "Not tagged");
+  const ranked = held.slice().sort((a, b) =>
+    toDisp(investWorth(b), b.currency) - toDisp(investWorth(a), a.currency));
+  const top = ranked[0];
+  const topShare = top ? toDisp(investWorth(top), top.currency) / total * 100 : 0;
+  const biggest = named[0];
+
+  return repPieBlock(key, bucket + " by " + sectorWord(bucket), fmtDisp(total)) +
+    `<div class="chartblock" style="margin:0 0 14px">
+       <div class="chartblock-h">
+         <div class="cb-t">Where the ${esc(bucket.toLowerCase())} sit</div>
+         <div class="cb-n">share · gain</div>
+       </div>
+       ${groups.map(g => {
+         const share = g.value / total * 100;
+         const gain = g.value - g.cost;
+         return `<div class="barrow" style="cursor:default">
+           <div class="barrow-head">
+             <span class="barrow-l"><span class="dot" style="background:${swatchOf(g.cat)}"></span>${esc(g.label)}</span>
+             <span class="barrow-v">${share.toFixed(1)}%</span>
+           </div>
+           <div class="barrow-track"><i style="width:${share.toFixed(1)}%;background:${swatchOf(g.cat)}"></i></div>
+           <div class="barrow-sub" style="max-height:none;opacity:1;margin-top:6px">
+             ${esc(fmtDisp(g.value))} · ${g.n} ${g.n === 1 ? "holding" : "holdings"}${
+               g.cost > 0 ? " · " + (gain >= 0 ? "up " : "down ") + esc(fmtDisp(Math.abs(gain)))
+                            + " (" + esc(pct(gain / g.cost * 100)) + ")" : ""}
+           </div>
+         </div>`;
+       }).join("")}
+     </div>
+     <div class="aboutbox">
+       ${biggest ? `<div><b>${esc(biggest.label)}</b> is the largest at ${(biggest.value / total * 100).toFixed(1)}% of your ${esc(bucket.toLowerCase())}</div>` : ""}
+       ${top ? `<div>Your single biggest holding, ${esc(top.name || top.type)}, is ${topShare.toFixed(1)}% of them</div>` : ""}
+       <div>${named.length} ${named.length === 1 ? sectorWord(bucket) : sectorWord(bucket) + "s"} across ${held.length} ${held.length === 1 ? "holding" : "holdings"}${
+         untagged.length ? ` · ${untagged.length} still untagged` : ""}</div>
+     </div>` +
+    (untagged.length ? `<div class="chartblock" style="margin:0 0 14px">
+       <div class="chartblock-h">
+         <div class="cb-t">Not tagged yet</div>
+         <div class="cb-n">${untagged.length}</div>
+       </div>
+       ${guessable ? `<button class="btn ghost" type="button" data-guess="${esc(bucket)}" style="margin-bottom:10px">Read ${guessable} from ${guessable === 1 ? "its name" : "their names"}</button>` : ""}
+       ${untagged.map(i => `<div class="improw">
+          <span class="im-m"><span class="im-n">${esc(i.name || i.type)}</span>
+            <span class="im-d">${esc(fmtDisp(toDisp(investWorth(i), i.currency)))}</span></span>
+          <select class="inp im-sel" data-sec="${esc(i.id)}"
+                  aria-label="Sector for ${esc(i.name || i.type)}">
+            <option value="">Not set</option>
+            ${sectorList(bucket).map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join("")}
+          </select>
+        </div>`).join("")}
+       <div class="note" style="margin-top:12px">Reading from a name only catches what the name actually says — an index fund that calls itself one, a company with its trade in its title. Anything else is left for you, because a sector guessed wrong moves every share above it.</div>
+     </div>` : "");
 }
 
 /* An allocation is about the portfolio. A house is not held instead of a
@@ -4009,7 +4255,40 @@ function repDepth(){
        }).join("") : '<div class="empty" style="padding:18px"><p>Nothing owned yet to compare.</p></div>'}
 
      </div>
-     <div class="note">Both bars run from nothing to the whole portfolio. The top one is the share a kind is now; the one under it is the share you meant it to be. Set the targets you care about and leave the rest blank — those simply say what they are.</div>`;
+     <div class="note">Both bars run from nothing to the whole portfolio. The top one is the share a kind is now; the one under it is the share you meant it to be. Set the targets you care about and leave the rest blank — those simply say what they are.</div>`
+     + sectorKinds().map(repSectorSection).join("");
+
+  sectorKinds().forEach(b => {
+    const groups = sectorGroups(b);
+    if (groups.length) repDrawPie("repS" + b.replace(/\W/g, ""), groups,
+      b + " by " + sectorWord(b));
+  });
+
+  /* Tagging happens here because here is where the gap is visible. */
+  $("repBody").querySelectorAll("[data-sec]").forEach(sel => {
+    const inv = state.investments.find(x => x.id === sel.dataset.sec);
+    if (inv) sel.value = sectorOf(inv);
+    sel.addEventListener("change", () => {
+      const rec = state.investments.find(x => x.id === sel.dataset.sec);
+      if (!rec) return;
+      rec.sector = sel.value;
+      rec.updatedAt = new Date().toISOString();
+      save(); renderReports();
+    });
+  });
+  $("repBody").querySelectorAll("[data-guess]").forEach(b =>
+    b.addEventListener("click", () => {
+      const bucket = b.dataset.guess;
+      let n = 0;
+      investOnly().forEach(i => {
+        if (bucketOf(INVEST_TYPES, i.type) !== bucket || sectorOf(i)) return;
+        const g = guessSector(i.name, bucket);
+        if (g){ i.sector = g; i.updatedAt = new Date().toISOString(); n++; }
+      });
+      if (!n){ toast("No names said enough"); return; }
+      save(); renderReports();
+      toast("Tagged " + n + " from " + (n === 1 ? "its name" : "their names"));
+    }));
 
   $("repBody").querySelectorAll(".al-in").forEach(inp => {
     const commit = () => {

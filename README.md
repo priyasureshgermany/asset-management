@@ -73,6 +73,29 @@ Connecting to Zerodha directly is not possible from here: signing the login
 needs an API secret, and there is nowhere in a page that anyone can view-source
 to keep one.
 
+### Sectors and mandates
+
+Stocks carry a **sector**, funds a **mandate** — two lists rather than one,
+because "Large cap" is not a sector and "Banking" is not a mandate. The field
+appears on a holding only where it means something, so a fixed deposit is
+never asked for one.
+
+Reports → In depth breaks each kind down by it: a pie, a bar per group with
+its share and its gain, and a line naming the largest group and the largest
+single holding. Holdings nobody has classified stay in the chart as their own
+grey wedge — dropping them would inflate every other share, and the size of
+what is unknown is worth seeing.
+
+Tagging happens on that screen, where the gap is visible: a dropdown per
+untagged holding, and a button that reads the sector out of the name where the
+name actually says it. That last part is deliberately literal. An Indian fund
+states its mandate in its own title (*Nifty 50 Index*, *Flexi Cap*) and some
+companies state their trade, so those are read; a Zerodha export names stocks
+by ticker, and `RELIANCE` or `TCS` says nothing a rule could read. There is no
+ticker-to-sector table here on purpose — one would have to be kept correct
+forever, and a sector guessed wrong silently moves every share above it, while
+a blank one only says that nobody has said yet.
+
 ### App lock
 
 A four-digit PIN, asked for when the app opens and again after five minutes

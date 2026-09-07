@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.5 — 2026-09-07
+- better: Choosing one kind in Investments draws the pie by holding; In depth breaks stocks down by sector and funds by mandate
+
 ## 1.1.4 — 2026-09-07
 - better: In depth reports on the portfolio alone — gold, cash and property are no longer measured against a target allocation
 
