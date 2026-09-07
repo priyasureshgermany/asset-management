@@ -1,9 +1,9 @@
 {
-  "at": "2026-09-07T15:45:05.174Z",
+  "at": "2026-09-07T17:43:04.184Z",
   "fx": {
-    "EURINR": 109.8975,
-    "EURUSD": 1.1632,
-    "EURSEK": 11.1518
+    "EURINR": 109.8621,
+    "EURUSD": 1.1628,
+    "EURSEK": 11.1487
   },
   "quotes": {
     "HDFCBANK.NS": {
@@ -83,7 +83,7 @@
       "currency": "INR",
       "name": "Varun Beverages Limited",
       "in": {
-        "EUR": 3.69,
+        "EUR": 3.7,
         "INR": 405.95
       }
     },
@@ -191,8 +191,8 @@
       "currency": "USD",
       "name": "Intuit Inc.",
       "in": {
-        "EUR": 286.02,
-        "INR": 31433.03
+        "EUR": 286.12,
+        "INR": 31433.71
       }
     },
     "MSFT": {
@@ -200,8 +200,8 @@
       "currency": "USD",
       "name": "Microsoft Corporation",
       "in": {
-        "EUR": 429.59,
-        "INR": 47210.95
+        "EUR": 429.74,
+        "INR": 47211.98
       }
     },
     "AMZN": {
@@ -209,8 +209,8 @@
       "currency": "USD",
       "name": "Amazon.com, Inc.",
       "in": {
-        "EUR": 222.24,
-        "INR": 24423.66
+        "EUR": 222.32,
+        "INR": 24424.19
       }
     },
     "NDAQ": {
@@ -218,8 +218,8 @@
       "currency": "USD",
       "name": "Nasdaq, Inc.",
       "in": {
-        "EUR": 83.29,
-        "INR": 9153.09
+        "EUR": 83.32,
+        "INR": 9153.29
       }
     },
     "NOW": {
@@ -227,17 +227,17 @@
       "currency": "USD",
       "name": "ServiceNow, Inc.",
       "in": {
-        "EUR": 121.44,
-        "INR": 13346.05
+        "EUR": 121.48,
+        "INR": 13346.34
       }
     },
     "WKL.AS": {
-      "raw": 67.88,
+      "raw": 67.9,
       "currency": "EUR",
       "name": "Wolters Kluwer N.V.",
       "in": {
-        "EUR": 67.88,
-        "INR": 7459.84
+        "EUR": 67.9,
+        "INR": 7459.64
       }
     },
     "LIME.ST": {
@@ -245,8 +245,8 @@
       "currency": "SEK",
       "name": "Lime Technologies AB (publ)",
       "in": {
-        "EUR": 22.28,
-        "INR": 2448.89
+        "EUR": 22.29,
+        "INR": 2448.78
       }
     }
   },
