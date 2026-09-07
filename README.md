@@ -381,6 +381,38 @@ One bump per branch/PR — see `tools/bump-version.mjs` for the version-bump
 rules and `tools/pre-commit` (install with `sh tools/install-hooks.sh`) for
 the guard that enforces it.
 
+### What a backup carries
+
+The things you entered, and not the things worked out from them. A share
+price fetched this morning, a fund's NAV, the gold rate — all are asked for
+again on the next open, and writing them down only preserves a figure that was
+already going stale as it was saved. Gold has never been stored as a value,
+only as grams; `backupPayload()` applies that same rule to everything else.
+
+So a backup keeps **what went in, the units, and the grams**. It drops the
+worth of any holding that can price itself, the NAV and quote caches, the gold
+rate and the time it was fetched. It roughly halves the file.
+
+A figure is dropped only where it can be worked out again:
+
+- A holding with **no ticker and no scheme** has nothing but the worth you gave
+  it, so that worth stays. A fixed deposit survives a round trip untouched.
+- **Rates you set by hand** with the live feed off are yours, and stay.
+- **Rupees per euro is kept** even with the feed on. It is not the value of one
+  holding but the unit every total is stated in, and a restore that briefly
+  converted the whole book at a fallback rate would misstate all of it rather
+  than one line.
+
+`ghFingerprint()` is taken from the same payload, or a device that pushes one
+thing and fingerprints another would read as changed the moment it had pulled.
+
+**The gap.** A book that has just arrived has no fetched figures yet, so for a
+moment anything priced live reads as nothing and gold falls back to the
+starting price a new book is given — a plausible number rather than a true
+one. Restore and pull therefore fetch straight away rather than waiting for
+the next open, which closes it to about a second. With no connection it stays
+open until there is one.
+
 ## Data model
 
 Everything funnels through `stateFromPayload()` / `stateCleared()` in
