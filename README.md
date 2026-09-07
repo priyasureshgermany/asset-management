@@ -200,6 +200,11 @@ fund is worth `units × NAV` and gold is worth `grams × rate`. Prices are
 converted in the workflow rather than in the app, so the app never holds a
 second opinion about an exchange rate.
 
+Both books are covered: NSE tickers carry `.NS` and are priced in rupees,
+Amsterdam `.AS`, Stockholm `.ST`, US listings plain. A holding is priced only
+when the ticker on it also appears in `data/symbols.json`, so adding a share
+to the book means adding it to that file too.
+
 A symbol that fails to fetch keeps the price it had rather than vanishing, and
 a run that prices nothing at all exits non-zero instead of committing an empty
 file. `data/symbols.json` is public because the workflow reading it is: it
