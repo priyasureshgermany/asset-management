@@ -839,6 +839,10 @@ select.inp{appearance:none;background-image:none}
 /* The dropdown that tags a holding — sized to sit beside the name rather than
    stack under it, since the whole point is to work down a list quickly. */
 .improw .im-sel{flex:none;width:148px;padding:7px 9px;font-size:12.5px}
+/* A search box with its button beside it rather than under it. */
+.fundrow{display:flex;gap:8px;align-items:center}
+.fundrow .inp{flex:1;min-width:0}
+.fundrow .btn{flex:none;width:auto;padding:9px 14px;margin:0}
 .im-box{
   width:24px;height:24px;flex:none;border-radius:7px;border:1.6px solid var(--line-strong);
   display:grid;place-items:center;color:transparent;transition:all .15s;
@@ -1518,6 +1522,19 @@ html.locked #lockScreen{
         <div class="field" id="investMonthField"><label>Which month</label>
           <select class="inp" id="investMonth"></select></div>
       </div>
+      <div class="field"><label>Units (optional)</label>
+        <input class="inp" id="investUnits" type="text" inputmode="decimal" placeholder="0"></div>
+      <div class="field" id="investFundField">
+        <label>Live NAV (optional)</label>
+        <input type="hidden" id="investScheme">
+        <div class="fundrow">
+          <input class="inp" id="investFundQ" placeholder="Search by fund name">
+          <button class="btn ghost sm" id="investFundGo" type="button">Find</button>
+          <button class="btn ghost sm" id="investFundClear" type="button" hidden>Clear</button>
+        </div>
+        <div class="rows" id="investFundHits"></div>
+        <div class="note" id="investFundNote" hidden></div>
+      </div>
       <div class="field" id="investSectorField"><label>Sector</label>
         <select class="inp" id="investSector"></select></div>
     </div>
@@ -1600,7 +1617,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.12";
+const APP_VERSION = "1.1.13";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1891,6 +1908,9 @@ function stateFromPayload(p){
       units: num(i.units),
       /* What it is exposed to — a sector for a stock, a mandate for a fund. */
       sector: str(i.sector),
+      /* An AMFI scheme code, which is what MFapi prices by. Set only when a
+         holding has been tied to a scheme; without it nothing is fetched. */
+      schemeCode: str(i.schemeCode),
       sipDay: Math.min(31, Math.max(0, Math.round(num(i.sipDay)))),
       /* How many months between one payment and the next. 1 is a monthly SIP,
          12 an annual premium. Anything not on the list falls back to monthly,
@@ -1924,6 +1944,19 @@ function stateFromPayload(p){
           if (t[old] != null && t[now] == null) t[now] = t[old];
         });
         BUCKETS.forEach(b => { const v = num(t[b.k]); if (v > 0) out[b.k] = Math.min(100, v); });
+        return out;
+      })(),
+      /* The last NAV seen for each scheme. Fetched, never typed, so it stays
+         out of what counts as a change worth pushing — the same reason the
+         rates and their timestamp are left out of the sync fingerprint. */
+      navs: (function(){
+        const n = settings.navs && typeof settings.navs === "object" ? settings.navs : {};
+        const out = {};
+        Object.keys(n).forEach(k => {
+          const v = n[k] && typeof n[k] === "object" ? n[k] : null;
+          const nav = v ? num(v.nav) : 0;
+          if (nav > 0) out[String(k)] = { nav, on: str(v.on), name: str(v.name) };
+        });
         return out;
       })(),
       inrPerEur: num(settings.inrPerEur) > 0 ? num(settings.inrPerEur) : 90,
@@ -1976,13 +2009,28 @@ function conv(amount, from, to){
 function toDisp(amount, from){ return conv(amount, from, display()); }
 
 /* What an investment is worth right now. Gold is weighed, not remembered:
-   grams × today's price, in the entry's own currency. Everything else keeps
-   the value that was typed in. */
+   grams × today's price. A fund tied to a scheme is priced the same way —
+   units × the NAV last fetched — because a figure kept by hand is a figure
+   quietly going stale. Everything else keeps the value that was typed in. */
 function investWorth(inv){
   if (inv.type === GOLD_TYPE) return inv.grams * goldPrice(inv.currency);
+  if (inv.schemeCode && inv.units > 0){
+    const nav = navOf(inv.schemeCode);
+    if (nav) return inv.units * nav;
+  }
   return inv.currentValue;
 }
 function goldPrice(c){ return state.settings.goldPerGram[c] || 0; }
+/* Kept per scheme rather than per holding: two holdings of one scheme are at
+   one price, and storing it twice is an invitation for them to disagree. */
+function navOf(code){
+  const n = state.settings.navs && state.settings.navs[String(code)];
+  const v = n ? Number(n.nav) : 0;
+  return Number.isFinite(v) && v > 0 ? v : 0;
+}
+function navMeta(code){
+  return (state.settings.navs && state.settings.navs[String(code)]) || null;
+}
 
 const AMOUNT_MASK = "••••";
 let amountsHidden = false;
@@ -3110,6 +3158,9 @@ function investFormMode(type, cur){
   const gold = type === GOLD_TYPE;
   $("investPaperFields").hidden = gold;
   $("investGoldFields").hidden = !gold;
+  /* Only a fund can be tied to a scheme — there is no comparable free feed
+     for shares, so offering the search there would be a promise not kept. */
+  $("investFundField").hidden = gold || bucketOf(INVEST_TYPES, type) !== "Funds";
   /* Only the two kinds that have one. A fixed deposit has no sector, and an
      empty dropdown asking for one is a question with no answers. */
   /* Gold has one kind and you reached this sheet from the Gold tab, so the
@@ -3135,6 +3186,25 @@ let investSectorPick = "";
 /* A month only has to be chosen when the run is not monthly — a monthly one
    comes round in all of them, so asking which would be a question with no
    useful answer. */
+/* What the fund link currently means, said plainly — including the part where
+   a linked fund's worth stops being something you type. */
+function syncFund(){
+  const code = $("investScheme").value;
+  const meta = code ? navMeta(code) : null;
+  const units = num($("investUnits").value);
+  const priced = !!code && units > 0 && !!navOf(code);
+  $("investFundNote").hidden = !code;
+  if (code){
+    $("investFundNote").textContent = !meta || !meta.nav
+      ? "Tied to scheme " + code + ". No NAV fetched yet — it arrives next time the app opens."
+      : (meta.name || "Scheme " + code) + " · NAV " + meta.nav +
+        (meta.on ? " on " + meta.on : "") +
+        (units > 0 ? " · worth is units × NAV, so the box above is not used."
+                   : " · add the units and worth will follow the NAV.");
+  }
+  $("investCurrent").disabled = priced;
+  $("investFundClear").hidden = !code;
+}
 function syncEvery(){
   $("investMonthField").hidden = $("investEvery").value === "1";
 }
@@ -3149,6 +3219,10 @@ function openInvest(id, preset){
   $("investName").value = i ? i.name : "";
   $("investInvested").value = i && i.investedAmount ? i.investedAmount : "";
   $("investCurrent").value = i && i.currentValue ? i.currentValue : "";
+  $("investUnits").value = i && i.units ? i.units : "";
+  $("investScheme").value = i ? (i.schemeCode || "") : "";
+  $("investFundQ").value = "";
+  $("investFundHits").innerHTML = "";
   $("investSip").value = i && i.sipAmount ? i.sipAmount : "";
   $("investSipDay").value = i && i.sipDay ? i.sipDay : "";
   $("investEvery").value = String(i && i.sipEvery > 1 ? i.sipEvery : 1);
@@ -3178,10 +3252,56 @@ function openInvest(id, preset){
     ? offer : offer.concat(INVEST_TYPES.filter(t => t.k === type));
   buildChips("investTypes", kinds, type, k => investFormMode(k, pickedCur("investCurTog")));
   investFormMode(type, cur);
+  syncFund();
   $("investDelete").hidden = !i;
   sheetOpen("shInvest");
 }
 $("investEvery").addEventListener("change", syncEvery);
+$("investUnits").addEventListener("input", syncFund);
+$("investFundClear").addEventListener("click", () => {
+  $("investScheme").value = "";
+  $("investFundHits").innerHTML = "";
+  syncFund();
+});
+$("investFundGo").addEventListener("click", async () => {
+  const q = $("investFundQ").value.trim();
+  if (q.length < 3){ toast("Type a little more of the name"); return; }
+  $("investFundHits").innerHTML = '<div class="note">Looking…</div>';
+  let hits;
+  try{
+    hits = await (await fetch(MF_SEARCH + encodeURIComponent(q))).json();
+  }catch(e){
+    $("investFundHits").innerHTML = '<div class="note warn">Could not reach the fund list.</div>';
+    return;
+  }
+  if (!Array.isArray(hits) || !hits.length){
+    $("investFundHits").innerHTML = '<div class="note">Nothing goes by that name.</div>';
+    return;
+  }
+  /* The plan and the option are part of the name — Direct against Regular,
+     Growth against IDCW — and they price differently, so the whole name is
+     shown rather than trimmed to something tidier. */
+  $("investFundHits").innerHTML = hits.slice(0, 8).map(h =>
+    `<button class="improw" type="button" data-code="${esc(String(h.schemeCode))}">
+       <span class="im-m"><span class="im-n">${esc(h.schemeName)}</span>
+         <span class="im-d">${esc(String(h.schemeCode))}</span></span>
+     </button>`).join("");
+  $("investFundHits").querySelectorAll("[data-code]").forEach(b =>
+    b.addEventListener("click", async () => {
+      const code = b.dataset.code;
+      $("investScheme").value = code;
+      $("investFundHits").innerHTML = "";
+      $("investFundQ").value = "";
+      /* Fetched now rather than at the next open, so the note can say what
+         the thing is actually priced at while the choice is still on screen. */
+      const got = await fetchNavs([code]);
+      if (got[code]){
+        state.settings.navs = Object.assign({}, state.settings.navs, got);
+        save();
+      }
+      syncFund();
+    }));
+});
 $("investSave").addEventListener("click", () => {
   const id = $("investId").value || uid();
   const type = pickedChip("investTypes", "Other");
@@ -3196,6 +3316,11 @@ $("investSave").addEventListener("click", () => {
     currentValue: gold ? 0 : num($("investCurrent").value),
     sipAmount: gold ? 0 : num($("investSip").value),
     sipDay: gold ? 0 : Math.min(31, Math.max(0, Math.round(num($("investSipDay").value)))),
+    units: gold ? 0 : num($("investUnits").value),
+    /* Only kept where it can mean something; a scheme code left over from a
+       kind that was a fund and no longer is would price the wrong thing. */
+    schemeCode: !gold && bucketOf(INVEST_TYPES, type) === "Funds"
+      ? $("investScheme").value : "",
     sipEvery: gold ? 1 : Number($("investEvery").value) || 1,
     sipMonth: gold ? 1 : Number($("investMonth").value) || 1,
     /* editing a holding is not paying its SIP, so the tick stands */
@@ -3296,6 +3421,11 @@ const GH_WRITE_HELP =
   "Reading a public repository needs neither, which is why a token can pass " +
   "the first half of this and fail the second.";
 
+/* MFapi serves AMFI's daily NAVs as JSON with an open CORS header, no key and
+   no account — the same shape of source as the rates below, which is what
+   makes it usable from a page with no server behind it. */
+const MF_URL = "https://api.mfapi.in/mf/";
+const MF_SEARCH = "https://api.mfapi.in/mf/search?q=";
 const FX_URL = "https://open.er-api.com/v6/latest/EUR";
 const GOLD_URL = "https://api.gold-api.com/price/XAU";
 const TROY_OZ_G = 31.1034768;
@@ -3342,12 +3472,44 @@ function applyRates(r){
   return changed;
 }
 
+/* The NAV of every scheme a holding is tied to, asked for together. Anything
+   that fails to arrive leaves the last known figure alone: being offline is
+   not the same as being worth nothing. */
+async function fetchNavs(codes){
+  const out = {};
+  await Promise.all(codes.map(async (code) => {
+    try{
+      const j = await (await fetch(MF_URL + encodeURIComponent(code), { cache:"no-store" })).json();
+      const row = j && j.data && j.data[0];
+      const nav = row && Number(row.nav);
+      if (sane(nav, 0, 1000000))
+        out[String(code)] = { nav, on: String(row.date || ""),
+                              name: (j.meta && j.meta.scheme_name) || "" };
+    }catch(e){ /* leave the last one standing */ }
+  }));
+  return out;
+}
+function linkedSchemes(){
+  return [...new Set(state.investments
+    .filter(i => !isGold(i) && i.schemeCode && i.units > 0)
+    .map(i => String(i.schemeCode)))];
+}
+
 let ratesTried = false;
 async function refreshRates(force){
   if (!state.settings.live || (ratesTried && !force)) return false;
   ratesTried = true;
   const r = await fetchRates();
-  const ok = applyRates(r);
+  let ok = applyRates(r);
+  const codes = linkedSchemes();
+  if (codes.length){
+    const navs = await fetchNavs(codes);
+    if (Object.keys(navs).length){
+      state.settings.navs = Object.assign({}, state.settings.navs, navs);
+      save();
+      ok = true;
+    }
+  }
   if (ok){ render(); fillRates(); }
   return ok;
 }
@@ -3993,7 +4155,7 @@ function ghFingerprint(){
   add("i", state.investments, i => [i.name, i.type, i.investedAmount, i.currentValue, i.currency,
     i.units, i.sipAmount, i.sipDay, i.sipDone, i.sipEvery, i.sipMonth,
     i.grams, i.purity, i.goldKind, i.boughtOn,
-    i.sector, i.notes].join("|"));
+    i.sector, i.schemeCode, i.notes].join("|"));
   /* Only the settings a person sets. The rates and the time they were fetched
      are rewritten on every open by the live feed, and counting those made the
      app permanently one change behind its own backup — a badge that is always

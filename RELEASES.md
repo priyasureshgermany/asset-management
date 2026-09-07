@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.13 — 2026-09-07
+- better: A mutual fund can be tied to its scheme and is then priced from the live NAV — units times the figure fetched each time the app opens, the way gold already works
+
 ## 1.1.12 — 2026-09-07
 - better: An instalment can be monthly, quarterly, half-yearly or yearly, so an annual insurance premium reminds you in its own month rather than every month
 
