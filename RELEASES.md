@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.21 — 2026-09-07
+- better: A goal can be backed by the funds and shares saving for it, and takes its progress from what they are worth; funds and shares carry a flag for the book they are held in
+
 ## 1.1.20 — 2026-09-07
 - better: Funds find their own scheme by name and start pricing themselves, so nothing has to be linked by hand
 

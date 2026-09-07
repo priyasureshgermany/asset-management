@@ -839,6 +839,12 @@ select.inp{appearance:none;background-image:none}
 /* The dropdown that tags a holding — sized to sit beside the name rather than
    stack under it, since the whole point is to work down a list quickly. */
 .improw .im-sel{flex:none;width:148px;padding:7px 9px;font-size:12.5px}
+/* Sits on the text baseline beside a name rather than floating above it. */
+.flag{
+  width:15px;height:10px;border-radius:2px;margin-right:6px;
+  vertical-align:-1px;flex:none;
+  box-shadow:0 0 0 .5px rgb(255 255 255 / .18);
+}
 /* A search box with its button beside it rather than under it. */
 .fundrow{display:flex;gap:8px;align-items:center}
 .fundrow .inp{flex:1;min-width:0}
@@ -1480,6 +1486,10 @@ html.locked #lockScreen{
       <div class="field"><label>Saved so far</label><input class="inp" id="goalCurrent" type="text" inputmode="decimal" placeholder="0"></div>
       <div class="field"><label>By when</label><input class="inp" id="goalDate" type="date"></div>
     </div>
+    <div class="field"><label>Backed by (optional)</label>
+      <div class="rows" id="goalBacking"></div>
+      <div class="note" id="goalBackNote" style="margin-top:10px"></div>
+    </div>
     <div class="field"><label>Note (optional)</label><textarea class="inp" id="goalNotes"></textarea></div>
     <button class="btn" id="goalSave">Save</button>
     <button class="btn danger" id="goalDelete" style="margin-top:9px" hidden>Delete this goal</button>
@@ -1622,7 +1632,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.20";
+const APP_VERSION = "1.1.21";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1903,6 +1913,9 @@ function stateFromPayload(p){
     goals: arr(p.goals).map(g => ({
       id: g.id || uid(), name: str(g.name), targetAmount: num(g.targetAmount),
       currentAmount: num(g.currentAmount), currency: cur(g.currency),
+      /* The holdings standing behind this goal. Empty means the figure is one
+         you keep by hand, which is how every goal worked before. */
+      holdings: arr(g.holdings).map(x => str(x)).filter(Boolean),
       targetDate: str(g.targetDate), notes: str(g.notes),
       updatedAt: g.updatedAt || new Date().toISOString()
     })),
@@ -2051,6 +2064,29 @@ function investWorth(inv){
   return inv.currentValue;
 }
 function goldPrice(c){ return state.settings.goldPerGram[c] || 0; }
+
+/* What a goal actually has behind it. Tied to holdings, it is what those
+   holdings are worth right now, through the same investWorth() everything
+   else goes through — so a goal cannot drift away from the investments
+   funding it, and a fund whose NAV moved this morning moves the goal too.
+   Untied, it is the figure you typed, which is what a goal for something the
+   app cannot see still needs. Holdings since deleted simply fall out. */
+function goalSaved(g){
+  const ids = Array.isArray(g.holdings) ? g.holdings : [];
+  if (!ids.length) return g.currentAmount;
+  return state.investments
+    .filter(i => ids.indexOf(i.id) >= 0)
+    .reduce((s, i) => s + conv(investWorth(i), i.currency, g.currency), 0);
+}
+/* What a goal may be backed by: things with a market value. A house or a
+   fixed deposit is not refused on principle, it simply is not what a goal is
+   usually saved into, and a shorter list is easier to choose from. */
+function goalCandidates(){
+  return investOnly().filter(i => {
+    const b = bucketOf(INVEST_TYPES, i.type);
+    return b === "Funds" || isStockBucket(b);
+  });
+}
 /* Kept per scheme rather than per holding: two holdings of one scheme are at
    one price, and storing it twice is an invitation for them to disagree. */
 function navOf(code){
@@ -2083,6 +2119,30 @@ function quoteFor(sym, cur){
   const q = quoteMeta(sym);
   const v = q && q.in ? Number(q.in[cur]) : 0;
   return Number.isFinite(v) && v > 0 ? v : 0;
+}
+
+/* Drawn rather than typed as emoji: a flag emoji renders as two letters on
+   Windows and as a picture on a phone, and a mark that changes shape by device
+   is not a mark. These are the same size and shape everywhere. */
+const FLAG_IN =
+  '<svg class="flag" viewBox="0 0 18 12" aria-hidden="true">' +
+  '<rect width="18" height="4" fill="#FF9933"/><rect y="4" width="18" height="4" fill="#fff"/>' +
+  '<rect y="8" width="18" height="4" fill="#138808"/>' +
+  '<circle cx="9" cy="6" r="1.6" fill="none" stroke="#000080" stroke-width=".7"/></svg>';
+const FLAG_DE =
+  '<svg class="flag" viewBox="0 0 18 12" aria-hidden="true">' +
+  '<rect width="18" height="4" fill="#000"/><rect y="4" width="18" height="4" fill="#DD0000"/>' +
+  '<rect y="8" width="18" height="4" fill="#FFCE00"/></svg>';
+
+/* Which book a holding belongs to, taken from the currency it is held in
+   rather than from its kind — the euro book is the German one whatever the
+   company happens to be, and a fund bought in rupees is Indian however it
+   invests. Only shares and funds carry one: a fixed deposit or a bank balance
+   is not held anywhere in particular. */
+function flagFor(inv){
+  const b = bucketOf(INVEST_TYPES, inv.type);
+  if (b !== "Funds" && !isStockBucket(b)) return "";
+  return inv.currency === "EUR" ? FLAG_DE : inv.currency === "INR" ? FLAG_IN : "";
 }
 
 const AMOUNT_MASK = "••••";
@@ -2765,7 +2825,7 @@ function reminders(){
   const today = now.toISOString().slice(0, 10);
   state.goals.forEach(g => {
     if (!g.targetDate || g.targetDate >= today) return;
-    if (g.currentAmount >= g.targetAmount) return;
+    if (goalSaved(g) >= g.targetAmount) return;
     out.push({ kind:"goal", item:g });
   });
 
@@ -2817,7 +2877,7 @@ function openDue(){
   $("remOther").innerHTML = rest.map(r => {
     if (r.kind === "goal")
       return `<div class="note" style="margin-top:10px"><b>${esc(r.item.name || "A goal")}</b> was due
-        ${esc(r.item.targetDate)} and is at ${esc(fmt(r.item.currentAmount, r.item.currency))}
+        ${esc(r.item.targetDate)} and is at ${esc(fmt(goalSaved(r.item), r.item.currency))}
         of ${esc(fmt(r.item.targetAmount, r.item.currency))}.</div>`;
     return `<div class="note" style="margin-top:10px">There is gold recorded but no
       ${esc(display())} price a gram, so it is counting as nothing. Set it in
@@ -2858,7 +2918,7 @@ $("dueAll").addEventListener("click", () => {
 /* ---------- goals ---------- */
 function renderGoals(){
   const target = state.goals.reduce((s,g) => s + toDisp(g.targetAmount, g.currency), 0);
-  const saved = state.goals.reduce((s,g) => s + toDisp(g.currentAmount, g.currency), 0);
+  const saved = state.goals.reduce((s,g) => s + toDisp(goalSaved(g), g.currency), 0);
   $("goalVal").textContent = fmtDisp(target);
   $("goalVal").className = "net";
   $("goalSaved").textContent = fmtDisp(saved);
@@ -2875,7 +2935,8 @@ function renderGoals(){
     return;
   }
   state.goals.forEach(g => {
-    const share = g.targetAmount > 0 ? Math.min(100, g.currentAmount / g.targetAmount * 100) : 0;
+    const has = goalSaved(g);
+    const share = g.targetAmount > 0 ? Math.min(100, has / g.targetAmount * 100) : 0;
     const done = share >= 100;
     const b = document.createElement("button");
     b.type = "button";
@@ -2888,7 +2949,7 @@ function renderGoals(){
        </div>
        <div class="env-track"><i style="width:${share}%;background:${done ? "var(--pos)" : "var(--accent)"}"></i></div>
        <div class="goal-sub">
-         <span>${esc(fmt(g.currentAmount, g.currency))} of ${esc(fmt(g.targetAmount, g.currency))}</span>
+         <span>${esc(fmt(has, g.currency))} of ${esc(fmt(g.targetAmount, g.currency))}</span>
          <span>${g.targetDate ? "by " + esc(g.targetDate) : ""}</span>
        </div>`;
     b.addEventListener("click", () => openGoal(g.id));
@@ -2982,7 +3043,7 @@ function renderInvest(){
       b.className = "row";
       b.innerHTML =
         `<span class="mono" style="background:${swatchSoft(bucket)};color:${swatch(bucket)}">${ICON_CHART}</span>
-         <span class="rowmain"><span class="t1">${esc(i.name || i.type)}</span>
+         <span class="rowmain"><span class="t1">${flagFor(i)}${esc(i.name || i.type)}</span>
            <span class="t2"><span class="cn">${esc(sub)}</span>${curPill(i.currency)}</span></span>
          <span class="rowend"><span class="amt">${esc(fmt(now, i.currency))}</span>
            <span class="amt-sub ${g > 0 ? "up" : g < 0 ? "down" : "flat"}">${i.investedAmount ? (g >= 0 ? "+" : "") + esc(fmt(g, i.currency)) : "—"}</span></span>`;
@@ -3187,9 +3248,57 @@ function openGoal(id){
   const cur = g ? g.currency : state.profile.currency;
   $("goalCurSym").textContent = curSym(cur);
   buildCurTog("goalCurTog", cur, c => { $("goalCurSym").textContent = curSym(c); });
+  /* The holdings this goal stands on, offered as a list rather than asked for
+     by name — the app already knows what is in the book. */
+  const backing = Array.isArray(g && g.holdings) ? g.holdings : [];
+  const opts = goalCandidates();
+  $("goalBacking").innerHTML = opts.length ? opts.map(i => {
+    const on = backing.indexOf(i.id) >= 0;
+    return `<button class="improw" type="button" data-hold="${esc(i.id)}" aria-pressed="${on}">
+      <span class="im-box ${on ? "on" : ""}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 7"/></svg>
+      </span>
+      <span class="im-m"><span class="im-n">${flagFor(i)}${esc(i.name || i.type)}</span>
+        <span class="im-d">${esc(i.type)}</span></span>
+      <span class="im-a">${esc(fmt(investWorth(i), i.currency))}</span>
+    </button>`;
+  }).join("") : '<div class="note">No funds or shares yet to back a goal with.</div>';
+  $("goalBacking").querySelectorAll("[data-hold]").forEach(b =>
+    b.addEventListener("click", () => {
+      const on = b.getAttribute("aria-pressed") !== "true";
+      b.setAttribute("aria-pressed", String(on));
+      b.querySelector(".im-box").className = "im-box" + (on ? " on" : "");
+      syncGoalBacking();
+    }));
+  syncGoalBacking();
+
   $("goalDelete").hidden = !g;
   sheetOpen("shGoal");
 }
+function goalBackingIds(){
+  return [...$("goalBacking").querySelectorAll('[data-hold][aria-pressed="true"]')]
+    .map(b => b.dataset.hold);
+}
+/* A goal standing on holdings has no figure of its own to type, so the box
+   stops being editable and is filled with what they come to — the same
+   treatment a holding's worth gets once it can price itself. */
+function syncGoalBacking(){
+  const ids = goalBackingIds();
+  const cur = pickedCur("goalCurTog");
+  const sum = state.investments
+    .filter(i => ids.indexOf(i.id) >= 0)
+    .reduce((s, i) => s + conv(investWorth(i), i.currency, cur), 0);
+  $("goalCurrent").disabled = ids.length > 0;
+  if (ids.length){
+    $("goalCurrent").value = String(Math.round(sum * 100) / 100);
+    $("goalBackNote").textContent = ids.length + (ids.length === 1 ? " holding" : " holdings") +
+      " · what you have saved follows what they are worth, so the box above is not used.";
+  } else {
+    $("goalBackNote").textContent =
+      "Tie this goal to funds or shares and what you have saved follows their value. Leave it empty to keep the figure by hand.";
+  }
+}
+
 $("goalSave").addEventListener("click", () => {
   const id = $("goalId").value || uid();
   const name = $("goalName").value.trim();
@@ -3197,6 +3306,7 @@ $("goalSave").addEventListener("click", () => {
   const rec = {
     id, name, targetAmount: num($("goalTarget").value),
     currentAmount: num($("goalCurrent").value), currency: pickedCur("goalCurTog"),
+    holdings: goalBackingIds(),
     targetDate: $("goalDate").value, notes: $("goalNotes").value.trim(),
     updatedAt: new Date().toISOString()
   };
@@ -4407,7 +4517,8 @@ function ghFingerprint(){
   const out = backupPayload();
   add("a", state.assets, a => [a.name, a.category, a.value, a.investedAmount, a.currency, a.notes].join("|"));
   add("l", state.liabilities, l => [l.name, l.category, l.amount, l.interestRate, l.currency, l.notes].join("|"));
-  add("g", state.goals, g => [g.name, g.targetAmount, g.currentAmount, g.currency, g.targetDate, g.notes].join("|"));
+  add("g", state.goals, g => [g.name, g.targetAmount, g.currentAmount, g.currency,
+    (g.holdings || []).join(","), g.targetDate, g.notes].join("|"));
   add("i", out.investments, i => [i.name, i.type, i.investedAmount, i.currentValue, i.currency,
     i.units, i.sipAmount, i.sipDay, i.sipDone, i.sipEvery, i.sipMonth,
     i.grams, i.purity, i.goldKind, i.boughtOn,
@@ -4743,7 +4854,7 @@ function repOverview(t, gold){
     (state.goals.length ? `<div class="chartblock" style="margin:0 0 14px">
       <div class="chartblock-h"><div class="cb-t">Goals</div></div>
       ${state.goals.map(g => {
-        const share = g.targetAmount > 0 ? Math.min(100, g.currentAmount / g.targetAmount * 100) : 0;
+        const share = g.targetAmount > 0 ? Math.min(100, goalSaved(g) / g.targetAmount * 100) : 0;
         return `<div class="barrow" style="cursor:default">
           <div class="barrow-head"><span class="barrow-l">${esc(g.name)}</span>
             <span class="barrow-v">${share.toFixed(0)}%</span></div>

@@ -84,6 +84,32 @@ two cannot disagree, and the subtitle names the scope: *2 holdings in Indian
 shares*. The parts still add to the whole: each tab's total summed comes to
 what **All** shows.
 
+### A goal can stand on holdings
+
+A goal may be tied to the funds and shares saving for it. What it has then is
+what those holdings are worth right now, through the same `investWorth()`
+everything else goes through — so a goal cannot drift away from the
+investments funding it, and a NAV that moved this morning moves the goal too.
+`goalSaved()` is the single derivation, and every reader goes through it: the
+card, the totals, the reports, the overdue reminder.
+
+Untied, it stays the figure you keep by hand, which is what a goal for
+something the app cannot see still needs. Holdings since deleted simply fall
+out of the sum. The picker offers funds and shares only — a fixed deposit is
+not refused on principle, it is just not what a goal is usually saved into.
+
+### Which book a holding is in
+
+Funds and shares carry a small flag: the Indian tricolour for rupee holdings,
+the German one for euro. Taken from the currency rather than the kind, because
+the euro book is the German one whatever the company happens to be, and a fund
+bought in rupees is Indian however it invests. Deposits and balances carry
+none — they are not held anywhere in particular.
+
+They are drawn as inline SVG rather than typed as emoji. A flag emoji renders
+as two letters on Windows and as a picture on a phone, and a mark that changes
+shape by device is not a mark.
+
 ### Two stock books
 
 Shares are held as **IN stocks** and **EU stocks**, because a portfolio held
