@@ -773,9 +773,24 @@ select.inp{appearance:none;background-image:none}
 .al-v{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink);flex:none}
 .al-track{position:relative;height:10px;background:var(--surface-sunk);border-radius:99px;overflow:visible}
 .al-track .al-now{display:block;height:100%;border-radius:99px}
+/* Where the target sits, as a small arrow above the bar rather than a bar
+   drawn through it. A bare line over an empty track — a kind held at 0% of a
+   15% target — has nothing to belong to and reads as a stray mark rather than
+   a measurement, which is exactly what it was mistaken for. */
 .al-track .al-tgt{
-  position:absolute;top:-3px;width:2px;height:16px;border-radius:2px;
-  background:var(--ink);transform:translateX(-1px);
+  position:absolute;top:-8px;width:0;height:0;
+  border-left:4px solid transparent;border-right:4px solid transparent;
+  border-top:5px solid var(--ink-3);
+  transform:translateX(-4px);
+}
+.al-legend{
+  margin-top:10px;font-size:11px;color:var(--ink-3);
+  display:flex;align-items:center;gap:6px;
+}
+.al-legend i{
+  width:0;height:0;flex:none;
+  border-left:4px solid transparent;border-right:4px solid transparent;
+  border-top:5px solid var(--ink-3);
 }
 .al-foot{display:flex;align-items:center;gap:10px;margin-top:7px;font-size:11.5px;color:var(--ink-3)}
 .al-foot > span:first-child{font-family:var(--mono);font-variant-numeric:tabular-nums}
@@ -1531,7 +1546,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.0";
+const APP_VERSION = "1.1.1";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -3887,7 +3902,7 @@ function repDepth(t){
            </div>
            <div class="al-track">
              <i class="al-now" style="width:${Math.min(100, nowPct).toFixed(1)}%;background:${colour}"></i>
-             ${r.target ? `<i class="al-tgt" style="left:${Math.min(100, r.target)}%"></i>` : ""}
+             ${r.target ? `<i class="al-tgt" style="left:${Math.min(100, r.target)}%" title="Target ${r.target}%"></i>` : ""}
            </div>
            <div class="al-foot">
              <span>${esc(fmtDisp(r.now))}</span>
@@ -3902,6 +3917,7 @@ function repDepth(t){
            </div>
          </div>`;
        }).join("") : '<div class="empty" style="padding:18px"><p>Nothing owned yet to compare.</p></div>'}
+       ${rows.some(r => r.target) ? '<div class="al-legend"><i></i> marks the target; the bar is what you hold.</div>' : ""}
      </div>
      <div class="note">A target is the share of everything you own that a kind is meant to be. Set the ones you care about and leave the rest blank — they will simply say what they are.</div>`;
 

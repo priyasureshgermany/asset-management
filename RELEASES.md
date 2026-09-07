@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.1 — 2026-09-07
+- fix: The target in the in-depth report was a white line drawn through the bar, which on a kind held at nothing had no bar to belong to and read as a stray mark. It is a small arrow above the bar now, it says its figure when pointed at, and the block says once what it means.
+
 ## 1.1.0 — 2026-09-07
 - new: Gold has a tab of its own, out of Investment: what it weighs, what it is worth, and each piece with its kind, purity and date. A piece with no recorded cost says so rather than counting as all profit.
 - new: Its own figure on the dashboard, beside what you own and what you owe.
