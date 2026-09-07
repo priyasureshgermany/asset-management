@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.4 — 2026-09-07
+- better: In depth reports on the portfolio alone — gold, cash and property are no longer measured against a target allocation
+
 ## 1.1.3 — 2026-09-07
 - fix: The sync tile carried a mark every time Settings was opened. The live rates rewrite themselves and their timestamp on each open, and that counted as something to push — so the mark was always lit and said nothing. Only what you change counts now.
 - new: See what would be pushed: the things here that are not in the backup, each named, and whether it was added, changed or removed.

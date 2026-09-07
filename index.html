@@ -1558,7 +1558,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.3";
+const APP_VERSION = "1.1.4";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -3824,7 +3824,7 @@ function currencySlices(){
    else, and on this tab they are the whole subject. */
 function investSlices(filter){
   const m = new Map();
-  state.investments
+  investOnly()
     .filter(i => !filter || filter(i))
     .forEach(i => {
       const b = bucketOf(INVEST_TYPES, i.type);
@@ -3842,7 +3842,7 @@ function renderReports(){
 
   if (repTab === "overview") repOverview(t, gold);
   else if (repTab === "invest") repInvestments();
-  else repDepth(t);
+  else repDepth();
 
   document.querySelectorAll("#repSeg button").forEach(b =>
     b.setAttribute("aria-selected", String(b.dataset.rep === repTab)));
@@ -3937,26 +3937,48 @@ function repInvestments(){
    The target is set here rather than in Settings, because this is the screen
    where you find out it is wrong. A number you can only change two screens
    away is a number that stays wrong. */
-function repDepth(t){
-  const slices = assetSlices();
+/* The buckets a portfolio can be in — every investment kind except gold,
+   worked out from the same table the entry sheet offers rather than listed
+   again here, so a kind added there turns up here without being remembered. */
+function investBuckets(){
+  return [...new Set(INVEST_TYPES.filter(t => t.k !== GOLD_TYPE).map(t => t.b))];
+}
+
+/* An allocation is about the portfolio. A house is not held instead of a
+   fund, cash is what is waiting rather than what is placed, and gold is kept
+   rather than allocated — measuring any of them against a target share said
+   nothing anyone could act on. Everything here comes from investOnly(), so
+   they drop out by construction and not by a list of exceptions to maintain. */
+function repDepth(){
+  const slices = investSlices();
+  const total = slices.reduce((s, x) => s + x.value, 0);
   const targets = state.settings.targets || {};
-  const set = Object.keys(targets).reduce((s,k) => s + targets[k], 0);
-  const rows = BUCKETS
-    .map(b => {
-      const has = slices.find(x => x.label === b.k);
-      return { k: b.k, cat: b, now: has ? has.value : 0, target: targets[b.k] || 0 };
+  const mine = investBuckets();
+  const set = mine.reduce((s, k) => s + (targets[k] || 0), 0);
+  const rows = mine
+    .map(k => {
+      const has = slices.find(x => x.label === k);
+      return { k, cat: catOf(k), now: has ? has.value : 0, target: targets[k] || 0 };
     })
-    .filter(r => r.now > 0 || r.target > 0);
+    .filter(r => r.now > 0 || r.target > 0)
+    .sort((a, b) => b.now - a.now);
+
+  if (!total && !set){
+    $("repBody").innerHTML = emptyBlock(ICON_CHART, "Nothing invested yet",
+      "Funds, stocks and deposits report here. Gold, cash and what you own outright are not part of an allocation.");
+    return;
+  }
 
   $("repBody").innerHTML =
     `<div class="aboutbox">
-       <div><b>${esc(fmtDisp(t.assets))}</b> owned across ${rows.filter(r => r.now > 0).length} kinds</div>
+       <div><b>${esc(fmtDisp(total))}</b> invested across ${rows.filter(r => r.now > 0).length} kinds</div>
        <div>${set ? set + "% of a target allocation set" : "No target allocation set yet"}${set > 100 ? " — more than a whole" : ""}</div>
+       <div>Gold, cash and what you own outright are counted elsewhere.</div>
      </div>
      <div class="chartblock" style="margin:0 0 14px">
        <div class="chartblock-h"><div class="cb-t">Held against target</div><div class="cb-n">drift</div></div>
        ${rows.length ? rows.map(r => {
-         const nowPct = t.assets > 0 ? r.now / t.assets * 100 : 0;
+         const nowPct = total > 0 ? r.now / total * 100 : 0;
          const drift = r.target ? nowPct - r.target : null;
          const colour = swatch(r.k);
          return `<div class="alrow">
@@ -3987,7 +4009,7 @@ function repDepth(t){
        }).join("") : '<div class="empty" style="padding:18px"><p>Nothing owned yet to compare.</p></div>'}
 
      </div>
-     <div class="note">Both bars run from nothing to everything you own. The top one is the share a kind is now; the one under it is the share you meant it to be. Set the targets you care about and leave the rest blank — those simply say what they are.</div>`;
+     <div class="note">Both bars run from nothing to the whole portfolio. The top one is the share a kind is now; the one under it is the share you meant it to be. Set the targets you care about and leave the rest blank — those simply say what they are.</div>`;
 
   $("repBody").querySelectorAll(".al-in").forEach(inp => {
     const commit = () => {
