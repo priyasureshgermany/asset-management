@@ -161,6 +161,15 @@ button{cursor:pointer;background:none;border:none;padding:0}
 }
 .iconbtn:hover{background:var(--surface-2);color:var(--ink)}
 .iconbtn svg{width:19px;height:19px;stroke-width:1.8}
+/* The count rides on the bell rather than beside it: a number in the bar with
+   nothing under it is a number you have to go looking for the meaning of. */
+.bellbtn{position:relative}
+.belldot{
+  position:absolute;top:2px;right:2px;min-width:15px;height:15px;padding:0 4px;
+  border-radius:99px;background:var(--neg);color:#fff;
+  font-size:9.5px;font-weight:700;line-height:15px;text-align:center;
+  box-shadow:0 0 0 2px var(--surface);
+}
 .eyebtn .eye-off{display:none}
 html.amounts-hidden .eyebtn .eye-on{display:none}
 html.amounts-hidden .eyebtn .eye-off{display:block}
@@ -193,6 +202,13 @@ html.amounts-hidden .eyebtn{color:var(--accent)}
 .stmt-sub{font-size:11.5px;color:var(--ink-3);margin-top:2px}
 
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+/* Three figures across a phone is tight but readable; the label is what gives
+   first, so it loses its letter-spacing before the number loses a digit. */
+.tiles.three{grid-template-columns:repeat(3,1fr);gap:7px}
+.tiles.three .tile{padding:10px 9px}
+.tiles.three .tile .lbl{letter-spacing:0}
+.tiles.three .tile .val{font-size:17px}
+.tiles.three .tile-go{display:none}
 .tile{
   background:var(--surface-2);border-radius:var(--r-md);padding:11px 12px;
   display:flex;flex-direction:column;gap:3px;border-left:3px solid transparent;
@@ -421,7 +437,10 @@ button.tile:hover .tile-go{color:var(--accent)}
 .tabbar{
   position:fixed;left:0;right:0;bottom:0;z-index:28;
   max-width:var(--shell);margin:0 auto;
-  display:grid;grid-template-columns:repeat(4,1fr);
+  /* Five now that gold has a tab of its own. The count is written here and
+     nowhere else — left at four, the fifth wrapped onto a second row and put
+     More underneath Dashboard. */
+  display:grid;grid-template-columns:repeat(5,1fr);
   background:var(--surface);border-top:1px solid var(--line);
   padding:8px 6px calc(10px + env(safe-area-inset-bottom));
   box-shadow:0 -1px 0 rgba(15,25,34,.04), 0 -10px 30px rgba(15,25,34,.06);
@@ -431,11 +450,12 @@ button.tile:hover .tile-go{color:var(--accent)}
 }
 .tabbar button{
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-  padding:5px 2px;border-radius:12px;
-  font-size:10px;font-weight:500;line-height:1.2;color:var(--ink-3);
+  padding:5px 1px;border-radius:12px;
+  font-size:9.5px;font-weight:500;line-height:1.2;color:var(--ink-3);
+  letter-spacing:-.01em;white-space:nowrap;
   transition:color .18s,transform .12s;text-align:center;position:relative;
 }
-.tabbar button svg{width:21px;height:21px;flex:none;stroke-width:1.8}
+.tabbar button svg{width:20px;height:20px;flex:none;stroke-width:1.8}
 .tabbar button:active{transform:scale(.93)}
 /* A newer build waiting is worth saying on the tab, not only two taps inside. */
 .tabdot{
@@ -852,6 +872,10 @@ html.locked #lockScreen{
       <span class="brand-top"><b>Asset Manager</b><span class="brand-cur" id="brandCur">EUR</span></span>
       <span class="brand-hi" id="brandHi"></span>
     </button>
+    <button class="iconbtn bellbtn" id="btnBell" type="button" title="Reminders" aria-label="Reminders">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M13.7 20a2 2 0 01-3.4 0"/></svg>
+      <span class="belldot" id="bellDot" hidden></span>
+    </button>
     <button class="iconbtn eyebtn" id="btnEye" type="button" aria-pressed="true" title="Hide amounts">
       <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
       <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><path d="M1 1l22 22"/></svg>
@@ -877,11 +901,16 @@ html.locked #lockScreen{
       <div class="eyebrow">Net worth</div>
       <div class="net" id="nwVal">€0</div>
       <div class="stmt-sub" id="nwSub">—</div>
-      <div class="tiles">
+      <div class="tiles" id="tiles3">
         <button class="tile in" id="tileAssets" type="button">
           <div class="lbl">Assets <span class="tile-go">View ›</span></div>
           <div class="val" id="assetsVal">€0</div>
           <div class="sub" id="assetsSub">—</div>
+        </button>
+        <button class="tile gold" id="tileGold" type="button" hidden>
+          <div class="lbl">Gold <span class="tile-go">View ›</span></div>
+          <div class="val" id="goldVal">€0</div>
+          <div class="sub" id="goldSub">—</div>
         </button>
         <button class="tile out" id="tileLiabs" type="button">
           <div class="lbl">Liabilities <span class="tile-go">View ›</span></div>
@@ -951,24 +980,33 @@ html.locked #lockScreen{
       </div>
     </section>
 
-    <section class="goldcard" id="goldCard" hidden>
-      <button class="gc-edit" id="btnGoldPrice" type="button">Edit price</button>
-      <div class="gc-k">Physical gold</div>
-      <div class="gc-v" id="goldGrams">0 g</div>
-      <div class="gc-s" id="goldWorth">—</div>
-    </section>
-
     <div class="segwrap">
       <div class="seg" id="invSeg" role="tablist">
         <button role="tab" data-inv="all" aria-selected="true">All <span class="n" id="nInvAll">0</span></button>
         <button role="tab" data-inv="funds" aria-selected="false">Funds <span class="n" id="nInvFunds">0</span></button>
         <button role="tab" data-inv="stocks" aria-selected="false">Stocks <span class="n" id="nInvStocks">0</span></button>
-        <button role="tab" data-inv="gold" aria-selected="false">Gold <span class="n" id="nInvGold">0</span></button>
         <button role="tab" data-inv="other" aria-selected="false">Fixed <span class="n" id="nInvOther">0</span></button>
       </div>
     </div>
-    <div class="chips" id="goldFilter" style="padding:12px 14px 0" hidden></div>
     <div class="list" id="investList"></div>
+  </div>
+
+  <!-- ============ GOLD ============
+       Its own screen, because it is not an investment. What is in the drawer,
+       what it weighs, and what that is worth at today's price. -->
+  <div id="viewGold" hidden>
+    <section class="statement">
+      <div class="eyebrow">Physical gold</div>
+      <div class="net" id="goldWorthBig">€0</div>
+      <div class="stmt-sub" id="goldWorthSub">—</div>
+      <div class="tiles">
+        <div class="tile gold"><div class="lbl">Weight</div><div class="val" id="goldGrams">0 g</div><div class="sub" id="goldPieces">—</div></div>
+        <button class="tile" id="btnGoldPrice" type="button"><div class="lbl">Price a gram <span class="tile-go">Edit ›</span></div><div class="val" id="goldRate">—</div><div class="sub" id="goldKaratSub">—</div></button>
+      </div>
+    </section>
+
+    <div class="chips" id="goldFilter" style="padding:12px 14px 0" hidden></div>
+    <div class="list" id="goldList"></div>
   </div>
 
   <div class="spacer"></div>
@@ -992,6 +1030,10 @@ html.locked #lockScreen{
     <button role="tab" data-view="invest" aria-selected="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
       Investment
+    </button>
+    <button role="tab" data-view="gold" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="7" rx="7.5" ry="3.2"/><path d="M4.5 7v5c0 1.8 3.4 3.2 7.5 3.2s7.5-1.4 7.5-3.2V7"/><path d="M4.5 12v5c0 1.8 3.4 3.2 7.5 3.2s7.5-1.4 7.5-3.2v-5"/></svg>
+      Gold
     </button>
     <button type="button" id="btnMore" aria-haspopup="dialog" aria-label="More">
       <span class="tabdot" id="moreDot" hidden></span>
@@ -1447,7 +1489,7 @@ html.locked #lockScreen{
 <!-- ============ SIPS DUE ============ -->
 <section class="sheet" id="shDue" role="dialog" aria-modal="true" aria-labelledby="dueTitle">
   <div class="sheet-head">
-    <h2 id="dueTitle">SIPs due</h2>
+    <h2 id="dueTitle">Reminders</h2>
     <button class="iconbtn" data-close aria-label="Close">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
@@ -1456,7 +1498,8 @@ html.locked #lockScreen{
     <p class="ph" id="dueLead"></p>
     <div class="rows" id="dueRows"></div>
     <button class="btn" id="dueAll" style="margin-top:14px">Tick them all off</button>
-    <div class="note" style="margin-top:12px">Ticking one off says it went out this month. It comes back on its day next month.</div>
+    <div class="note" id="dueNote" style="margin-top:12px">Ticking one off says it went out this month. It comes back on its day next month.</div>
+    <div id="remOther"></div>
   </div>
 </section>
 
@@ -1488,8 +1531,8 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.0.19";
-const APP_BUILT = "2026-09-06";
+const APP_VERSION = "1.1.0";
+const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
 
@@ -1564,6 +1607,15 @@ const INVEST_TYPES = [
   { k:"Other",             b:"Other" }
 ];
 const GOLD_TYPE = "Physical Gold";
+/* Gold is held, not invested in. It shares the investments array because that
+   is where it has always been stored and moving it would rewrite everybody's
+   backup for no gain — but it is not an investment anywhere it is counted or
+   shown, and these two are the only place that decision is made. Anything that
+   needs one list or the other asks here rather than repeating the test, so the
+   two can never come to disagree about what gold is. */
+const isGold = i => i.type === GOLD_TYPE;
+function investOnly(){ return state.investments.filter(i => !isGold(i)); }
+function goldOnly(){ return state.investments.filter(isGold); }
 /* Kept in the words these are actually called, so a filter reads the way the
    drawer does. */
 const GOLD_KINDS = ["Necklace","Aram","Aruna","Chain","Bracelet","Ring","Stud","Dollar","Bangles","Other"];
@@ -1760,12 +1812,27 @@ function fmtExact(amount, c){
     Math.abs(amount).toLocaleString(meta.locale, { minimumFractionDigits:2, maximumFractionDigits:2 });
 }
 
+/**
+ * Four figures and what they add up to.
+ *
+ *   plain   what you hold — accounts, property
+ *   invest  funds, stocks, deposits
+ *   gold    what is in the drawer, valued by weight
+ *   owned   the three of them, which is what net worth is measured against
+ *
+ * `assets` is plain + invest and no longer includes the gold: it is what the
+ * Assets tile says, and the gold has a tile of its own beside it. `owned` is
+ * the one to divide by — a share of "everything owned" that left the gold out
+ * of the denominator would have the wedges summing past a hundred per cent.
+ */
 function totals(){
   const plain = state.assets.reduce((s,a) => s + toDisp(a.value, a.currency), 0);
-  const invest = state.investments.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
+  const invest = investOnly().reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
+  const gold = goldOnly().reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
   const liabilities = state.liabilities.reduce((s,l) => s + toDisp(l.amount, l.currency), 0);
   const assets = plain + invest;
-  return { plain, invest, assets, liabilities, net: assets - liabilities };
+  const owned = assets + gold;
+  return { plain, invest, gold, assets, owned, liabilities, net: owned - liabilities };
 }
 
 function esc(s){
@@ -1787,7 +1854,7 @@ const $ = (id) => document.getElementById(id);
 /* ============================================================
    Navigation
    ============================================================ */
-const VIEWS = { dash:"viewDash", goal:"viewGoal", invest:"viewInvest" };
+const VIEWS = { dash:"viewDash", goal:"viewGoal", invest:"viewInvest", gold:"viewGold" };
 let view = "dash";
 let dashTab = "assets";
 let invTab = "all";
@@ -1836,6 +1903,7 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") sheetClose()
 const ICON_BANK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 10v9M15 10v9"/><path d="M3 21h18"/></svg>';
 const ICON_DEBT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h12l4 4v12H4z"/><path d="M9 13h6M9 17h6"/></svg>';
 const ICON_GOAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg>';
+const ICON_GOLD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="7" rx="7.5" ry="3.2"/><path d="M4.5 7v5c0 1.8 3.4 3.2 7.5 3.2s7.5-1.4 7.5-3.2V7"/><path d="M4.5 12v5c0 1.8 3.4 3.2 7.5 3.2s7.5-1.4 7.5-3.2v-5"/></svg>';
 const ICON_CHART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>';
 
 /* ---------- FAB ----------
@@ -1847,7 +1915,8 @@ const FAB_OPTIONS = {
     { cls:"out", label:"Liability", icon:ICON_DEBT,  go:() => openLiab(null) }
   ],
   goal:   [{ cls:"in", label:"Goal",       icon:ICON_GOAL,  go:() => openGoal(null) }],
-  invest: [{ cls:"in", label:"Investment", icon:ICON_CHART, go:() => openInvest(null) }]
+  invest: [{ cls:"in", label:"Investment", icon:ICON_CHART, go:() => openInvest(null) }],
+  gold:   [{ cls:"in", label:"Gold",       icon:ICON_GOLD,  go:() => openInvest(null, GOLD_TYPE) }]
 };
 function renderFabMenu(){
   const menu = $("fabMenu");
@@ -1902,6 +1971,7 @@ $("btnEye").addEventListener("click", () => {
 function render(){
   $("curLabel").textContent = display();
   $("brandCur").textContent = display();
+  syncBell();
   const t = totals();
   /* The net worth is the first thing on the dashboard already; repeating it
      under the title only put a figure on every screen in the app. */
@@ -1911,6 +1981,7 @@ function render(){
   if (view === "dash") renderDash(t);
   if (view === "goal") renderGoals();
   if (view === "invest") renderInvest();
+  if (view === "gold") renderGold();
 }
 
 function renderDash(t){
@@ -1922,18 +1993,32 @@ function renderDash(t){
     : "Everything you own, less everything you owe";
   $("assetsVal").textContent = fmtDisp(t.assets);
   $("liabsVal").textContent = fmtDisp(t.liabilities);
-  $("assetsSub").textContent = state.assets.length + " held · " + state.investments.length + " invested";
+  const nInv = investOnly().length;
+  $("assetsSub").textContent = state.assets.length + " held · " + nInv + " invested";
   $("liabsSub").textContent = state.liabilities.length + (state.liabilities.length === 1 ? " debt" : " debts");
 
-  const ratio = t.assets > 0 ? Math.min(100, t.liabilities / t.assets * 100) : (t.liabilities > 0 ? 100 : 0);
-  $("ratioV").textContent = t.assets > 0 ? ratio.toFixed(0) + "%" : "—";
+  /* The gold tile appears only when there is gold. A third figure reading zero
+     is a question about something you do not have. */
+  const gt = goldTotals();
+  $("tileGold").hidden = gt.count === 0;
+  $("tiles3").classList.toggle("three", gt.count > 0);
+  if (gt.count){
+    $("goldVal").textContent = fmtDisp(t.gold);
+    $("goldSub").textContent =
+      gt.grams.toLocaleString(undefined, { maximumFractionDigits:2 }) + " g";
+  }
+
+  /* Measured against everything owned, gold included — it is owed against what
+     you have, and the gold is something you have. */
+  const ratio = t.owned > 0 ? Math.min(100, t.liabilities / t.owned * 100) : (t.liabilities > 0 ? 100 : 0);
+  $("ratioV").textContent = t.owned > 0 ? ratio.toFixed(0) + "%" : "—";
   $("ratioFill").style.width = ratio + "%";
   $("ratioFill").style.background = ratio >= 70 ? "var(--neg)" : ratio >= 40 ? "var(--warn)" : "var(--pos)";
-  $("ratioWrap").hidden = t.assets === 0 && t.liabilities === 0;
+  $("ratioWrap").hidden = t.owned === 0 && t.liabilities === 0;
 
   renderDueBar();
   renderAlloc();
-  renderBars("assetBars", "assetBarN", assetSlices(), t.assets);
+  renderBars("assetBars", "assetBarN", assetSlices(), t.owned);
   renderBars("liabBars", "liabBarN", liabSlices(), t.liabilities);
   $("assetBarBlock").hidden = !state.assets.length && !state.investments.length;
   $("liabBarBlock").hidden = !state.liabilities.length;
@@ -2334,11 +2419,53 @@ function sipDueList(now){
   now = now || new Date();
   const key = monthKey(now);
   return state.investments.filter(i =>
-    i.type !== GOLD_TYPE &&
+    !isGold(i) &&
     i.sipAmount > 0 && i.sipDay > 0 &&
     i.sipDone !== key &&
     now.getDate() >= dueDayThisMonth(i.sipDay, now));
 }
+/**
+ * Everything wanting attention, counted the same way every time it is asked.
+ *
+ * There is deliberately no record of what has been "seen". A count of what is
+ * outstanding is worth showing every time you look; a count of what is new is
+ * worth showing once, and needs a second date kept in step with the first to
+ * work out which is which. The sibling app had exactly that and the badge ran
+ * backwards, appearing only once you opened the thing meant to clear it.
+ */
+function reminders(){
+  const now = new Date();
+  const out = sipDueList(now).map(i => ({ kind:"sip", item:i }));
+
+  /* A goal whose day has come and gone without being reached. Reached ones say
+     nothing — that is a result, not a thing to do. */
+  const today = now.toISOString().slice(0, 10);
+  state.goals.forEach(g => {
+    if (!g.targetDate || g.targetDate >= today) return;
+    if (g.currentAmount >= g.targetAmount) return;
+    out.push({ kind:"goal", item:g });
+  });
+
+  /* Gold that cannot be valued. Its worth is weight times a price, and with no
+     price it silently counts as nothing — which is a wrong net worth, not an
+     empty one, and nothing on the screen would say so. */
+  if (goldOnly().length && !goldPrice(display()))
+    out.push({ kind:"goldprice" });
+
+  return out;
+}
+
+function syncBell(){
+  const n = reminders().length;
+  const dot = $("bellDot");
+  dot.hidden = n === 0;
+  dot.textContent = n > 9 ? "9+" : String(n);
+  $("btnBell").title = n
+    ? n + (n === 1 ? " reminder" : " reminders")
+    : "Nothing needs you";
+}
+$("btnBell").addEventListener("click", openDue);
+
 function renderDueBar(){
   const due = sipDueList();
   const bar = $("dueBar");
@@ -2352,10 +2479,25 @@ function renderDueBar(){
 function openDue(){
   const now = new Date();
   const due = sipDueList(now);
-  if (!due.length) return;
-  $("dueLead").textContent = due.length === 1
-    ? "This one's day has come round."
-    : "These have had their day come round this month.";
+  const rest = reminders().filter(r => r.kind !== "sip");
+
+  $("dueLead").textContent =
+    !due.length && !rest.length ? "Nothing needs you."
+    : !due.length               ? "Nothing is due, but:"
+    : due.length === 1          ? "This one's day has come round."
+                                : "These have had their day come round this month.";
+  $("dueAll").hidden = !due.length;
+  $("dueNote").hidden = !due.length;
+
+  $("remOther").innerHTML = rest.map(r => {
+    if (r.kind === "goal")
+      return `<div class="note" style="margin-top:10px"><b>${esc(r.item.name || "A goal")}</b> was due
+        ${esc(r.item.targetDate)} and is at ${esc(fmt(r.item.currentAmount, r.item.currency))}
+        of ${esc(fmt(r.item.targetAmount, r.item.currency))}.</div>`;
+    return `<div class="note" style="margin-top:10px">There is gold recorded but no
+      ${esc(display())} price a gram, so it is counting as nothing. Set it in
+      <b>Settings → Rates &amp; gold</b>.</div>`;
+  }).join("");
   $("dueRows").innerHTML = due.map(i => {
     const day = dueDayThisMonth(i.sipDay, now);
     const late = now.getDate() - day;
@@ -2378,7 +2520,7 @@ function tickSip(id){
   i.sipDone = monthKey(new Date());
   save();
   render();
-  if (!sipDueList().length){ sheetClose("shDue"); toast("All caught up"); }
+  if (!reminders().length){ sheetClose("shDue"); toast("All caught up"); }
   else openDue();
 }
 $("dueBar").addEventListener("click", openDue);
@@ -2431,20 +2573,16 @@ function renderGoals(){
 
 /* ---------- investments ---------- */
 function goldTotals(){
-  const golds = state.investments.filter(i => i.type === GOLD_TYPE);
+  const golds = goldOnly();
   const grams = golds.reduce((s,i) => s + i.grams, 0);
   const worth = golds.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
   return { grams, worth, count: golds.length };
 }
 
 function renderInvest(){
-  const worth = state.investments.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
-  /* Gold's cost is optional — when it was never entered, count what it is
-     worth instead, so the gain line is not a loss of the whole holding. */
-  const invested = state.investments.reduce((s,i) => {
-    const paid = i.investedAmount > 0 ? i.investedAmount : (i.type === GOLD_TYPE ? investWorth(i) : i.investedAmount);
-    return s + toDisp(paid, i.currency);
-  }, 0);
+  const holdings = investOnly();
+  const worth = holdings.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
+  const invested = holdings.reduce((s,i) => s + toDisp(i.investedAmount, i.currency), 0);
   const gain = worth - invested;
 
   $("invVal").textContent = fmtDisp(worth);
@@ -2453,68 +2591,34 @@ function renderInvest(){
   $("invGain").textContent = (gain >= 0 ? "+" : "") + fmtDisp(gain);
   $("invGainPct").textContent = invested > 0 ? pct(gain / invested * 100) : "—";
   $("invGainTile").className = "tile " + (gain < 0 ? "out" : "in");
-  $("invSub").textContent = state.investments.length
-    ? state.investments.length + (state.investments.length === 1 ? " holding" : " holdings")
-    : "Funds, stocks, deposits and gold";
-
-  const gold = goldTotals();
-  $("goldCard").hidden = gold.count === 0;
-  if (gold.count){
-    $("goldGrams").textContent = gold.grams.toLocaleString(undefined, { maximumFractionDigits:2 }) + " g";
-    $("goldWorth").textContent = fmtDisp(gold.worth) + " at " +
-      fmt(goldPrice(display()), display()) + " a gram · " + gold.count +
-      (gold.count === 1 ? " holding" : " holdings");
-  }
+  $("invSub").textContent = holdings.length
+    ? holdings.length + (holdings.length === 1 ? " holding" : " holdings")
+    : "Funds, stocks and deposits";
 
   const inTab = (i, tab) =>
     tab === "all"    ? true :
     tab === "funds"  ? i.type === "SIP / Mutual fund" :
     tab === "stocks" ? i.type === "Stocks" :
-    tab === "gold"   ? i.type === GOLD_TYPE :
-                       i.type !== GOLD_TYPE && i.type !== "Stocks" && i.type !== "SIP / Mutual fund";
-  $("nInvAll").textContent = state.investments.length;
-  $("nInvFunds").textContent = state.investments.filter(i => inTab(i, "funds")).length;
-  $("nInvStocks").textContent = state.investments.filter(i => inTab(i, "stocks")).length;
-  $("nInvGold").textContent = gold.count;
-  $("nInvOther").textContent = state.investments.filter(i => inTab(i, "other")).length;
+                       i.type !== "Stocks" && i.type !== "SIP / Mutual fund";
+  $("nInvAll").textContent = holdings.length;
+  $("nInvFunds").textContent = holdings.filter(i => inTab(i, "funds")).length;
+  $("nInvStocks").textContent = holdings.filter(i => inTab(i, "stocks")).length;
+  $("nInvOther").textContent = holdings.filter(i => inTab(i, "other")).length;
+  if (invTab === "gold") invTab = "all";     /* the tab it named is gone */
   document.querySelectorAll("#invSeg button").forEach(b =>
     b.setAttribute("aria-selected", String(b.dataset.inv === invTab)));
 
-  /* Gold is filtered by what the thing actually is, which is how anyone looking
-     for it thinks of it — the chips only appear where there is gold to sort. */
-  const goldChips = $("goldFilter");
-  goldChips.hidden = invTab !== "gold" || gold.count === 0;
-  if (!goldChips.hidden){
-    const kinds = ["All"].concat(GOLD_KINDS.filter(k =>
-      state.investments.some(i => i.type === GOLD_TYPE && (i.goldKind || "Other") === k)));
-    if (!kinds.includes(goldKindFilter)) goldKindFilter = "All";
-    goldChips.innerHTML = kinds.map(k =>
-      `<button class="chip" type="button" data-k="${esc(k)}" aria-pressed="${k === goldKindFilter}">${esc(k)}</button>`).join("");
-    goldChips.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
-      goldKindFilter = b.dataset.k; renderInvest();
-    }));
-  }
-
   const host = $("investList");
   host.innerHTML = "";
-  let items = state.investments.filter(i => inTab(i, invTab));
-  if (invTab === "gold" && goldKindFilter !== "All")
-    items = items.filter(i => (i.goldKind || "Other") === goldKindFilter);
+  const items = holdings.filter(i => inTab(i, invTab));
 
-  /* Under All, gold arrives as one line. A drawer of bangles listed piece by
-     piece buries the funds it is sitting next to, and the pieces are what the
-     Gold tab is for. */
-  const collapseGold = invTab === "all" && gold.count > 0;
-  if (collapseGold) items = items.filter(i => i.type !== GOLD_TYPE);
-
-  if (!items.length && !collapseGold){
+  if (!items.length){
     /* Each tab says what belongs in it. An empty tab with a vague name is a
        question rather than an answer. */
     const empties = {
-      all:    ["Nothing invested yet", "Funds, stocks, deposits — and physical gold, which is valued by weight."],
+      all:    ["Nothing invested yet", "Funds, stocks and deposits. Gold lives on its own tab — it is held, not invested in."],
       funds:  ["No funds yet", "SIPs and mutual funds live here."],
       stocks: ["No stocks yet", "Shares you hold directly live here."],
-      gold:   ["No gold yet", "Jewellery, coins and bars, valued by weight rather than by a figure you keep updating."],
       other:  ["Nothing fixed yet", "Fixed deposits, PPF and EPF, bonds — anything that pays a set return rather than moving with a market."]
     };
     const e = empties[invTab] || empties.all;
@@ -2523,47 +2627,23 @@ function renderInvest(){
   }
   const rows = document.createElement("div");
   rows.className = "rows";
-
-  if (collapseGold){
-    const paidGold = state.investments
-      .filter(i => i.type === GOLD_TYPE)
-      .reduce((sum, i) => sum + toDisp(i.investedAmount > 0 ? i.investedAmount : investWorth(i), i.currency), 0);
-    const g = gold.worth - paidGold;
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "row";
-    b.innerHTML =
-      `<span class="mono" style="background:${swatchSoft("Gold")};color:${swatch("Gold")}">${ICON_BANK}</span>
-       <span class="rowmain"><span class="t1">Physical Gold</span>
-         <span class="t2"><span class="cn">${esc(gold.grams.toLocaleString(undefined,{maximumFractionDigits:2}))} g across ${gold.count} ${gold.count === 1 ? "holding" : "holdings"}</span><span class="pill gold">Gold</span></span></span>
-       <span class="rowend"><span class="amt">${esc(fmtDisp(gold.worth))}</span>
-         <span class="amt-sub ${g > 0 ? "up" : g < 0 ? "down" : "flat"}">${(g >= 0 ? "+" : "") + esc(fmtDisp(g))}</span></span>`;
-    b.addEventListener("click", () => { invTab = "gold"; renderInvest(); });
-    rows.appendChild(b);
-  }
-
   items.slice()
     .sort((a,b) => toDisp(investWorth(b), b.currency) - toDisp(investWorth(a), a.currency))
     .forEach(i => {
       const bucket = bucketOf(INVEST_TYPES, i.type);
-      const isGold = i.type === GOLD_TYPE;
       const now = investWorth(i);
-      const paid = i.investedAmount > 0 ? i.investedAmount : (isGold ? now : 0);
-      const g = now - paid;
-      const sub = isGold
-        ? [i.goldKind, i.grams ? i.grams + " g" : "", i.purity, i.boughtOn, i.goldDesc]
-            .filter(Boolean).join(" · ")
-        : [i.type, i.units ? i.units + " units" : "",
-           i.sipAmount ? "SIP " + fmt(i.sipAmount, i.currency) : ""].filter(Boolean).join(" · ");
+      const g = now - i.investedAmount;
+      const sub = [i.type, i.units ? i.units + " units" : "",
+                   i.sipAmount ? "SIP " + fmt(i.sipAmount, i.currency) : ""].filter(Boolean).join(" · ");
       const b = document.createElement("button");
       b.type = "button";
       b.className = "row";
       b.innerHTML =
-        `<span class="mono" style="background:${swatchSoft(bucket)};color:${swatch(bucket)}">${isGold ? ICON_BANK : ICON_CHART}</span>
+        `<span class="mono" style="background:${swatchSoft(bucket)};color:${swatch(bucket)}">${ICON_CHART}</span>
          <span class="rowmain"><span class="t1">${esc(i.name || i.type)}</span>
-           <span class="t2"><span class="cn">${esc(sub)}</span>${isGold ? '<span class="pill gold">Gold</span>' : ""}${curPill(i.currency)}</span></span>
+           <span class="t2"><span class="cn">${esc(sub)}</span>${curPill(i.currency)}</span></span>
          <span class="rowend"><span class="amt">${esc(fmt(now, i.currency))}</span>
-           <span class="amt-sub ${g > 0 ? "up" : g < 0 ? "down" : "flat"}">${paid ? (g >= 0 ? "+" : "") + esc(fmt(g, i.currency)) : "—"}</span></span>`;
+           <span class="amt-sub ${g > 0 ? "up" : g < 0 ? "down" : "flat"}">${i.investedAmount ? (g >= 0 ? "+" : "") + esc(fmt(g, i.currency)) : "—"}</span></span>`;
       b.addEventListener("click", () => openInvest(i.id));
       rows.appendChild(b);
     });
@@ -2571,6 +2651,84 @@ function renderInvest(){
 }
 document.querySelectorAll("#invSeg button").forEach(b =>
   b.addEventListener("click", () => { invTab = b.dataset.inv; renderInvest(); }));
+
+/* ---------- gold ----------
+   Weight and today's price, then the pieces. A gain line is offered only where
+   a cost was actually recorded: gold bought years ago or handed down often has
+   no price attached, and calling the whole holding a gain would be inventing
+   one. */
+function renderGold(){
+  const golds = goldOnly();
+  const g = goldTotals();
+
+  $("goldWorthBig").textContent = fmtDisp(g.worth);
+  $("goldWorthBig").className = "net";
+  $("goldWorthSub").textContent = g.count
+    ? g.count + (g.count === 1 ? " piece" : " pieces")
+    : "Jewellery, coins and bars, valued by weight";
+  $("goldGrams").textContent =
+    g.grams.toLocaleString(undefined, { maximumFractionDigits:2 }) + " g";
+  $("goldPieces").textContent = g.count
+    ? g.count + (g.count === 1 ? " piece" : " pieces") : "nothing yet";
+  $("goldRate").textContent = goldPrice(display())
+    ? fmt(goldPrice(display()), display()) : "not set";
+  $("goldKaratSub").textContent = "spot is 24K · yours " +
+    (state.settings.goldKarat || "22K");
+
+  /* Filtered by what the thing actually is, which is how anyone looking for a
+     particular piece thinks of it. The chips only appear where there is
+     something to sort. */
+  const chips = $("goldFilter");
+  chips.hidden = g.count === 0;
+  if (!chips.hidden){
+    const kinds = ["All"].concat(GOLD_KINDS.filter(k =>
+      golds.some(i => (i.goldKind || "Other") === k)));
+    if (!kinds.includes(goldKindFilter)) goldKindFilter = "All";
+    chips.innerHTML = kinds.map(k =>
+      `<button class="chip" type="button" data-k="${esc(k)}" aria-pressed="${k === goldKindFilter}">${esc(k)}</button>`).join("");
+    chips.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+      goldKindFilter = b.dataset.k; renderGold();
+    }));
+  }
+
+  const host = $("goldList");
+  host.innerHTML = "";
+  let items = golds;
+  if (goldKindFilter !== "All")
+    items = items.filter(i => (i.goldKind || "Other") === goldKindFilter);
+
+  if (!items.length){
+    host.innerHTML = emptyBlock(ICON_GOLD, g.count ? "None of that kind" : "No gold yet",
+      g.count
+        ? "Nothing here under " + goldKindFilter + ". Another chip, or All."
+        : "Jewellery, coins and bars. Enter the weight — what it is worth follows from the price above, not from a figure you keep updating.");
+    return;
+  }
+
+  const rows = document.createElement("div");
+  rows.className = "rows";
+  items.slice()
+    .sort((a,b) => toDisp(investWorth(b), b.currency) - toDisp(investWorth(a), a.currency))
+    .forEach(i => {
+      const now = investWorth(i);
+      const paid = i.investedAmount;
+      const diff = now - paid;
+      const sub = [i.goldKind, i.grams ? i.grams + " g" : "", i.purity, i.boughtOn, i.goldDesc]
+        .filter(Boolean).join(" · ");
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "row";
+      b.innerHTML =
+        `<span class="mono" style="background:${swatchSoft("Gold")};color:${swatch("Gold")}">${ICON_GOLD}</span>
+         <span class="rowmain"><span class="t1">${esc(i.name || "Gold")}</span>
+           <span class="t2"><span class="cn">${esc(sub)}</span>${curPill(i.currency)}</span></span>
+         <span class="rowend"><span class="amt">${esc(fmt(now, i.currency))}</span>
+           <span class="amt-sub ${diff > 0 ? "up" : diff < 0 ? "down" : "flat"}">${paid ? (diff >= 0 ? "+" : "") + esc(fmt(diff, i.currency)) : "—"}</span></span>`;
+      b.addEventListener("click", () => openInvest(i.id));
+      rows.appendChild(b);
+    });
+  host.appendChild(rows);
+}
 
 /* ============================================================
    Pickers shared by the entry sheets
@@ -2712,18 +2870,24 @@ $("goalDelete").addEventListener("click", () => {
 
 /* ---------- investment sheet ---------- */
 function investFormMode(type, cur){
-  const isGold = type === GOLD_TYPE;
-  $("investPaperFields").hidden = isGold;
-  $("investGoldFields").hidden = !isGold;
-  if (isGold){
+  /* `gold`, not `isGold`: that name belongs to the predicate every other part
+     of the app asks, and a local boolean wearing it would make isGold(x) a
+     TypeError inside this function and nowhere else. */
+  const gold = type === GOLD_TYPE;
+  $("investPaperFields").hidden = gold;
+  $("investGoldFields").hidden = !gold;
+  if (gold){
     $("goldValueNote").textContent =
       "Worth is worked out from the weight: grams × " + fmt(goldPrice(cur), cur) +
       " a gram, which you set in Settings → Rates & gold.";
   }
 }
-function openInvest(id){
+/** @param preset the type a new entry starts on — the Gold tab adds gold. */
+function openInvest(id, preset){
   const i = id ? state.investments.find(x => x.id === id) : null;
-  $("investTitle").textContent = i ? "Edit investment" : "Add investment";
+  const gold = i ? isGold(i) : preset === GOLD_TYPE;
+  $("investTitle").textContent =
+    (i ? "Edit " : "Add ") + (gold ? "gold" : "investment");
   $("investId").value = i ? i.id : "";
   $("investName").value = i ? i.name : "";
   $("investInvested").value = i && i.investedAmount ? i.investedAmount : "";
@@ -2735,11 +2899,11 @@ function openInvest(id){
   $("investGoldDesc").value = i ? i.goldDesc : "";
   $("investGoldDate").value = i ? i.boughtOn : "";
   buildChips("goldKinds", GOLD_KINDS.map(k => ({ k })), i && i.goldKind ? i.goldKind : "Necklace");
-  $("investGoldPaid").value = i && i.type === GOLD_TYPE && i.investedAmount ? i.investedAmount : "";
+  $("investGoldPaid").value = i && isGold(i) && i.investedAmount ? i.investedAmount : "";
   $("investNotes").value = i ? i.notes : "";
 
   const cur = i ? i.currency : state.profile.currency;
-  const type = i ? i.type : "SIP / Mutual fund";
+  const type = i ? i.type : (preset || "SIP / Mutual fund");
   buildCurTog("investCurTog", cur, c => investFormMode(pickedChip("investTypes", type), c));
   buildChips("investTypes", INVEST_TYPES, type, k => investFormMode(k, pickedCur("investCurTog")));
   investFormMode(type, cur);
@@ -2749,24 +2913,24 @@ function openInvest(id){
 $("investSave").addEventListener("click", () => {
   const id = $("investId").value || uid();
   const type = pickedChip("investTypes", "Other");
-  const isGold = type === GOLD_TYPE;
+  const gold = type === GOLD_TYPE;          /* see investFormMode on the name */
   const name = $("investName").value.trim();
   if (!name){ toast("Give it a name"); return; }
-  if (isGold && num($("investGrams").value) <= 0){ toast("How many grams?"); return; }
+  if (gold && num($("investGrams").value) <= 0){ toast("How many grams?"); return; }
   const rec = {
     id, name, type, currency: pickedCur("investCurTog"),
-    investedAmount: isGold ? num($("investGoldPaid").value) : num($("investInvested").value),
+    investedAmount: gold ? num($("investGoldPaid").value) : num($("investInvested").value),
     /* Gold is never stored as a value — it is weighed each time it is read. */
-    currentValue: isGold ? 0 : num($("investCurrent").value),
-    sipAmount: isGold ? 0 : num($("investSip").value),
-    sipDay: isGold ? 0 : Math.min(31, Math.max(0, Math.round(num($("investSipDay").value)))),
+    currentValue: gold ? 0 : num($("investCurrent").value),
+    sipAmount: gold ? 0 : num($("investSip").value),
+    sipDay: gold ? 0 : Math.min(31, Math.max(0, Math.round(num($("investSipDay").value)))),
     /* editing a holding is not paying its SIP, so the tick stands */
-    sipDone: isGold ? "" : (state.investments.find(x => x.id === id) || {}).sipDone || "",
-    grams: isGold ? num($("investGrams").value) : 0,
-    purity: isGold ? $("investPurity").value : "",
-    goldDesc: isGold ? $("investGoldDesc").value.trim() : "",
-    goldKind: isGold ? pickedChip("goldKinds", "Other") : "",
-    boughtOn: isGold ? $("investGoldDate").value : "",
+    sipDone: gold ? "" : (state.investments.find(x => x.id === id) || {}).sipDone || "",
+    grams: gold ? num($("investGrams").value) : 0,
+    purity: gold ? $("investPurity").value : "",
+    goldDesc: gold ? $("investGoldDesc").value.trim() : "",
+    goldKind: gold ? pickedChip("goldKinds", "Other") : "",
+    boughtOn: gold ? $("investGoldDate").value : "",
     notes: $("investNotes").value.trim(), updatedAt: new Date().toISOString()
   };
   const at = state.investments.findIndex(x => x.id === id);
@@ -2774,7 +2938,8 @@ $("investSave").addEventListener("click", () => {
   save(); sheetClose("shInvest"); render(); toast("Saved");
 });
 $("investDelete").addEventListener("click", () => {
-  if (!confirm("Delete this investment?")) return;
+  const rec = state.investments.find(x => x.id === $("investId").value);
+  if (!confirm("Delete this " + (rec && isGold(rec) ? "gold" : "investment") + "?")) return;
   state.investments = state.investments.filter(x => x.id !== $("investId").value);
   save(); sheetClose("shInvest"); render(); toast("Deleted");
 });
@@ -3638,19 +3803,20 @@ function repOverview(t, gold){
 let repInvFilter = "all";
 
 function repInvestments(){
-  if (!state.investments.length){
+  if (!investOnly().length){
     $("repBody").innerHTML = emptyBlock(ICON_CHART, "Nothing invested yet",
-      "Funds, stocks, deposits and gold all report here once there is something to report on.");
+      "Funds, stocks and deposits report here once there is something to report on.");
     return;
   }
-  const kinds = ["all"].concat([...new Set(state.investments.map(i => bucketOf(INVEST_TYPES, i.type)))]);
+  const kinds = ["all"].concat([...new Set(investOnly().map(i => bucketOf(INVEST_TYPES, i.type)))]);
   if (!kinds.includes(repInvFilter)) repInvFilter = "all";
-  const match = (i) => repInvFilter === "all" || bucketOf(INVEST_TYPES, i.type) === repInvFilter;
+  /* gold is not an investment, and a report of investments does not carry it */
+  const match = (i) => !isGold(i) &&
+    (repInvFilter === "all" || bucketOf(INVEST_TYPES, i.type) === repInvFilter);
 
   const rows = state.investments.filter(match);
   const worth = rows.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
-  const paid = rows.reduce((s,i) =>
-    s + toDisp(i.investedAmount > 0 ? i.investedAmount : (i.type === GOLD_TYPE ? investWorth(i) : 0), i.currency), 0);
+  const paid = rows.reduce((s,i) => s + toDisp(i.investedAmount, i.currency), 0);
   const gain = worth - paid;
 
   $("repBody").innerHTML =
@@ -3667,7 +3833,7 @@ function repInvestments(){
       ${rows.slice().sort((a,b) => toDisp(investWorth(b), b.currency) - toDisp(investWorth(a), a.currency))
         .map(i => {
           const now = investWorth(i);
-          const cost = i.investedAmount > 0 ? i.investedAmount : (i.type === GOLD_TYPE ? now : 0);
+          const cost = i.investedAmount;
           const g = now - cost;
           const share = worth > 0 ? toDisp(now, i.currency) / worth * 100 : 0;
           return `<div class="barrow" style="cursor:default">
@@ -3675,7 +3841,7 @@ function repInvestments(){
               <span class="barrow-v">${esc(fmt(now, i.currency))}</span></div>
             <div class="barrow-track"><i style="width:${share.toFixed(1)}%;background:${swatch(bucketOf(INVEST_TYPES, i.type))}"></i></div>
             <div class="barrow-sub" style="max-height:none;opacity:1;margin-top:6px">
-              ${esc(i.type)}${i.type === GOLD_TYPE && i.grams ? " · " + i.grams + " g" : ""} ·
+              ${esc(i.type)} ·
               ${cost ? (g >= 0 ? "up " : "down ") + esc(fmt(Math.abs(g), i.currency)) +
                        (cost > 0 ? " (" + esc(pct(g / cost * 100)) + ")" : "") : "no cost recorded"}
             </div>
@@ -4106,6 +4272,7 @@ $("tileAssets").addEventListener("click", () => {
   dashTab = "assets"; render();
   $("dashList").scrollIntoView({ behavior:"smooth", block:"start" });
 });
+$("tileGold").addEventListener("click", () => setView("gold"));
 $("tileLiabs").addEventListener("click", () => {
   dashTab = "liabilities"; render();
   $("dashList").scrollIntoView({ behavior:"smooth", block:"start" });

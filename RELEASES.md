@@ -1,5 +1,11 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.0 — 2026-09-07
+- new: Gold has a tab of its own, out of Investment: what it weighs, what it is worth, and each piece with its kind, purity and date. A piece with no recorded cost says so rather than counting as all profit.
+- new: Its own figure on the dashboard, beside what you own and what you owe.
+- new: A bell beside the eye, counting what is outstanding: SIPs due, a goal past its date and not reached, and gold with no price set — which would otherwise value at nothing and quietly understate everything.
+- fix: The tab bar was fixed at four columns, so a fifth tab pushed More onto a line of its own.
+
 ## 1.0.19 — 2026-09-06
 - better: The sync pane is shaped like the expense tracker's: the state said at the top, and Push, Pull and Turn off only once it is on.
 - better: No branch to fill in. Without one GitHub reads and writes the repository's own default, which is the branch anyone wanted and one less thing to get wrong.
