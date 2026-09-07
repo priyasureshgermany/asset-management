@@ -95,13 +95,26 @@ card, the totals, the reports, the overdue reminder.
 
 Untied, it stays the figure you keep by hand, which is what a goal for
 something the app cannot see still needs. Holdings since deleted simply fall
-out of the sum. The picker offers funds and shares only — a fixed deposit is
-not refused on principle, it is just not what a goal is usually saved into.
+out of the sum.
+
+The picker offers funds and shares only — a fixed deposit is not refused on
+principle, it is just not what a goal is usually saved into — **minus anything
+already standing behind another goal**. That second half is not tidiness: a
+holding ticked under two goals would be counted twice in the totals and both
+goals would look better funded than they are, which is the sort of wrong that
+looks perfectly reasonable on screen. One holding backs one goal, and the
+sheet says how many are held elsewhere rather than leaving a short list
+unexplained. A goal editing itself still sees its own.
 
 ### Which book a holding is in
 
-Funds and shares carry a small flag: the Indian tricolour for rupee holdings,
-the German one for euro. Taken from the currency rather than the kind, because
+Funds and shares carry a small flag **on the line naming the kind** — beside
+*IN stocks* or *SIP / Mutual fund*, not beside the holding's own name. The
+flag says which book the kind belongs to, so that is the word it belongs
+next to; against the name it competed with the thing being named.
+
+Indian tricolour for rupee holdings, the German one for euro. Taken from the
+currency rather than the kind, because
 the euro book is the German one whatever the company happens to be, and a fund
 bought in rupees is Indian however it invests. Deposits and balances carry
 none — they are not held anywhere in particular.

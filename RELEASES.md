@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.22 — 2026-09-07
+- better: A holding can back only one goal, so nothing is counted twice, and the flag sits beside the kind rather than the name
+
 ## 1.1.21 — 2026-09-07
 - better: A goal can be backed by the funds and shares saving for it, and takes its progress from what they are worth; funds and shares carry a flag for the book they are held in
 
