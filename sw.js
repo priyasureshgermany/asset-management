@@ -3,7 +3,7 @@
    on its own. Installing a new worker fills the versioned asset cache and
    leaves SHELL alone; activating purges old asset caches and leaves SHELL
    alone. Only the in-app Update button clears the caches and reloads. */
-const VERSION = "1.1.28";
+const VERSION = "1.1.29";
 const ASSETS = "assetmgr-" + VERSION;   /* icons, manifest — versioned, purged */
 const SHELL = "assetmgr-shell";         /* the page itself — replaced only on request */
 
@@ -61,6 +61,31 @@ self.addEventListener("fetch", (event) => {
             .catch(() => caches.match(req).then((c) => c || caches.match("./index.html")));
         })
       )
+    );
+    return;
+  }
+
+  const url = new URL(req.url);
+
+  /* Data is asked for fresh. The share prices are rewritten by a workflow
+     every weekday, and a cache-first rule would have served the copy taken
+     the first time the app ever ran, for ever, while the app believed it was
+     refreshing. The cached copy is the fallback for being offline, not the
+     answer. */
+  if (url.pathname.indexOf("/data/") >= 0) {
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          if (res && res.ok) {
+            const copy = res.clone();
+            /* Stored under the address without its cache-buster, or every
+               refresh would leave another copy behind for ever. */
+            const key = new Request(url.origin + url.pathname);
+            caches.open(ASSETS).then((c) => c.put(key, copy));
+          }
+          return res;
+        })
+        .catch(() => caches.match(new Request(url.origin + url.pathname)))
     );
     return;
   }
