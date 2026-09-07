@@ -84,27 +84,39 @@ two cannot disagree, and the subtitle names the scope: *2 holdings in Indian
 shares*. The parts still add to the whole: each tab's total summed comes to
 what **All** shows.
 
-### A goal can stand on holdings
+### A goal says what it is made of
 
-A goal may be tied to the funds and shares saving for it. What it has then is
-what those holdings are worth right now, through the same `investWorth()`
-everything else goes through — so a goal cannot drift away from the
-investments funding it, and a NAV that moved this morning moves the goal too.
-`goalSaved()` is the single derivation, and every reader goes through it: the
-card, the totals, the reports, the overdue reminder.
+A goal is usually not "these particular seven things" but *my Indian shares*
+or *the cash I keep for emergencies*. So it names a **kind**, and fills itself:
 
-Untied, it stays the figure you keep by hand, which is what a goal for
-something the app cannot see still needs. Holdings since deleted simply fall
-out of the sum.
+| made of | counts |
+|---|---|
+| Mutual funds | every fund |
+| Indian shares | every IN stocks holding |
+| European shares | every EU stocks holding |
+| Cash & bank in India | rupee bank accounts, cash, and cash holdings |
+| Cash & bank in Europe | the same in euro |
+| Holdings I choose | a hand-picked list |
+| A figure I keep myself | whatever you type |
 
-The picker offers funds and shares only — a fixed deposit is not refused on
-principle, it is just not what a goal is usually saved into — **minus anything
-already standing behind another goal**. That second half is not tidiness: a
-holding ticked under two goals would be counted twice in the totals and both
-goals would look better funded than they are, which is the sort of wrong that
-looks perfectly reasonable on screen. One holding backs one goal, and the
-sheet says how many are held elsewhere rather than leaving a short list
-unexplained. A goal editing itself still sees its own.
+Said once, it stays right as holdings come and go, instead of needing to be
+re-ticked every time something is bought.
+
+Cash looks on **both sides of the book** — a bank balance is an asset, a cash
+holding is an investment — or the emergency fund would miss the account it
+actually sits in.
+
+What a goal has is `goalItems()` priced through the same `investWorth()` as
+everything else, so a NAV that moved this morning moves the goal too, and the
+list the sheet shows you is the list the total counts. Every reader goes
+through `goalSaved()`: the card, the totals, the reports, the overdue
+reminder. A goal made of a kind it holds none of is at zero, not at whatever
+figure was typed before it was pointed there.
+
+Two goals made of the same kind would each count all of it. The sheet says so
+rather than preventing it — there may be a reason — but not silently, which is
+how a total quietly doubles. A hand-picked list still refuses holdings behind
+another goal outright, since that one has no reason to be deliberate.
 
 ### Which book a holding is in
 

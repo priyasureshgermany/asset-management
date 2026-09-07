@@ -1489,10 +1489,18 @@ html.locked #lockScreen{
       <div class="field"><label>Saved so far</label><input class="inp" id="goalCurrent" type="text" inputmode="decimal" placeholder="0"></div>
       <div class="field"><label>By when</label><input class="inp" id="goalDate" type="date"></div>
     </div>
-    <div class="field"><label>Backed by (optional)</label>
-      <div class="rows" id="goalBacking"></div>
-      <div class="note" id="goalBackNote" style="margin-top:10px"></div>
+    <div class="field"><label>What this goal is made of</label>
+      <select class="inp" id="goalSource"></select>
     </div>
+    <div class="field" id="goalPickField" hidden>
+      <label>Holdings</label>
+      <div class="rows" id="goalBacking"></div>
+    </div>
+    <div class="field" id="goalIncludesField" hidden>
+      <label>What it counts</label>
+      <div class="rows" id="goalIncludes"></div>
+    </div>
+    <div class="note" id="goalBackNote" style="margin-top:10px"></div>
     <div class="field"><label>Note (optional)</label><textarea class="inp" id="goalNotes"></textarea></div>
     <button class="btn" id="goalSave">Save</button>
     <button class="btn danger" id="goalDelete" style="margin-top:9px" hidden>Delete this goal</button>
@@ -1635,7 +1643,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.22";
+const APP_VERSION = "1.1.23";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1916,8 +1924,12 @@ function stateFromPayload(p){
     goals: arr(p.goals).map(g => ({
       id: g.id || uid(), name: str(g.name), targetAmount: num(g.targetAmount),
       currentAmount: num(g.currentAmount), currency: cur(g.currency),
-      /* The holdings standing behind this goal. Empty means the figure is one
-         you keep by hand, which is how every goal worked before. */
+      /* What stands behind this goal: a whole kind of holding, a hand-picked
+         list, or nothing at all and a figure you keep yourself. Goals written
+         before this carry a picked list if they have one, which is what they
+         meant at the time. */
+      source: oneOf(str(g.source), GOAL_SOURCES.map(x => x.k),
+                    arr(g.holdings).length ? "picked" : "manual"),
       holdings: arr(g.holdings).map(x => str(x)).filter(Boolean),
       targetDate: str(g.targetDate), notes: str(g.notes),
       updatedAt: g.updatedAt || new Date().toISOString()
@@ -2068,6 +2080,54 @@ function investWorth(inv){
 }
 function goldPrice(c){ return state.settings.goldPerGram[c] || 0; }
 
+/* What a goal can be made of. A goal is usually not "these particular seven
+   things" but "my Indian shares" or "the cash I keep for emergencies" — said
+   once, and then it keeps itself up to date as holdings come and go, rather
+   than needing to be re-ticked every time something is bought. */
+const GOAL_SOURCES = [
+  { k:"manual", label:"A figure I keep myself" },
+  { k:"funds",  label:"Mutual funds" },
+  { k:"in",     label:"Indian shares" },
+  { k:"eu",     label:"European shares" },
+  { k:"cashIN", label:"Cash & bank in India" },
+  { k:"cashEU", label:"Cash & bank in Europe" },
+  { k:"picked", label:"Holdings I choose" }
+];
+const goalSourceLabel = (k) =>
+  (GOAL_SOURCES.find(x => x.k === k) || GOAL_SOURCES[0]).label;
+
+/* Cash lives on both sides of the book — a bank balance is an asset, a cash
+   holding is an investment — so a goal made of cash has to look in both, or
+   the emergency fund would miss the account it actually sits in. */
+function cashItems(cur){
+  const fromAssets = state.assets
+    .filter(a => (a.category === "Cash" || a.category === "Bank account") && a.currency === cur)
+    .map(a => ({ name: a.name, kind: a.category, worth: a.value, currency: a.currency }));
+  const fromInvest = investOnly()
+    .filter(i => bucketOf(INVEST_TYPES, i.type) === "Cash" && i.currency === cur)
+    .map(i => ({ name: i.name, kind: i.type, worth: investWorth(i), currency: i.currency }));
+  return fromAssets.concat(fromInvest);
+}
+
+/* Everything standing behind a goal, named and priced. One list, so what the
+   sheet shows you and what the total counts are the same thing. */
+function goalItems(g){
+  const src = g.source || (g.holdings && g.holdings.length ? "picked" : "manual");
+  if (src === "manual") return [];
+  if (src === "picked"){
+    const ids = g.holdings || [];
+    return state.investments
+      .filter(i => ids.indexOf(i.id) >= 0)
+      .map(i => ({ name: i.name, kind: i.type, worth: investWorth(i), currency: i.currency }));
+  }
+  if (src === "cashIN") return cashItems("INR");
+  if (src === "cashEU") return cashItems("EUR");
+  const want = src === "funds" ? "Funds" : src === "in" ? "IN stocks" : "EU stocks";
+  return investOnly()
+    .filter(i => bucketOf(INVEST_TYPES, i.type) === want)
+    .map(i => ({ name: i.name, kind: i.type, worth: investWorth(i), currency: i.currency }));
+}
+
 /* What a goal actually has behind it. Tied to holdings, it is what those
    holdings are worth right now, through the same investWorth() everything
    else goes through — so a goal cannot drift away from the investments
@@ -2075,11 +2135,11 @@ function goldPrice(c){ return state.settings.goldPerGram[c] || 0; }
    Untied, it is the figure you typed, which is what a goal for something the
    app cannot see still needs. Holdings since deleted simply fall out. */
 function goalSaved(g){
-  const ids = Array.isArray(g.holdings) ? g.holdings : [];
-  if (!ids.length) return g.currentAmount;
-  return state.investments
-    .filter(i => ids.indexOf(i.id) >= 0)
-    .reduce((s, i) => s + conv(investWorth(i), i.currency, g.currency), 0);
+  const src = g.source || (g.holdings && g.holdings.length ? "picked" : "manual");
+  if (src === "manual") return g.currentAmount;
+  /* A goal that says it is made of Indian shares and holds none is at zero,
+     not at whatever figure was typed before it was pointed at them. */
+  return goalItems(g).reduce((s, x) => s + conv(x.worth, x.currency, g.currency), 0);
 }
 /* What a goal may be backed by: things with a market value, minus anything
    already standing behind a different goal.
@@ -3274,6 +3334,11 @@ function openGoal(id){
   const cur = g ? g.currency : state.profile.currency;
   $("goalCurSym").textContent = curSym(cur);
   buildCurTog("goalCurTog", cur, c => { $("goalCurSym").textContent = curSym(c); });
+  $("goalSource").innerHTML = GOAL_SOURCES
+    .map(x => `<option value="${esc(x.k)}">${esc(x.label)}</option>`).join("");
+  $("goalSource").value = g && g.source ? g.source
+    : (g && (g.holdings || []).length ? "picked" : "manual");
+
   /* The holdings this goal stands on, offered as a list rather than asked for
      by name — the app already knows what is in the book. */
   const backing = Array.isArray(g && g.holdings) ? g.holdings : [];
@@ -3317,25 +3382,53 @@ function goalBackingIds(){
    stops being editable and is filled with what they come to — the same
    treatment a holding's worth gets once it can price itself. */
 function syncGoalBacking(){
-  const ids = goalBackingIds();
+  const src = $("goalSource").value;
   const cur = pickedCur("goalCurTog");
-  const sum = state.investments
-    .filter(i => ids.indexOf(i.id) >= 0)
-    .reduce((s, i) => s + conv(investWorth(i), i.currency, cur), 0);
-  $("goalCurrent").disabled = ids.length > 0;
-  if (ids.length){
-    $("goalCurrent").value = String(Math.round(sum * 100) / 100);
-    $("goalBackNote").textContent = ids.length + (ids.length === 1 ? " holding" : " holdings") +
-      " · what you have saved follows what they are worth, so the box above is not used.";
-  } else {
-    $("goalBackNote").textContent =
-      "Tie this goal to funds or shares and what you have saved follows their value. Leave it empty to keep the figure by hand." +
-      (goalTakenElsewhere ? " " + goalTakenElsewhere + (goalTakenElsewhere === 1 ? " holding is" : " holdings are") +
-                   " behind another goal and not offered here — one holding backs one goal, or it would be counted twice."
-                 : "");
+  const picked = src === "picked";
+  const manual = src === "manual";
+
+  $("goalPickField").hidden = !picked;
+  $("goalIncludesField").hidden = picked || manual;
+
+  /* Priced against a pretend goal in the currency chosen right now, so the
+     figure shown is the one that will be saved rather than one in whatever
+     currency the goal used to be in. */
+  const items = goalItems({ source: src, holdings: picked ? goalBackingIds() : [], currency: cur });
+  const sum = items.reduce((s, x) => s + conv(x.worth, x.currency, cur), 0);
+
+  if (!picked && !manual){
+    $("goalIncludes").innerHTML = items.length ? items.map(x =>
+      `<div class="improw"><span class="im-m">
+         <span class="im-n">${esc(x.name || x.kind)}</span>
+         <span class="im-d">${esc(x.kind)}</span></span>
+       <span class="im-a">${esc(fmt(x.worth, x.currency))}</span></div>`).join("")
+      : `<div class="note">Nothing in the book matches yet. It will count itself as soon as something does.</div>`;
   }
+
+  $("goalCurrent").disabled = !manual;
+  if (!manual) $("goalCurrent").value = String(Math.round(sum * 100) / 100);
+
+  /* Two goals drawing on the same kind would each count all of it. Said here
+     rather than prevented, because a person may have a reason — but not
+     silently, which is how a total quietly doubles. */
+  const clash = state.goals.filter(x =>
+    x.id !== $("goalId").value && x.source && x.source === src && src !== "manual" && src !== "picked");
+
+  $("goalBackNote").textContent =
+    manual ? "The figure above is yours to keep. Choose a kind instead and it will follow what those holdings are worth."
+    : picked ? (goalBackingIds().length
+        ? goalBackingIds().length + " chosen · what you have saved follows what they are worth."
+        : "Tick the holdings behind this goal.") +
+        (goalTakenElsewhere ? " " + goalTakenElsewhere +
+          (goalTakenElsewhere === 1 ? " holding is" : " holdings are") +
+          " behind another goal and not offered here — one holding backs one goal, or it would be counted twice." : "")
+    : items.length + (items.length === 1 ? " holding" : " holdings") +
+      " · this goal counts every one of them and keeps up as they change, so the box above is not used." +
+      (clash.length ? " Note that " + esc(clash[0].name || "another goal") +
+        " is made of the same thing, and both will count all of it." : "");
 }
 
+$("goalSource").addEventListener("change", syncGoalBacking);
 $("goalSave").addEventListener("click", () => {
   const id = $("goalId").value || uid();
   const name = $("goalName").value.trim();
@@ -3343,7 +3436,8 @@ $("goalSave").addEventListener("click", () => {
   const rec = {
     id, name, targetAmount: num($("goalTarget").value),
     currentAmount: num($("goalCurrent").value), currency: pickedCur("goalCurTog"),
-    holdings: goalBackingIds(),
+    source: $("goalSource").value,
+    holdings: $("goalSource").value === "picked" ? goalBackingIds() : [],
     targetDate: $("goalDate").value, notes: $("goalNotes").value.trim(),
     updatedAt: new Date().toISOString()
   };

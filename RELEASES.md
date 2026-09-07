@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.23 — 2026-09-07
+- better: A goal says what it is made of — mutual funds, Indian shares, European shares, cash in India or Europe — and counts every one of them, keeping up as they change
+
 ## 1.1.22 — 2026-09-07
 - better: A holding can back only one goal, so nothing is counted twice, and the flag sits beside the kind rather than the name
 
