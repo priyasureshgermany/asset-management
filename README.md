@@ -71,6 +71,19 @@ day needs a server pushing it, and this is a page with no server behind it —
 the browser API for scheduling one locally was abandoned. So the app says it
 when you open it, which is the honest version of the same thing.
 
+### The figures belong to the tab
+
+The portfolio value, what went in and the gain at the top of the Investment
+screen are those of **the tab selected**, not of the whole book. Totalling
+everything above a list of one kind put two subjects on one screen and left
+the reader to work out which was which — and the gain shown was never the gain
+of the thing being looked at.
+
+They are worked out from the same `items` the list below is drawn from, so the
+two cannot disagree, and the subtitle names the scope: *2 holdings in Indian
+shares*. The parts still add to the whole: each tab's total summed comes to
+what **All** shows.
+
 ### Two stock books
 
 Shares are held as **IN stocks** and **EU stocks**, because a portfolio held

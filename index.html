@@ -1622,7 +1622,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.18";
+const APP_VERSION = "1.1.19";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -2906,30 +2906,17 @@ function goldTotals(){
 
 function renderInvest(){
   const holdings = investOnly();
-  const worth = holdings.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
-  const invested = holdings.reduce((s,i) => s + toDisp(i.investedAmount, i.currency), 0);
-  const gain = worth - invested;
-
-  $("invVal").textContent = fmtDisp(worth);
-  $("invVal").className = "net";
-  $("invInvested").textContent = fmtDisp(invested);
-  $("invGain").textContent = (gain >= 0 ? "+" : "") + fmtDisp(gain);
-  $("invGainPct").textContent = invested > 0 ? pct(gain / invested * 100) : "—";
-  $("invGainTile").className = "tile " + (gain < 0 ? "out" : "in");
-  $("invSub").textContent = holdings.length
-    ? holdings.length + (holdings.length === 1 ? " holding" : " holdings")
-    : "Funds, stocks and deposits";
 
   /* Every tab but All is one bucket, named here beside the count it fills so
      a tab and the holdings it shows cannot drift apart. Anything in a bucket
      without a tab — PPF, Other, a fixed deposit from before it moved to
      assets — still appears under All. */
   const INV_TABS = {
-    funds: { bucket:"Funds",     count:"nInvFunds" },
-    in:    { bucket:"IN stocks", count:"nInvIN" },
-    eu:    { bucket:"EU stocks", count:"nInvEU" },
-    cash:  { bucket:"Cash",      count:"nInvCash" },
-    debt:  { bucket:"Debt",      count:"nInvDebt" }
+    funds: { bucket:"Funds",     count:"nInvFunds", label:"in mutual funds" },
+    in:    { bucket:"IN stocks", count:"nInvIN",    label:"in Indian shares" },
+    eu:    { bucket:"EU stocks", count:"nInvEU",    label:"in European shares" },
+    cash:  { bucket:"Cash",      count:"nInvCash",  label:"in cash" },
+    debt:  { bucket:"Debt",      count:"nInvDebt",  label:"in debt" }
   };
   const inTab = (i, tab) => tab === "all" ||
     (INV_TABS[tab] && bucketOf(INVEST_TYPES, i.type) === INV_TABS[tab].bucket);
@@ -2944,6 +2931,26 @@ function renderInvest(){
   const host = $("investList");
   host.innerHTML = "";
   const items = holdings.filter(i => inTab(i, invTab));
+
+  /* The figures at the top belong to the tab underneath them. Totalling the
+     whole book above a list of one kind put two different subjects on one
+     screen and left the reader to notice which was which — and the gain shown
+     was never the gain of the thing being looked at. Worked out from the same
+     `items` the list is drawn from, so the two cannot disagree. */
+  const worth = items.reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
+  const invested = items.reduce((s,i) => s + toDisp(i.investedAmount, i.currency), 0);
+  const gain = worth - invested;
+  const scope = invTab === "all" ? "" : " " + INV_TABS[invTab].label;
+
+  $("invVal").textContent = fmtDisp(worth);
+  $("invVal").className = "net";
+  $("invInvested").textContent = fmtDisp(invested);
+  $("invGain").textContent = (gain >= 0 ? "+" : "") + fmtDisp(gain);
+  $("invGainPct").textContent = invested > 0 ? pct(gain / invested * 100) : "—";
+  $("invGainTile").className = "tile " + (gain < 0 ? "out" : "in");
+  $("invSub").textContent = items.length
+    ? items.length + (items.length === 1 ? " holding" : " holdings") + scope
+    : (invTab === "all" ? "Funds, shares and the rest" : "Nothing" + scope + " yet");
 
   if (!items.length){
     /* Each tab says what belongs in it. An empty tab with a vague name is a
