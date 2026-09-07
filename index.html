@@ -1622,7 +1622,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.17";
+const APP_VERSION = "1.1.18";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -4218,7 +4218,7 @@ function applyImport(){
 
 /* ---------- backup & restore ---------- */
 $("copyBackup").addEventListener("click", async () => {
-  const text = JSON.stringify(state);
+  const text = JSON.stringify(backupPayload());
   try{
     await navigator.clipboard.writeText(text);
     toast("Backup copied");
@@ -4235,7 +4235,7 @@ $("doRestore").addEventListener("click", () => {
   try{ parsed = JSON.parse(raw); }catch(e){ toast("That is not a backup"); return; }
   if (!confirm("Restore this backup? Everything in the app now is replaced.")) return;
   state = stateFromPayload(parsed);
-  save(); render(); toast("Restored");
+  save(); render(); refetchAfterLoad(); toast("Restored");
 });
 $("wipeAll").addEventListener("click", async () => {
   if (!confirm("Delete every asset, liability, goal and investment? Your settings stay.")) return;
@@ -4296,15 +4296,60 @@ function ghExplain(status){
    remembering what was in the last one. A signature per record, kept beside
    the token, is enough to count what has been added, changed or dropped
    since — and cheap enough to work out on every save. */
+/* What a backup is for: the things you entered. Everything worked out from
+   them — a share price fetched this morning, a NAV, the gold rate — is fetched
+   again on the next open, and writing it down only preserves a figure that was
+   already going stale as it was saved. Gold has never been stored as a value,
+   only as grams; this is that same rule applied to the rest.
+
+   A figure is left out only where it can be worked out again. A holding with
+   no ticker and no scheme has nothing but the worth you gave it, so that worth
+   stays; rates you set by hand with the live feed off are yours, and stay too.
+
+   The exception is rupees per euro, which is kept. It is not the value of any
+   one holding but the unit every total is stated in, and a restore that
+   briefly converted the whole book at a fallback rate would misstate all of
+   it rather than one line of it. */
+/* A book that has just arrived carries no fetched figures — that is the point
+   of not writing them down — so anything priced live reads as nothing, and
+   gold falls back to the starting price a new book is given, which is a
+   plausible number rather than a true one. Asked for straight away rather
+   than at the next open, or a pull would leave every total wrong for as long
+   as the app stayed open. */
+function refetchAfterLoad(){
+  ratesTried = false;
+  refreshRates(true).then(() => render());
+}
+
+function backupPayload(){
+  const st = state.settings;
+  const live = !!st.live;
+  return Object.assign({}, state, {
+    investments: state.investments.map(i => {
+      const derived = !isGold(i) && i.units > 0 && (symbolOf(i) || i.schemeCode);
+      return derived ? Object.assign({}, i, { currentValue: 0 }) : i;
+    }),
+    settings: Object.assign({}, st, {
+      navs: {}, quotes: {}, quotesAt: "",
+      liveAt: live ? "" : st.liveAt,
+      goldPerGram: live ? { EUR: 0, INR: 0 } : st.goldPerGram
+    })
+  });
+}
+
 const GH_SNAP = "assetmgr.gh.snapshot";
 
 function ghFingerprint(){
   const sig = {};
   const add = (p, arr, f) => arr.forEach(x => { sig[p + x.id] = f(x); });
+  /* Taken from what would be sent rather than from what is held, or a device
+     that pushes one thing and fingerprints another reads as changed the
+     moment it has pulled. */
+  const out = backupPayload();
   add("a", state.assets, a => [a.name, a.category, a.value, a.investedAmount, a.currency, a.notes].join("|"));
   add("l", state.liabilities, l => [l.name, l.category, l.amount, l.interestRate, l.currency, l.notes].join("|"));
   add("g", state.goals, g => [g.name, g.targetAmount, g.currentAmount, g.currency, g.targetDate, g.notes].join("|"));
-  add("i", state.investments, i => [i.name, i.type, i.investedAmount, i.currentValue, i.currency,
+  add("i", out.investments, i => [i.name, i.type, i.investedAmount, i.currentValue, i.currency,
     i.units, i.sipAmount, i.sipDay, i.sipDone, i.sipEvery, i.sipMonth,
     i.grams, i.purity, i.goldKind, i.boughtOn,
     i.sector, i.schemeCode, i.symbol, i.notes].join("|"));
@@ -4480,7 +4525,7 @@ $("ghPull").addEventListener("click", async () => {
       return;
     }
     state = stateFromPayload(parsed);
-    save(); render();
+    save(); render(); refetchAfterLoad();
     GH.lastSync = new Date().toISOString();
     ghSaveSnapshot();               /* what is here is what the backup holds */
     fillGithub();
@@ -4498,7 +4543,7 @@ $("ghPush").addEventListener("click", async () => {
 
     const body = {
       message: "Update asset-management backup",
-      content: b64EncodeUtf8(JSON.stringify(state, null, 2))
+      content: b64EncodeUtf8(JSON.stringify(backupPayload(), null, 2))
     };
     if (sha) body.sha = sha;
     const put = await fetch(ghContentsUrl(), {
