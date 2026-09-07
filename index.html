@@ -883,6 +883,16 @@ select.inp{appearance:none;background-image:none}
   color:var(--ink-2);white-space:nowrap;
 }
 .gi-none{font-size:11.5px;color:var(--ink-3);line-height:1.45}
+/* The sync pane, laid out the way the expense tracker lays out its own: one
+   column of full-width controls with placeholders instead of labels, so the
+   eye runs straight down it rather than stepping around a label on every row.
+   The two apps are meant to read as one family. */
+.ghstack{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.ghstack .btn{margin:0;width:100%}
+.pushrow{display:flex;gap:7px;align-items:stretch}
+.iconbtn.ghside{flex:none;border:1px solid var(--line);width:44px;height:auto;border-radius:var(--r-md)}
+.iconbtn.ghside[aria-pressed="true"]{color:var(--accent);border-color:var(--accent)}
+
 .flag{
   width:13px;height:9px;border-radius:2px;margin-right:5px;
   vertical-align:-1px;flex:none;
@@ -1269,29 +1279,42 @@ html.locked #lockScreen{
   </div>
 
   <div class="sheet-body setpane" id="pane-github" hidden>
-    <h3>GitHub sync</h3>
-    <p class="ph">A copy of everything, kept as one JSON file in a repository you own. Manual on both sides — nothing is sent or fetched unless you press it.</p>
-    <div class="note" id="ghStatus" style="margin-bottom:16px">Off — what is here stays on this device.</div>
-    <div class="field"><label>Personal access token</label>
-      <div style="display:flex;gap:8px">
-        <input class="inp" id="ghToken" type="password" placeholder="ghp_…">
-        <button class="iconbtn" id="ghEye" aria-label="Show token" style="background:var(--surface-2)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        </button>
+    <div class="field">
+      <div class="note" id="ghStatus">Off — what is here stays on this device.</div>
+      <div class="ghstack">
+        <div class="pushrow">
+          <input class="inp" id="ghToken" type="password" autocomplete="off"
+                 placeholder="GitHub token (contents: read &amp; write)" style="flex:1;min-width:0">
+          <button class="iconbtn ghside" id="ghEye" type="button" aria-pressed="false"
+                  title="Show token" aria-label="Show token">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <input class="inp" id="ghRepo" type="text" placeholder="owner/repo" autocomplete="off">
+        <input class="inp" id="ghPath" type="text" autocomplete="off"
+               placeholder="data path, e.g. data/asset-management-backup.json">
+        <button class="btn ghost sm" id="ghSave">Save &amp; enable</button>
+        <button class="btn ghost sm" id="ghCheck">Check it</button>
+        <div class="pushrow">
+          <button class="btn ghost sm" id="ghPush" hidden style="flex:1;min-width:0">Push now</button>
+          <button class="iconbtn ghside" id="ghReview" type="button" hidden
+                  title="See what would be pushed" aria-label="See what would be pushed">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <button class="btn ghost sm" id="ghPull" hidden>Pull onto this device</button>
+        <button class="btn ghost sm" id="ghHistory" hidden>Restore an earlier backup…</button>
+        <button class="btn danger sm" id="ghDisable" hidden>Disable sync</button>
       </div>
-    </div>
-    <div class="field"><label>Repository</label><input class="inp" id="ghRepo" placeholder="owner/repo"></div>
-    <div class="field"><label>File path</label><input class="inp" id="ghPath" placeholder="data/backup.json"></div>
-    <div class="btnrow">
-      <button class="btn" id="ghSave">Save &amp; enable</button>
-      <button class="btn ghost" id="ghCheck">Check it</button>
-    </div>
-    <div class="btnrow" id="ghOnRow" style="margin-top:9px" hidden>
-      <button class="btn ghost" id="ghPull">Pull onto this device</button>
-      <button class="btn" id="ghPush">Push now</button>
-    </div>
-    <button class="btn ghost" id="ghReview" style="margin-top:9px" hidden>See what would be pushed</button>
-    <button class="btn danger" id="ghDisable" style="margin-top:9px" hidden>Turn sync off</button>
+      <div class="note" style="margin-top:6px">
+        Pushes a JSON backup to a file in a GitHub repo you own, straight from this browser, when
+        you press <b>Push now</b> — nothing leaves on its own. What it sends is what you entered:
+        amounts, units and grams. Prices are fetched again rather than written down, so a backup
+        cannot go stale. Every push is a commit, so <b>Restore an earlier backup</b> is always the
+        way back. The token is kept only in this browser's local storage — use a
+        <b>fine-grained</b> token scoped to just this one repo with "Contents: Read and write",
+        never a broad classic token.
+      </div>
   </div>
 
   <div class="sheet-body setpane" id="pane-import" hidden>
@@ -1623,6 +1646,21 @@ html.locked #lockScreen{
   </div>
 </section>
 
+<!-- ============ EARLIER BACKUPS ============ -->
+<section class="sheet" id="shHist" role="dialog" aria-modal="true" aria-labelledby="histTitle">
+  <div class="sheet-head">
+    <h2 id="histTitle">Earlier backups</h2>
+    <button class="iconbtn" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body">
+    <p class="ph" id="histLead">Every push is a commit, so each one is still there to go back to.</p>
+    <div class="rows" id="histRows"></div>
+    <div class="note" style="margin-top:14px">Restoring replaces everything on this device with that copy. It does not touch the backup — push afterwards if you want the backup to match.</div>
+  </div>
+</section>
+
 <!-- ============ WHAT WOULD BE PUSHED ============ -->
 <section class="sheet" id="shDiff" role="dialog" aria-modal="true" aria-labelledby="diffTitle">
   <div class="sheet-head">
@@ -1683,7 +1721,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.26";
+const APP_VERSION = "1.1.27";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -4857,16 +4895,26 @@ function ghStatusText(){
 function fillGithub(){
   const on = GH.enabled;
   $("ghToken").value = GH.token;
-  $("ghRepo").value = GH.repo || "priyasureshgermany/asset-management";
+  /* No default repository. It used to offer the app's own public repo, which
+     is the last place a book of what somebody owns should go — and a
+     pre-filled field is a suggestion. Blank, with the placeholder saying the
+     shape rather than a destination. */
+  $("ghRepo").value = GH.repo;
   $("ghPath").value = GH.path;
   $("ghStatus").textContent = ghStatusText();
   /* Once it is on, the button is not an invitation to turn it on again. */
-  $("ghSave").textContent = on ? "Update these settings" : "Save & enable";
-  $("ghOnRow").hidden = !on;
-  $("ghDisable").hidden = !on;
+  $("ghSave").textContent = on ? "Update these settings" : "Save & enable backup";
+  $("ghToken").type = "password";        /* never left revealed between visits */
+  $("ghEye").setAttribute("aria-pressed", "false");
+  /* Off, the pane asks for three things and offers one button. Everything
+     else only means something once there is a repo to mean it against, and a
+     row of buttons that cannot do anything yet is furniture. */
+  ["ghPush", "ghPull", "ghCheck", "ghHistory", "ghDisable"].forEach(id => {
+    $(id).hidden = !on;
+  });
   const waiting = on ? ghUnpushed() : 0;
   $("ghReview").hidden = !waiting;
-  if (waiting) $("ghReview").textContent =
+  if (waiting) $("ghReview").title =
     "See the " + waiting + (waiting === 1 ? " change" : " changes") + " waiting";
   ghTileSub();
 }
@@ -4953,6 +5001,65 @@ $("ghReview").addEventListener("click", () => {
   sheetOpen("shDiff");
 });
 
+/* Every push is a commit, so the way back is simply the list of them. Shown
+   with what each one held, because a date on its own does not tell you which
+   copy you want — "the one before the gold went" does. */
+$("ghHistory").addEventListener("click", async () => {
+  if (!GH.token || !GH.repo){ toast("Set the token and repository first"); return; }
+  $("histRows").innerHTML = '<div class="note">Looking…</div>';
+  $("histLead").textContent = "Every push is a commit, so each one is still there to go back to.";
+  sheetOpen("shHist");
+  let list;
+  try{
+    const url = "https://api.github.com/repos/" + GH.repo + "/commits?path=" +
+      encodeURIComponent(GH.path) + "&per_page=15";
+    const res = await fetch(url, { headers: ghHeaders() });
+    if (!res.ok){ $("histRows").innerHTML = '<div class="note warn">' + esc(ghExplain(res.status)) + "</div>"; return; }
+    list = await res.json();
+  }catch(e){ $("histRows").innerHTML = '<div class="note warn">Could not reach GitHub.</div>'; return; }
+  if (!Array.isArray(list) || !list.length){
+    $("histRows").innerHTML = '<div class="note">No pushes yet.</div>'; return;
+  }
+  $("histRows").innerHTML = list.map((c, n) => {
+    const when = new Date(c.commit.author.date).toLocaleString();
+    return `<button class="improw" type="button" data-sha="${esc(c.sha)}">
+      <span class="im-m"><span class="im-n">${esc(when)}</span>
+        <span class="im-d">${n === 0 ? "the one in place now" : esc(c.sha.slice(0, 7))}</span></span>
+      <span class="im-tag ${n === 0 ? "upd" : "add"}">${n === 0 ? "current" : "restore"}</span>
+    </button>`;
+  }).join("");
+  $("histRows").querySelectorAll("[data-sha]").forEach(b =>
+    b.addEventListener("click", () => ghRestore(b.dataset.sha)));
+});
+
+async function ghRestore(sha){
+  $("histRows").innerHTML = '<div class="note">Fetching that copy…</div>';
+  try{
+    const res = await fetch(ghContentsUrl() + "?ref=" + encodeURIComponent(sha), { headers: ghHeaders() });
+    if (!res.ok){ $("histRows").innerHTML = '<div class="note warn">' + esc(ghExplain(res.status)) + "</div>"; return; }
+    const data = await res.json();
+    const text = data.encoding === "base64" ? b64DecodeUtf8(data.content)
+      : data.download_url ? await (await fetch(data.download_url)).text() : null;
+    if (text == null){ $("histRows").innerHTML = '<div class="note warn">GitHub sent something unexpected.</div>'; return; }
+    const parsed = JSON.parse(text);
+    /* Said in records rather than in bytes: a size means nothing, and this is
+       the moment to be sure it is the copy you meant. */
+    const n = (k) => ((parsed[k] || []).length);
+    if (!confirm("Restore the copy from " + new Date(data.sha ? Date.now() : Date.now()).toLocaleString() +
+        "?\n\nIt holds " + n("investments") + " investments, " + n("assets") + " assets, " +
+        n("goals") + " goals and " + n("liabilities") + " liabilities.\n\n" +
+        "Everything on this device is replaced.")){
+      $("histRows").innerHTML = '<div class="note">Left alone.</div>';
+      return;
+    }
+    state = stateFromPayload(parsed);
+    save(); render(); refetchAfterLoad();
+    sheetClose("shHist");
+    fillGithub();
+    toast("Restored that copy");
+  }catch(e){ $("histRows").innerHTML = '<div class="note warn">Restore failed: ' + esc(e.message) + "</div>"; }
+}
+
 $("ghPull").addEventListener("click", async () => {
   if (!GH.token || !GH.repo){ toast("Set the token and repository first"); return; }
   $("ghStatus").textContent = "Pulling…";
@@ -4976,18 +5083,65 @@ $("ghPull").addEventListener("click", async () => {
     toast("Pulled from GitHub");
   }catch(e){ $("ghStatus").textContent = "Pull failed: " + e.message; }
 });
+/* A push replaces the backup outright, so a book that has gone empty or thin
+   would take the good copy with it — and the moment anyone notices is after
+   it has happened. Every push is a commit and nothing is truly lost, but a
+   person seeing their backup shrink does not feel that, and should not have
+   to.
+
+   So the outgoing book is weighed against the one already there, and a push
+   that would drop records has to be meant. Growth passes silently; only loss
+   asks. */
+function pushWarning(outgoing, existing){
+  if (!existing) return "";
+  const kinds = ["investments", "assets", "liabilities", "goals"];
+  const lost = [];
+  let had = 0, has = 0;
+  kinds.forEach(k => {
+    const before = (existing[k] || []).length;
+    const after = (outgoing[k] || []).length;
+    had += before; has += after;
+    if (after < before) lost.push(before - after + " " + k.replace(/s$/, "") +
+      (before - after === 1 ? "" : "s"));
+  });
+  if (!had) return "";
+  if (!has) return "This device has nothing in it, and the backup holds " + had +
+    " records. Pushing would empty the backup.";
+  /* One deletion is ordinary. A tenth of the book going at once is not. */
+  if (lost.length && (had - has) >= Math.max(3, Math.round(had * 0.1)))
+    return "This would remove " + lost.join(", ") + " from the backup.";
+  return "";
+}
+
 $("ghPush").addEventListener("click", async () => {
   if (!GH.token || !GH.repo){ toast("Set the token and repository first"); return; }
   $("ghStatus").textContent = "Pushing…";
   try{
-    let sha;
+    let sha, existing = null;
     const head = await fetch(ghContentsUrl(), { headers: ghHeaders() });
-    if (head.ok) sha = (await head.json()).sha;
+    if (head.ok){
+      const data = await head.json();
+      sha = data.sha;
+      /* Read as well as identified: the check below needs the contents, and
+         this request was being made anyway. */
+      try{
+        const text = data.encoding === "base64" ? b64DecodeUtf8(data.content)
+          : data.download_url ? await (await fetch(data.download_url)).text() : null;
+        if (text) existing = JSON.parse(text);
+      }catch(err){ /* unreadable backup: nothing to compare against */ }
+    }
     else if (head.status !== 404){ $("ghStatus").textContent = ghExplain(head.status); return; }
+
+    const outgoing = backupPayload();
+    const warn = pushWarning(outgoing, existing);
+    if (warn && !confirm(warn + "\n\nPush anyway?")){
+      $("ghStatus").textContent = ghStatusText();
+      return;
+    }
 
     const body = {
       message: "Update asset-management backup",
-      content: b64EncodeUtf8(JSON.stringify(backupPayload(), null, 2))
+      content: b64EncodeUtf8(JSON.stringify(outgoing, null, 2))
     };
     if (sha) body.sha = sha;
     const put = await fetch(ghContentsUrl(), {
