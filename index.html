@@ -771,27 +771,23 @@ select.inp{appearance:none;background-image:none}
 .al-n{font-size:12.5px;font-weight:500;color:var(--ink-2);display:flex;align-items:center;gap:7px;min-width:0}
 .al-n .dot{width:9px;height:9px;border-radius:3px;flex:none}
 .al-v{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink);flex:none}
-.al-track{position:relative;height:10px;background:var(--surface-sunk);border-radius:99px;overflow:visible}
-.al-track .al-now{display:block;height:100%;border-radius:99px}
-/* Where the target sits, as a small arrow above the bar rather than a bar
-   drawn through it. A bare line over an empty track — a kind held at 0% of a
-   15% target — has nothing to belong to and reads as a stray mark rather than
-   a measurement, which is exactly what it was mistaken for. */
-.al-track .al-tgt{
-  position:absolute;top:-8px;width:0;height:0;
-  border-left:4px solid transparent;border-right:4px solid transparent;
-  border-top:5px solid var(--ink-3);
-  transform:translateX(-4px);
+.al-track{
+  position:relative;display:block;height:9px;
+  background:var(--surface-sunk);border-radius:99px;overflow:hidden;
 }
-.al-legend{
-  margin-top:10px;font-size:11px;color:var(--ink-3);
-  display:flex;align-items:center;gap:6px;
+.al-track > i{display:block;height:100%;border-radius:99px}
+/* Two bars on one scale, each with its name beside it. A mark on a single
+   bar was tried twice and read wrong both times: over an empty track it looks
+   like a fault, and "91% of 20%" reads as progress toward a target when it
+   means a share against one. Two lengths need no explaining. */
+.al-bars{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:5px 8px}
+.al-lab{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.al-pc{
+  font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums;
+  color:var(--ink-3);text-align:right;min-width:42px;
 }
-.al-legend i{
-  width:0;height:0;flex:none;
-  border-left:4px solid transparent;border-right:4px solid transparent;
-  border-top:5px solid var(--ink-3);
-}
+.al-want{background:repeating-linear-gradient(90deg,
+  var(--ink-3) 0 5px, transparent 5px 9px);opacity:.75}
 .al-foot{display:flex;align-items:center;gap:10px;margin-top:7px;font-size:11.5px;color:var(--ink-3)}
 .al-foot > span:first-child{font-family:var(--mono);font-variant-numeric:tabular-nums}
 .al-drift{flex:1;font-weight:600}
@@ -1546,7 +1542,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.1";
+const APP_VERSION = "1.1.2";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -3898,14 +3894,18 @@ function repDepth(t){
          return `<div class="alrow">
            <div class="al-head">
              <span class="al-n"><span class="dot" style="background:${colour}"></span>${esc(r.k)}</span>
-             <span class="al-v">${nowPct.toFixed(1)}%${r.target ? " of " + r.target + "%" : ""}</span>
+             <span class="al-v">${esc(fmtDisp(r.now))}</span>
            </div>
-           <div class="al-track">
-             <i class="al-now" style="width:${Math.min(100, nowPct).toFixed(1)}%;background:${colour}"></i>
-             ${r.target ? `<i class="al-tgt" style="left:${Math.min(100, r.target)}%" title="Target ${r.target}%"></i>` : ""}
+           <div class="al-bars">
+             <span class="al-lab">now</span>
+             <span class="al-track"><i style="width:${Math.min(100, nowPct).toFixed(1)}%;background:${colour}"></i></span>
+             <span class="al-pc">${nowPct.toFixed(1)}%</span>
+             ${r.target ? `
+             <span class="al-lab">target</span>
+             <span class="al-track"><i class="al-want" style="width:${Math.min(100, r.target)}%"></i></span>
+             <span class="al-pc">${r.target}%</span>` : ""}
            </div>
            <div class="al-foot">
-             <span>${esc(fmtDisp(r.now))}</span>
              <span class="al-drift ${drift === null ? "" : drift > 1 ? "over" : drift < -1 ? "under" : "ok"}">${
                drift === null ? "no target"
                : Math.abs(drift) < 0.05 ? "on target"
@@ -3917,9 +3917,9 @@ function repDepth(t){
            </div>
          </div>`;
        }).join("") : '<div class="empty" style="padding:18px"><p>Nothing owned yet to compare.</p></div>'}
-       ${rows.some(r => r.target) ? '<div class="al-legend"><i></i> marks the target; the bar is what you hold.</div>' : ""}
+
      </div>
-     <div class="note">A target is the share of everything you own that a kind is meant to be. Set the ones you care about and leave the rest blank — they will simply say what they are.</div>`;
+     <div class="note">Both bars run from nothing to everything you own. The top one is the share a kind is now; the one under it is the share you meant it to be. Set the targets you care about and leave the rest blank — those simply say what they are.</div>`;
 
   $("repBody").querySelectorAll(".al-in").forEach(inp => {
     const commit = () => {

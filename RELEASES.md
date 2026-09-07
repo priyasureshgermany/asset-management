@@ -1,5 +1,9 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.2 — 2026-09-07
+- better: In depth shows two bars a kind at a time, one labelled now and one labelled target, on the same scale. The mark that stood for the target is gone — it was read as a fault once and as progress toward a goal the next time, and two lengths need no explaining.
+- fix: A row said 91.0% of 20%, which reads as most of the way to a target when it means a share against one. It says the amount at the top and labels each bar instead.
+
 ## 1.1.1 — 2026-09-07
 - fix: The target in the in-depth report was a white line drawn through the bar, which on a kind held at nothing had no bar to belong to and read as a stray mark. It is a small arrow above the bar now, it says its figure when pointed at, and the block says once what it means.
 
