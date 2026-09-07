@@ -118,9 +118,12 @@ rather than preventing it — there may be a reason — but not silently, which 
 how a total quietly doubles. A hand-picked list still refuses holdings behind
 another goal outright, since that one has no reason to be deliberate.
 
-Each goal card lists **what it is actually made of** — the accounts, funds or
-shares behind it, with what each is worth — under the figures rather than
-hidden in the edit sheet. A figure with nothing behind it is a claim; the same
+Each goal can show **what it is actually made of** — the accounts, funds or
+shares behind it, with what each is worth. Folded until asked for: a goal is a
+figure and a bar at a glance, and its workings are in the way until you want
+to check them. The line naming the kind carries a count and a chevron and
+opens it; the card itself still opens the editor, so neither gesture has to
+guess at the other. A figure with nothing behind it is a claim; the same
 figure with its constituents under it is something you can check. Long lists
 stop at eight and say how many more.
 
