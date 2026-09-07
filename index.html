@@ -1563,7 +1563,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.6";
+const APP_VERSION = "1.1.7";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1610,12 +1610,16 @@ const BUCKETS = [
      German one took the widest gap left in the palette (18.1 in OkLab, where
      the tightest existing pair sits at 14.3). */
   { k:"IN stocks",     h:190, l:32 },
-  { k:"DE stocks",     h:60,  l:40 },
+  { k:"EU stocks",     h:60,  l:40 },
   { k:"Fixed deposit", h:180, l:42 },
   { k:"PPF / EPF",     h:124, l:24 },
   { k:"Funds",         h:281, l:32 },
   { k:"Vehicle",       h:299, l:39 },
-  { k:"Bonds",         h:330, l:22 },
+  /* Debt rather than Bonds: a bond is one kind of debt, and two buckets that
+     overlap only make a person choose between them for no gain. It keeps the
+     hue Bonds had, so an existing chart does not change colour. */
+  { k:"Debt",          h:330, l:22 },
+  { k:"ULIP",          h:240, l:22 },
   { k:"Other",         h:334, l:42 }
 ];
 const LIAB_CATS = [
@@ -1639,11 +1643,12 @@ const ASSET_CATS = [
 const INVEST_TYPES = [
   { k:"SIP / Mutual fund", b:"Funds" },
   { k:"IN stocks",         b:"IN stocks" },
-  { k:"DE stocks",         b:"DE stocks" },
+  { k:"EU stocks",         b:"EU stocks" },
+  { k:"ULIP",              b:"ULIP" },
+  { k:"Debt",              b:"Debt" },
   { k:"Physical Gold",     b:"Gold" },
   { k:"Fixed deposit",     b:"Fixed deposit" },
   { k:"PPF / EPF",         b:"PPF / EPF" },
-  { k:"Bonds",             b:"Bonds" },
   { k:"Other",             b:"Other" }
 ];
 const GOLD_TYPE = "Physical Gold";
@@ -1651,7 +1656,11 @@ const GOLD_TYPE = "Physical Gold";
    Indian and a German book, and everything entered under it is Indian — that
    is all the app could hold at the time. Translated at the one place a payload
    becomes state, so nothing else has to know the old word ever existed. */
-const LEGACY_INVEST_TYPES = { "Stocks": "IN stocks" };
+const LEGACY_INVEST_TYPES = {
+  "Stocks": "IN stocks",     /* before the book was split by country */
+  "DE stocks": "EU stocks",  /* the holdings are European, not only German */
+  "Bonds": "Debt"            /* a bond is one kind of debt, not a kind apart */
+};
 const investType = (t) => LEGACY_INVEST_TYPES[t] || t;
 /* Gold is held, not invested in. It shares the investments array because that
    is where it has always been stored and moving it would rewrite everybody's
@@ -1677,7 +1686,7 @@ const FUND_CATS = ["Index","Large cap","Mid cap","Small cap","Flexi cap",
 /* Both stock buckets take the same list — a bank is a bank in Frankfurt as
    much as in Mumbai — so the hints below stay written once, against the
    family rather than against each bucket. */
-const STOCK_BUCKETS = ["IN stocks", "DE stocks"];
+const STOCK_BUCKETS = ["IN stocks", "EU stocks"];
 const isStockBucket = (b) => STOCK_BUCKETS.includes(b);
 const sectorFamily = (b) => isStockBucket(b) ? "Stocks" : b === "Funds" ? "Funds" : "";
 function sectorList(bucket){
@@ -3512,7 +3521,7 @@ function headerMap(head){
    ordinary words in it is a fund. It is a guess, and it can be changed on the
    holding afterwards like any other. */
 function guessType(name, cur){
-  const stock = cur === "EUR" ? "DE stocks" : "IN stocks";
+  const stock = cur === "EUR" ? "EU stocks" : "IN stocks";
   return /^[A-Z0-9&.\-]+$/.test(String(name).trim()) ? stock : "SIP / Mutual fund";
 }
 
@@ -3521,7 +3530,7 @@ function guessType(name, cur){
    name-reading guess above would file both as funds. */
 function typeFromClass(klass, cur){
   const k = String(klass || "").toUpperCase();
-  const stock = cur === "EUR" ? "DE stocks" : "IN stocks";
+  const stock = cur === "EUR" ? "EU stocks" : "IN stocks";
   if (k.includes("FUND") && !k.includes("ETF")) return "SIP / Mutual fund";
   return stock;
 }

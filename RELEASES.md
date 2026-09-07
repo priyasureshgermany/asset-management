@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.7 — 2026-09-07
+- better: The investment panel offers IN stocks, EU stocks, ULIP and Debt; DE stocks became EU stocks and Bonds became Debt, with what you already hold carried across
+
 ## 1.1.6 — 2026-09-07
 - better: Shares split into IN stocks and DE stocks, each with its own share of the chart and its own sectors; the importer now reads a Trade Republic transactions export as well as a Zerodha holdings one
 
