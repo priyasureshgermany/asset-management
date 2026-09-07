@@ -201,6 +201,16 @@ yours, and a button promising to fetch them would be promising to overwrite
 what you just typed. The line above it names what was last fetched and when,
 so a figure you can see the source of is one you can tell is wrong.
 
+**Funds tie themselves to a scheme.** A fund with none is looked up by its own
+name and linked automatically — but only where the answer is not in doubt. A
+match must be a *Direct Growth* scheme whose name **starts with** the
+holding's, and there must be exactly one of them. That prefix rule is what
+separates "Navi Nifty 50 Index Fund" from "Navi Nifty Next 50", and the
+Zerodha index fund from its ELSS sibling: neither starts with the other's
+name. A name too broad to place — `Nifty 50 Index Fund`, `HDFC` — is left
+unlinked, because visibly unset beats quietly wrong, and Direct against
+Regular is a different NAV rather than a rounding difference.
+
 ### Share prices, fetched the long way round
 
 A browser cannot fetch a share price. Stooq, Yahoo and Frankfurter were each
