@@ -1730,7 +1730,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.31";
+const APP_VERSION = "1.1.32";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1953,6 +1953,22 @@ function swatchSoft(name, table){
   return "hsl(" + hit.h + " " + CAT_SAT + "% " + hit.l + "% / .16)";
 }
 
+/* What a goal can be made of. A goal is usually not "these particular seven
+   things" but "my Indian shares" or "the cash I keep for emergencies" — said
+   once, and then it keeps itself up to date as holdings come and go, rather
+   than needing to be re-ticked every time something is bought. */
+const GOAL_SOURCES = [
+  { k:"manual", label:"A figure I keep myself" },
+  { k:"funds",  label:"Mutual funds" },
+  { k:"in",     label:"Indian shares" },
+  { k:"eu",     label:"European shares" },
+  { k:"cashIN", label:"Cash & bank in India" },
+  { k:"cashEU", label:"Cash & bank in Europe" },
+  { k:"picked", label:"Holdings I choose" }
+];
+const goalSourceLabel = (k) =>
+  (GOAL_SOURCES.find(x => x.k === k) || GOAL_SOURCES[0]).label;
+
 /* ============================================================
    State — stateFromPayload is the ONE place a payload becomes
    state, and stateCleared the one place an empty book is made.
@@ -2116,14 +2132,41 @@ function stateCleared(){
   return stateFromPayload({ profile: state.profile, settings: state.settings });
 }
 
+/* Set when there is a book in storage that could not be read. Everything that
+   writes checks it, because the alternative is what actually happened: a
+   field referenced before it existed threw, the catch handed back an empty
+   book, and the next save wrote that emptiness over data that was still
+   sitting there perfectly intact. A book we cannot read is not a book that
+   is gone, and must never be treated as one.
+
+   Declared before load() is called, not after. A `let` read before its line
+   throws rather than reading as undefined, and that is precisely the fault
+   this pair exists to catch — writing it below the call would have made the
+   guard the next thing to break. */
+let loadFailed = false;
+let loadError = "";
+
 let state = load();
+
 function load(){
+  let raw = null;
+  try{ raw = localStorage.getItem(KEY); }catch(e){ /* storage blocked */ }
+  if (!raw) return stateFromPayload({});
   try{
-    const raw = localStorage.getItem(KEY);
-    return stateFromPayload(raw ? JSON.parse(raw) : {});
-  }catch(e){ return stateFromPayload({}); }
+    return stateFromPayload(JSON.parse(raw));
+  }catch(e){
+    loadFailed = true;
+    loadError = String(e && e.message || e);
+    /* Kept aside under its own key so the original is still there to rescue
+       even if something later manages to write. */
+    try{ localStorage.setItem(KEY + ".unreadable", raw); }catch(_){}
+    return stateFromPayload({});
+  }
 }
 function save(){
+  /* Refusing to save is the whole point: what is in storage is worth more
+     than what is in memory when memory is the thing that went wrong. */
+  if (loadFailed) return;
   try{ localStorage.setItem(KEY, JSON.stringify(state)); }
   catch(e){ toast("Could not save to this device"); }
   /* The tile carries the count, so it has to be told when the book moves.
@@ -2165,21 +2208,6 @@ function investWorth(inv){
 }
 function goldPrice(c){ return state.settings.goldPerGram[c] || 0; }
 
-/* What a goal can be made of. A goal is usually not "these particular seven
-   things" but "my Indian shares" or "the cash I keep for emergencies" — said
-   once, and then it keeps itself up to date as holdings come and go, rather
-   than needing to be re-ticked every time something is bought. */
-const GOAL_SOURCES = [
-  { k:"manual", label:"A figure I keep myself" },
-  { k:"funds",  label:"Mutual funds" },
-  { k:"in",     label:"Indian shares" },
-  { k:"eu",     label:"European shares" },
-  { k:"cashIN", label:"Cash & bank in India" },
-  { k:"cashEU", label:"Cash & bank in Europe" },
-  { k:"picked", label:"Holdings I choose" }
-];
-const goalSourceLabel = (k) =>
-  (GOAL_SOURCES.find(x => x.k === k) || GOAL_SOURCES[0]).label;
 
 /* Cash lives on both sides of the book — a bank balance is an asset, a cash
    holding is an investment — so a goal made of cash has to look in both, or
@@ -4913,6 +4941,8 @@ function ghChanges(){
 function ghUnpushed(){ return ghChanges().length; }
 
 function ghStatusText(){
+  if (loadFailed) return "This device's book could not be read (" + loadError +
+    "). Nothing will be pushed until it can. Pull, or restore an earlier backup.";
   if (!GH.enabled) return "Off — what is here stays on this device.";
   const n = ghUnpushed();
   const last = GH.lastSync ? " Last pushed " + new Date(GH.lastSync).toLocaleString() + "." : "";
@@ -5099,7 +5129,16 @@ $("ghPull").addEventListener("click", async () => {
       : data.download_url ? await (await fetch(data.download_url)).text() : null;
     if (text == null){ $("ghStatus").textContent = "GitHub sent something unexpected."; return; }
     const parsed = JSON.parse(text);
-    if (!confirm("Pull from GitHub? Everything on this device is replaced by the backup.")){
+    /* A backup with nothing in it replaces everything with nothing. Said
+       plainly rather than discovered afterwards. */
+    const inIt = ["investments", "assets", "liabilities", "goals"]
+      .reduce((n, k) => n + ((parsed[k] || []).length), 0);
+    if (!inIt && !confirm("That backup is empty — it holds no records at all. "
+      + "Pulling it would clear this device. Continue?")){
+      $("ghStatus").textContent = ghStatusText();
+      return;
+    }
+    if (inIt && !confirm("Pull from GitHub? Everything on this device is replaced by the backup.")){
       $("ghStatus").textContent = ghStatusText();
       return;
     }
@@ -5143,6 +5182,14 @@ function pushWarning(outgoing, existing){
 
 $("ghPush").addEventListener("click", async () => {
   if (!GH.token || !GH.repo){ toast("Set the token and repository first"); return; }
+  /* Nothing goes out while what is on the device could not be read. The push
+     would be of an emptiness that is an artefact of the failure, not of
+     anything anybody did. */
+  if (loadFailed){
+    $("ghStatus").textContent = "This device's book could not be read, so nothing is being pushed. " +
+      "Pull, or restore an earlier backup.";
+    return;
+  }
   $("ghStatus").textContent = "Pushing…";
   try{
     let sha, existing = null;
