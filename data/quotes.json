@@ -1,9 +1,9 @@
 {
-  "at": "2026-09-07T20:33:51.829Z",
+  "at": "2026-09-07T20:52:57.274Z",
   "fx": {
     "EURINR": 109.8224,
     "EURUSD": 1.1625,
-    "EURSEK": 11.1511
+    "EURSEK": 11.1474
   },
   "quotes": {
     "HDFCBANK.NS": {
@@ -180,7 +180,7 @@
       "raw": 271.21,
       "currency": "INR",
       "name": "Nippon India ETF Nifty 50 BeES",
-      "sector": "",
+      "sector": "Index",
       "in": {
         "EUR": 2.47,
         "INR": 271.21
@@ -190,7 +190,7 @@
       "raw": 591.58,
       "currency": "INR",
       "name": "Nippon India ETF Nifty Bank BeES",
-      "sector": "",
+      "sector": "Index",
       "in": {
         "EUR": 5.39,
         "INR": 591.58
@@ -200,7 +200,7 @@
       "raw": 33.33,
       "currency": "INR",
       "name": "Nippon India ETF Nifty IT",
-      "sector": "",
+      "sector": "Index",
       "in": {
         "EUR": 0.3,
         "INR": 33.33
@@ -272,8 +272,8 @@
       "name": "Lime Technologies AB (publ)",
       "sector": "Technology",
       "in": {
-        "EUR": 22.28,
-        "INR": 2447.37
+        "EUR": 22.29,
+        "INR": 2448.18
       }
     }
   },

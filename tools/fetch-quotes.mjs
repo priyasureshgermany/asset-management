@@ -50,6 +50,22 @@ async function sector(symbol){
   }catch{ return ""; }
 }
 
+/* An index fund has no sector of its own — it has whatever it tracks, and the
+   issuer says so in the name it registered. "Nippon India ETF Nifty Bank
+   BeES" is banks; the feed simply files it as an equity with no sector and
+   leaves it out of every chart. Read from the issuer's name rather than from
+   what anybody typed, so it is the product speaking, not a guess.
+
+   A broad index is genuinely not a sector, and is labelled as what it is
+   rather than pushed into one. */
+function fromFundName(name){
+  /* A BeES or any other tracker is an index holding, whatever the index
+     happens to be made of. Filing Bank BeES under Financial Services would
+     put a passive holding beside the shares somebody actually picked, and
+     they are not the same decision. */
+  return /\betf\b|bees|index/i.test(String(name || "")) ? "Index" : "";
+}
+
 async function price(symbol){
   const m = await meta(symbol);
   const px = Number(m.regularMarketPrice);
@@ -88,7 +104,17 @@ for (const s of symbols){
     const p = await price(s);
     /* Kept from last time if the lookup fails: a sector does not change, and
        a blank one would empty a chart for no reason. */
-    p.sector = (await sector(s)) || (previous[s] && previous[s].sector) || "";
+    /* In order: what the feed says, what the issuer's own name says, what we
+       knew last time, and failing all three the honest bucket. Nothing is
+       left blank, because a blank drops a holding out of every chart it
+       belongs in without saying so. */
+    /* What the feed says, then what the issuer's own name says, then what we
+       knew last time. Nothing is invented past that: "Other" would be a
+       label pretending to be an answer. */
+    p.sector = (await sector(s))
+            || fromFundName(p.name)
+            || (previous[s] && previous[s].sector)
+            || "";
     quotes[s] = p;
     if (p.currency && p.currency !== "EUR") needed.add("EUR" + p.currency + "=X");
   } catch (e){
