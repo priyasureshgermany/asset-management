@@ -16,9 +16,12 @@ family rather than two apps by the same person.
   of individual assets/liabilities (added and edited from here, via +).
 - **Goal** — savings goals with a target, what is saved so far, and a date.
 - **Investment** — mutual funds, Indian and European shares, ULIPs and debt:
-  what went in against what it is worth, per holding and in total. Tabs for
-  All, Mutual Funds, IN stocks, EU stocks, ULIP and Debt; the bar scrolls
-  rather than shrinking six labels into initials.
+  what went in against what it is worth, per holding and in total. Six tabs —
+  All, MFs, IN, EU, ULIP, Debt — which fit across a phone only because the
+  labels are short; each carries an `aria-label` with the full name, since
+  "IN" read aloud on its own is not a word. The bar still scrolls if a very
+  narrow screen or a large text setting pushes them over, rather than
+  clipping a label.
 - **More** — Settings, Reports, What's new, About.
 
 ### Two currencies

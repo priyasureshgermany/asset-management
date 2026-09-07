@@ -380,14 +380,19 @@ button.tile:hover .tile-go{color:var(--accent)}
 .seg button .n{font-family:var(--mono);font-size:10px;font-variant-numeric:tabular-nums;color:var(--ink-3);flex:none}
 .seg button[aria-selected="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:var(--shadow-sm)}
 .seg button[aria-selected="true"] .n{color:var(--accent)}
-/* Six tabs will not sit side by side on a phone at a readable size, so this
-   one scrolls instead of shrinking its labels to initials. The scrollbar is
-   hidden because the row is short and obviously slideable once touched. */
+/* Six tabs fit across a phone only once the labels are short: MFs, IN, EU.
+   They share the width evenly like any other segmented control, and each
+   carries an aria-label with the full name, because "IN" read aloud on its
+   own is not a word. Overflow stays scrollable as a safety net for a very
+   narrow screen or a large text setting, rather than letting a label clip. */
 .seg.segwide{
   display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
 }
 .seg.segwide::-webkit-scrollbar{display:none}
-.seg.segwide button{flex:0 0 auto;padding-left:13px;padding-right:13px;white-space:nowrap}
+.seg.segwide button{
+  flex:1 1 0;min-width:max-content;
+  padding-left:7px;padding-right:7px;gap:4px;white-space:nowrap;
+}
 
 /* ---------- List ---------- */
 .list{padding:14px 14px 0;display:flex;flex-direction:column;gap:18px;flex:1}
@@ -1004,12 +1009,12 @@ html.locked #lockScreen{
 
     <div class="segwrap">
       <div class="seg segwide" id="invSeg" role="tablist">
-        <button role="tab" data-inv="all" aria-selected="true">All <span class="n" id="nInvAll">0</span></button>
-        <button role="tab" data-inv="funds" aria-selected="false">Mutual Funds <span class="n" id="nInvFunds">0</span></button>
-        <button role="tab" data-inv="in" aria-selected="false">IN stocks <span class="n" id="nInvIN">0</span></button>
-        <button role="tab" data-inv="eu" aria-selected="false">EU stocks <span class="n" id="nInvEU">0</span></button>
-        <button role="tab" data-inv="ulip" aria-selected="false">ULIP <span class="n" id="nInvUlip">0</span></button>
-        <button role="tab" data-inv="debt" aria-selected="false">Debt <span class="n" id="nInvDebt">0</span></button>
+        <button role="tab" data-inv="all" aria-selected="true" aria-label="All investments">All <span class="n" id="nInvAll">0</span></button>
+        <button role="tab" data-inv="funds" aria-selected="false" aria-label="Mutual funds">MFs <span class="n" id="nInvFunds">0</span></button>
+        <button role="tab" data-inv="in" aria-selected="false" aria-label="Indian stocks">IN <span class="n" id="nInvIN">0</span></button>
+        <button role="tab" data-inv="eu" aria-selected="false" aria-label="European stocks">EU <span class="n" id="nInvEU">0</span></button>
+        <button role="tab" data-inv="ulip" aria-selected="false" aria-label="Unit-linked plans">ULIP <span class="n" id="nInvUlip">0</span></button>
+        <button role="tab" data-inv="debt" aria-selected="false" aria-label="Debt">Debt <span class="n" id="nInvDebt">0</span></button>
       </div>
     </div>
     <div class="list" id="investList"></div>
@@ -1568,7 +1573,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.8";
+const APP_VERSION = "1.1.9";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
