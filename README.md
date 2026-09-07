@@ -15,9 +15,9 @@ family rather than two apps by the same person.
   where the money sits, category bars that open for their share, and the list
   of individual assets/liabilities (added and edited from here, via +).
 - **Goal** — savings goals with a target, what is saved so far, and a date.
-- **Investment** — mutual funds, Indian and European shares, ULIPs and debt:
+- **Investment** — mutual funds, Indian and European shares, cash and debt:
   what went in against what it is worth, per holding and in total. Six tabs —
-  All, MFs, IN, EU, ULIP, Debt — which fit across a phone only because the
+  All, MFs, IN, EU, Cash, Debt — which fit across a phone only because the
   labels are short; each carries an `aria-label` with the full name, since
   "IN" read aloud on its own is not a word. The bar still scrolls if a very
   narrow screen or a large text setting pushes them over, rather than
@@ -70,7 +70,7 @@ its own sector breakdown. The Investments tab still lists them together —
 the split is about reporting, and a list of what you hold in shares is still
 one list.
 
-Alongside them the panel offers **ULIP** and **Debt**. Debt replaced Bonds
+Alongside them the panel offers **Cash** and **Debt**. Debt replaced Bonds
 rather than joining it: a bond is one kind of debt, and two buckets that
 overlap only make a person choose between them for no gain. It keeps the hue
 Bonds had, so a chart that already showed one does not change colour.
@@ -84,6 +84,7 @@ existed:
 | `Stocks` | `IN stocks` | before the book was split by country, Indian was all it could hold |
 | `DE stocks` | `EU stocks` | the holdings are European, not only German |
 | `Bonds` | `Debt` | a bond is one kind of debt, not a kind apart |
+| `ULIP` | `Cash` | the bucket was never used for what it named |
 
 A target set against an old bucket moves with it, or it would be silently
 dropped for naming a bucket that no longer exists.
@@ -139,8 +140,16 @@ to keep one.
 
 Stocks carry a **sector**, funds a **mandate** — two lists rather than one,
 because "Large cap" is not a sector and "Banking" is not a mandate. The field
-appears on a holding only where it means something, so a ULIP is never asked
+appears on a holding only where it means something, so a deposit is never asked
 for one.
+
+Cash entered as an investment lands in the same wedge as cash held as an
+asset — the chart's existing rule that a thing is one thing whichever list it
+came from. It counts towards what you own, but never towards a target: gold
+and cash are named in `UNALLOCATED` and dropped from `investBuckets()`,
+because one is kept and the other is waiting rather than placed. The in-depth
+report takes its denominator from the rows it actually shows, so the shares
+still come to a whole once those two are out.
 
 Physical gold and fixed deposits are no longer offered when adding an
 investment — gold has its own tab, and a deposit is something held rather
