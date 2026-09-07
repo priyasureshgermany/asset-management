@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.33 — 2026-09-07
+- better: Every share and fund carries a sector — trackers are Index, a gold fund of funds is Gold, and nothing is filed under Other
+
 ## 1.1.32 — 2026-09-07
 - fix: A book with goals in it failed to load and was then saved over as empty — the cause is fixed, and an unreadable book can no longer be overwritten or pushed
 
