@@ -393,6 +393,21 @@ button.tile:hover .tile-go{color:var(--accent)}
   flex:1 1 0;min-width:max-content;
   padding-left:7px;padding-right:7px;gap:4px;white-space:nowrap;
 }
+/* IN and EU are country codes, which say where but not what. A second line
+   underneath says what — quietly, because the tab is still called IN. Every
+   tab in the row takes the same two-line height so the bar does not jump
+   between a one-line tab and a two-line one; the single-line ones simply
+   have nothing on the second line. */
+.seg.segwide button{
+  flex-direction:column;gap:1px;justify-content:center;
+  min-height:40px;padding-top:5px;padding-bottom:5px;
+}
+.seg.segwide button .l{display:flex;align-items:center;gap:4px}
+.seg.segwide button .s2{
+  font-size:9px;line-height:1.1;font-weight:500;letter-spacing:.03em;
+  color:var(--ink-3);text-transform:lowercase;
+}
+.seg.segwide button[aria-selected="true"] .s2{color:var(--ink-2)}
 
 /* ---------- List ---------- */
 .list{padding:14px 14px 0;display:flex;flex-direction:column;gap:18px;flex:1}
@@ -1009,12 +1024,12 @@ html.locked #lockScreen{
 
     <div class="segwrap">
       <div class="seg segwide" id="invSeg" role="tablist">
-        <button role="tab" data-inv="all" aria-selected="true" aria-label="All investments">All <span class="n" id="nInvAll">0</span></button>
-        <button role="tab" data-inv="funds" aria-selected="false" aria-label="Mutual funds">MFs <span class="n" id="nInvFunds">0</span></button>
-        <button role="tab" data-inv="in" aria-selected="false" aria-label="Indian stocks">IN <span class="n" id="nInvIN">0</span></button>
-        <button role="tab" data-inv="eu" aria-selected="false" aria-label="European stocks">EU <span class="n" id="nInvEU">0</span></button>
-        <button role="tab" data-inv="ulip" aria-selected="false" aria-label="Unit-linked plans">ULIP <span class="n" id="nInvUlip">0</span></button>
-        <button role="tab" data-inv="debt" aria-selected="false" aria-label="Debt">Debt <span class="n" id="nInvDebt">0</span></button>
+        <button role="tab" data-inv="all" aria-selected="true" aria-label="All investments"><span class="l">All <span class="n" id="nInvAll">0</span></span></button>
+        <button role="tab" data-inv="funds" aria-selected="false" aria-label="Mutual funds"><span class="l">MFs <span class="n" id="nInvFunds">0</span></span></button>
+        <button role="tab" data-inv="in" aria-selected="false" aria-label="Indian stocks"><span class="l">IN <span class="n" id="nInvIN">0</span></span><span class="s2">stocks</span></button>
+        <button role="tab" data-inv="eu" aria-selected="false" aria-label="European stocks"><span class="l">EU <span class="n" id="nInvEU">0</span></span><span class="s2">stocks</span></button>
+        <button role="tab" data-inv="ulip" aria-selected="false" aria-label="Unit-linked plans"><span class="l">ULIP <span class="n" id="nInvUlip">0</span></span></button>
+        <button role="tab" data-inv="debt" aria-selected="false" aria-label="Debt"><span class="l">Debt <span class="n" id="nInvDebt">0</span></span></button>
       </div>
     </div>
     <div class="list" id="investList"></div>
@@ -1573,7 +1588,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.9";
+const APP_VERSION = "1.1.10";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;

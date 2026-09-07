@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.10 — 2026-09-07
+- better: The IN and EU tabs say stocks underneath, so a country code on its own does not have to carry the meaning
+
 ## 1.1.9 — 2026-09-07
 - better: Investment tabs shortened to All, MFs, IN, EU, ULIP and Debt so all six fit across a phone without scrolling
 
