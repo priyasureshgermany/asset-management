@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.14 — 2026-09-07
+- better: Share prices arrive daily: a workflow fetches them where CORS does not apply and writes a file the app reads from its own origin, so a holding with a ticker is worth units times price
+
 ## 1.1.13 — 2026-09-07
 - better: A mutual fund can be tied to its scheme and is then priced from the live NAV — units times the figure fetched each time the app opens, the way gold already works
 

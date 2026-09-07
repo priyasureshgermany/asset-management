@@ -1,0 +1,74 @@
+{
+  "at": "2026-09-07T15:11:23.404Z",
+  "fx": {
+    "EURUSD": 1.1632,
+    "EURSEK": 11.1531,
+    "EURINR": 109.8782
+  },
+  "quotes": {
+    "INTU": {
+      "raw": 332.7,
+      "currency": "USD",
+      "name": "Intuit Inc.",
+      "in": {
+        "EUR": 286.02,
+        "INR": 31427.51
+      }
+    },
+    "MSFT": {
+      "raw": 499.7,
+      "currency": "USD",
+      "name": "Microsoft Corporation",
+      "in": {
+        "EUR": 429.59,
+        "INR": 47202.66
+      }
+    },
+    "AMZN": {
+      "raw": 258.51,
+      "currency": "USD",
+      "name": "Amazon.com, Inc.",
+      "in": {
+        "EUR": 222.24,
+        "INR": 24419.37
+      }
+    },
+    "NDAQ": {
+      "raw": 96.88,
+      "currency": "USD",
+      "name": "Nasdaq, Inc.",
+      "in": {
+        "EUR": 83.29,
+        "INR": 9151.48
+      }
+    },
+    "NOW": {
+      "raw": 141.26,
+      "currency": "USD",
+      "name": "ServiceNow, Inc.",
+      "in": {
+        "EUR": 121.44,
+        "INR": 13343.7
+      }
+    },
+    "WKL.AS": {
+      "raw": 67.84,
+      "currency": "EUR",
+      "name": "Wolters Kluwer N.V.",
+      "in": {
+        "EUR": 67.84,
+        "INR": 7454.14
+      }
+    },
+    "LIME.ST": {
+      "raw": 248,
+      "currency": "SEK",
+      "name": "Lime Technologies AB (publ)",
+      "in": {
+        "EUR": 22.24,
+        "INR": 2443.25
+      }
+    }
+  },
+  "failed": []
+}

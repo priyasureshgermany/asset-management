@@ -1524,6 +1524,10 @@ html.locked #lockScreen{
       </div>
       <div class="field"><label>Units (optional)</label>
         <input class="inp" id="investUnits" type="text" inputmode="decimal" placeholder="0"></div>
+      <div class="field" id="investTickerField"><label>Ticker (optional)</label>
+        <input class="inp" id="investTicker" placeholder="MSFT · WKL.AS · LIME.ST">
+        <div class="note" id="investTickerNote" hidden></div>
+      </div>
       <div class="field" id="investFundField">
         <label>Live NAV (optional)</label>
         <input type="hidden" id="investScheme">
@@ -1617,7 +1621,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.13";
+const APP_VERSION = "1.1.14";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -1911,6 +1915,8 @@ function stateFromPayload(p){
       /* An AMFI scheme code, which is what MFapi prices by. Set only when a
          holding has been tied to a scheme; without it nothing is fetched. */
       schemeCode: str(i.schemeCode),
+      /* A Yahoo symbol, priced by the workflow rather than by the app. */
+      symbol: str(i.symbol).toUpperCase(),
       sipDay: Math.min(31, Math.max(0, Math.round(num(i.sipDay)))),
       /* How many months between one payment and the next. 1 is a monthly SIP,
          12 an annual premium. Anything not on the list falls back to monthly,
@@ -1959,6 +1965,24 @@ function stateFromPayload(p){
         });
         return out;
       })(),
+      /* The share prices last read from the file beside the app. Kept so the
+         book still has figures with no connection, and left out of the sync
+         fingerprint for the same reason the NAVs and rates are: fetched, not
+         chosen. */
+      quotes: (function(){
+        const q = settings.quotes && typeof settings.quotes === "object" ? settings.quotes : {};
+        const out = {};
+        Object.keys(q).forEach(k => {
+          const v = q[k] && typeof q[k] === "object" ? q[k] : null;
+          const inn = v && v.in && typeof v.in === "object" ? v.in : null;
+          if (!inn) return;
+          const kept = {};
+          CURRENCIES.forEach(c => { const n = num(inn[c]); if (n > 0) kept[c] = n; });
+          if (Object.keys(kept).length) out[String(k).toUpperCase()] = { name: str(v.name), in: kept };
+        });
+        return out;
+      })(),
+      quotesAt: str(settings.quotesAt),
       inrPerEur: num(settings.inrPerEur) > 0 ? num(settings.inrPerEur) : 90,
       /* Whether the two rates are fetched when the app opens, and which karat
          the single gold price is taken to mean — the spot price is 24K, and
@@ -2018,6 +2042,10 @@ function investWorth(inv){
     const nav = navOf(inv.schemeCode);
     if (nav) return inv.units * nav;
   }
+  if (inv.symbol && inv.units > 0){
+    const px = quoteFor(inv.symbol, inv.currency);
+    if (px) return inv.units * px;
+  }
   return inv.currentValue;
 }
 function goldPrice(c){ return state.settings.goldPerGram[c] || 0; }
@@ -2030,6 +2058,16 @@ function navOf(code){
 }
 function navMeta(code){
   return (state.settings.navs && state.settings.navs[String(code)]) || null;
+}
+/* A share price, already stated in each currency the app shows, so nothing
+   here has to hold a second opinion about an exchange rate. */
+function quoteMeta(sym){
+  return (state.settings.quotes && state.settings.quotes[String(sym).toUpperCase()]) || null;
+}
+function quoteFor(sym, cur){
+  const q = quoteMeta(sym);
+  const v = q && q.in ? Number(q.in[cur]) : 0;
+  return Number.isFinite(v) && v > 0 ? v : 0;
 }
 
 const AMOUNT_MASK = "••••";
@@ -3161,6 +3199,9 @@ function investFormMode(type, cur){
   /* Only a fund can be tied to a scheme — there is no comparable free feed
      for shares, so offering the search there would be a promise not kept. */
   $("investFundField").hidden = gold || bucketOf(INVEST_TYPES, type) !== "Funds";
+  /* Shares are priced by the daily workflow, funds by the NAV feed. Neither
+     question is worth asking of the other. */
+  $("investTickerField").hidden = gold || !isStockBucket(bucketOf(INVEST_TYPES, type));
   /* Only the two kinds that have one. A fixed deposit has no sector, and an
      empty dropdown asking for one is a question with no answers. */
   /* Gold has one kind and you reached this sheet from the Gold tab, so the
@@ -3186,24 +3227,51 @@ let investSectorPick = "";
 /* A month only has to be chosen when the run is not monthly — a monthly one
    comes round in all of them, so asking which would be a question with no
    useful answer. */
-/* What the fund link currently means, said plainly — including the part where
-   a linked fund's worth stops being something you type. */
+/* What the links currently mean, said plainly — including the part where a
+   priced holding's worth stops being something you type. Both kinds are
+   decided here rather than in two places, or they would take turns enabling
+   and disabling the same box. */
 function syncFund(){
-  const code = $("investScheme").value;
-  const meta = code ? navMeta(code) : null;
   const units = num($("investUnits").value);
-  const priced = !!code && units > 0 && !!navOf(code);
+
+  const code = $("investScheme").value;
+  const nav = code ? navMeta(code) : null;
+  const pricedFund = !!code && units > 0 && !!navOf(code);
   $("investFundNote").hidden = !code;
+  $("investFundClear").hidden = !code;
   if (code){
-    $("investFundNote").textContent = !meta || !meta.nav
+    $("investFundNote").textContent = !nav || !nav.nav
       ? "Tied to scheme " + code + ". No NAV fetched yet — it arrives next time the app opens."
-      : (meta.name || "Scheme " + code) + " · NAV " + meta.nav +
-        (meta.on ? " on " + meta.on : "") +
+      : (nav.name || "Scheme " + code) + " · NAV " + nav.nav +
+        (nav.on ? " on " + nav.on : "") +
         (units > 0 ? " · worth is units × NAV, so the box above is not used."
                    : " · add the units and worth will follow the NAV.");
   }
+
+  const sym = String($("investTicker").value || "").trim().toUpperCase();
+  const q = sym ? quoteMeta(sym) : null;
+  const cur = pickedCur("investCurTog");
+  const px = sym ? quoteFor(sym, cur) : 0;
+  const pricedShare = !!sym && units > 0 && !!px;
+  $("investTickerNote").hidden = !sym;
+  if (sym){
+    $("investTickerNote").textContent = !q
+      ? sym + " has no price yet. Add it to data/symbols.json in the repo and the daily run will pick it up."
+      : (q.name || sym) + " · " + fmt(px, cur) +
+        (units > 0 ? " · worth is units × price, so the box above is not used."
+                   : " · add the units and worth will follow the price.");
+  }
+
+  /* A disabled box still showing the figure it had before the link was made
+     would say one thing while the app counted another. It is filled with what
+     the holding is actually worth, which also leaves a sensible number behind
+     if the link is ever cleared. */
+  const priced = pricedFund || pricedShare;
   $("investCurrent").disabled = priced;
-  $("investFundClear").hidden = !code;
+  if (priced){
+    const worth = units * (pricedFund ? navOf(code) : px);
+    $("investCurrent").value = String(Math.round(worth * 100) / 100);
+  }
 }
 function syncEvery(){
   $("investMonthField").hidden = $("investEvery").value === "1";
@@ -3221,6 +3289,7 @@ function openInvest(id, preset){
   $("investCurrent").value = i && i.currentValue ? i.currentValue : "";
   $("investUnits").value = i && i.units ? i.units : "";
   $("investScheme").value = i ? (i.schemeCode || "") : "";
+  $("investTicker").value = i ? (i.symbol || "") : "";
   $("investFundQ").value = "";
   $("investFundHits").innerHTML = "";
   $("investSip").value = i && i.sipAmount ? i.sipAmount : "";
@@ -3258,6 +3327,7 @@ function openInvest(id, preset){
 }
 $("investEvery").addEventListener("change", syncEvery);
 $("investUnits").addEventListener("input", syncFund);
+$("investTicker").addEventListener("input", syncFund);
 $("investFundClear").addEventListener("click", () => {
   $("investScheme").value = "";
   $("investFundHits").innerHTML = "";
@@ -3321,6 +3391,10 @@ $("investSave").addEventListener("click", () => {
        kind that was a fund and no longer is would price the wrong thing. */
     schemeCode: !gold && bucketOf(INVEST_TYPES, type) === "Funds"
       ? $("investScheme").value : "",
+    /* Kept only where it prices something; a ticker left behind by a kind
+       that is no longer a share would value the wrong thing. */
+    symbol: !gold && isStockBucket(bucketOf(INVEST_TYPES, type))
+      ? String($("investTicker").value || "").trim().toUpperCase() : "",
     sipEvery: gold ? 1 : Number($("investEvery").value) || 1,
     sipMonth: gold ? 1 : Number($("investMonth").value) || 1,
     /* editing a holding is not paying its SIP, so the tick stands */
@@ -3489,6 +3563,17 @@ async function fetchNavs(codes){
   }));
   return out;
 }
+/* Read from beside the app rather than from anybody else's server: same
+   origin, so there is no CORS to satisfy, no key to hide in a public repo,
+   and nothing to go stale that a daily workflow will not refresh. */
+async function fetchQuotes(){
+  try{
+    const r = await fetch("data/quotes.json?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) return null;
+    const j = await r.json();
+    return j && j.quotes && typeof j.quotes === "object" ? j : null;
+  }catch(e){ return null; }
+}
 function linkedSchemes(){
   return [...new Set(state.investments
     .filter(i => !isGold(i) && i.schemeCode && i.units > 0)
@@ -3506,6 +3591,15 @@ async function refreshRates(force){
     const navs = await fetchNavs(codes);
     if (Object.keys(navs).length){
       state.settings.navs = Object.assign({}, state.settings.navs, navs);
+      save();
+      ok = true;
+    }
+  }
+  if (state.investments.some(i => i.symbol && i.units > 0)){
+    const q = await fetchQuotes();
+    if (q){
+      state.settings.quotes = stateFromPayload({ settings: { quotes: q.quotes } }).settings.quotes;
+      state.settings.quotesAt = String(q.at || "");
       save();
       ok = true;
     }
@@ -4155,7 +4249,7 @@ function ghFingerprint(){
   add("i", state.investments, i => [i.name, i.type, i.investedAmount, i.currentValue, i.currency,
     i.units, i.sipAmount, i.sipDay, i.sipDone, i.sipEvery, i.sipMonth,
     i.grams, i.purity, i.goldKind, i.boughtOn,
-    i.sector, i.schemeCode, i.notes].join("|"));
+    i.sector, i.schemeCode, i.symbol, i.notes].join("|"));
   /* Only the settings a person sets. The rates and the time they were fetched
      are rewritten on every open by the live feed, and counting those made the
      app permanently one change behind its own backup — a badge that is always
