@@ -130,6 +130,25 @@ held in rupees. One reaching across both books gets no flag, since claiming
 either would be half wrong. With nothing in it yet, its own currency is the
 best answer available.
 
+### Putting the goals in your own order
+
+Each goal carries a drag handle. A handle rather than the whole card, because
+dragging the card would fight with tapping it to edit, and a gesture that
+sometimes means one thing and sometimes another is worse than a grip you can
+see.
+
+Pointer events rather than HTML5 drag-and-drop, which does not exist on touch
+— and this is a phone app first. `touch-action:none` on the handle is what
+stops the page scrolling under the finger mid-drag. The card follows the
+finger while its neighbours stay put; where it lands is worked out from where
+it was let go, against midpoints measured before anything moved, and the list
+is redrawn once rather than shuffled on every pixel.
+
+A drag suppresses the click that follows it, so releasing a card never opens
+the editor by accident. The order lives in `state.goals` itself and counts
+towards the sync fingerprint — putting goals in an order is a decision, and a
+backup that came back in a different one would have lost something.
+
 ### Which book a holding is in
 
 Funds and shares carry a small flag **on the line naming the kind** — beside

@@ -439,16 +439,37 @@ button.tile:hover .tile-go{color:var(--accent)}
 
 /* ---------- Goals ---------- */
 .goalcard{
+  position:relative;
   margin:0;padding:14px 15px 13px;background:var(--surface);
   border:1px solid var(--line);border-radius:var(--r-lg);width:100%;text-align:left;
   transition:background .15s,border-color .15s;
 }
 .goalcard:hover{background:var(--surface-2);border-color:var(--line-strong)}
-.goal-top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+/* Room kept on the right for the drag handle, which is positioned over the
+   card and would otherwise sit on top of the percentage. */
+.goal-top{display:flex;align-items:center;gap:9px;margin-bottom:8px;padding-right:30px}
 .goal-ic{width:30px;height:30px;flex:none;border-radius:9px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
 .goal-ic svg{width:16px;height:16px;stroke-width:1.9}
 .goal-n{flex:1;min-width:0;font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .goal-pct{font-family:var(--mono);font-size:12px;font-weight:600;flex:none;color:var(--accent)}
+/* A handle rather than the whole card: dragging the card would fight with
+   tapping it to edit, and a gesture that sometimes means one thing and
+   sometimes the other is worse than a grip you can see. touch-action:none is
+   what stops the page scrolling under the finger mid-drag. */
+.goal-grip{
+  position:absolute;top:8px;right:8px;width:34px;height:34px;
+  display:grid;place-items:center;border-radius:9px;
+  color:var(--ink-3);cursor:grab;touch-action:none;
+}
+.goal-grip:hover{background:var(--surface-sunk);color:var(--ink-2)}
+.goal-grip svg{width:16px;height:16px;pointer-events:none}
+.goalcard.lifted{
+  z-index:5;cursor:grabbing;
+  border-color:var(--accent);box-shadow:0 10px 26px rgb(0 0 0 / .45);
+}
+.goalcard.lifted .goal-grip{cursor:grabbing}
+/* The gap the card came out of, so the list does not jump as it is lifted. */
+.goalslot{opacity:.35}
 .env-track{height:9px;background:var(--surface-sunk);border-radius:99px;overflow:hidden}
 .env-track i{display:block;height:100%;border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
 .goal-sub{margin-top:7px;font-size:11.5px;color:var(--ink-3);display:flex;justify-content:space-between;gap:10px;font-variant-numeric:tabular-nums}
@@ -1662,7 +1683,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.25";
+const APP_VERSION = "1.1.26";
 const APP_BUILT = "2026-09-07";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -3067,6 +3088,9 @@ function renderGoals(){
          <span class="goal-n">${esc(g.name)}</span>
          <span class="goal-pct" style="${done ? "color:var(--pos)" : ""}">${share.toFixed(0)}%</span>
        </div>
+       <span class="goal-grip" data-grip="${esc(g.id)}" role="button" tabindex="-1" aria-label="Drag to reorder">
+         <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></svg>
+       </span>
        <div class="env-track"><i style="width:${share}%;background:${done ? "var(--pos)" : "var(--accent)"}"></i></div>
        <div class="goal-sub">
          <span>${esc(fmt(has, g.currency))} of ${esc(fmt(g.targetAmount, g.currency))}</span>
@@ -3096,10 +3120,67 @@ function renderGoals(){
             </div>`).join("")}${rest > 0
               ? `<div class="gi-none">and ${rest} more — open the goal to see them all</div>` : ""}</div>`;
        })()}`;
-    b.addEventListener("click", () => openGoal(g.id));
+    b.addEventListener("click", () => { if (!goalDragMoved) openGoal(g.id); });
+    b.querySelector("[data-grip]").addEventListener("pointerdown", (e) => goalDragStart(e, b));
     host.appendChild(b);
   });
 }
+
+/* ---------- putting the goals in your own order ----------
+   Pointer events rather than HTML5 drag-and-drop, which does not exist on
+   touch — and this is a phone app first. The card follows the finger while
+   its neighbours stay put; where it lands is worked out from where it was let
+   go, and the list is redrawn once rather than shuffled on every pixel. */
+let goalDrag = null;
+let goalDragMoved = false;
+
+function goalDragStart(e, card){
+  if (e.button != null && e.button !== 0) return;
+  e.preventDefault();
+  e.stopPropagation();
+  goalDragMoved = false;
+  const host = $("goalList");
+  const cards = [...host.querySelectorAll(".goalcard")];
+  const from = cards.indexOf(card);
+  /* Measured before anything is lifted, so the midpoints are the ones the
+     eye is actually comparing against. */
+  const mids = cards.map(c => { const r = c.getBoundingClientRect(); return r.top + r.height / 2; });
+  goalDrag = { card, from, mids, startY: e.clientY, pointerId: e.pointerId };
+  card.classList.add("lifted");
+  try{ card.setPointerCapture(e.pointerId); }catch(err){ /* older engines */ }
+}
+
+function goalDragMove(e){
+  if (!goalDrag) return;
+  const dy = e.clientY - goalDrag.startY;
+  if (Math.abs(dy) > 3) goalDragMoved = true;
+  goalDrag.card.style.transform = "translateY(" + dy + "px)";
+}
+
+function goalDragEnd(e){
+  if (!goalDrag) return;
+  const { card, from, mids, startY } = goalDrag;
+  const y = (e && e.clientY != null ? e.clientY : startY) - startY + mids[from];
+  /* Where it was dropped: the number of cards whose middle it has passed. */
+  let to = 0;
+  mids.forEach((m, n) => { if (n !== from && y > m) to++; });
+  card.classList.remove("lifted");
+  card.style.transform = "";
+  try{ card.releasePointerCapture(goalDrag.pointerId); }catch(err){}
+  goalDrag = null;
+  if (to !== from){
+    const moved = state.goals.splice(from, 1)[0];
+    state.goals.splice(to, 0, moved);
+    save();
+    render();
+  }
+  /* Cleared after the click that follows a pointerup would have fired. */
+  setTimeout(() => { goalDragMoved = false; }, 0);
+}
+
+document.addEventListener("pointermove", goalDragMove, { passive: true });
+document.addEventListener("pointerup", goalDragEnd);
+document.addEventListener("pointercancel", goalDragEnd);
 
 /* ---------- investments ---------- */
 function goldTotals(){
@@ -4706,8 +4787,12 @@ function ghFingerprint(){
   const out = backupPayload();
   add("a", state.assets, a => [a.name, a.category, a.value, a.investedAmount, a.currency, a.notes].join("|"));
   add("l", state.liabilities, l => [l.name, l.category, l.amount, l.interestRate, l.currency, l.notes].join("|"));
-  add("g", state.goals, g => [g.name, g.targetAmount, g.currentAmount, g.currency,
-    (g.holdings || []).join(","), g.targetDate, g.notes].join("|"));
+  /* The position counts: putting the goals in an order is a decision, and a
+     backup that came back in a different one would have lost something. */
+  state.goals.forEach((g, n) => {
+    sig["g" + g.id] = [n, g.name, g.targetAmount, g.currentAmount, g.currency, g.source,
+      (g.holdings || []).join(","), g.targetDate, g.notes].join("|");
+  });
   add("i", out.investments, i => [i.name, i.type, i.investedAmount, i.currentValue, i.currency,
     i.units, i.sipAmount, i.sipDay, i.sipDone, i.sipEvery, i.sipMonth,
     i.grams, i.purity, i.goldKind, i.boughtOn,
