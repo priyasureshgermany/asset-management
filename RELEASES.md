@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.9 — 2026-09-07
+- better: Investment tabs shortened to All, MFs, IN, EU, ULIP and Debt so all six fit across a phone without scrolling
+
 ## 1.1.8 — 2026-09-07
 - better: Investment tabs are All, Mutual Funds, IN stocks, EU stocks, ULIP and Debt; gold asks for the month it was bought instead of a purity that never changed; physical gold and fixed deposits are no longer offered as investment kinds
 
