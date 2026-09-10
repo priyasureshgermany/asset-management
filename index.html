@@ -301,6 +301,47 @@ button.tile:hover .tile-go{color:var(--accent)}
   display:flex;align-items:center;justify-content:center;
 }
 .fold-btn .fold-chev{width:16px;height:16px}
+/* ---------- Net-worth history ---------- */
+.hist-hero{margin-bottom:14px}
+.hh-k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ink-3)}
+.hh-v{font-size:32px;font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1.15;margin-top:3px}
+.hh-d{display:flex;flex-direction:column;gap:3px;margin-top:6px;font-size:12px}
+.hh-chg{font-weight:600;font-variant-numeric:tabular-nums}
+.hh-chg.up{color:var(--pos)}
+.hh-chg.down{color:var(--neg)}
+.hh-chg.flat{color:var(--ink-2)}
+.hh-since{color:var(--ink-3);margin-left:4px}
+.hist-chart{position:relative;background:var(--surface-2);border-radius:var(--r-md);padding-top:4px;outline:none;overflow:hidden}
+.hist-chart:focus-visible{box-shadow:0 0 0 2px var(--accent)}
+.hist-chart svg{display:block;touch-action:pan-y}
+.hc-one{padding:28px 18px;text-align:center;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.hc-grid{stroke:var(--line);stroke-width:1}
+.hc-grid.hc-zero{stroke:var(--ink-3);opacity:.55}
+.hc-tick{fill:var(--ink-3);font-family:var(--mono);font-size:10px;font-variant-numeric:tabular-nums}
+.hc-area{fill:var(--accent);opacity:.1}
+.hc-line{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.hc-dot{fill:var(--accent);stroke:var(--surface-2);stroke-width:2}
+.hc-cross{stroke:var(--ink-3);stroke-width:1}
+.hc-tip{
+  position:absolute;top:6px;transform:translateX(-50%);pointer-events:none;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:6px 10px;box-shadow:var(--shadow-sm);
+  font-size:11px;color:var(--ink-3);white-space:nowrap;text-align:center;line-height:1.35;
+}
+.hc-tip b{display:block;font-size:14px;font-weight:600;color:var(--ink)}
+.hist-rows{margin-top:14px;border-top:1px solid var(--line)}
+.hr{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 2px;border-bottom:1px solid var(--line)}
+.hr-m{font-size:12.5px;font-weight:600;color:var(--ink)}
+.hr-now{
+  font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+  background:var(--surface-sunk);border-radius:99px;padding:1px 6px;margin-left:6px;vertical-align:1px;
+}
+.hr-v{font-family:var(--mono);font-size:12.5px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);text-align:right}
+.hr-s{font-size:11px;color:var(--ink-3)}
+.hr-c{font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums;text-align:right}
+.hr-c.up{color:var(--pos)}
+.hr-c.down{color:var(--neg)}
+.hr-c.flat{color:var(--ink-3)}
 .cb-t{font-size:12.5px;font-weight:600;color:var(--ink)}
 .cb-n{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-3)}
 
@@ -747,6 +788,7 @@ select.inp{appearance:none;background-image:none}
 .setrow[data-pane="calc"]   { --tile-h:275; --tile-l:36% }
 .setrow[data-pane="lock"]   { --tile-h:340; --tile-l:30% }
 .setrow[data-pane="import"] { --tile-h:190; --tile-l:26% }
+.setrow[data-pane="history"]{ --tile-h:150; --tile-l:28% }
 .setrow .sr-ic{width:48px;height:48px;border-radius:15px;flex:none;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
 .setrow .sr-ic svg{width:26px;height:26px;stroke-width:1.6}
 .setrow .sr-t{display:flex;flex-direction:column;gap:2px;min-width:0;width:100%}
@@ -1325,6 +1367,10 @@ html.locked #lockScreen{
       <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2.5"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h4"/></svg></span>
       <span class="sr-t"><b>Calculator</b><span>Simple, SIP and loan (EMI)</span></span>
     </button>
+    <button class="setrow" type="button" data-pane="history">
+      <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/></svg></span>
+      <span class="sr-t"><b>Net-worth history</b><span>Month by month</span></span>
+    </button>
     <button class="setrow setrow-wide" type="button" data-pane="about">
       <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5"/><path d="M12 8h.01"/></svg></span>
       <span class="sr-t"><b>About</b><span id="aboutTileSub">Version</span></span>
@@ -1549,6 +1595,12 @@ html.locked #lockScreen{
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="sheet-body setpane" id="pane-history" hidden>
+    <h3>Net-worth history</h3>
+    <p class="ph">One point a month — what everything was worth the last time you looked that month.</p>
+    <div id="histBody"></div>
   </div>
 
   <div class="sheet-body setpane" id="pane-lock" hidden>
@@ -1854,7 +1906,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.37";
+const APP_VERSION = "1.1.38";
 const APP_BUILT = "2026-09-10";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -2196,6 +2248,22 @@ function stateFromPayload(p){
       goldKind: str(i.goldKind), boughtOn: str(i.boughtOn),
       notes: str(i.notes), updatedAt: i.updatedAt || new Date().toISOString()
     })),
+    /* One point a month, in both currencies at that month's own rate. Kept by
+       month, so no copy of the book can hold September twice. */
+    history: (function(){
+      const nums = (o) => {
+        o = o && typeof o === "object" ? o : {};
+        return { net: num(o.net), owned: num(o.owned), liabilities: num(o.liabilities),
+                 invest: num(o.invest), gold: num(o.gold) };
+      };
+      const byMonth = {};
+      arr(p.history).forEach(h => {
+        const m = str(h && h.m);
+        if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(m)) return;
+        byMonth[m] = { m, at: str(h.at), EUR: nums(h.EUR), INR: nums(h.INR) };
+      });
+      return Object.keys(byMonth).sort().map(k => byMonth[k]);
+    })(),
     profile: { name: str(p.profile && p.profile.name), currency: home },
     settings: {
       display: oneOf(settings.display, CURRENCIES, home),
@@ -2537,11 +2605,14 @@ function fmtExact(amount, c){
  * the one to divide by — a share of "everything owned" that left the gold out
  * of the denominator would have the wedges summing past a hundred per cent.
  */
-function totals(){
-  const plain = state.assets.reduce((s,a) => s + toDisp(a.value, a.currency), 0);
-  const invest = investOnly().reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
-  const gold = goldOnly().reduce((s,i) => s + toDisp(investWorth(i), i.currency), 0);
-  const liabilities = state.liabilities.reduce((s,l) => s + toDisp(l.amount, l.currency), 0);
+function totals(cur){
+  /* In the display currency unless asked otherwise; the net-worth history
+     asks for both, at today's rate, the day it records them. */
+  const to = (a, c) => conv(a, c, cur || display());
+  const plain = state.assets.reduce((s,a) => s + to(a.value, a.currency), 0);
+  const invest = investOnly().reduce((s,i) => s + to(investWorth(i), i.currency), 0);
+  const gold = goldOnly().reduce((s,i) => s + to(investWorth(i), i.currency), 0);
+  const liabilities = state.liabilities.reduce((s,l) => s + to(l.amount, l.currency), 0);
   const assets = plain + invest;
   const owned = assets + gold;
   return { plain, invest, gold, assets, owned, liabilities, net: owned - liabilities };
@@ -2694,6 +2765,8 @@ function render(){
   if (view === "goal") renderGoals();
   if (view === "invest") renderInvest();
   if (view === "gold") renderGold();
+  /* after drawing, so a failure here never costs the screen */
+  recordMonth();
 }
 
 function renderDash(t){
@@ -4078,11 +4151,11 @@ document.querySelectorAll("#moreMenu .morerow").forEach(b =>
     if (what === "settings"){ setPane(null); sheetOpen("shSet"); }
   }));
 
-const PANES = ["profile","rates","github","import","data","lock","calc","about"];
+const PANES = ["profile","rates","github","import","data","lock","calc","history","about"];
 const PANE_TITLES = {
   profile:"Profile", rates:"Rates & gold", github:"GitHub sync",
   data:"Backup & restore", import:"Import holdings", lock:"App lock",
-  calc:"Calculator", about:"About"
+  calc:"Calculator", history:"Net-worth history", about:"About"
 };
 function setPane(p){
   $("setMenu").hidden = !!p;
@@ -4096,6 +4169,7 @@ function setPane(p){
   if (p === "import") fillImport();
   if (p === "lock") fillLock();
   if (p === "calc") fillCalc();
+  if (p === "history") renderHistory();
 }
 document.querySelectorAll("#setMenu .setrow").forEach(b =>
   b.addEventListener("click", () => setPane(b.dataset.pane)));
@@ -4608,6 +4682,237 @@ $("csHistClear").addEventListener("click", () => {
   try { localStorage.removeItem(CALC_HIST_KEY); } catch(_){}
   calcHistRender();
 });
+
+/* ============================================================
+   Net-worth history — one point a month
+   ============================================================
+   What the book was worth the last time it was looked at in a given month.
+   This month's point follows the book until the month ends and then stays
+   as it was, so September is how September finished — not how it looked on
+   the morning it began, before the prices came in.
+
+   Every point is written in both currencies at that month's own rate.
+   Converting an old euro figure at today's rate would quietly rewrite the
+   past every time the rupee moved.
+
+   These are the one set of derived figures the backup keeps. Everything else
+   in it can be worked out again from what was entered; last March cannot.
+
+   Function declarations only, deliberately: recordMonth() runs inside
+   render(), and render() runs during start-up. A const up here would be read
+   before its line is reached — the mistake that once cost a whole book. */
+function monthKey(d){
+  d = d || new Date();
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+}
+function monthIndex(m){
+  const [y, mo] = String(m).split("-").map(Number);
+  return y * 12 + mo - 1;
+}
+function snapFigures(cur){
+  const t = totals(cur);
+  const r = Math.round;
+  return { net: r(t.net), owned: r(t.owned), liabilities: r(t.liabilities),
+           invest: r(t.invest), gold: r(t.gold) };
+}
+function recordMonth(){
+  if (loadFailed) return;
+  if (!Array.isArray(state.history)) state.history = [];
+  /* An empty book is not a month worth recording. It is a new install or a
+     wipe, and a zero would sit in the line as if everything had gone. */
+  if (!state.assets.length && !state.investments.length && !state.liabilities.length) return;
+  const m = monthKey();
+  const snap = { m, at: "", EUR: snapFigures("EUR"), INR: snapFigures("INR") };
+  const h = state.history;
+  const i = h.findIndex(x => x.m === m);
+  /* render() runs often; storage is written only when a figure moved. */
+  if (i >= 0 && JSON.stringify([h[i].EUR, h[i].INR]) === JSON.stringify([snap.EUR, snap.INR])) return;
+  snap.at = new Date().toISOString();
+  if (i >= 0) h[i] = snap;
+  else { h.push(snap); h.sort((a, b) => monthIndex(a.m) - monthIndex(b.m)); }
+  save();
+}
+
+/* Axis labels only — short enough to sit beside a gridline. Lakhs and crores
+   for rupees, because that is how a rupee figure is read. Blank while amounts
+   are hidden: the shape of the line says nothing a stranger can use, the
+   numbers on its axis would. */
+function compactAmt(v, cur){
+  if (amountsHidden) return "";
+  const meta = CUR_META[cur] || CUR_META.EUR;
+  const a = Math.abs(v), sign = v < 0 ? "−" : "";
+  const f = (x, d) => x.toLocaleString(meta.locale, { maximumFractionDigits: d });
+  let body;
+  if (cur === "INR" && a >= 1e7) body = f(a / 1e7, 2) + " Cr";
+  else if (cur === "INR" && a >= 1e5) body = f(a / 1e5, 1) + " L";
+  else if (a >= 1e6) body = f(a / 1e6, 1) + "M";
+  else if (a >= 1e3) body = f(a / 1e3, a >= 1e4 ? 0 : 1) + "k";
+  else body = f(a, 0);
+  return sign + meta.sym + body;
+}
+
+/* Gridlines on round numbers, spanning the data and no more. Zero is not
+   forced in: a net worth that went from 90k to 95k is a line going up, not a
+   line sitting flat at the top of a tall empty box. When the book does cross
+   zero, zero lands on a tick and is drawn as the one line that stands out. */
+function niceTicks(lo, hi, n){
+  if (hi === lo){ const pad = Math.max(1, Math.abs(hi) * 0.1); lo -= pad; hi += pad; }
+  const raw = (hi - lo) / n;
+  const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const step = [1, 2, 2.5, 5, 10].map(k => k * mag).find(x => x >= raw);
+  const a = Math.floor(lo / step) * step, b = Math.ceil(hi / step) * step;
+  const out = [];
+  for (let k = 0; a + k * step <= b + step / 2; k++) out.push(Number((a + k * step).toPrecision(12)));
+  return out;
+}
+
+function renderHistory(){
+  const host = $("histBody");
+  const cur = display();
+  const pts = (state.history || []).filter(h => h[cur]).map(h => ({ m: h.m, v: h[cur] }));
+  if (!pts.length){
+    host.innerHTML = `<div class="empty" style="padding:22px 12px"><p>Nothing recorded yet. As soon as the book holds anything, this month becomes the first point.</p></div>`;
+    return;
+  }
+  const last = pts[pts.length - 1];
+  const prev = pts.length > 1 ? pts[pts.length - 2] : null;
+  /* The longer view is a year back when there is a year; until then it is
+     wherever the history starts. */
+  const yearBack = pts.filter(p => monthIndex(p.m) <= monthIndex(last.m) - 12).pop() || null;
+  const longer = yearBack || (pts[0] !== prev && pts[0] !== last ? pts[0] : null);
+  const since = [prev, longer].filter((p, n, all) => p && all.indexOf(p) === n);
+
+  /* The arrow says the direction as well as the colour does. */
+  const delta = (from) => {
+    const d = last.v.net - from.v.net;
+    const cls = d > 0 ? "up" : d < 0 ? "down" : "flat";
+    const pc = from.v.net > 0 ? " (" + pct(d / from.v.net * 100) + ")" : "";
+    return `<span class="hh-chg ${cls}">${d > 0 ? "▲" : d < 0 ? "▼" : "●"} ${esc(fmt(Math.abs(d), cur))}${esc(pc)}</span>
+            <span class="hh-since">since ${esc(boughtMonth(from.m))}</span>`;
+  };
+
+  host.innerHTML =
+    `<div class="hist-hero">
+       <div class="hh-k">Net worth · ${esc(boughtMonth(last.m))}</div>
+       <div class="hh-v">${esc(fmt(last.v.net, cur))}</div>
+       ${since.length ? `<div class="hh-d">${since.map(p => `<div>${delta(p)}</div>`).join("")}</div>` : ""}
+     </div>
+     <div class="hist-chart" id="histChart" tabindex="0" aria-label="Net worth by month — the list below has every figure"></div>
+     <div class="hist-rows">${pts.slice().reverse().map((p, n, all) => {
+       const before = all[n + 1];
+       const d = before ? p.v.net - before.v.net : null;
+       const cls = d === null ? "flat" : d > 0 ? "up" : d < 0 ? "down" : "flat";
+       return `<div class="hr">
+         <span class="hr-m">${esc(boughtMonth(p.m))}${p.m === monthKey() ? '<span class="hr-now">so far</span>' : ""}</span>
+         <span class="hr-v">${esc(fmt(p.v.net, cur))}</span>
+         <span class="hr-s">${esc(fmt(p.v.owned, cur))} owned · ${esc(fmt(p.v.liabilities, cur))} owed</span>
+         <span class="hr-c ${cls}">${d === null ? "first" : (d > 0 ? "+" : d < 0 ? "−" : "±") + esc(fmt(Math.abs(d), cur))}</span>
+       </div>`;
+     }).join("")}</div>
+     <div class="note" style="margin-top:12px">A point is added for each month you open the app, and this month's keeps moving until the month ends. Each is kept in € and ₹ at that month's rate, and goes into the backup — it is the one thing there that cannot be worked out again later.</div>`;
+  drawHistChart($("histChart"), pts, cur);
+}
+
+/* One series, so no legend: the heading already says what the line is. A 2px
+   line over a faint wash, a ringed dot on each month, hairline gridlines, and
+   the months named only at the two ends — the list underneath carries every
+   figure, so the chart is never the only way to read one. */
+function drawHistChart(host, pts, cur){
+  if (!host) return;
+  if (pts.length < 2){
+    host.innerHTML = `<div class="hc-one">One month so far — a single point is not yet a line. It starts when next month is added.</div>`;
+    return;
+  }
+  const W = Math.max(260, Math.round(host.clientWidth || 320));
+  const H = 184;
+  const padL = amountsHidden ? 12 : 52, padR = 16, padT = 16, padB = 28;
+  const i0 = monthIndex(pts[0].m), i1 = monthIndex(pts[pts.length - 1].m);
+  const vals = pts.map(p => p.v.net);
+  const ticks = niceTicks(Math.min(...vals), Math.max(...vals), 3);
+  const lo = ticks[0], hi = ticks[ticks.length - 1];
+  /* Placed by calendar month, so a month the app was never opened leaves a
+     wider step rather than pretending the months ran on without a gap. */
+  const X = (m) => padL + (monthIndex(m) - i0) / (i1 - i0) * (W - padL - padR);
+  const Y = (v) => padT + (hi - v) / (hi - lo) * (H - padT - padB);
+  const xy = pts.map(p => [X(p.m), Y(p.v.net)]);
+  const line = xy.map((q, n) => (n ? "L" : "M") + q[0].toFixed(1) + " " + q[1].toFixed(1)).join("");
+  const floor = Y(lo).toFixed(1);
+  const area = line + "L" + xy[xy.length - 1][0].toFixed(1) + " " + floor +
+                      "L" + xy[0][0].toFixed(1) + " " + floor + "Z";
+  const dots = pts.length <= 24 ? xy : [xy[xy.length - 1]];
+
+  host.innerHTML =
+    `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true">
+       ${ticks.map(t => {
+         const y = Y(t).toFixed(1);
+         return `<line class="hc-grid${t === 0 && lo < 0 ? " hc-zero" : ""}" x1="${padL}" x2="${W - padR}" y1="${y}" y2="${y}"/>` +
+           (amountsHidden ? "" : `<text class="hc-tick" x="${padL - 7}" y="${(Y(t) + 3.5).toFixed(1)}" text-anchor="end">${esc(compactAmt(t, cur))}</text>`);
+       }).join("")}
+       <path class="hc-area" d="${area}"/>
+       <path class="hc-line" d="${line}"/>
+       ${dots.map(q => `<circle class="hc-dot" cx="${q[0].toFixed(1)}" cy="${q[1].toFixed(1)}" r="4"/>`).join("")}
+       <text class="hc-tick" x="${padL}" y="${H - 9}" text-anchor="start">${esc(boughtMonth(pts[0].m))}</text>
+       <text class="hc-tick" x="${W - padR}" y="${H - 9}" text-anchor="end">${esc(boughtMonth(pts[pts.length - 1].m))}</text>
+       <line class="hc-cross" id="hcCross" x1="0" x2="0" y1="${padT - 6}" y2="${H - padB}" visibility="hidden"/>
+       <circle class="hc-dot hc-on" id="hcOn" cx="0" cy="0" r="5.5" visibility="hidden"/>
+     </svg>
+     <div class="hc-tip" id="hcTip" hidden><span id="hcTipM"></span><b id="hcTipV"></b><span id="hcTipD"></span></div>`;
+
+  /* The crosshair finds the month: the pointer only has to be nearest, never
+     on the 2px line. A tap shows it on a phone, arrow keys step through it
+     from a keyboard, and the text goes in as text, never as markup. */
+  const svg = host.querySelector("svg");
+  let at = -1;
+  const show = (n) => {
+    at = n;
+    const [x, y] = xy[n], p = pts[n], before = pts[n - 1];
+    const cross = $("hcCross"), on = $("hcOn"), tip = $("hcTip");
+    cross.setAttribute("x1", x); cross.setAttribute("x2", x); cross.setAttribute("visibility", "visible");
+    on.setAttribute("cx", x); on.setAttribute("cy", y); on.setAttribute("visibility", "visible");
+    $("hcTipM").textContent = boughtMonth(p.m);
+    $("hcTipV").textContent = fmt(p.v.net, cur);
+    const d = before ? p.v.net - before.v.net : 0;
+    $("hcTipD").textContent = before
+      ? (d > 0 ? "+" : d < 0 ? "−" : "±") + fmt(Math.abs(d), cur) + " vs " + boughtMonth(before.m)
+      : "the first month";
+    tip.hidden = false;
+    const w = tip.offsetWidth;
+    tip.style.left = Math.min(Math.max(x, w / 2 + 4), W - w / 2 - 4) + "px";
+  };
+  const hide = () => {
+    at = -1;
+    $("hcCross").setAttribute("visibility", "hidden");
+    $("hcOn").setAttribute("visibility", "hidden");
+    $("hcTip").hidden = true;
+  };
+  const nearest = (clientX) => {
+    const r = svg.getBoundingClientRect();
+    const x = (clientX - r.left) * (W / r.width);
+    let best = 0;
+    xy.forEach((q, n) => { if (Math.abs(q[0] - x) < Math.abs(xy[best][0] - x)) best = n; });
+    return best;
+  };
+  svg.addEventListener("pointermove", (e) => show(nearest(e.clientX)));
+  svg.addEventListener("pointerdown", (e) => show(nearest(e.clientX)));
+  svg.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") hide(); });
+  host.addEventListener("focus", () => show(at >= 0 ? at : xy.length - 1));
+  host.addEventListener("blur", hide);
+  host.addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    const from = at < 0 ? xy.length - 1 : at;
+    show(Math.min(xy.length - 1, Math.max(0, from + (e.key === "ArrowRight" ? 1 : -1))));
+  });
+}
+
+/* Turning the phone changes the width the chart was drawn for. */
+window.addEventListener("resize", (function(){
+  let t = 0;
+  return () => {
+    clearTimeout(t);
+    t = setTimeout(() => { if (!$("pane-history").hidden) renderHistory(); }, 150);
+  };
+})());
 
 /* A keyboard works too, on a laptop — only while this calculator is the thing
    on screen, and never while you are typing into a field. */
@@ -5139,7 +5444,7 @@ $("doRestore").addEventListener("click", () => {
   save(); render(); refetchAfterLoad(); toast("Restored");
 });
 $("wipeAll").addEventListener("click", async () => {
-  if (!confirm("Delete every asset, liability, goal and investment? Your settings stay.")) return;
+  if (!confirm("Delete every asset, liability, goal and investment, and the net-worth history? Your settings stay.")) return;
   if (!(await lockConfirm("Enter your PIN to delete everything"))) return;
   state = stateCleared();
   save(); render(); toast("Everything deleted");
@@ -5539,6 +5844,13 @@ function pushWarning(outgoing, existing){
     if (after < before) lost.push(before - after + " " + k.replace(/s$/, "") +
       (before - after === 1 ? "" : "s"));
   });
+  /* History is counted on its own: it is months, not records, and a device
+     that never pulled the older ones would otherwise push over them unasked. */
+  const monthsBefore = (existing.history || []).length;
+  const monthsAfter = (outgoing.history || []).length;
+  if (monthsBefore - monthsAfter >= 2)
+    return "This would remove " + (monthsBefore - monthsAfter) +
+      " months of net-worth history from the backup.";
   if (!had) return "";
   if (!has) return "This device has nothing in it, and the backup holds " + had +
     " records. Pushing would empty the backup.";
