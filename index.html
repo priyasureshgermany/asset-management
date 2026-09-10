@@ -283,6 +283,24 @@ button.tile:hover .tile-go{color:var(--accent)}
 }
 .chartblock.tight{padding-bottom:14px}
 .chartblock-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:11px}
+/* A dashboard section folds down to its heading — the title and its figure
+   stay, so a folded section still says what it holds. Open points down,
+   folded points at the title, the same as everywhere else in the app. */
+.fold-h{justify-content:flex-start;cursor:pointer;-webkit-user-select:none;user-select:none}
+.fold-h .cb-n{margin-left:auto}
+.fold-chev{width:14px;height:14px;flex:none;align-self:center;color:var(--ink-3);transition:transform .2s}
+.fold-h[aria-expanded="false"] .fold-chev,
+.fold-btn[aria-expanded="false"] .fold-chev{transform:rotate(-90deg)}
+.chartblock.folded{padding-bottom:14px}
+.chartblock.folded > :not(.chartblock-h){display:none}
+.chartblock.folded .chartblock-h{margin-bottom:0}
+.segwrap.segfold{display:flex;gap:6px;align-items:stretch}
+.segwrap.segfold .seg{flex:1}
+.fold-btn{
+  width:40px;flex:none;border-radius:var(--r-md);background:var(--surface-sunk);
+  display:flex;align-items:center;justify-content:center;
+}
+.fold-btn .fold-chev{width:16px;height:16px}
 .cb-t{font-size:12.5px;font-weight:600;color:var(--ink)}
 .cb-n{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-3)}
 
@@ -1107,10 +1125,11 @@ html.locked #lockScreen{
       </div>
     </section>
 
-    <section class="chartblock tight" id="allocBlock">
-      <div class="chartblock-h">
+    <section class="chartblock tight" id="allocBlock" data-fold="alloc">
+      <div class="chartblock-h fold-h" role="button" tabindex="0" aria-expanded="true">
         <div class="cb-t">Where your money sits</div>
         <div class="cb-n" id="allocN">—</div>
+        <svg class="fold-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
       </div>
       <div class="pierow">
         <div class="pie3d" id="allocPie"></div>
@@ -1118,21 +1137,22 @@ html.locked #lockScreen{
       </div>
     </section>
 
-    <section class="chartblock" id="assetBarBlock">
-      <div class="chartblock-h"><div class="cb-t">Assets by category</div><div class="cb-n" id="assetBarN">—</div></div>
+    <section class="chartblock" id="assetBarBlock" data-fold="assets">
+      <div class="chartblock-h fold-h" role="button" tabindex="0" aria-expanded="true"><div class="cb-t">Assets by category</div><div class="cb-n" id="assetBarN">—</div><svg class="fold-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
       <div id="assetBars"></div>
     </section>
 
-    <section class="chartblock" id="liabBarBlock">
-      <div class="chartblock-h"><div class="cb-t">Liabilities by kind</div><div class="cb-n" id="liabBarN">—</div></div>
+    <section class="chartblock" id="liabBarBlock" data-fold="liabs">
+      <div class="chartblock-h fold-h" role="button" tabindex="0" aria-expanded="true"><div class="cb-t">Liabilities by kind</div><div class="cb-n" id="liabBarN">—</div><svg class="fold-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
       <div id="liabBars"></div>
     </section>
 
-    <div class="segwrap">
+    <div class="segwrap segfold">
       <div class="seg" id="dashSeg" role="tablist">
         <button role="tab" data-dash="assets" aria-selected="true">Assets <span class="n" id="nAssets">0</span></button>
         <button role="tab" data-dash="liabilities" aria-selected="false">Liabilities <span class="n" id="nLiabs">0</span></button>
       </div>
+      <button type="button" class="fold-btn" id="listFold" aria-expanded="true" aria-label="Fold the list"><svg class="fold-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
     </div>
     <div class="list" id="dashList"></div>
   </div>
@@ -1834,7 +1854,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.36";
+const APP_VERSION = "1.1.37";
 const APP_BUILT = "2026-09-10";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -3029,7 +3049,11 @@ function renderBars(hostId, noteId, slices, total){
 }
 
 document.querySelectorAll("#dashSeg button").forEach(b =>
-  b.addEventListener("click", () => { dashTab = b.dataset.dash; render(); }));
+  b.addEventListener("click", () => {
+    dashTab = b.dataset.dash;
+    if (dashFolded.list) setDashFold("list", false);
+    render();
+  }));
 
 function emptyBlock(icon, title, text){
   return `<div class="empty"><div class="em-ic">${icon}</div><h4>${esc(title)}</h4><p>${esc(text)}</p></div>`;
@@ -6409,15 +6433,59 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () 
 applyTheme(localStorage.getItem("assetmgr.theme") || "system");
 
 /* ---------- dashboard tiles jump to their list ---------- */
+/* A tile promises the list it names, so a folded list opens for it. */
 $("tileAssets").addEventListener("click", () => {
-  dashTab = "assets"; render();
+  dashTab = "assets"; setDashFold("list", false); render();
   $("dashList").scrollIntoView({ behavior:"smooth", block:"start" });
 });
 $("tileGold").addEventListener("click", () => setView("gold"));
 $("tileLiabs").addEventListener("click", () => {
-  dashTab = "liabilities"; render();
+  dashTab = "liabilities"; setDashFold("list", false); render();
   $("dashList").scrollIntoView({ behavior:"smooth", block:"start" });
 });
+
+/* ---------- folding the dashboard ----------
+   Which sections you have folded is remembered on this device. It is how you
+   like the screen laid out, not something about your money, so it stays out
+   of the book and out of every backup — the same as the theme.
+
+   Folding only hides; nothing is drawn differently. The pie is an SVG laid
+   out in its own coordinates, so a section folded while the figures changed
+   opens already up to date. */
+const DASH_FOLD_KEY = "assetmgr.dashFolded";
+let dashFolded = {};
+try {
+  const got = JSON.parse(localStorage.getItem(DASH_FOLD_KEY) || "{}");
+  if (got && typeof got === "object") dashFolded = got;
+} catch(_){ dashFolded = {}; }
+
+function applyDashFolds(){
+  document.querySelectorAll("[data-fold]").forEach(sec => {
+    const folded = !!dashFolded[sec.dataset.fold];
+    sec.classList.toggle("folded", folded);
+    sec.querySelector(".fold-h").setAttribute("aria-expanded", String(!folded));
+  });
+  const list = !!dashFolded.list;
+  $("dashList").hidden = list;
+  $("listFold").setAttribute("aria-expanded", String(!list));
+  $("listFold").setAttribute("aria-label", list ? "Show the list" : "Fold the list");
+}
+function setDashFold(key, folded){
+  if (folded) dashFolded[key] = true; else delete dashFolded[key];
+  try { localStorage.setItem(DASH_FOLD_KEY, JSON.stringify(dashFolded)); } catch(_){ /* storage blocked */ }
+  applyDashFolds();
+}
+document.querySelectorAll("[data-fold] .fold-h").forEach(h => {
+  const key = h.closest("[data-fold]").dataset.fold;
+  h.addEventListener("click", () => setDashFold(key, !dashFolded[key]));
+  h.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    setDashFold(key, !dashFolded[key]);
+  });
+});
+$("listFold").addEventListener("click", () => setDashFold("list", !dashFolded.list));
+applyDashFolds();
 
 /* ---------- service worker ---------- */
 if ("serviceWorker" in navigator && location.protocol !== "file:"){

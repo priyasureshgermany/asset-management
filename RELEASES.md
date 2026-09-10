@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.37 — 2026-09-10
+- new: Dashboard sections fold — tap a heading to fold it to its title and total, and the fold is remembered
+
 ## 1.1.36 — 2026-09-10
 - new: Calculator keeps a history of your sums — tap the clock on its screen to see it, and tap one to use its answer again
 
