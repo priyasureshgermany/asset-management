@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.35 — 2026-09-10
+- new: Calculator opens on a simple calculator, with SIP and loan (EMI) beside it
+
 ## 1.1.34 — 2026-09-07
 - new: In depth: a sector opens to show the holdings inside it, each with its share of that sector
 
