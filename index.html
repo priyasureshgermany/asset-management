@@ -807,6 +807,37 @@ select.inp{appearance:none;background-image:none}
 .ck.op.on{background:var(--accent);color:var(--surface)}
 .ck.eq{background:var(--accent);color:var(--surface);font-size:23px}
 .ck.zero{grid-column:span 2}
+/* History takes the keypad's place at the keypad's height, so opening it moves
+   nothing else on the screen. */
+.calcscreen{position:relative}
+.cs-expr{padding-left:40px}
+.cs-hist{
+  position:absolute;top:8px;left:8px;width:34px;height:34px;border-radius:10px;
+  color:var(--ink-3);display:flex;align-items:center;justify-content:center;transition:all .15s;
+}
+.cs-hist svg{width:19px;height:19px}
+.cs-hist:hover{background:var(--surface-sunk)}
+.cs-hist[aria-expanded="true"]{color:var(--accent);background:var(--surface-sunk)}
+.calchist{
+  height:302px;display:flex;flex-direction:column;
+  background:var(--surface-2);border-radius:var(--r-md);overflow:hidden;
+}
+.ch-head{
+  display:flex;justify-content:space-between;align-items:center;padding:11px 14px;
+  border-bottom:1px solid var(--line);
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ink-3);
+}
+.ch-clear{font-size:12px;letter-spacing:0;text-transform:none;font-weight:600;color:var(--neg)}
+.ch-list{flex:1;overflow-y:auto}
+.ch-row{
+  display:grid;grid-template-columns:1fr auto;gap:2px 10px;width:100%;
+  text-align:right;padding:10px 14px;border-bottom:1px solid var(--line);
+}
+.ch-row:hover{background:var(--surface-sunk)}
+.ch-e{grid-column:1/-1;font-family:var(--mono);font-size:12px;color:var(--ink-3);overflow-wrap:anywhere}
+.ch-t{font-size:10.5px;color:var(--ink-3);text-align:left;align-self:end}
+.ch-r{font-family:var(--mono);font-size:19px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.ch-none{padding:32px 18px;text-align:center;font-size:12.5px;color:var(--ink-3);line-height:1.5}
 .ytoggle{
   width:100%;margin-top:12px;padding:10px;border-radius:var(--r-md);
   background:var(--surface-2);border:1px solid var(--line);
@@ -1410,6 +1441,7 @@ html.locked #lockScreen{
 
     <div id="calcSimple">
       <div class="calcscreen" aria-live="polite">
+        <button type="button" class="cs-hist" id="csHistBtn" aria-label="History" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 103-6.7"/><path d="M3 4v4h4"/><path d="M12 8v4l3 2"/></svg></button>
         <div class="cs-expr" id="csExpr">&nbsp;</div>
         <div class="cs-val" id="csVal">0</div>
       </div>
@@ -1433,6 +1465,10 @@ html.locked #lockScreen{
         <button type="button" class="ck zero" data-k="0">0</button>
         <button type="button" class="ck" data-k="." id="ckDot">,</button>
         <button type="button" class="ck eq" data-k="=">=</button>
+      </div>
+      <div class="calchist" id="calcHist" hidden>
+        <div class="ch-head"><span>History</span><button type="button" class="ch-clear" id="csHistClear">Clear</button></div>
+        <div class="ch-list" id="csHistList"></div>
       </div>
     </div>
 
@@ -1798,7 +1834,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.35";
+const APP_VERSION = "1.1.36";
 const APP_BUILT = "2026-09-10";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -4324,6 +4360,7 @@ function fillCalc(){
   $("sipCur").textContent = curSym(display());
   $("loanCur").textContent = curSym(display());
   $("ckDot").textContent = (1.5).toLocaleString(CUR_META[display()].locale).charAt(1);
+  calcHistShow(false);
   calcRender();
   const now = new Date();
   const thisMonth = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0");
@@ -4385,7 +4422,8 @@ function calcNumStr(n){
   return Math.abs(n) >= 1e15 || (n !== 0 && Math.abs(n) < 1e-9)
     ? n.toExponential(6) : String(n);
 }
-const calcTokText = t => typeof t === "number" ? calcShow(calcNumStr(t)) : CALC_OPS[t];
+const calcFmt = str => /e/.test(str) ? str.replace("-", "−") : calcShow(str);
+const calcTokText = t => typeof t === "number" ? calcFmt(calcNumStr(t)) : CALC_OPS[t];
 
 function calcRender(err){
   const v = $("csVal"), e = $("csExpr");
@@ -4393,7 +4431,7 @@ function calcRender(err){
   e.innerHTML = exprTxt ? esc(exprTxt) : "&nbsp;";
   if (err){ v.textContent = err; v.className = "cs-val err"; }
   else {
-    const shown = /e/.test(calc.cur) ? calc.cur.replace("-", "−") : calcShow(calc.cur);
+    const shown = calcFmt(calc.cur);
     v.textContent = shown;
     v.className = "cs-val" + (shown.length > 12 ? " small" : "");
   }
@@ -4457,6 +4495,7 @@ function calcKey(k){
       const r = calcEval(toks);
       calc.last = toks.map(calcTokText).join(" ") + " =";
       calc.toks = []; calc.cur = calcNumStr(r); calc.fresh = true; calc.done = true;
+      calcHistAdd(toks, r);
     } catch(_){
       calcReset();
       calcRender("Can't divide by zero");
@@ -4468,6 +4507,83 @@ function calcKey(k){
 
 $("calcKeys").querySelectorAll(".ck").forEach(b =>
   b.addEventListener("click", () => calcKey(b.dataset.k)));
+
+/* ---------- calculator history ----------
+   Kept on this device and nowhere else. It is scratch work, not part of the
+   book: it does not go into a backup or up to GitHub, and deleting the book
+   leaves it alone, as it leaves the rest of the settings.
+
+   Each entry keeps the numbers themselves rather than the text they were
+   shown as, so the list is written out in whichever currency's style the app
+   is showing today. */
+const CALC_HIST_KEY = "assetmgr.calcHistory";
+const CALC_HIST_MAX = 50;
+let calcHist = [];
+try {
+  const got = JSON.parse(localStorage.getItem(CALC_HIST_KEY) || "[]");
+  if (Array.isArray(got)) calcHist = got.filter(h => h && Array.isArray(h.toks) && Number.isFinite(h.r));
+} catch(_){ calcHist = []; }
+
+function calcHistAdd(toks, r){
+  calcHist.unshift({ toks: toks.slice(), r, at: Date.now() });
+  if (calcHist.length > CALC_HIST_MAX) calcHist.length = CALC_HIST_MAX;
+  try { localStorage.setItem(CALC_HIST_KEY, JSON.stringify(calcHist)); } catch(_){ /* storage full or blocked */ }
+  if (!$("calcHist").hidden) calcHistRender();
+}
+
+/* Today's sums say when; older ones say which day. */
+function calcHistWhen(at){
+  const d = new Date(at), now = new Date();
+  return d.toDateString() === now.toDateString()
+    ? d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+    : d.toLocaleDateString([], { day: "numeric", month: "short" });
+}
+
+function calcHistRender(){
+  $("csHistClear").hidden = !calcHist.length;
+  $("csHistList").innerHTML = calcHist.length
+    ? calcHist.map((h, n) =>
+        `<button type="button" class="ch-row" data-h="${n}">
+           <span class="ch-e">${esc(h.toks.map(calcTokText).join(" "))} =</span>
+           <span class="ch-t">${esc(calcHistWhen(h.at))}</span>
+           <span class="ch-r">${esc(calcFmt(calcNumStr(h.r)))}</span>
+         </button>`).join("")
+    : '<div class="ch-none">Nothing worked out yet.<br>Every sum you finish with = is kept here.</div>';
+}
+
+function calcHistShow(on){
+  $("calcKeys").hidden = on;
+  $("calcHist").hidden = !on;
+  $("csHistBtn").setAttribute("aria-expanded", String(on));
+  if (on) calcHistRender();
+}
+
+$("csHistBtn").addEventListener("click", () => calcHistShow($("calcHist").hidden));
+
+/* Tapping an entry brings its answer back. Midway through a sum it becomes
+   the number you were about to type; otherwise it is an answer to carry on
+   from, exactly as if = had just been pressed on it. */
+$("csHistList").addEventListener("click", (e) => {
+  const row = e.target.closest("[data-h]");
+  if (!row) return;
+  const h = calcHist[Number(row.dataset.h)];
+  if (!h) return;
+  if (calc.toks.length && !calc.done){
+    calc.cur = calcNumStr(h.r); calc.fresh = false;
+  } else {
+    Object.assign(calc, { toks: [], cur: calcNumStr(h.r), fresh: true, done: true,
+                          last: h.toks.map(calcTokText).join(" ") + " =" });
+  }
+  calcHistShow(false);
+  calcRender();
+});
+
+$("csHistClear").addEventListener("click", () => {
+  if (!confirm("Clear the calculator history?")) return;
+  calcHist = [];
+  try { localStorage.removeItem(CALC_HIST_KEY); } catch(_){}
+  calcHistRender();
+});
 
 /* A keyboard works too, on a laptop — only while this calculator is the thing
    on screen, and never while you are typing into a field. */
