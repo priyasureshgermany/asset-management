@@ -778,6 +778,35 @@ select.inp{appearance:none;background-image:none}
 .calcout .co-r span:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
 .calcbar{display:flex;height:10px;border-radius:99px;overflow:hidden;margin-top:12px;background:var(--surface-sunk)}
 .calcbar i{display:block;height:100%}
+/* The simple calculator. A screen, then a keypad laid out the way every phone
+   lays one out, so nobody has to look for the equals sign. */
+.calcscreen{
+  background:var(--surface-2);border-radius:var(--r-md);padding:12px 15px 14px;
+  margin-bottom:12px;text-align:right;min-height:84px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.cs-expr{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);min-height:18px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cs-val{font-family:var(--mono);font-size:34px;font-weight:600;letter-spacing:-.02em;
+  color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.15;
+  overflow-wrap:anywhere}
+.cs-val.small{font-size:24px}
+.cs-val.err{font-size:18px;color:var(--neg);font-family:inherit}
+.calckeys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ck{
+  height:54px;border-radius:14px;background:var(--surface-2);color:var(--ink);
+  font-size:21px;font-weight:500;font-family:var(--mono);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .12s,transform .08s;user-select:none;-webkit-user-select:none;
+  touch-action:manipulation;
+}
+.ck:active{transform:scale(.96);background:var(--surface-sunk)}
+.ck svg{width:22px;height:22px}
+.ck.fn{color:var(--ink-2);font-size:18px}
+.ck.op{color:var(--accent);font-size:23px}
+.ck.op.on{background:var(--accent);color:var(--surface)}
+.ck.eq{background:var(--accent);color:var(--surface);font-size:23px}
+.ck.zero{grid-column:span 2}
 .ytoggle{
   width:100%;margin-top:12px;padding:10px;border-radius:var(--r-md);
   background:var(--surface-2);border:1px solid var(--line);
@@ -1243,7 +1272,7 @@ html.locked #lockScreen{
     </button>
     <button class="setrow" type="button" data-pane="calc">
       <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2.5"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h4"/></svg></span>
-      <span class="sr-t"><b>Calculator</b><span>SIP and loan (EMI)</span></span>
+      <span class="sr-t"><b>Calculator</b><span>Simple, SIP and loan (EMI)</span></span>
     </button>
     <button class="setrow setrow-wide" type="button" data-pane="about">
       <span class="sr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5"/><path d="M12 8h.01"/></svg></span>
@@ -1372,13 +1401,42 @@ html.locked #lockScreen{
 
   <div class="sheet-body setpane" id="pane-calc" hidden>
     <h3>Calculator</h3>
-    <p class="ph">Two sums worth having to hand.</p>
+    <p class="ph">Everyday sums, and the two that come up with money.</p>
     <div class="toggle2" id="calcTog" style="margin-bottom:16px">
-      <button class="x" data-calc="sip" aria-pressed="true">SIP</button>
+      <button class="x" data-calc="simple" aria-pressed="true">Simple</button>
+      <button class="x" data-calc="sip" aria-pressed="false">SIP</button>
       <button class="x" data-calc="loan" aria-pressed="false">Loan (EMI)</button>
     </div>
 
-    <div id="calcSip">
+    <div id="calcSimple">
+      <div class="calcscreen" aria-live="polite">
+        <div class="cs-expr" id="csExpr">&nbsp;</div>
+        <div class="cs-val" id="csVal">0</div>
+      </div>
+      <div class="calckeys" id="calcKeys">
+        <button type="button" class="ck fn" data-k="C">C</button>
+        <button type="button" class="ck fn" data-k="back" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H9l-6 7 6 7h12z"/><path d="M17 9l-6 6M11 9l6 6"/></svg></button>
+        <button type="button" class="ck fn" data-k="%">%</button>
+        <button type="button" class="ck op" data-k="/">÷</button>
+        <button type="button" class="ck" data-k="7">7</button>
+        <button type="button" class="ck" data-k="8">8</button>
+        <button type="button" class="ck" data-k="9">9</button>
+        <button type="button" class="ck op" data-k="*">×</button>
+        <button type="button" class="ck" data-k="4">4</button>
+        <button type="button" class="ck" data-k="5">5</button>
+        <button type="button" class="ck" data-k="6">6</button>
+        <button type="button" class="ck op" data-k="-">−</button>
+        <button type="button" class="ck" data-k="1">1</button>
+        <button type="button" class="ck" data-k="2">2</button>
+        <button type="button" class="ck" data-k="3">3</button>
+        <button type="button" class="ck op" data-k="+">+</button>
+        <button type="button" class="ck zero" data-k="0">0</button>
+        <button type="button" class="ck" data-k="." id="ckDot">,</button>
+        <button type="button" class="ck eq" data-k="=">=</button>
+      </div>
+    </div>
+
+    <div id="calcSip" hidden>
       <div class="field"><label>Monthly investment</label>
         <div class="amtfield"><span class="cur" id="sipCur">€</span><input id="sipAmt" type="text" inputmode="decimal" value="20000"></div>
       </div>
@@ -1740,8 +1798,8 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.34";
-const APP_BUILT = "2026-09-07";
+const APP_VERSION = "1.1.35";
+const APP_BUILT = "2026-09-10";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
 
@@ -4265,6 +4323,8 @@ $("btnGoldPrice").addEventListener("click", () => { setPane("rates"); sheetOpen(
 function fillCalc(){
   $("sipCur").textContent = curSym(display());
   $("loanCur").textContent = curSym(display());
+  $("ckDot").textContent = (1.5).toLocaleString(CUR_META[display()].locale).charAt(1);
+  calcRender();
   const now = new Date();
   const thisMonth = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0");
   if (!$("sipStart").value) $("sipStart").value = thisMonth;
@@ -4273,9 +4333,156 @@ function fillCalc(){
 $("calcTog").querySelectorAll("button").forEach(b =>
   b.addEventListener("click", () => {
     $("calcTog").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    $("calcSimple").hidden = b.dataset.calc !== "simple";
     $("calcSip").hidden = b.dataset.calc !== "sip";
     $("calcLoan").hidden = b.dataset.calc !== "loan";
   }));
+
+/* ---------- the simple calculator ----------
+   Worked out by precedence, as a phone does it: 2 + 3 × 4 is 14, not 20. The
+   sum is kept as a list of numbers and operators and evaluated by hand, never
+   handed to eval — nothing typed here is ever run as code.
+
+   % follows the phone convention too: after + or − it is a share of what came
+   before it (200 + 10 % is 220), anywhere else it is just the number over a
+   hundred (50 × 10 % is 5). */
+const calc = { toks: [], cur: "0", fresh: true, done: false, last: "" };
+const CALC_OPS = { "+": "+", "-": "−", "*": "×", "/": "÷" };
+
+function calcEval(toks){
+  const out = [], ops = [];
+  const prec = o => (o === "*" || o === "/") ? 2 : 1;
+  const apply = () => {
+    const o = ops.pop(), b = out.pop(), a = out.pop();
+    if (o === "/" && b === 0) throw new Error("zero");
+    out.push(o === "+" ? a + b : o === "-" ? a - b : o === "*" ? a * b : a / b);
+  };
+  toks.forEach(t => {
+    if (typeof t === "number") out.push(t);
+    else { while (ops.length && prec(ops[ops.length - 1]) >= prec(t)) apply(); ops.push(t); }
+  });
+  while (ops.length) apply();
+  /* Twelve significant figures: enough for any sum of money, and few enough
+     that 0.1 + 0.2 comes back as 0.3. */
+  return Number(out[0].toPrecision(12));
+}
+
+/* The number as it is being typed — a trailing decimal mark and trailing
+   zeros are kept, because "12," is where you are, not a mistake — grouped
+   and punctuated the way the display currency writes amounts. */
+function calcShow(str){
+  const loc = CUR_META[display()].locale;
+  const dec = (1.5).toLocaleString(loc).charAt(1);
+  const neg = str.charAt(0) === "-";
+  const body = neg ? str.slice(1) : str;
+  const [int, frac] = body.split(".");
+  const grouped = Number(int || 0).toLocaleString(loc, { maximumFractionDigits: 0 });
+  return (neg ? "−" : "") + grouped + (frac !== undefined ? dec + frac : "");
+}
+function calcNumStr(n){
+  if (!Number.isFinite(n)) return "0";
+  /* Plain digits unless the number is too big or small to write out. */
+  return Math.abs(n) >= 1e15 || (n !== 0 && Math.abs(n) < 1e-9)
+    ? n.toExponential(6) : String(n);
+}
+const calcTokText = t => typeof t === "number" ? calcShow(calcNumStr(t)) : CALC_OPS[t];
+
+function calcRender(err){
+  const v = $("csVal"), e = $("csExpr");
+  const exprTxt = calc.done ? calc.last : calc.toks.map(calcTokText).join(" ");
+  e.innerHTML = exprTxt ? esc(exprTxt) : "&nbsp;";
+  if (err){ v.textContent = err; v.className = "cs-val err"; }
+  else {
+    const shown = /e/.test(calc.cur) ? calc.cur.replace("-", "−") : calcShow(calc.cur);
+    v.textContent = shown;
+    v.className = "cs-val" + (shown.length > 12 ? " small" : "");
+  }
+  /* The operator waiting for its second number stays lit. */
+  const lastTok = calc.toks[calc.toks.length - 1];
+  const pending = calc.fresh && !calc.done && typeof lastTok === "string" ? lastTok : "";
+  $("calcKeys").querySelectorAll(".op").forEach(b => b.classList.toggle("on", b.dataset.k === pending));
+}
+
+function calcReset(){ Object.assign(calc, { toks: [], cur: "0", fresh: true, done: false, last: "" }); }
+
+function calcKey(k){
+  if (/^\d$/.test(k)){
+    if (calc.done) calcReset();
+    if (calc.fresh){ calc.cur = k; calc.fresh = false; }
+    else if (calc.cur.replace(/[-.]/g, "").length < 15)
+      calc.cur = calc.cur === "0" ? k : calc.cur === "-0" ? "-" + k : calc.cur + k;
+  }
+  else if (k === "."){
+    if (calc.done) calcReset();
+    if (calc.fresh){ calc.cur = "0."; calc.fresh = false; }
+    else if (calc.cur.indexOf(".") < 0) calc.cur += ".";
+  }
+  else if (k === "C") calcReset();
+  else if (k === "back"){
+    if (calc.done){ calc.done = false; calc.last = ""; }
+    else if (!calc.fresh){
+      calc.cur = calc.cur.slice(0, -1);
+      if (calc.cur === "" || calc.cur === "-"){ calc.cur = "0"; calc.fresh = true; }
+    }
+    else if (calc.toks.length){
+      /* Back past an operator you have just pressed takes the operator away
+         and puts the number before it back under your finger. */
+      calc.toks.pop();
+      const n = calc.toks.pop();
+      if (typeof n === "number"){ calc.cur = calcNumStr(n); calc.fresh = false; }
+    }
+  }
+  else if (k === "%"){
+    const n = Number(calc.cur);
+    const before = calc.toks[calc.toks.length - 1];
+    let base = 1;
+    if ((before === "+" || before === "-") && !calc.done){
+      try { base = calcEval(calc.toks.slice(0, -1)); } catch(_){ base = 1; }
+    }
+    calc.cur = calcNumStr(Number((base * n / 100).toPrecision(12)));
+    calc.fresh = false; calc.done = false; calc.last = "";
+  }
+  else if (CALC_OPS[k]){
+    if (calc.done){ calc.toks = []; calc.done = false; calc.last = ""; calc.fresh = false; }
+    const lastTok = calc.toks[calc.toks.length - 1];
+    if (calc.fresh && typeof lastTok === "string") calc.toks[calc.toks.length - 1] = k;  /* changed your mind */
+    else if (calc.fresh && !calc.toks.length && k === "-"){ calc.cur = "-0"; calc.fresh = false; }
+    else { calc.toks.push(Number(calc.cur), k); calc.fresh = true; }
+  }
+  else if (k === "="){
+    if (calc.done || !calc.toks.length){ calcRender(); return; }
+    const toks = calc.toks.concat(calc.fresh ? [] : [Number(calc.cur)]);
+    if (typeof toks[toks.length - 1] === "string") toks.pop();
+    try {
+      const r = calcEval(toks);
+      calc.last = toks.map(calcTokText).join(" ") + " =";
+      calc.toks = []; calc.cur = calcNumStr(r); calc.fresh = true; calc.done = true;
+    } catch(_){
+      calcReset();
+      calcRender("Can't divide by zero");
+      return;
+    }
+  }
+  calcRender();
+}
+
+$("calcKeys").querySelectorAll(".ck").forEach(b =>
+  b.addEventListener("click", () => calcKey(b.dataset.k)));
+
+/* A keyboard works too, on a laptop — only while this calculator is the thing
+   on screen, and never while you are typing into a field. */
+document.addEventListener("keydown", (e) => {
+  if ($("calcSimple").hidden || $("pane-calc").hidden || !$("shSet").classList.contains("open")) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const tag = (e.target && e.target.tagName) || "";
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+  const map = { Enter: "=", "=": "=", Backspace: "back", Delete: "C", ",": ".", ".": ".",
+                "+": "+", "-": "-", "*": "*", x: "*", X: "*", "/": "/", "%": "%", c: "C", C: "C" };
+  const k = /^\d$/.test(e.key) ? e.key : map[e.key];
+  if (!k) return;
+  e.preventDefault();
+  calcKey(k);
+});
 /* Both schedules run month by month and the headline figures are read off the
    last row rather than worked out a second way — a total and its breakdown
    that are calculated separately are a total and its breakdown that drift. */
