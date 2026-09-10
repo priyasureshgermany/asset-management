@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.38 — 2026-09-10
+- new: Net-worth history in Settings — one point a month, a line to see the trend, and the change since last month and last year
+
 ## 1.1.37 — 2026-09-10
 - new: Dashboard sections fold — tap a heading to fold it to its title and total, and the fold is remembered
 
