@@ -838,6 +838,15 @@ select.inp{appearance:none;background-image:none}
 .calcout .co-r span:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
 .calcbar{display:flex;height:10px;border-radius:99px;overflow:hidden;margin-top:12px;background:var(--surface-sunk)}
 .calcbar i{display:block;height:100%}
+/* A 2px gap in the card's own colour between segments, so neighbouring
+   greens read as two things rather than one long bar. */
+.calcbar i{box-sizing:border-box}
+.calcbar i + i{border-left:2px solid var(--surface-2)}
+.co-r .sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:7px}
+.ytable .phase-row td{
+  font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-3);background:var(--surface-sunk);text-align:left;padding:6px 10px;
+}
 /* The simple calculator. A screen, then a keypad laid out the way every phone
    lays one out, so nobody has to look for the equals sign. */
 .calcscreen{
@@ -1544,16 +1553,20 @@ html.locked #lockScreen{
       </div>
       <div class="row2">
         <div class="field"><label>Return % a year</label><input class="inp" id="sipRate" type="text" inputmode="decimal" value="14"></div>
-        <div class="field"><label>Years</label><input class="inp" id="sipYears" type="text" inputmode="decimal" value="10"></div>
+        <div class="field"><label>Years paying</label><input class="inp" id="sipYears" type="text" inputmode="decimal" value="10"></div>
       </div>
+      <div class="row2">
+        <div class="field"><label>Step-up % a year</label><input class="inp" id="sipStep" type="text" inputmode="decimal" placeholder="0"></div>
+        <div class="field"><label>Then wait, years</label><input class="inp" id="sipWait" type="text" inputmode="decimal" placeholder="0"></div>
+      </div>
+      <div class="note" style="margin:-4px 0 14px">Step-up raises the monthly amount once a year. Waiting stops the payments after the years above and lets what is there keep growing.</div>
       <div class="field"><label>Starting</label><input class="inp" id="sipStart" type="month"></div>
       <button class="btn" id="sipCalc">Work it out</button>
       <div class="calcout" id="sipOut" hidden>
-        <div class="co-k">Worth at the end</div>
+        <div class="co-k" id="sipFutureK">Worth at the end</div>
         <div class="co-v" id="sipFuture">—</div>
-        <div class="calcbar"><i id="sipBarIn" style="background:var(--accent)"></i><i id="sipBarRet" style="background:var(--pos)"></i></div>
-        <div class="co-r"><span>You put in</span><span id="sipInvested">—</span></div>
-        <div class="co-r"><span>It earned</span><span id="sipReturns">—</span></div>
+        <div class="calcbar"><i id="sipBarIn" style="background:var(--accent)"></i><i id="sipBarRet" style="background:var(--pos)"></i><i id="sipBarWait" style="background:var(--pos);opacity:.45" hidden></i></div>
+        <div id="sipRows"></div>
         <button class="ytoggle" id="sipYearBtn" type="button" aria-expanded="false">
           Year by year
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
@@ -1906,8 +1919,8 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.38";
-const APP_BUILT = "2026-09-10";
+const APP_VERSION = "1.1.39";
+const APP_BUILT = "2026-09-11";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
 
@@ -4931,20 +4944,33 @@ document.addEventListener("keydown", (e) => {
 /* Both schedules run month by month and the headline figures are read off the
    last row rather than worked out a second way — a total and its breakdown
    that are calculated separately are a total and its breakdown that drift. */
-function sipSchedule(P, annual, months){
+/* Paid at the start of each month and compounded monthly. On top of that:
+   - a step-up raises the monthly amount once a year, on the anniversary of
+     the first payment — what a rising salary usually does to a SIP;
+   - a wait stops the payments and leaves what is there to grow on its own.
+   Every figure is read off this one month-by-month run, so the totals, the
+   point where the payments stop and the table cannot disagree. */
+function sipSchedule(P, annual, payMonths, stepPct, waitMonths){
   const r = annual / 12 / 100;
+  const step = 1 + (stepPct || 0) / 100;
+  const total = payMonths + (waitMonths || 0);
   const rows = [];
-  let worth = 0, put = 0, inYear = [];
-  for (let m = 1; m <= months; m++){
-    worth = (worth + P) * (1 + r);   /* paid at the start of the month */
-    put += P;
-    inYear.push({ n: ((m - 1) % 12) + 1, put, worth, earned: worth - put });
-    if (m % 12 === 0 || m === months){
-      rows.push({ year: Math.ceil(m / 12), put, worth, earned: worth - put, months: inYear });
+  let worth = 0, put = 0, inYear = [], lastPay = 0, stop = null;
+  for (let m = 1; m <= total; m++){
+    const paying = m <= payMonths;
+    const pay = paying ? P * Math.pow(step, Math.floor((m - 1) / 12)) : 0;
+    if (paying) lastPay = pay;
+    worth = (worth + pay) * (1 + r);   /* paid at the start of the month */
+    put += pay;
+    inYear.push({ n: ((m - 1) % 12) + 1, pay, put, worth, earned: worth - put, wait: !paying });
+    if (m === payMonths) stop = { worth, put };
+    if (m % 12 === 0 || m === total){
+      rows.push({ year: Math.ceil(m / 12), put, worth, earned: worth - put,
+                  wait: inYear.every(x => x.wait), months: inYear });
       inYear = [];
     }
   }
-  return rows;
+  return { rows, stop, lastPay };
 }
 function loanSchedule(P, annual, months, emi){
   const r = annual / 12 / 100;
@@ -5012,19 +5038,52 @@ function yearLabel(row, months, start){
 
 $("sipCalc").addEventListener("click", () => {
   const P = num($("sipAmt").value), annual = num($("sipRate").value), years = num($("sipYears").value);
-  const n = Math.round(years * 12);
-  if (P <= 0 || n <= 0){ toast("Fill in the amount and the years"); return; }
-  const rows = sipSchedule(P, annual, n);
+  const step = Math.min(100, Math.max(0, num($("sipStep").value)));
+  const waitYears = Math.min(50, Math.max(0, num($("sipWait").value)));
+  const pay = Math.round(years * 12), wait = Math.round(waitYears * 12);
+  if (P <= 0 || pay <= 0){ toast("Fill in the amount and the years"); return; }
+  const n = pay + wait;
+  const { rows, stop, lastPay } = sipSchedule(P, annual, pay, step, wait);
   const end = rows[rows.length - 1];
-  const future = end.worth, invested = end.put, earned = end.earned;
-
-  $("sipFuture").textContent = fmtDisp(future);
-  $("sipInvested").textContent = fmtDisp(invested);
-  $("sipReturns").textContent = fmtDisp(earned);
-  $("sipBarIn").style.width = (invested / future * 100) + "%";
-  $("sipBarRet").style.width = (earned / future * 100) + "%";
+  const future = end.worth, invested = end.put, earned = future - invested;
+  /* Split at the month the payments stop: what the money earned while you
+     were still adding to it, and what it earned left alone afterwards. */
+  const earnedPaying = stop.worth - stop.put;
+  const earnedWaiting = future - stop.worth;
   const sipFrom = startMonth("sipStart");
-  $("sipYearRows").innerHTML = rows.map(row => `<tr class="yr-row" data-y="${row.year}" tabindex="0">
+  const yearsText = (y) => y === 1 ? "1 year" : fmtRate(y) + " years";
+
+  $("sipFutureK").textContent = wait ? "Worth after waiting " + yearsText(waitYears) : "Worth at the end";
+  $("sipFuture").textContent = fmtDisp(future);
+  const share = (v) => Math.max(0, v / future * 100) + "%";
+  $("sipBarIn").style.width = share(invested);
+  $("sipBarRet").style.width = share(wait ? earnedPaying : earned);
+  $("sipBarWait").hidden = !wait;
+  $("sipBarWait").style.width = wait ? share(earnedWaiting) : "0%";
+
+  /* Each line that has a segment in the bar carries its key, so the bar is
+     never read by colour alone. */
+  const line = (key, label, value) =>
+    `<div class="co-r"><span>${key ? `<i class="sw" style="${key}"></i>` : ""}${esc(label)}</span><span>${esc(value)}</span></div>`;
+  $("sipRows").innerHTML =
+    line("background:var(--accent)", "You put in", fmtDisp(invested)) +
+    (wait
+      ? line("background:var(--pos)", "Earned while paying", fmtDisp(earnedPaying)) +
+        line("background:var(--pos);opacity:.45", "Earned while waiting", fmtDisp(earnedWaiting)) +
+        line("", "Worth when you stop paying" +
+             (sipFrom ? " · " + monthName(addMonths(sipFrom, pay - 1)) : ""), fmtDisp(stop.worth))
+      : line("background:var(--pos)", "It earned", fmtDisp(earned))) +
+    (step > 0 ? line("", "Last monthly payment, after step-ups", fmtDisp(lastPay)) : "") +
+    line("", "Money multiplied", "×" + fmtRate(Math.round(future / invested * 100) / 100));
+
+  /* Where the payments stop, the table says so once, rather than tagging
+     every year after it. */
+  const firstWait = wait ? rows.find(row => row.months[0].wait) : null;
+  $("sipYearRows").innerHTML = rows.map(row =>
+    (row === firstWait
+      ? `<tr class="phase-row"><td colspan="4">Payments stop · then ${esc(yearsText(waitYears))} of waiting</td></tr>`
+      : "") +
+    `<tr class="yr-row" data-y="${row.year}" tabindex="0">
     <td class="yr"><span class="yr-caret"></span>${esc(yearLabel(row, n, sipFrom))}</td>
     <td>${esc(fmtExact(row.put))}</td>
     <td>${esc(fmtExact(row.worth))}</td>

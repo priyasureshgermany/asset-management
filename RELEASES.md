@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.1.39 — 2026-09-11
+- new: SIP calculator: a yearly step-up, and a wait after the payments stop to see what the money grows to left alone
+
 ## 1.1.38 — 2026-09-10
 - new: Net-worth history in Settings — one point a month, a line to see the trend, and the change since last month and last year
 
