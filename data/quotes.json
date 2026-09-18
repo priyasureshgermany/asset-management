@@ -1,279 +1,279 @@
 {
-  "at": "2026-09-17T17:42:54.084Z",
+  "at": "2026-09-18T17:39:52.780Z",
   "fx": {
-    "EURINR": 110.1014,
-    "EURUSD": 1.148,
-    "EURSEK": 11.275
+    "EURINR": 110.1188,
+    "EURUSD": 1.1488,
+    "EURSEK": 11.2895
   },
   "quotes": {
     "HDFCBANK.NS": {
-      "raw": 713,
+      "raw": 731,
       "currency": "INR",
       "name": "HDFC Bank Limited",
       "sector": "Financial Services",
       "in": {
-        "EUR": 6.48,
-        "INR": 713
+        "EUR": 6.64,
+        "INR": 731
       }
     },
     "BAJFINANCE.NS": {
-      "raw": 1015,
+      "raw": 1040.3,
       "currency": "INR",
       "name": "Bajaj Finance Limited",
       "sector": "Financial Services",
       "in": {
-        "EUR": 9.22,
-        "INR": 1015
+        "EUR": 9.45,
+        "INR": 1040.3
       }
     },
     "RELIANCE.NS": {
-      "raw": 1243.9,
+      "raw": 1226.4,
       "currency": "INR",
       "name": "Reliance Industries Limited",
       "sector": "Energy",
       "in": {
-        "EUR": 11.3,
-        "INR": 1243.9
+        "EUR": 11.14,
+        "INR": 1226.4
       }
     },
     "REDINGTON.NS": {
-      "raw": 400.1,
+      "raw": 399.85,
       "currency": "INR",
       "name": "Redington Limited",
       "sector": "Technology",
       "in": {
         "EUR": 3.63,
-        "INR": 400.1
+        "INR": 399.85
       }
     },
     "TCS.NS": {
-      "raw": 2190,
+      "raw": 2105,
       "currency": "INR",
       "name": "Tata Consultancy Services Limited",
       "sector": "Technology",
       "in": {
-        "EUR": 19.89,
-        "INR": 2190
+        "EUR": 19.12,
+        "INR": 2105
       }
     },
     "SBICARD.NS": {
-      "raw": 636.95,
+      "raw": 651.15,
       "currency": "INR",
       "name": "SBI Cards and Payment Services Limited",
       "sector": "Financial Services",
       "in": {
-        "EUR": 5.79,
-        "INR": 636.95
+        "EUR": 5.91,
+        "INR": 651.15
       }
     },
     "VEDL.NS": {
-      "raw": 257.45,
+      "raw": 267.6,
       "currency": "INR",
       "name": "Vedanta Limited",
       "sector": "Basic Materials",
       "in": {
-        "EUR": 2.34,
-        "INR": 257.45
+        "EUR": 2.43,
+        "INR": 267.6
       }
     },
     "IRCTC.NS": {
-      "raw": 457,
+      "raw": 476.75,
       "currency": "INR",
       "name": "Indian Railway Catering & Tourism Corporation Limited",
       "sector": "Consumer Cyclical",
       "in": {
-        "EUR": 4.15,
-        "INR": 457
+        "EUR": 4.33,
+        "INR": 476.75
       }
     },
     "VBL.NS": {
-      "raw": 415.45,
+      "raw": 421.95,
       "currency": "INR",
       "name": "Varun Beverages Limited",
       "sector": "Consumer Defensive",
       "in": {
-        "EUR": 3.77,
-        "INR": 415.45
+        "EUR": 3.83,
+        "INR": 421.95
       }
     },
     "BANDHANBNK.NS": {
-      "raw": 171.5,
+      "raw": 175,
       "currency": "INR",
       "name": "Bandhan Bank Limited",
       "sector": "Financial Services",
       "in": {
-        "EUR": 1.56,
-        "INR": 171.5
+        "EUR": 1.59,
+        "INR": 175
       }
     },
     "IDFCFIRSTB.NS": {
-      "raw": 86.33,
+      "raw": 85.92,
       "currency": "INR",
       "name": "IDFC First Bank Limited",
       "sector": "Financial Services",
       "in": {
         "EUR": 0.78,
-        "INR": 86.33
+        "INR": 85.92
       }
     },
     "HDFCLIFE.NS": {
-      "raw": 557,
+      "raw": 550.95,
       "currency": "INR",
       "name": "HDFC Life Insurance Company Limited",
       "sector": "Financial Services",
       "in": {
-        "EUR": 5.06,
-        "INR": 557
+        "EUR": 5,
+        "INR": 550.95
       }
     },
     "IOC.NS": {
-      "raw": 134.27,
+      "raw": 137,
       "currency": "INR",
       "name": "Indian Oil Corporation Limited",
       "sector": "Energy",
       "in": {
-        "EUR": 1.22,
-        "INR": 134.27
+        "EUR": 1.24,
+        "INR": 137
       }
     },
     "ITC.NS": {
-      "raw": 266.2,
+      "raw": 262.3,
       "currency": "INR",
       "name": "ITC Limited",
       "sector": "Consumer Defensive",
       "in": {
-        "EUR": 2.42,
-        "INR": 266.2
+        "EUR": 2.38,
+        "INR": 262.3
       }
     },
     "JIOFIN.NS": {
-      "raw": 229.3,
+      "raw": 229.89,
       "currency": "INR",
       "name": "Jio Financial Services Limited",
       "sector": "Financial Services",
       "in": {
-        "EUR": 2.08,
-        "INR": 229.3
+        "EUR": 2.09,
+        "INR": 229.89
       }
     },
     "KPITTECH.NS": {
-      "raw": 559.3,
+      "raw": 532,
       "currency": "INR",
       "name": "KPIT Technologies Limited",
       "sector": "Technology",
       "in": {
-        "EUR": 5.08,
-        "INR": 559.3
+        "EUR": 4.83,
+        "INR": 532
       }
     },
     "RECLTD.NS": {
-      "raw": 310.5,
+      "raw": 312,
       "currency": "INR",
       "name": "REC Limited",
       "sector": "Financial Services",
       "in": {
-        "EUR": 2.82,
-        "INR": 310.5
+        "EUR": 2.83,
+        "INR": 312
       }
     },
     "NIFTYBEES.NS": {
-      "raw": 266.08,
+      "raw": 266.53,
       "currency": "INR",
       "name": "Nippon India ETF Nifty 50 BeES",
       "sector": "Index",
       "in": {
         "EUR": 2.42,
-        "INR": 266.08
+        "INR": 266.53
       }
     },
     "BANKBEES.NS": {
-      "raw": 581.64,
+      "raw": 583.58,
       "currency": "INR",
       "name": "Nippon India ETF Nifty Bank BeES",
       "sector": "Index",
       "in": {
-        "EUR": 5.28,
-        "INR": 581.64
+        "EUR": 5.3,
+        "INR": 583.58
       }
     },
     "ITBEES.NS": {
-      "raw": 32.39,
+      "raw": 31.94,
       "currency": "INR",
       "name": "Nippon India ETF Nifty IT",
       "sector": "Index",
       "in": {
         "EUR": 0.29,
-        "INR": 32.39
+        "INR": 31.94
       }
     },
     "INTU": {
-      "raw": 316.41,
+      "raw": 301.055,
       "currency": "USD",
       "name": "Intuit Inc.",
       "sector": "Technology",
       "in": {
-        "EUR": 275.62,
-        "INR": 30345.98
+        "EUR": 262.06,
+        "INR": 28857.78
       }
     },
     "MSFT": {
-      "raw": 495.48,
+      "raw": 494.895,
       "currency": "USD",
       "name": "Microsoft Corporation",
       "sector": "Technology",
       "in": {
-        "EUR": 431.6,
-        "INR": 47520.07
+        "EUR": 430.79,
+        "INR": 47438.41
       }
     },
     "AMZN": {
-      "raw": 251.16,
+      "raw": 252.99,
       "currency": "USD",
       "name": "Amazon.com, Inc.",
       "sector": "Consumer Cyclical",
       "in": {
-        "EUR": 218.78,
-        "INR": 24088.04
+        "EUR": 220.22,
+        "INR": 24250.48
       }
     },
     "NDAQ": {
-      "raw": 91.515,
+      "raw": 92.61,
       "currency": "USD",
       "name": "Nasdaq, Inc.",
       "sector": "Financial Services",
       "in": {
-        "EUR": 79.72,
-        "INR": 8776.94
+        "EUR": 80.61,
+        "INR": 8877.18
       }
     },
     "NOW": {
-      "raw": 138.49,
+      "raw": 136.82,
       "currency": "USD",
       "name": "ServiceNow, Inc.",
       "sector": "Technology",
       "in": {
-        "EUR": 120.64,
-        "INR": 13282.18
+        "EUR": 119.1,
+        "INR": 13114.95
       }
     },
     "WKL.AS": {
-      "raw": 70.08,
+      "raw": 68.16,
       "currency": "EUR",
       "name": "Wolters Kluwer N.V.",
       "sector": "Industrials",
       "in": {
-        "EUR": 70.08,
-        "INR": 7715.91
+        "EUR": 68.16,
+        "INR": 7505.7
       }
     },
     "LIME.ST": {
-      "raw": 245.5,
+      "raw": 242,
       "currency": "SEK",
       "name": "Lime Technologies AB (publ)",
       "sector": "Technology",
       "in": {
-        "EUR": 21.77,
-        "INR": 2397.33
+        "EUR": 21.44,
+        "INR": 2360.49
       }
     }
   },
