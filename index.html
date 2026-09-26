@@ -1398,6 +1398,10 @@ html.locked #lockScreen{
         <button class="x" data-cur="EUR" aria-pressed="false">€ Euro</button>
       </div>
     </div>
+    <div class="field"><label>Monthly update reminder</label>
+      <input class="inp" id="profRevDay" type="text" inputmode="numeric" placeholder="5">
+      <div class="note" style="margin-top:8px">The day of the month to be reminded to go through the book — check the balances, let the prices refresh, push a backup. Blank or 0 turns it off.</div>
+    </div>
     <button class="btn" id="saveProfile">Save</button>
   </div>
 
@@ -1919,8 +1923,8 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.1.39";
-const APP_BUILT = "2026-09-11";
+const APP_VERSION = "1.2.0";
+const APP_BUILT = "2026-09-26";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
 
@@ -2280,6 +2284,13 @@ function stateFromPayload(p){
     profile: { name: str(p.profile && p.profile.name), currency: home },
     settings: {
       display: oneOf(settings.display, CURRENCIES, home),
+      /* The day of the month to be nudged to go through the book, and the
+         month last gone through. Kept with the book rather than on the device,
+         so ticking it off on the phone settles it on the laptop too the next
+         time the two meet. 0 turns the nudge off; 28 is the last day every
+         month actually has. Books written before this get the 5th. */
+      reviewDay: Math.min(28, Math.max(0, Math.round(num(settings.reviewDay == null ? 5 : settings.reviewDay)))),
+      reviewedMonth: /^\d{4}-(0[1-9]|1[0-2])$/.test(str(settings.reviewedMonth)) ? str(settings.reviewedMonth) : "",
       /* What share of everything owned each kind is meant to be. Kept as whole
          percents against the chart's own buckets, so the report can put the
          two side by side without a second vocabulary. */
@@ -3273,8 +3284,30 @@ function reminders(){
   if (goldOnly().length && !goldPrice(display()))
     out.push({ kind:"goldprice" });
 
+  /* The monthly once-over. Prices move on their own, but a balance, a new
+     holding or a loan that came down are only ever as right as the last time
+     someone looked — and a book nobody has been through since spring gives a
+     wrong answer rather than an old one. */
+  if (reviewDue(now)) out.push({ kind:"review" });
+
   return out;
 }
+
+/* Due from the chosen day onwards, not only on it: a nudge that appears on
+   the 5th and gives up at midnight is a nudge you miss by being busy. */
+function reviewDue(now){
+  now = now || new Date();
+  const day = state.settings.reviewDay;
+  if (!day) return false;
+  /* Nothing to go through yet. A fresh install has no book to check, and the
+     first thing it would ask of you is not a chore. */
+  if (!state.assets.length && !state.investments.length && !state.liabilities.length) return false;
+  return now.getDate() >= day && state.settings.reviewedMonth !== monthKey(now);
+}
+const ordinalDay = (n) =>
+  n + (n % 10 === 1 && n % 100 !== 11 ? "st"
+     : n % 10 === 2 && n % 100 !== 12 ? "nd"
+     : n % 10 === 3 && n % 100 !== 13 ? "rd" : "th");
 
 function syncBell(){
   const n = reminders().length;
@@ -3313,6 +3346,11 @@ function openDue(){
   $("dueNote").hidden = !due.length;
 
   $("remOther").innerHTML = rest.map(r => {
+    if (r.kind === "review")
+      return `<div class="note" style="margin-top:10px"><b>Time for the monthly update.</b>
+        Go through the book — check the balances, let the prices refresh, and push a backup
+        so the copy on GitHub is this month's.
+        <button class="btn ghost sm" id="revDone" style="margin-top:10px">Mark ${esc(boughtMonth(monthKey(now)))} done</button></div>`;
     if (r.kind === "goal")
       return `<div class="note" style="margin-top:10px"><b>${esc(r.item.name || "A goal")}</b> was due
         ${esc(r.item.targetDate)} and is at ${esc(fmt(goalSaved(r.item), r.item.currency))}
@@ -3321,6 +3359,14 @@ function openDue(){
       ${esc(display())} price a gram, so it is counting as nothing. Set it in
       <b>Settings → Rates &amp; gold</b>.</div>`;
   }).join("");
+  /* Marking it done settles this month only; it comes back on the day next
+     month, the same way a ticked-off payment does. */
+  const revDone = $("remOther").querySelector("#revDone");
+  if (revDone) revDone.addEventListener("click", () => {
+    state.settings.reviewedMonth = monthKey();
+    save(); syncBell(); openDue();
+    toast("Done for this month — back on the " + ordinalDay(state.settings.reviewDay));
+  });
   $("dueRows").innerHTML = due.map(i => {
     const day = dueDayThisMonth(i.sipDay, now);
     const late = now.getDate() - day;
@@ -4191,6 +4237,7 @@ $("setBack").addEventListener("click", () => setPane(null));
 /* ---------- profile ---------- */
 function fillProfile(){
   $("profName").value = state.profile.name;
+  $("profRevDay").value = state.settings.reviewDay || "";
   $("profCurTog").querySelectorAll("button").forEach(b =>
     b.setAttribute("aria-pressed", String(b.dataset.cur === state.profile.currency)));
 }
@@ -4202,6 +4249,7 @@ $("saveProfile").addEventListener("click", () => {
   state.profile.name = $("profName").value.trim();
   const on = $("profCurTog").querySelector('[aria-pressed="true"]');
   state.profile.currency = on ? on.dataset.cur : "INR";
+  state.settings.reviewDay = Math.min(28, Math.max(0, Math.round(num($("profRevDay").value))));
   save(); render(); toast("Saved");
 });
 
