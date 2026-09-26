@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.2.0 — 2026-09-26
+- new: A monthly reminder to go through the book — from the 5th, until you mark the month done, and the day is yours to change in Profile
+
 ## 1.1.39 — 2026-09-11
 - new: SIP calculator: a yearly step-up, and a wait after the payments stop to see what the money grows to left alone
 
