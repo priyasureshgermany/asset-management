@@ -1,0 +1,46 @@
+name: News
+
+# Headlines and corporate actions, fetched where CORS does not apply — the
+# same reason the prices are fetched on a runner rather than in the app.
+
+on:
+  schedule:
+    # Every three hours. News does not keep market hours, and three hours is
+    # often enough to be current without filling the history with commits.
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Shared with the quotes run: both write into data/, and two jobs committing
+# there at once is a push that loses one of them.
+concurrency:
+  group: data
+  cancel-in-progress: false
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch the news
+        run: node tools/fetch-news.mjs
+
+      - name: Commit only if something moved
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/news.json
+          if git diff --staged --quiet; then
+            echo "Nothing new — nothing to commit."
+          else
+            git commit -m "News for $(date -u +'%Y-%m-%d %H:%M')"
+            git pull --rebase --autostash
+            git push
+          fi
