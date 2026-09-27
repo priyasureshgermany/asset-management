@@ -1976,7 +1976,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.2.2";
+const APP_VERSION = "1.2.3";
 const APP_BUILT = "2026-09-27";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -5049,6 +5049,10 @@ window.addEventListener("resize", (function(){
    ones the rest of the app values gold and converts totals with, so the News
    tab and the Gold tab cannot quietly disagree. */
 const NEWS_KEY = "assetmgr.news";
+/* A week, applied here as well as in the fetch: a file written before this
+   rule, or a copy cached on the device, would otherwise still be showing a
+   fortnight. Corporate actions are not headlines and keep their own window. */
+const NEWS_WINDOW_DAYS = 7;
 const NEWS_STALE_MIN = 30;
 let newsCache = null;
 let newsShownAt = "";
@@ -5098,10 +5102,15 @@ function heldSymbols(){
 /* .NS is the National Stock Exchange; everything else is abroad. */
 const newsRegionOf = (sym) => /\.NS$/i.test(sym) ? "IN" : "GLOBAL";
 
+const newsFresh = (iso) => {
+  const t = Date.parse(iso || "");
+  return Number.isFinite(t) && Date.now() - t <= NEWS_WINDOW_DAYS * 864e5;
+};
+
 function newsFor(region){
   const data = newsLoad();
   if (!data) return { market: [], items: [] };
-  const market = ((data.market || {})[region] || []).slice(0, 8);
+  const market = ((data.market || {})[region] || []).filter(x => newsFresh(x.at)).slice(0, 8);
   const items = [];
   heldSymbols().forEach((name, sym) => {
     if (newsRegionOf(sym) !== region) return;
@@ -5109,8 +5118,9 @@ function newsFor(region){
     if (!rec) return;
     (rec.actions || []).forEach(a =>
       items.push(Object.assign({}, a, { kind: "action", act: a.kind, sym, name })));
-    (rec.news || []).forEach(n =>
-      items.push(Object.assign({}, n, { kind: "news", sym, name })));
+    (rec.news || []).forEach(n => {
+      if (newsFresh(n.at)) items.push(Object.assign({}, n, { kind: "news", sym, name }));
+    });
   });
   /* Newest first, whichever holding it belongs to: a day's news reads as a
      day's news, not as a list of companies. */
@@ -5204,10 +5214,10 @@ function renderNews(){
       ? newsGroupHTML("What you hold", where, items.map(newsRowHTML).join(""))
       : `<div class="ngrp"><div class="ngrp-h"><span>What you hold</span><span>${esc(where)}</span></div>
            <div class="nrow"><span class="n-m">${esc(data
-             ? "Nothing written about these in the last fortnight."
+             ? "Nothing written about these in the last week."
              : "No news on this device yet. It arrives the next time you are online.")}</span></div>
          </div>`) +
-    `<div class="n-note">Headlines from Yahoo Finance, and the Economic Times markets desk for India, fetched every three hours${
+    `<div class="n-note">Headlines from the last week — Yahoo Finance, and the Economic Times markets desk for India — fetched every three hours${
       data && data.at ? " · last " + esc(agoWords(data.at)) : ""}. Only shares with a ticker are matched, and only on this device.</div>`;
 
   /* Asked for once the screen is up, and only when what is on it is old. */

@@ -47,7 +47,10 @@ const SOURCE_NAMES = {
 };
 
 const PER_SYMBOL = 5, PER_MARKET = 8, PER_ACTIONS = 3;
-const NEWS_DAYS = 14, ACTION_DAYS = 120;
+/* A week of headlines. Older than that and it is not news, it is history —
+   and the corporate actions below keep their own, longer window, because a
+   dividend is occasional and still worth knowing about in October. */
+const NEWS_DAYS = 7, ACTION_DAYS = 120;
 
 const fresh = (iso, days) => {
   const t = Date.parse(iso || "");
