@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.2.2 — 2026-09-27
+- fix: The news and the price fetch can no longer trip over each other writing their files
+
 ## 1.2.1 — 2026-09-27
 - new: A News tab: today's gold and euro rates, then headlines and corporate actions for what you hold, split into India and Global
 

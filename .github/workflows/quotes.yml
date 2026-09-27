@@ -18,9 +18,10 @@ permissions:
   contents: write
 
 # A run already in flight should finish rather than be cancelled: it commits
-# a file, and half-writing one is worse than being a minute late.
+# a file, and half-writing one is worse than being a minute late. The group is
+# shared with the news run, which writes into the same data/ directory.
 concurrency:
-  group: quotes
+  group: data
   cancel-in-progress: false
 
 jobs:
@@ -45,5 +46,6 @@ jobs:
             echo "No change in the prices — nothing to commit."
           else
             git commit -m "Quotes for $(date -u +%Y-%m-%d)"
+            git pull --rebase --autostash
             git push
           fi
