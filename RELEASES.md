@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.2.1 — 2026-09-27
+- new: A News tab: today's gold and euro rates, then headlines and corporate actions for what you hold, split into India and Global
+
 ## 1.2.0 — 2026-09-26
 - new: A monthly reminder to go through the book — from the 5th, until you mark the month done, and the day is yours to change in Profile
 
