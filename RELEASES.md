@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.2.3 — 2026-09-27
+- better: News shows the last week only, so the screen is what is happening now rather than a fortnight of it
+
 ## 1.2.2 — 2026-09-27
 - fix: The news and the price fetch can no longer trip over each other writing their files
 

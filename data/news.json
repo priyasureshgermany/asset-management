@@ -1,5 +1,5 @@
 {
-  "at": "2026-09-27T18:27:39.906Z",
+  "at": "2026-09-27T18:37:19.994Z",
   "market": {
     "IN": [
       {
@@ -181,17 +181,6 @@
         }
       ]
     },
-    "VEDL.NS": {
-      "news": [
-        {
-          "title": "KCM awards $498m copper recovery plant contract to China’s NERIN",
-          "link": "https://www.mining-technology.com/news/kcm-498m-copper-recovery-plant-contract-nerin/?.tsrc=rss",
-          "source": "mining-technology.com",
-          "at": "2026-09-18T14:58:08.000Z"
-        }
-      ],
-      "actions": []
-    },
     "IRCTC.NS": {
       "news": [],
       "actions": [
@@ -248,14 +237,7 @@
       ]
     },
     "IOC.NS": {
-      "news": [
-        {
-          "title": "3 Indian Oil Stocks Facing A New Risk From Russian Crude Dependence",
-          "link": "https://finance.yahoo.com/energy/articles/3-indian-oil-stocks-facing-011308686.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-09-20T01:13:08.000Z"
-        }
-      ],
+      "news": [],
       "actions": [
         {
           "kind": "dividend",
@@ -450,10 +432,10 @@
           "at": "2026-09-21T12:19:55.000Z"
         },
         {
-          "title": "Nasdaq (NDAQ) Just Made It Harder For Crypto Criminals To Hide",
-          "link": "https://finance.yahoo.com/markets/crypto/articles/nasdaq-ndaq-just-made-harder-185116666.html?.tsrc=rss",
+          "title": "Nasdaq Announces Mid-Month Open Short Interest Positions in Nasdaq Stocks as of Settlement Date September 15, 2026",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-announces-mid-month-open-200500909.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-09-19T18:51:16.000Z"
+          "at": "2026-09-24T20:05:00.000Z"
         }
       ],
       "actions": [
@@ -533,10 +515,10 @@
           "at": "2026-09-22T11:23:29.000Z"
         },
         {
-          "title": "Wolters Kluwer (ENXTAM:WKL) Added Libra Legal AI Content Across 11 European Countries",
-          "link": "https://finance.yahoo.com/technology/ai/articles/wolters-kluwer-enxtam-wkl-added-021000487.html?.tsrc=rss",
+          "title": "ADP Nominates David W. Kenny and Nancy McKinstry to Board of Directors",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/adp-nominates-david-w-kenny-200500022.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-09-19T02:10:00.000Z"
+          "at": "2026-09-24T20:05:00.000Z"
         }
       ],
       "actions": [
