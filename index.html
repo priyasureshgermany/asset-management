@@ -1976,7 +1976,7 @@ html.locked #lockScreen{
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION = "1.2.3";
+const APP_VERSION = "1.2.4";
 const APP_BUILT = "2026-09-27";
 const KEY = "assetmgr.v1";
 const GH_REPO_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
@@ -5205,11 +5205,14 @@ function renderNews(){
 
   const { market, items } = newsFor(newsTab);
   const where = newsTab === "IN" ? "India" : "Global";
+  /* Yours first. The market group is always full and this one is sometimes
+     two lines, so putting the market on top would push the only part that
+     needs you below the fold every time — and market headlines are the one
+     thing on this screen you could read anywhere else. Trimmed to five when
+     you have news of your own: background, not the page. */
+  const shownMarket = market.slice(0, items.length ? 5 : 8);
   const host = $("newsList");
   host.innerHTML =
-    (market.length
-      ? newsGroupHTML("The market", market[0].market || "", market.map(newsRowHTML).join(""))
-      : "") +
     (items.length
       ? newsGroupHTML("What you hold", where, items.map(newsRowHTML).join(""))
       : `<div class="ngrp"><div class="ngrp-h"><span>What you hold</span><span>${esc(where)}</span></div>
@@ -5217,6 +5220,9 @@ function renderNews(){
              ? "Nothing written about these in the last week."
              : "No news on this device yet. It arrives the next time you are online.")}</span></div>
          </div>`) +
+    (shownMarket.length
+      ? newsGroupHTML("The market", shownMarket[0].market || "", shownMarket.map(newsRowHTML).join(""))
+      : "") +
     `<div class="n-note">Headlines from the last week — Yahoo Finance, and the Economic Times markets desk for India — fetched every three hours${
       data && data.at ? " · last " + esc(agoWords(data.at)) : ""}. Only shares with a ticker are matched, and only on this device.</div>`;
 

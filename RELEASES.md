@@ -1,5 +1,8 @@
 Release notes for Asset & Liability Manager, newest first. Shown in-app under More → What's new.
 
+## 1.2.4 — 2026-09-27
+- better: News puts your own holdings first, with the market underneath as background
+
 ## 1.2.3 — 2026-09-27
 - better: News shows the last week only, so the screen is what is happening now rather than a fortnight of it
 
