@@ -1,7 +1,21 @@
 {
-  "at": "2026-09-29T19:45:31.107Z",
+  "at": "2026-09-30T00:02:25.403Z",
   "market": {
     "IN": [
+      {
+        "title": "US stocks: US market ends slightly lower as bond yields hold near multi-decade highs",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/us-stocks-us-market-ends-slightly-lower-as-bond-yields-hold-near-multi-decade-highs/articleshow/134573718.cms",
+        "source": "Economic Times",
+        "at": "2026-09-29T20:12:07.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Fed rate hike 'not urgent', says John Williams; Austan Goolsbee warns against 'playing with fire'",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/fed-rate-hike-not-urgent-says-john-williams-austan-goolsbee-warns-against-playing-with-fire/articleshow/134573558.cms",
+        "source": "Economic Times",
+        "at": "2026-09-29T19:47:39.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Goldman Sachs, BNP Paribas divest over 68 lakh BSE shares worth Rs 2,186 crore ahead of Nifty 50 inclusion",
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/goldman-sachs-bnp-paribas-divest-over-68-lakh-bse-shares-worth-rs-2186-crore-ahead-of-nifty-50-inclusion/articleshow/134573364.cms",
@@ -42,20 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/lloyds-enterprises-settles-listing-rule-violations-case-with-sebi/articleshow/134569329.cms",
         "source": "Economic Times",
         "at": "2026-09-29T14:40:06.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Nifty sees worst September series in 25 years. What does October hold?",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/nifty-sees-worst-september-series-in-25-years-what-does-october-hold/articleshow/134569275.cms",
-        "source": "Economic Times",
-        "at": "2026-09-29T14:34:39.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Carnival raises annual profit forecast as demand grows",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/carnival-raises-annual-profit-forecast-as-demand-grows/articleshow/134568896.cms",
-        "source": "Economic Times",
-        "at": "2026-09-29T14:07:24.000Z",
         "market": "Indian markets"
       }
     ],
@@ -331,6 +331,24 @@
     "MSFT": {
       "news": [
         {
+          "title": "Bill Gates makes bold predictions on the future of humanity and AI",
+          "link": "https://www.thestreet.com/investing/stocks/bill-gates-makes-bold-predictions-on-the-future-of-humanity-and-ai?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-09-29T21:03:00.000Z"
+        },
+        {
+          "title": "Microsoft Brings OpenAI’s Autonomous ‘Dots’ AI Workers Into the Enterprise",
+          "link": "https://www.benzinga.com/markets/prediction-markets/26/09/62066468/microsoft-openai-dots-ai-workers-enterprise?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral&.tsrc=rss",
+          "source": "benzinga.com",
+          "at": "2026-09-29T20:32:54.000Z"
+        },
+        {
+          "title": "Has MSFT Stock Run Out Of Steam?",
+          "link": "https://www.trefis.com/articles/616915/has-msft-stock-run-out-of-steam/2026-09-29?.tsrc=rss",
+          "source": "trefis.com",
+          "at": "2026-09-29T20:32:17.000Z"
+        },
+        {
           "title": "Dow Jones Software Leader Microsoft, Palantir, Micron, Palo Alto In Or Near Buy Zones",
           "link": "https://finance.yahoo.com/m/6c841e39-941b-3c2e-a976-277baf5769f2/dow-jones-software-leader.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -341,24 +359,6 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/jefferies-doubles-down-microsofts-copilot-180647576.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-09-29T18:06:47.000Z"
-        },
-        {
-          "title": "Silicon Valley's Leading CIOs, CISOs and Technology Executives to Gather October 6 for HMG Strategy's 18th Annual Silicon Valley C-Level Technology Leadership Summit; More Than 115 Technology Leaders Already Registered",
-          "link": "https://finance.yahoo.com/technology/articles/silicon-valleys-leading-cios-cisos-180400562.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-09-29T18:04:00.000Z"
-        },
-        {
-          "title": "IonQ vs. Microsoft: Which Stock Has More Quantum Upside in October?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/ionq-vs-microsoft-stock-more-180000217.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-09-29T18:00:00.000Z"
-        },
-        {
-          "title": "Apple Falls 2% as Bank of America Flags Meta’s Shopping Agent; Alphabet Slips, Microsoft Holds Steady",
-          "link": "https://247wallst.com/investing/2026/09/29/apple-falls-2-as-bank-of-america-flags-metas-shopping-agent-alphabet-slips-microsoft-holds-steady/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-09-29T17:43:07.000Z"
         }
       ],
       "actions": [
@@ -373,34 +373,34 @@
     "AMZN": {
       "news": [
         {
+          "title": "Amazon appears to be mystery tenant at Galleria North Tower in Dallas",
+          "link": "https://finance.yahoo.com/real-estate/articles/amazon-appears-mystery-tenant-galleria-211013513.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-09-29T21:10:13.000Z"
+        },
+        {
           "title": "Anthropic Makes Major Move to Cut AI Costs",
           "link": "https://finance.yahoo.com/technology/ai/articles/anthropic-makes-major-move-cut-191254834.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-09-29T19:12:54.000Z"
         },
         {
-          "title": "Amazon, Walmart Surplus Auctioneer Climbs Toward A Breakout; Stock Up 45%",
-          "link": "https://finance.yahoo.com/m/489e565a-42ed-31b5-9484-7c62fa12cde0/amazon%2C-walmart-surplus.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-09-29T16:40:28.000Z"
+          "title": "My Top AI Power Stock to Buy Right Now (and It's Not Even Close)",
+          "link": "https://www.fool.com/investing/2026/09/29/my-top-sector-stock-to-buy-right-now-and-its-not-e/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-09-29T20:50:00.000Z"
         },
         {
-          "title": "Amazon Stock Slips as Bedrock Expands Model Choice",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-stock-slips-bedrock-expands-163805547.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-09-29T16:38:05.000Z"
+          "title": "What Is The One Risk Every Google Stock Investor Should Know?",
+          "link": "https://www.trefis.com/articles/616933/what-is-the-one-risk-every-google-stock-investor-should-know/2026-09-29?.tsrc=rss",
+          "source": "trefis.com",
+          "at": "2026-09-29T19:20:20.000Z"
         },
         {
-          "title": "Amazon.com (AMZN) Draws Senate Questions Over AI Data Center Tax Deductions",
-          "link": "https://finance.yahoo.com/economy/policy/articles/amazon-com-amzn-draws-senate-160501839.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-09-29T16:05:01.000Z"
-        },
-        {
-          "title": "Prediction: The Next Phase of Amazon’s Growth Could Be Its Most Profitable Yet",
-          "link": "https://247wallst.com/investing/2026/09/29/prediction-the-next-phase-of-amazons-growth-could-be-its-most-profitable-yet/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-09-29T16:00:04.000Z"
+          "title": "SpaceX Briefly Passed Amazon and Microsoft in Market Cap After Its IPO. Could It Get There Again?",
+          "link": "https://www.fool.com/investing/2026/09/29/spacex-briefly-passed-amazon-and-microsoft-in-mark/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-09-29T19:19:00.000Z"
         }
       ],
       "actions": []
