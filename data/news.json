@@ -1,7 +1,14 @@
 {
-  "at": "2026-10-01T20:04:45.035Z",
+  "at": "2026-10-02T00:28:54.237Z",
   "market": {
     "IN": [
+      {
+        "title": "US stocks: US market rebounds to close higher as surging Treasury yields recede",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-stocks-us-market-rebounds-to-close-higher-as-surging-treasury-yields-recede/articleshow/134626994.cms",
+        "source": "Economic Times",
+        "at": "2026-10-01T20:12:06.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Fed’s Jefferson urges patience on rates; Kashkari sees more hikes ahead",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/feds-jefferson-urges-patience-on-rates-kashkari-sees-more-hikes-ahead/articleshow/134626712.cms",
@@ -49,13 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/uk-pound-falls-to-three-month-lows-as-investors-fret-over-rates-oil/articleshow/134621868.cms",
         "source": "Economic Times",
         "at": "2026-10-01T14:23:53.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "UK 30-year gilt yields top 6% for the first time since 1998",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/uk-30-year-gilt-yields-top-6-for-the-first-time-since-1998/articleshow/134621852.cms",
-        "source": "Economic Times",
-        "at": "2026-10-01T14:22:13.000Z",
         "market": "Indian markets"
       }
     ],
@@ -176,6 +176,12 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/indias-senior-tech-workforce-turns-033000975.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-09-30T03:30:00.000Z"
+        },
+        {
+          "title": "Rezolve AI Highlights Agentic Commerce Strategy, 2026 Revenue Growth at Lytham Conference",
+          "link": "https://www.marketbeat.com/instant-alerts/event-rezolve-ai-highlights-agentic-commerce-strategy-2026-revenue-growth-at-lytham-conference-2026-10-01/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
+          "source": "marketbeat.com",
+          "at": "2026-10-02T00:02:24.000Z"
         }
       ],
       "actions": [
@@ -295,6 +301,12 @@
     "INTU": {
       "news": [
         {
+          "title": "RedHammer to Help Shape Intuit Enterprise Suite for Construction",
+          "link": "https://finance.yahoo.com/technology/ai/articles/redhammer-help-shape-intuit-enterprise-000000546.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-02T00:00:00.000Z"
+        },
+        {
           "title": "Intuit Expands NFL Partnership to Boost Intuit Intelligence Reach",
           "link": "https://finance.yahoo.com/technology/ai/articles/intuit-expands-nfl-partnership-boost-162100585.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -317,12 +329,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-targets-faster-customer-growth-151600658.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-09-30T15:16:00.000Z"
-        },
-        {
-          "title": "Intuit Brings Intuit Intelligence to Football's Biggest Stage in Renewed NFL Partnership Through 2030",
-          "link": "https://finance.yahoo.com/media-advertising/articles/intuit-brings-intuit-intelligence-footballs-130500173.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-09-30T13:05:00.000Z"
         }
       ],
       "actions": [
@@ -379,7 +385,19 @@
     "AMZN": {
       "news": [
         {
-          "title": "National retailer files Chapter 11 after 80 stores closed in 2026",
+          "title": "Synopsys is becoming a major AI player: CEO discusses OpenAI, Amazon deals",
+          "link": "https://finance.yahoo.com/video/synopsys-becoming-major-ai-player-202701381.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-01T20:27:01.000Z"
+        },
+        {
+          "title": "Amazon (AMZN) and GoodRx (GDRX) Chase Prescription Subscribers as Insurance Coverage Slips",
+          "link": "https://finance.yahoo.com/healthcare/articles/amazon-amzn-goodrx-gdrx-chase-203853895.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-01T20:38:53.000Z"
+        },
+        {
+          "title": "Outdoors retailer files Chapter 11 after 80 stores closed in 2026",
           "link": "https://www.thestreet.com/retail/63-year-old-retailer-leslies-pools-files-chapter-11-closing-76-more-stores?.tsrc=rss",
           "source": "thestreet.com",
           "at": "2026-10-01T18:34:15.000Z"
@@ -395,24 +413,24 @@
           "link": "https://247wallst.com/investing/2026/10/01/alphabet-slips-after-gemini-4-argon-launch-as-tech-sector-rises-microsoft-holds-steady-amazon-dips/?.tsrc=rss",
           "source": "247wallst.com",
           "at": "2026-10-01T17:51:48.000Z"
-        },
-        {
-          "title": "Alphabet vs. Amazon vs. Microsoft: Which \"Magnificent Seven\" Stock Is the Better Buy Right Now?",
-          "link": "https://www.fool.com/investing/2026/10/01/alphabet-vs-amazon-vs-microsoft-which-magnificent/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-01T17:37:00.000Z"
-        },
-        {
-          "title": "3 Dividend REITs Built Around Warehouses America Cannot Stop Building",
-          "link": "https://247wallst.com/investing/2026/10/01/3-dividend-reits-built-around-warehouses-america-cannot-stop-building/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-01T16:45:21.000Z"
         }
       ],
       "actions": []
     },
     "NDAQ": {
       "news": [
+        {
+          "title": "Moderna, Inc. to Join the Nasdaq-100 Index® Beginning October 9, 2026",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/moderna-inc-join-nasdaq-100-000000029.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-02T00:00:00.000Z"
+        },
+        {
+          "title": "Nasdaq to Hold Third Quarter 2026 Investor Conference Call",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-hold-third-quarter-2026-200500180.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-01T20:05:00.000Z"
+        },
         {
           "title": "What You Need To Know Ahead of Nasdaq's Earnings Release",
           "link": "https://www.barchart.com/story/news/4893641/what-you-need-to-know-ahead-of-nasdaq-s-earnings-release?.tsrc=rss",
@@ -430,18 +448,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaqs-financial-technology-business-poised-143800049.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-09-30T14:38:00.000Z"
-        },
-        {
-          "title": "Up All Night: How Nasdaq’s 23-Hour Trading Could Wake Up Wall Street",
-          "link": "https://www.marketbeat.com/articles/up-all-night-how-nasdaqs-23-hour-trading-could-wake-up-wall-street/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
-          "source": "marketbeat.com",
-          "at": "2026-09-30T13:15:00.000Z"
-        },
-        {
-          "title": "Nasdaq Launches Agentic AI Environment for Calypso Capital Markets Platform",
-          "link": "https://investorshub.advfn.com/market-news/article/37091/nasdaq-launches-agentic-ai-environment-for-calypso-capital-markets-platform?.tsrc=rss",
-          "source": "investorshub.advfn.com",
-          "at": "2026-09-29T12:29:00.000Z"
         }
       ],
       "actions": [
@@ -462,6 +468,18 @@
     "NOW": {
       "news": [
         {
+          "title": "Why ServiceNow (NOW) Stock Is Up Today",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/why-servicenow-now-stock-today-213307607.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-01T21:33:07.000Z"
+        },
+        {
+          "title": "ServiceNow (NOW) Outperforms Broader Market: What You Need to Know",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-now-outperforms-broader-market-204506439.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-01T20:45:06.000Z"
+        },
+        {
           "title": "ServiceNow Climbs 4% as Software Names Lead a Rebound; Intuit Jumps 4%, Adobe Rises 3%",
           "link": "https://247wallst.com/investing/2026/10/01/servicenow-climbs-4-as-software-names-lead-a-rebound-intuit-jumps-4-adobe-rises-3/?.tsrc=rss",
           "source": "247wallst.com",
@@ -478,18 +496,6 @@
           "link": "https://investorshub.advfn.com/market-news/article/37295/servicenow-shares-rise-2-5-as-company-co-hosts-enterprise-ai-summit?.tsrc=rss",
           "source": "investorshub.advfn.com",
           "at": "2026-10-01T12:32:00.000Z"
-        },
-        {
-          "title": "ServiceNow vs. Palantir Technologies: Which Tech Stock Is a Better Buy in 2026?",
-          "link": "https://www.fool.com/coverage/better-buy/2026/09/30/servicenow-vs-palantir-technologies-which-tech-stock-is-a-better-buy-in-2026/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-09-30T23:55:05.000Z"
-        },
-        {
-          "title": "This AI Stock May Be the Biggest Winner as Enterprise AI Takes Off",
-          "link": "https://www.fool.com/investing/2026/09/30/this-ai-stock-may-be-the-biggest-winner-as-enterpr/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-09-30T18:03:00.000Z"
         }
       ],
       "actions": []
@@ -515,16 +521,16 @@
           "at": "2026-09-29T08:00:00.000Z"
         },
         {
+          "title": "What Is Wolters Kluwer (ENXTAM:WKL) Really Gaining From Bringing AI Into LEX?",
+          "link": "https://finance.yahoo.com/technology/ai/articles/wolters-kluwer-enxtam-wkl-really-231155847.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-01T23:11:55.000Z"
+        },
+        {
           "title": "Wolters Kluwer (ENXTAM:WKL) Stock Looks Undervalued Following A 38% Slump",
           "link": "https://finance.yahoo.com/markets/stocks/articles/wolters-kluwer-enxtam-wkl-stock-120747614.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-01T12:07:47.000Z"
-        },
-        {
-          "title": "ADP Nominates David W. Kenny and Nancy McKinstry to Board of Directors",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/adp-nominates-david-w-kenny-200500022.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-09-24T20:05:00.000Z"
         }
       ],
       "actions": [
