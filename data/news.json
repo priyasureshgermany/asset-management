@@ -1,7 +1,21 @@
 {
-  "at": "2026-10-02T17:20:58.743Z",
+  "at": "2026-10-02T21:45:36.832Z",
   "market": {
     "IN": [
+      {
+        "title": "Nasdaq rises 1%, Dow, S&P close higher as weak jobs data tempers rate hike bets",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/nasdaq-rises-1-dow-sp-close-higher-as-weak-jobs-data-tempers-rate-hike-bets/articleshow/134646508.cms",
+        "source": "Economic Times",
+        "at": "2026-10-02T20:15:20.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Fed officials give hints on rate decision as markets cut October rate hike odds",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/fed-officials-give-hints-on-rate-decision-as-markets-cut-october-rate-hike-odds/articleshow/134645153.cms",
+        "source": "Economic Times",
+        "at": "2026-10-02T18:30:04.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Why US stocks are rising: Nasdaq hits record after weaker jobs data cools rate-hike bets; Nike shares drop on forecast",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/why-us-stocks-are-rising-nasdaq-hits-record-after-weaker-jobs-data-cools-rate-hike-bets-nike-shares-drop-on-forecast/articleshow/134642197.cms",
@@ -31,7 +45,7 @@
         "market": "Indian markets"
       },
       {
-        "title": "Dow Jones| Nasdaq | US Stock Market Today | Live: Nasdaq rises over 1% to hit record on softer jobs data; Europe to release diesel reserves",
+        "title": "Dow Jones| Nasdaq | US Stock Market Today | Live: Nasdaq rises 1% after softer jobs data eases rate hike bets",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/dow-jones-us-stock-market-live-updates-nasdaq-sp-500-iran-israel-war-hormuz-talks-brent-crude-oil-inflation-treasury-bond-yields-fed-rate-hike-earnings-forecast-jobs-nike-nvidia-amd-moderna-ai-chip-stock-price-news-2-october-2026/liveblog/134639271.cms",
         "source": "Economic Times",
         "at": "2026-10-02T12:05:57.000Z",
@@ -42,20 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/global-equity-funds-draw-inflows-for-second-week-as-ai-optimism-holds/articleshow/134638303.cms",
         "source": "Economic Times",
         "at": "2026-10-02T11:36:13.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Sebi penalises SMC Global Securities for compliance lapses",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/sebi-penalises-smc-global-securities-for-compliance-lapses/articleshow/134638299.cms",
-        "source": "Economic Times",
-        "at": "2026-10-02T11:31:34.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "FPIs turn net sellers, pull out Rs 35,860 cr in Sep",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/fpis-turn-net-sellers-pull-out-rs-35860-cr-in-sep/articleshow/134637791.cms",
-        "source": "Economic Times",
-        "at": "2026-10-02T11:09:02.000Z",
         "market": "Indian markets"
       }
     ],
@@ -301,6 +301,12 @@
     "INTU": {
       "news": [
         {
+          "title": "Cramer Warned Viewers That Meta’s AI Would Crush This Stock, and Someone Just Bet Millions It Won’t",
+          "link": "https://247wallst.com/investing/2026/10/02/intuit-wasnt-on-cramers-muse-casualty-list-and-traders-just-piled-into-its-october-calls/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-02T19:10:31.000Z"
+        },
+        {
           "title": "SimpleClosure and Intuit QuickBooks Partner to Help Businesses Stay Compliant When Closing Payroll Tax Accounts",
           "link": "https://finance.yahoo.com/small-business/articles/simpleclosure-intuit-quickbooks-partner-help-120000054.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -323,12 +329,6 @@
           "link": "https://247wallst.com/investing/2026/10/01/servicenow-climbs-4-as-software-names-lead-a-rebound-intuit-jumps-4-adobe-rises-3/?.tsrc=rss",
           "source": "247wallst.com",
           "at": "2026-10-01T13:33:07.000Z"
-        },
-        {
-          "title": "Intuit Inc. (INTU) Is a Trending Stock: Facts to Know Before Betting on It",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-inc-intu-trending-stock-120003463.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-01T12:00:03.000Z"
         }
       ],
       "actions": [
@@ -343,34 +343,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Michael Burry Wants Markets to “Tank Hard” Before the OpenAI IPO, and Microsoft Is Exposed",
-          "link": "https://www.tikr.com/blog/michael-burry-wants-markets-to-tank-hard-before-the-openai-ipo-and-microsoft-is-exposed?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-02T15:24:20.000Z"
-        },
-        {
-          "title": "Morgan Stanley Strategist Sees “5 or 10%” Market Drawdown Potential as Five Megacaps Carry the S&P 500",
-          "link": "https://www.tikr.com/blog/morgan-stanley-strategist-sees-5-or-10-market-drawdown-potential-as-five-megacaps-carry-the-sp-500?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-02T15:03:29.000Z"
-        },
-        {
-          "title": "OpenAI’s Future IPO Keeps Me Buying Microsoft",
-          "link": "https://247wallst.com/investing/2026/10/02/openais-future-ipo-keeps-me-buying-microsoft/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-02T13:45:08.000Z"
-        },
-        {
-          "title": "52 Analysts, Zero Sells: What Microsoft’s Price Target Really Implies",
-          "link": "https://247wallst.com/investing/2026/10/02/52-analysts-zero-sells-what-microsofts-price-target-really-implies/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-02T12:00:17.000Z"
-        },
-        {
-          "title": "Is AI growth helping markets look past oil and rate hike scares?",
-          "link": "https://finance.yahoo.com/video/ai-growth-helping-markets-look-165650917.html?.tsrc=rss",
+          "title": "What can go wrong with AI's circular financing",
+          "link": "https://finance.yahoo.com/video/wrong-ais-circular-financing-180500709.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-02T16:56:50.000Z"
+          "at": "2026-10-02T18:05:00.000Z"
+        },
+        {
+          "title": "Microsoft Entered the Smart Home Through Your Washing Machine, Not Your Phone",
+          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-entered-smart-home-washing-201801722.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-02T20:18:01.000Z"
+        },
+        {
+          "title": "I Sold NVIDIA, Google and Microsoft Over a $2 Trillion AI Gap. Was I Wrong?",
+          "link": "https://247wallst.com/investing/2026/10/02/i-sold-nvidia-google-and-microsoft-over-a-2-trillion-ai-gap-was-i-wrong/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-02T19:05:31.000Z"
+        },
+        {
+          "title": "Can Microsoft Keep Growing Its Dividend Through the AI Spending Cycle?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-keep-growing-dividend-ai-174801049.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-02T17:48:01.000Z"
+        },
+        {
+          "title": "Forget Microsoft: You don’t need Big Tech to invest in the AI data center boom",
+          "link": "https://www.thestreet.com/investing/you-dont-need-big-tech-to-invest-in-the-ai-data-center-boom?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-02T17:33:00.000Z"
         }
       ],
       "actions": [
@@ -385,10 +385,22 @@
     "AMZN": {
       "news": [
         {
-          "title": "Are local communities accepting Amazon's $1 billion peace offering?",
-          "link": "https://finance.yahoo.com/video/local-communities-accepting-amazons-1-144500812.html?.tsrc=rss",
+          "title": "What Are Amazon Investors Paying for AWS Without Investment Gains?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-investors-paying-aws-without-182654581.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-02T14:45:00.000Z"
+          "at": "2026-10-02T18:26:54.000Z"
+        },
+        {
+          "title": "How Much Could Better Retail Margins Add to Amazon’s Value?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/much-could-better-retail-margins-175622301.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-02T17:56:22.000Z"
+        },
+        {
+          "title": "More Amazon Prime settlement payments are on the way. Who qualifies?",
+          "link": "https://finance.yahoo.com/personal-finance/banking/article/more-amazon-prime-settlement-payments-are-on-the-way-who-qualifies-175450367.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-02T17:54:50.000Z"
         },
         {
           "title": "Amazon vows $1 bn for data center towns, decries 'myths'",
@@ -397,22 +409,10 @@
           "at": "2026-10-02T16:43:27.000Z"
         },
         {
-          "title": "Built to Last; Inside Amazon RelayCon 2026 and the Carriers Who Came With a Plan",
-          "link": "https://finance.yahoo.com/small-business/articles/built-last-inside-amazon-relaycon-161115143.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-02T16:11:15.000Z"
-        },
-        {
-          "title": "AI Debt Is a ‘Brewing Crisis,’ Ed Zitron Warns as Amazon, CoreWeave Turn to Complex Financing",
-          "link": "https://www.benzinga.com/markets/prediction-markets/26/10/62139287/ai-debt-brewing-crisis-amazon-coreweave?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral&.tsrc=rss",
-          "source": "benzinga.com",
-          "at": "2026-10-02T15:45:35.000Z"
-        },
-        {
-          "title": "Plan to Shop Amazon Prime Big Deal Days? Read These 6 Tips First to Save Money",
-          "link": "https://finance.yahoo.com/deals/articles/plan-shop-amazon-prime-big-152527929.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-02T15:25:27.000Z"
+          "title": "Google raises Pixel 10a price by $100 amid memory cost surge",
+          "link": "https://qz.com/google-pixel-10a-price-hike-100-599-100226?.tsrc=rss",
+          "source": "qz.com",
+          "at": "2026-10-02T17:47:55.000Z"
         }
       ],
       "actions": []
