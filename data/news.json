@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-03T20:32:57.660Z",
+  "at": "2026-10-03T23:29:26.131Z",
   "market": {
     "IN": [
       {
@@ -238,7 +238,14 @@
       ]
     },
     "IOC.NS": {
-      "news": [],
+      "news": [
+        {
+          "title": "Indian Oil Stock And 2 Refiners Linked To Shifting Middle East Oil Flows",
+          "link": "https://finance.yahoo.com/energy/articles/indian-oil-stock-2-refiners-210933303.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-03T21:09:33.000Z"
+        }
+      ],
       "actions": [
         {
           "kind": "dividend",
@@ -380,6 +387,12 @@
           "at": "2026-10-03T18:43:57.000Z"
         },
         {
+          "title": "\"Boy Room\" made about $15,000 on TikTok before Amazon partnership",
+          "link": "https://finance.yahoo.com/video/boy-room-made-15-000-110013783.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-03T11:00:13.000Z"
+        },
+        {
           "title": "Should You Buy Amazon Stock (AMZN) in October?",
           "link": "https://www.fool.com/investing/2026/10/02/should-you-buy-amazon-stock-amzn-in-october/?.tsrc=rss",
           "source": "fool.com",
@@ -396,12 +409,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/much-could-better-retail-margins-175622301.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-02T17:56:22.000Z"
-        },
-        {
-          "title": "More Amazon Prime settlement payments are on the way. Who qualifies?",
-          "link": "https://finance.yahoo.com/personal-finance/banking/article/more-amazon-prime-settlement-payments-are-on-the-way-who-qualifies-175450367.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-02T17:54:50.000Z"
         }
       ],
       "actions": []
