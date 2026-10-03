@@ -1,7 +1,14 @@
 {
-  "at": "2026-10-03T11:01:27.003Z",
+  "at": "2026-10-03T15:37:42.316Z",
   "market": {
     "IN": [
+      {
+        "title": "7 investing lessons from Jim Leitner for building the right market mindset",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/7-investing-lessons-from-jim-leitner-for-building-the-right-market-mindset/articleshow/134657619.cms",
+        "source": "Economic Times",
+        "at": "2026-10-03T11:07:18.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "D-Mart Q2 revenue rises 18% to Rs 19,206 cr; store count at 518",
         "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/d-mart-q2-revenue-rise-18-pc-to-rs-19206-cr-store-count-at-518/articleshow/134656472.cms",
@@ -49,13 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/expert-view/fo-talk-22600-is-a-key-nifty-support-sudeep-shah-discusses-pb-fintech-infosys-tcs-strategy-ahead-of-q2/articleshow/134654760.cms",
         "source": "Economic Times",
         "at": "2026-10-03T07:55:59.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "9 large-cap stocks that surged over 50% in the first half of FY27",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/9-large-cap-stocks-that-surged-over-50-in-the-first-half-of-fy27/slideshow/134653712.cms",
-        "source": "Economic Times",
-        "at": "2026-10-03T06:30:20.000Z",
         "market": "Indian markets"
       }
     ],
@@ -398,10 +398,10 @@
           "at": "2026-10-02T17:54:50.000Z"
         },
         {
-          "title": "Google raises Pixel 10a price by $100 amid memory cost surge",
-          "link": "https://qz.com/google-pixel-10a-price-hike-100-599-100226?.tsrc=rss",
-          "source": "qz.com",
-          "at": "2026-10-02T17:47:55.000Z"
+          "title": "This Stock Posted the Best Performance in the “Magnificent Seven” in September. (Hint: It’s Not Nvidia.)",
+          "link": "https://www.fool.com/investing/2026/10/03/this-stock-posted-the-best-performance-in-the-magnificent-seven-in-september-hint-it-s-not-nvidia/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-03T13:30:01.000Z"
         }
       ],
       "actions": []
