@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-03T15:37:42.316Z",
+  "at": "2026-10-03T20:32:57.660Z",
   "market": {
     "IN": [
       {
@@ -332,6 +332,12 @@
     "MSFT": {
       "news": [
         {
+          "title": "Does Your Work Throw You For a Loop, Too?",
+          "link": "https://thehustle.videonest.co/videos/1786763/does-your-work-throw-you-for-a-loop-too-yfvb7cRGGu?.tsrc=rss",
+          "source": "thehustle.videonest.co",
+          "at": "2026-10-03T18:34:30.000Z"
+        },
+        {
           "title": "Is a Microsoft Stock Split Coming After 23 Years?",
           "link": "https://www.fool.com/investing/2026/10/03/is-a-microsoft-stock-split-coming-after-23-years/?.tsrc=rss",
           "source": "fool.com",
@@ -354,12 +360,6 @@
           "link": "https://247wallst.com/investing/2026/10/02/i-sold-nvidia-google-and-microsoft-over-a-2-trillion-ai-gap-was-i-wrong/?.tsrc=rss",
           "source": "247wallst.com",
           "at": "2026-10-02T19:05:31.000Z"
-        },
-        {
-          "title": "What can go wrong with AI's circular financing",
-          "link": "https://finance.yahoo.com/video/wrong-ais-circular-financing-180500709.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-02T18:05:00.000Z"
         }
       ],
       "actions": [
@@ -373,6 +373,12 @@
     },
     "AMZN": {
       "news": [
+        {
+          "title": "Amazon responds to data center backlash, says it no longer uses NDAs",
+          "link": "https://finance.yahoo.com/technology/articles/amazon-responds-data-center-backlash-184357944.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-03T18:43:57.000Z"
+        },
         {
           "title": "Should You Buy Amazon Stock (AMZN) in October?",
           "link": "https://www.fool.com/investing/2026/10/02/should-you-buy-amazon-stock-amzn-in-october/?.tsrc=rss",
@@ -396,12 +402,6 @@
           "link": "https://finance.yahoo.com/personal-finance/banking/article/more-amazon-prime-settlement-payments-are-on-the-way-who-qualifies-175450367.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-02T17:54:50.000Z"
-        },
-        {
-          "title": "This Stock Posted the Best Performance in the “Magnificent Seven” in September. (Hint: It’s Not Nvidia.)",
-          "link": "https://www.fool.com/investing/2026/10/03/this-stock-posted-the-best-performance-in-the-magnificent-seven-in-september-hint-it-s-not-nvidia/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-03T13:30:01.000Z"
         }
       ],
       "actions": []
