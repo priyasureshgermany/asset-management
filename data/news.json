@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-04T16:21:39.818Z",
+  "at": "2026-10-04T20:48:43.853Z",
   "market": {
     "IN": [
       {
@@ -339,10 +339,22 @@
     "MSFT": {
       "news": [
         {
+          "title": "Is Copilot Microsoft's Secret Weapon in the AI Arms Race?",
+          "link": "https://www.fool.com/investing/2026/10/04/is-copilot-microsofts-secret-weapon-in-the-ai-arms/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-04T18:20:00.000Z"
+        },
+        {
           "title": "Accenture vs. Microsoft: Which Technology Stock Is a Better Buy in 2026?",
           "link": "https://www.fool.com/coverage/better-buy/2026/10/04/accenture-vs-microsoft-which-technology-stock-is-a-better-buy-in-2026/?.tsrc=rss",
           "source": "fool.com",
           "at": "2026-10-04T15:58:44.000Z"
+        },
+        {
+          "title": "Meta vs. Microsoft: One AI Agent Has a Problem the Other Doesn’t.",
+          "link": "https://www.barchart.com/story/news/4950763/meta-vs-microsoft-one-ai-agent-has-a-problem-the-other-doesnt?.tsrc=rss",
+          "source": "barchart.com",
+          "at": "2026-10-04T12:36:26.000Z"
         },
         {
           "title": "How Much Revenue Visibility Does Microsoft’s Backlog Really Provide?",
@@ -355,18 +367,6 @@
           "link": "https://thehustle.videonest.co/videos/1786763/does-your-work-throw-you-for-a-loop-too-yfvb7cRGGu?.tsrc=rss",
           "source": "thehustle.videonest.co",
           "at": "2026-10-03T18:34:30.000Z"
-        },
-        {
-          "title": "LinkDaddy Reports 1.52M AI Crawler Requests to AI Verified Registry",
-          "link": "https://finance.yahoo.com/technology/ai/articles/linkdaddy-reports-1-52m-ai-141900806.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-04T14:19:00.000Z"
-        },
-        {
-          "title": "Here's How Much You'd Need to Invest in VGT to Generate $500 per Month in Dividends",
-          "link": "https://www.fool.com/investing/2026/10/04/how-much-need-to-invest-vgt-for-passive-income/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-04T12:59:00.000Z"
         }
       ],
       "actions": [
