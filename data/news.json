@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-04T20:48:43.853Z",
+  "at": "2026-10-04T23:47:36.426Z",
   "market": {
     "IN": [
       {
@@ -363,10 +363,10 @@
           "at": "2026-10-04T02:35:34.000Z"
         },
         {
-          "title": "Does Your Work Throw You For a Loop, Too?",
-          "link": "https://thehustle.videonest.co/videos/1786763/does-your-work-throw-you-for-a-loop-too-yfvb7cRGGu?.tsrc=rss",
-          "source": "thehustle.videonest.co",
-          "at": "2026-10-03T18:34:30.000Z"
+          "title": "LinkDaddy Reports 1.52M AI Crawler Requests to AI Verified Registry",
+          "link": "https://finance.yahoo.com/technology/ai/articles/linkdaddy-reports-1-52m-ai-141900806.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-04T14:19:00.000Z"
         }
       ],
       "actions": [
@@ -380,6 +380,12 @@
     },
     "AMZN": {
       "news": [
+        {
+          "title": "Amazon vs. Alphabet: Which AI Cloud Stock Makes the Better Case After the Spending Bill?",
+          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-vs-alphabet-ai-cloud-232415267.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-04T23:24:15.000Z"
+        },
         {
           "title": "Amazon AWS CEO reveals surprising risk to AI stocks and U.S. economy",
           "link": "https://www.thestreet.com/investing/stocks/amazon-ai-data-center-backlash?.tsrc=rss",
@@ -399,16 +405,10 @@
           "at": "2026-10-04T15:38:29.000Z"
         },
         {
-          "title": "Amazon Is Spending Another $1 Billion on AI Data Centers — But This Time, It’s Not Buying a Single GPU",
-          "link": "https://247wallst.com/investing/2026/10/04/amazon-is-spending-another-1-billion-on-ai-data-centers-but-this-time-its-not-buying-a-single-gpu/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-04T15:16:34.000Z"
-        },
-        {
-          "title": "Amazon responds to data center backlash, says it no longer uses NDAs",
-          "link": "https://finance.yahoo.com/technology/articles/amazon-responds-data-center-backlash-184357944.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-03T18:43:57.000Z"
+          "title": "Amazon Stock Is Underperforming Amid Agentic AI Fears. How to Play AMZN Here.",
+          "link": "https://www.barchart.com/story/news/4951543/amazon-stock-is-underperforming-amid-agentic-ai-fears-how-to-play-amzn-here?.tsrc=rss",
+          "source": "barchart.com",
+          "at": "2026-10-04T15:30:02.000Z"
         }
       ],
       "actions": []
