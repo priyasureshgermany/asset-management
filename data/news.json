@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-03T23:29:26.131Z",
+  "at": "2026-10-04T04:02:39.889Z",
   "market": {
     "IN": [
       {
@@ -339,6 +339,12 @@
     "MSFT": {
       "news": [
         {
+          "title": "How Much Revenue Visibility Does Microsoft’s Backlog Really Provide?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/much-revenue-visibility-does-microsoft-023534508.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-04T02:35:34.000Z"
+        },
+        {
           "title": "Does Your Work Throw You For a Loop, Too?",
           "link": "https://thehustle.videonest.co/videos/1786763/does-your-work-throw-you-for-a-loop-too-yfvb7cRGGu?.tsrc=rss",
           "source": "thehustle.videonest.co",
@@ -361,12 +367,6 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-entered-smart-home-washing-201801722.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-02T20:18:01.000Z"
-        },
-        {
-          "title": "I Sold NVIDIA, Google and Microsoft Over a $2 Trillion AI Gap. Was I Wrong?",
-          "link": "https://247wallst.com/investing/2026/10/02/i-sold-nvidia-google-and-microsoft-over-a-2-trillion-ai-gap-was-i-wrong/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-02T19:05:31.000Z"
         }
       ],
       "actions": [
@@ -405,10 +405,10 @@
           "at": "2026-10-02T18:26:54.000Z"
         },
         {
-          "title": "How Much Could Better Retail Margins Add to Amazon’s Value?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/much-could-better-retail-margins-175622301.html?.tsrc=rss",
+          "title": "Nvidia (NVDA) Is At The Center Of An $8 Billion AI Financing Shift",
+          "link": "https://finance.yahoo.com/technology/ai/articles/nvidia-nvda-center-8-billion-230622829.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-02T17:56:22.000Z"
+          "at": "2026-10-03T23:06:22.000Z"
         }
       ],
       "actions": []
