@@ -1,7 +1,21 @@
 {
-  "at": "2026-10-09T17:54:12.506Z",
+  "at": "2026-10-09T22:10:28.728Z",
   "market": {
     "IN": [
+      {
+        "title": "US stocks: US market posts weekly gains with earnings, inflation data on tap",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-us-market-posts-weekly-gains-with-earnings-inflation-data-on-tap/articleshow/134842368.cms",
+        "source": "Economic Times",
+        "at": "2026-10-09T20:09:34.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Gold, silver boom puts US bank trading revenues on track for record $5 billion",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/gold-silver-boom-puts-us-bank-trading-revenues-on-track-for-record-5-billion/articleshow/134841433.cms",
+        "source": "Economic Times",
+        "at": "2026-10-09T18:48:08.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "US bull market nears fourth anniversary, but narrow rally raises risks",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-bull-market-nears-fourth-anniversary-but-narrow-rally-raises-risks/articleshow/134839055.cms",
@@ -43,20 +57,6 @@
         "source": "Economic Times",
         "at": "2026-10-09T13:43:49.000Z",
         "market": "Indian markets"
-      },
-      {
-        "title": "Anand Rathi Wealth Q2 Results: Profit rises 22% to Rs 122 crore; co declares dividend of Rs 4 per share",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/anand-rathi-wealth-q2-results-profit-rises-22-to-rs-122-crore-co-declares-dividend-of-rs-4-per-share/articleshow/134835390.cms",
-        "source": "Economic Times",
-        "at": "2026-10-09T13:42:02.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Half of India’s MTF book is in smallcaps; Nithin Kamath flags liquidity risks",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/half-of-indias-mtf-book-is-in-smallcaps-nithin-kamath-flags-liquidity-risks/articleshow/134835308.cms",
-        "source": "Economic Times",
-        "at": "2026-10-09T13:31:23.000Z",
-        "market": "Indian markets"
       }
     ],
     "GLOBAL": [
@@ -68,14 +68,14 @@
         "market": "European markets"
       },
       {
-        "title": "FTSE 100 today: Stocks rise as miners jump; oil eases",
+        "title": "FTSE 100 today: Stocks ends 1% higher helped by rally in miners and easing oil",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-rise-075009879.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-10-09T07:50:09.000Z",
         "market": "European markets"
       },
       {
-        "title": "European shares staging best session since July on yield relief",
+        "title": "European shares ended higher in the session since July on yield relief",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-attempt-bounce-heads-074145343.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-10-09T07:41:45.000Z",
@@ -345,34 +345,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Elon Musk, Jensen Huang, and tech leaders receive White House National Medals",
-          "link": "https://finance.yahoo.com/video/elon-musk-jensen-huang-and-tech-leaders-receive-white-house-national-medals-174553865.html?.tsrc=rss",
+          "title": "Delta cuts outlook, Microsoft fights H-1B restrictions, Bezos eyes Blue Origin IPO",
+          "link": "https://finance.yahoo.com/video/delta-cuts-outlook-microsoft-fights-h-1b-restrictions-bezos-eyes-blue-origin-ipo-192327496.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-09T19:13:00.000Z"
+        },
+        {
+          "title": "Microsoft pushes back on H-1B restrictions: What's at stake for tech?",
+          "link": "https://finance.yahoo.com/video/microsoft-pushes-back-h-1b-175500628.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-09T17:55:00.000Z"
+        },
+        {
+          "title": "Elon Musk, Michael Dell, Jensen Huang, and other tech leaders receive White House National Medals",
+          "link": "https://finance.yahoo.com/video/elon-musk-michael-dell-jensen-huang-and-other-tech-leaders-receive-white-house-national-medals-184725677.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-09T17:45:53.000Z"
         },
         {
-          "title": "The AI SaaSpocalypse was supposed to crush software stocks — but this happened instead",
-          "link": "https://finance.yahoo.com/markets/article/the-ai-saaspocalypse-was-supposed-to-crush-software-stocks--but-this-happened-instead-163021702.html?.tsrc=rss",
+          "title": "JD Vance slams Microsoft, says it swapped 6,000 laid-off Americans for ‘foreign indentured servants.’ Microsoft responds",
+          "link": "https://finance.yahoo.com/economy/policy/articles/jd-vance-slams-microsoft-says-214500533.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-09T16:30:21.000Z"
+          "at": "2026-10-09T21:45:00.000Z"
         },
         {
-          "title": "Video game hardware sales plunge to 13-year low as prices soar on memory, storage shortage",
-          "link": "https://finance.yahoo.com/technology/article/video-game-hardware-sales-plunge-to-13-year-low-as-prices-soar-on-memory-storage-shortage-155535332.html?.tsrc=rss",
+          "title": "Microsoft vs. Alphabet: Which AI Cloud Stock Is Cheaper After the Capital Spending?",
+          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-vs-alphabet-ai-cloud-212027785.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-09T15:55:35.000Z"
-        },
-        {
-          "title": "Microsoft gets paid no matter which AI model wins",
-          "link": "https://www.thestreet.com/markets/microsoft-gets-paid-no-matter-which-ai-model-wins?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-10-09T17:47:00.000Z"
-        },
-        {
-          "title": "Are You Overpaying For Microsoft Stock Versus Its Rivals?",
-          "link": "https://www.trefis.com/articles/618148/are-you-overpaying-for-microsoft-stock-versus-its-rivals/2026-10-09?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-10-09T17:10:48.000Z"
+          "at": "2026-10-09T21:20:27.000Z"
         }
       ],
       "actions": [
@@ -399,22 +399,22 @@
           "at": "2026-10-09T17:02:48.000Z"
         },
         {
+          "title": "Is the Market Underestimating Amazon’s (AMZN) Moat?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/market-underestimating-amazon-amzn-moat-230702371.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-09T20:35:02.000Z"
+        },
+        {
           "title": "Jeff Bezos Takes Aim at Politicians ‘Picking Villains’ Over Housing Costs as Socialism Debate Grows: 'When You're in the Polling Booth…'",
           "link": "https://finance.yahoo.com/real-estate/articles/jeff-bezos-takes-aim-politicians-163013216.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-09T16:30:13.000Z"
         },
         {
-          "title": "Is it too late to claim Amazon class action settlement?",
-          "link": "https://www.usatoday.com/story/money/2026/10/09/how-much-is-amazon-class-action-settlement-when-will-i-get-paid/92119206007/?.tsrc=rss",
-          "source": "usatoday.com",
-          "at": "2026-10-09T16:10:10.000Z"
-        },
-        {
-          "title": "Jeff Bezos Hints at Blue Origin IPO After $10 Billion Funding Round — Amazon Founder Says It ‘Makes Sense’ for SpaceX Rival to Go 'Public' (UPDATED)",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/jeff-bezos-hints-blue-origin-153009162.html?.tsrc=rss",
+          "title": "Delta cuts outlook, Microsoft fights H-1B restrictions, Bezos eyes Blue Origin IPO",
+          "link": "https://finance.yahoo.com/video/delta-cuts-outlook-microsoft-fights-h-1b-restrictions-bezos-eyes-blue-origin-ipo-192327496.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-09T15:30:09.000Z"
+          "at": "2026-10-09T19:13:00.000Z"
         }
       ],
       "actions": []
@@ -440,16 +440,16 @@
           "at": "2026-10-07T10:20:45.000Z"
         },
         {
+          "title": "Nasdaq Announces End-of-Month Open Short Interest Positions in Nasdaq Stocks as of Settlement Date September 30, 2026",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-announces-end-month-open-200500396.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-09T20:05:00.000Z"
+        },
+        {
           "title": "Should S&P Global Stock Holders Look At Intercontinental Exchange Instead?",
           "link": "https://www.trefis.com/articles/617994/should-sp-global-stock-holders-look-at-intercontinental-exchange-instead/2026-10-08?.tsrc=rss",
           "source": "trefis.com",
           "at": "2026-10-08T17:48:03.000Z"
-        },
-        {
-          "title": "Cboe Global Secures 25-Year SPX Rights: Can Volume Boost Growth?",
-          "link": "https://finance.yahoo.com/markets/options/articles/cboe-global-secures-25-spx-125600440.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-05T12:56:00.000Z"
         }
       ],
       "actions": [
