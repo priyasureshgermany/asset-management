@@ -1,7 +1,14 @@
 {
-  "at": "2026-10-10T11:48:54.447Z",
+  "at": "2026-10-10T16:52:10.834Z",
   "market": {
     "IN": [
+      {
+        "title": "Sebi’s CAS guidelines likely within a week, says chief Tuhin Kanta Pandey",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/sebis-cas-guidelines-likely-within-a-week-says-chief-tuhin-kanta-pandey/articleshow/134855486.cms",
+        "source": "Economic Times",
+        "at": "2026-10-10T13:58:00.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Industrial, warehousing space leasing hits record 59.1 mn sq ft in top 24 cities in Jan-Sep: Savills",
         "link": "https://economictimes.indiatimes.com/markets/digital-real-estate/realty-news/industrial-warehousing-space-leasing-hits-record-59-1-mn-sq-ft-in-top-24-cities-in-jan-sep-savills/articleshow/134853108.cms",
@@ -49,13 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/fiis-dump-indian-stocks-for-eight-straight-weeks-is-a-reversal-on-the-cards-or-more-pain-ahead/articleshow/134851502.cms",
         "source": "Economic Times",
         "at": "2026-10-10T09:41:53.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Canara HSBC Life Q2 profit rises 5% YoY to Rs 43 crore",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/canara-hsbc-life-q2-profit-rises-5-yoy-to-rs-43-crore/articleshow/134850519.cms",
-        "source": "Economic Times",
-        "at": "2026-10-10T08:28:54.000Z",
         "market": "Indian markets"
       }
     ],
@@ -345,6 +345,24 @@
     "MSFT": {
       "news": [
         {
+          "title": "Microsoft vs. Alphabet: Which AI Cloud Stock Is Cheaper After the Capital Spending?",
+          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-vs-alphabet-ai-cloud-212027785.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-10T15:20:27.000Z"
+        },
+        {
+          "title": "Microsoft Stock Has Grown Roughly 15-Fold Since Satya Nadella Became CEO in 2014, a 27% Annual Growth Rate That Ended 14 Years of Near-Zero Growth. Can That Pace Continue Under Heavy AI Spending?",
+          "link": "https://www.fool.com/investing/2026/10/10/microsoft-stock-has-grown-roughly-15-fold-since-sa/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-10T14:15:00.000Z"
+        },
+        {
+          "title": "Big Tech is betting $700 billion on AI. Healthcare will decide whether the bet pays off",
+          "link": "https://finance.yahoo.com/healthcare/articles/big-tech-betting-700-billion-103000697.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-10T10:30:00.000Z"
+        },
+        {
           "title": "Microsoft Plus 2 Elite Defensive Stocks",
           "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-plus-2-elite-defensive-101209605.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -355,24 +373,6 @@
           "link": "https://stocktwits.com/news-articles/markets/equity/mag-7-voices-how-nvidia-microsoft-alphabet-meta-reshaped-ai-this-week/cZxT1H2RBn8?.tsrc=rss",
           "source": "stocktwits.com",
           "at": "2026-10-10T03:26:37.000Z"
-        },
-        {
-          "title": "JD Vance slams Microsoft, says it swapped 6,000 laid-off Americans for ‘foreign indentured servants.’ Microsoft responds",
-          "link": "https://finance.yahoo.com/economy/policy/articles/jd-vance-slams-microsoft-says-214500533.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-09T21:45:00.000Z"
-        },
-        {
-          "title": "Microsoft vs. Alphabet: Which AI Cloud Stock Is Cheaper After the Capital Spending?",
-          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-vs-alphabet-ai-cloud-212027785.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-09T21:20:27.000Z"
-        },
-        {
-          "title": "Sector Update: Tech Stocks Mixed Late Afternoon",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/sector-tech-stocks-mixed-afternoon-194753573.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-09T19:47:53.000Z"
         }
       ],
       "actions": [
@@ -387,6 +387,24 @@
     "AMZN": {
       "news": [
         {
+          "title": "Consumer AI agents could upend online shopping - but who really wins?",
+          "link": "https://finance.yahoo.com/technology/ai/articles/consumer-ai-agents-could-upend-151100217.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-10T15:11:00.000Z"
+        },
+        {
+          "title": "Investor Predicts Anthropic Could Be “the First” $10 Trillion Company. Cue the Amazon + Google Payday",
+          "link": "https://www.tikr.com/blog/investor-predicts-anthropic-could-be-the-first-10-trillion-company-cue-the-amazon-google-payday?ref=yahoofinance&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-10-10T15:05:37.000Z"
+        },
+        {
+          "title": "AWS CEO Says AI Spending Isn’t a Bubble Just Yet — Amazon’s Cloud Chief Says ‘We Feel Really Good’ as Ray Dalio Warns the Boom Is Near a Breaking Point",
+          "link": "https://finance.yahoo.com/technology/ai/articles/aws-ceo-says-ai-spending-113007316.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-10T11:30:07.000Z"
+        },
+        {
           "title": "Amazon Reshuffles Alexa Leadership: Can Alexa+ Move a $53 Billion Subscription Business?",
           "link": "https://www.tikr.com/blog/amazon-reshuffles-alexa-leadership-can-alexa-move-a-53-billion-subscription-business?ref=yahoofinance&.tsrc=rss",
           "source": "tikr.com",
@@ -397,24 +415,6 @@
           "link": "https://www.tikr.com/blog/amazons-thane-data-center-fight-a-8-3-billion-plan-inside-a-173-billion-capex-budget?ref=yahoofinance&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-10-10T04:19:50.000Z"
-        },
-        {
-          "title": "Is the Market Underestimating Amazon’s (AMZN) Moat?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/market-underestimating-amazon-amzn-moat-230702371.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-09T20:35:02.000Z"
-        },
-        {
-          "title": "Jeff Bezos said a Blue Origin IPO is on the horizon. What could that mean for SpaceX?",
-          "link": "https://finance.yahoo.com/video/jeff-bezos-said-a-blue-origin-ipo-is-on-the-horizon-what-could-that-mean-for-spacex-174150932.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-09T17:41:50.000Z"
-        },
-        {
-          "title": "Procter & Gamble could face new cost problem",
-          "link": "https://www.thestreet.com/investing/stocks/procter-gamble-tide-pampers-maker-new-cost-problem?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-10-10T01:37:00.000Z"
         }
       ],
       "actions": []
@@ -458,12 +458,6 @@
           "amount": 0.31,
           "currency": "USD",
           "at": "2026-09-11T13:30:00.000Z"
-        },
-        {
-          "kind": "dividend",
-          "amount": 0.31,
-          "currency": "USD",
-          "at": "2026-06-12T13:30:00.000Z"
         }
       ]
     },
