@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-10T16:52:10.834Z",
+  "at": "2026-10-10T21:04:51.396Z",
   "market": {
     "IN": [
       {
@@ -159,6 +159,12 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/tcs-shares-rise-ai-revenue-052911897.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-09T05:29:11.000Z"
+        },
+        {
+          "title": "Infosys sees no material impact from U.S. PERM suspension",
+          "link": "https://finance.yahoo.com/technology/articles/infosys-sees-no-material-impact-204406039.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-10T20:44:06.000Z"
         },
         {
           "title": "Asia stocks turn higher, tech recovers as OpenAI revenue fears ease",
@@ -345,6 +351,18 @@
     "MSFT": {
       "news": [
         {
+          "title": "Trump awards science medals to Musk, Nadella and 4 other tech titans — 5 immigrants — hours after Vance targets them",
+          "link": "https://finance.yahoo.com/technology/articles/trump-awards-science-medals-musk-201500010.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-10T20:15:00.000Z"
+        },
+        {
+          "title": "Microsoft (MSFT) Posted 43% Azure Growth, Yet Trades Below Its Own Five-Year P/E. A Real Discount?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-posted-43-azure-132642768.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-10T17:11:42.000Z"
+        },
+        {
           "title": "Microsoft vs. Alphabet: Which AI Cloud Stock Is Cheaper After the Capital Spending?",
           "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-vs-alphabet-ai-cloud-212027785.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -361,18 +379,6 @@
           "link": "https://finance.yahoo.com/healthcare/articles/big-tech-betting-700-billion-103000697.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-10T10:30:00.000Z"
-        },
-        {
-          "title": "Microsoft Plus 2 Elite Defensive Stocks",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-plus-2-elite-defensive-101209605.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-10T10:12:09.000Z"
-        },
-        {
-          "title": "MAG 7 Voices: How Nvidia, Microsoft, Alphabet, Meta Reshaped AI This Week",
-          "link": "https://stocktwits.com/news-articles/markets/equity/mag-7-voices-how-nvidia-microsoft-alphabet-meta-reshaped-ai-this-week/cZxT1H2RBn8?.tsrc=rss",
-          "source": "stocktwits.com",
-          "at": "2026-10-10T03:26:37.000Z"
         }
       ],
       "actions": [
@@ -387,6 +393,24 @@
     "AMZN": {
       "news": [
         {
+          "title": "Amazon (AMZN) Is Spending Billions on AI and Driver Pay. Will the Investments Pay Off?",
+          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-amzn-spending-billions-ai-223346855.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-10T17:20:46.000Z"
+        },
+        {
+          "title": "Amazon.com (AMZN) Patched Critical AWS Bedrock AgentCore Security Flaws",
+          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-com-amzn-patched-critical-171250657.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-10T17:12:50.000Z"
+        },
+        {
+          "title": "Amazon Fuel Up Fridays Returns: How Prime Members Can Save Big at the Gas Pump",
+          "link": "https://moneylion.com/trending/money/amazon-fuel-up-fridays-returns-prime-members-save-big-gas-pump?.tsrc=rss",
+          "source": "moneylion.com",
+          "at": "2026-10-10T17:00:25.000Z"
+        },
+        {
           "title": "Consumer AI agents could upend online shopping - but who really wins?",
           "link": "https://finance.yahoo.com/technology/ai/articles/consumer-ai-agents-could-upend-151100217.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -397,24 +421,6 @@
           "link": "https://www.tikr.com/blog/investor-predicts-anthropic-could-be-the-first-10-trillion-company-cue-the-amazon-google-payday?ref=yahoofinance&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-10-10T15:05:37.000Z"
-        },
-        {
-          "title": "AWS CEO Says AI Spending Isn’t a Bubble Just Yet — Amazon’s Cloud Chief Says ‘We Feel Really Good’ as Ray Dalio Warns the Boom Is Near a Breaking Point",
-          "link": "https://finance.yahoo.com/technology/ai/articles/aws-ceo-says-ai-spending-113007316.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-10T11:30:07.000Z"
-        },
-        {
-          "title": "Amazon Reshuffles Alexa Leadership: Can Alexa+ Move a $53 Billion Subscription Business?",
-          "link": "https://www.tikr.com/blog/amazon-reshuffles-alexa-leadership-can-alexa-move-a-53-billion-subscription-business?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-10T05:13:36.000Z"
-        },
-        {
-          "title": "Amazon’s Thane Data Center Fight: A $8.3 Billion Plan Inside a $173 Billion Capex Budget",
-          "link": "https://www.tikr.com/blog/amazons-thane-data-center-fight-a-8-3-billion-plan-inside-a-173-billion-capex-budget?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-10T04:19:50.000Z"
         }
       ],
       "actions": []
