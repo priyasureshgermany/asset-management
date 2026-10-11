@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-10T21:04:51.396Z",
+  "at": "2026-10-11T03:40:14.799Z",
   "market": {
     "IN": [
       {
@@ -244,14 +244,7 @@
       ]
     },
     "IOC.NS": {
-      "news": [
-        {
-          "title": "Indian Oil Stock And 2 Refiners Linked To Shifting Middle East Oil Flows",
-          "link": "https://finance.yahoo.com/energy/articles/indian-oil-stock-2-refiners-210933303.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-03T21:09:33.000Z"
-        }
-      ],
+      "news": [],
       "actions": [
         {
           "kind": "dividend",
@@ -393,6 +386,18 @@
     "AMZN": {
       "news": [
         {
+          "title": "Can CoreWeave Unseat Amazon Web Services as the Top Cloud Provider?",
+          "link": "https://www.fool.com/investing/2026/10/10/can-coreweave-unseat-amazon-web-services-as-the-to/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-10T23:30:00.000Z"
+        },
+        {
+          "title": "Amazon (AMZN) Wants Investors to Finance $8 Billion of Nvidia Chips. Is AI Spending Getting Too Heavy?",
+          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-amzn-wants-investors-finance-221126922.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-10T22:11:26.000Z"
+        },
+        {
           "title": "Amazon (AMZN) Is Spending Billions on AI and Driver Pay. Will the Investments Pay Off?",
           "link": "https://finance.yahoo.com/technology/ai/articles/amazon-amzn-spending-billions-ai-223346855.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -409,18 +414,6 @@
           "link": "https://moneylion.com/trending/money/amazon-fuel-up-fridays-returns-prime-members-save-big-gas-pump?.tsrc=rss",
           "source": "moneylion.com",
           "at": "2026-10-10T17:00:25.000Z"
-        },
-        {
-          "title": "Consumer AI agents could upend online shopping - but who really wins?",
-          "link": "https://finance.yahoo.com/technology/ai/articles/consumer-ai-agents-could-upend-151100217.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-10T15:11:00.000Z"
-        },
-        {
-          "title": "Investor Predicts Anthropic Could Be “the First” $10 Trillion Company. Cue the Amazon + Google Payday",
-          "link": "https://www.tikr.com/blog/investor-predicts-anthropic-could-be-the-first-10-trillion-company-cue-the-amazon-google-payday?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-10T15:05:37.000Z"
         }
       ],
       "actions": []
