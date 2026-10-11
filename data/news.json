@@ -1,9 +1,9 @@
 {
-  "at": "2026-10-11T12:00:53.327Z",
+  "at": "2026-10-11T19:18:25.411Z",
   "market": {
     "IN": [
       {
-        "title": "Ahead of Market: 10 things that will decide stock market action on Monday",
+        "title": "Ahead of Market: 10 things that will decide D-Street action on Monday",
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-monday/articleshow/134869422.cms",
         "source": "Economic Times",
         "at": "2026-10-11T11:18:54.000Z",
@@ -350,6 +350,18 @@
     "MSFT": {
       "news": [
         {
+          "title": "What Could Microsoft (MSFT) Green Card Suspension Mean For Hiring And Compliance?",
+          "link": "https://finance.yahoo.com/technology/articles/could-microsoft-msft-green-card-160836706.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-11T16:08:36.000Z"
+        },
+        {
+          "title": "Ray Dalio Warns Stocks Are Running Out of Room for Error — and AI Could Make It Worse",
+          "link": "https://247wallst.com/investing/2026/10/11/ray-dalio-warns-stocks-are-running-out-of-room-for-error-and-ai-could-make-it-worse/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-11T14:47:32.000Z"
+        },
+        {
           "title": "Trump awards science medals to Musk, Nadella and 4 other tech titans — 5 immigrants — hours after Vance targets them",
           "link": "https://finance.yahoo.com/technology/articles/trump-awards-science-medals-musk-201500010.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -366,18 +378,6 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-vs-alphabet-ai-cloud-212027785.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-10T15:20:27.000Z"
-        },
-        {
-          "title": "Microsoft Stock Has Grown Roughly 15-Fold Since Satya Nadella Became CEO in 2014, a 27% Annual Growth Rate That Ended 14 Years of Near-Zero Growth. Can That Pace Continue Under Heavy AI Spending?",
-          "link": "https://www.fool.com/investing/2026/10/10/microsoft-stock-has-grown-roughly-15-fold-since-sa/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-10T14:15:00.000Z"
-        },
-        {
-          "title": "Big Tech is betting $700 billion on AI. Healthcare will decide whether the bet pays off",
-          "link": "https://finance.yahoo.com/healthcare/articles/big-tech-betting-700-billion-103000697.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-10T10:30:00.000Z"
         }
       ],
       "actions": [
@@ -392,34 +392,34 @@
     "AMZN": {
       "news": [
         {
+          "title": "Amazon and Alphabet Just Committed $420 Billion to Data Centers. 1 Stock Is the Better Buy.",
+          "link": "https://www.fool.com/investing/2026/10/11/amazon-and-alphabet-just-committed-420-billion-to/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-11T18:18:00.000Z"
+        },
+        {
+          "title": "Jeff Bezos makes surprising prediction for workers as Amazon cuts jobs",
+          "link": "https://www.thestreet.com/employment/jeff-bezos-predicts-ai-shorter-work-week-as-amazon-cuts-jobs?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-11T14:07:00.000Z"
+        },
+        {
+          "title": "Robert Reich Says Jeff Bezos Is ‘Partly Right’ That Doubling His Taxes Won’t Help Teacher In Queens Since Some Years He Pays $0 — You Can’t Double Nothing",
+          "link": "https://finance.yahoo.com/economy/policy/articles/robert-reich-says-jeff-bezos-123005221.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-11T12:30:05.000Z"
+        },
+        {
+          "title": "Amazon Reshuffles Alexa Leadership Right After Introducing New Tablet Lineup",
+          "link": "https://www.tikr.com/blog/amazon-amzn-stock-alexa-leadership-shake-up-new-tablets?ref=yahoofinance&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-10-11T05:26:26.000Z"
+        },
+        {
           "title": "Can CoreWeave Unseat Amazon Web Services as the Top Cloud Provider?",
           "link": "https://www.fool.com/investing/2026/10/10/can-coreweave-unseat-amazon-web-services-as-the-to/?.tsrc=rss",
           "source": "fool.com",
           "at": "2026-10-10T23:30:00.000Z"
-        },
-        {
-          "title": "Amazon (AMZN) Wants Investors to Finance $8 Billion of Nvidia Chips. Is AI Spending Getting Too Heavy?",
-          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-amzn-wants-investors-finance-221126922.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-10T22:11:26.000Z"
-        },
-        {
-          "title": "Amazon (AMZN) Is Spending Billions on AI and Driver Pay. Will the Investments Pay Off?",
-          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-amzn-spending-billions-ai-223346855.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-10T17:20:46.000Z"
-        },
-        {
-          "title": "Amazon.com (AMZN) Patched Critical AWS Bedrock AgentCore Security Flaws",
-          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-com-amzn-patched-critical-171250657.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-10T17:12:50.000Z"
-        },
-        {
-          "title": "Amazon Fuel Up Fridays Returns: How Prime Members Can Save Big at the Gas Pump",
-          "link": "https://moneylion.com/trending/money/amazon-fuel-up-fridays-returns-prime-members-save-big-gas-pump?.tsrc=rss",
-          "source": "moneylion.com",
-          "at": "2026-10-10T17:00:25.000Z"
         }
       ],
       "actions": []
