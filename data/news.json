@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-11T19:18:25.411Z",
+  "at": "2026-10-12T00:09:40.897Z",
   "market": {
     "IN": [
       {
@@ -350,6 +350,24 @@
     "MSFT": {
       "news": [
         {
+          "title": "Forget Chasing Volume. Here's the Most Active Stock I'd Actually Hold for 5 Years.",
+          "link": "https://www.fool.com/investing/2026/10/11/forget-chasing-volume-heres-the-most-active-stock/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-11T23:20:00.000Z"
+        },
+        {
+          "title": "Microsoft CEO wants AI treated like a risky insider at work",
+          "link": "https://www.thestreet.com/technology/microsoft-ceo-wants-ai-treated-like-a-risky-insider-at-work?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-11T22:07:00.000Z"
+        },
+        {
+          "title": "Not Alphabet. Not Amazon. Microsoft Trades at Big Tech's Cheapest Valuation.",
+          "link": "https://www.fool.com/investing/2026/10/11/not-alphabet-not-amazon-microsoft-trades-at-big-te/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-11T20:14:00.000Z"
+        },
+        {
           "title": "What Could Microsoft (MSFT) Green Card Suspension Mean For Hiring And Compliance?",
           "link": "https://finance.yahoo.com/technology/articles/could-microsoft-msft-green-card-160836706.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -360,24 +378,6 @@
           "link": "https://247wallst.com/investing/2026/10/11/ray-dalio-warns-stocks-are-running-out-of-room-for-error-and-ai-could-make-it-worse/?.tsrc=rss",
           "source": "247wallst.com",
           "at": "2026-10-11T14:47:32.000Z"
-        },
-        {
-          "title": "Trump awards science medals to Musk, Nadella and 4 other tech titans — 5 immigrants — hours after Vance targets them",
-          "link": "https://finance.yahoo.com/technology/articles/trump-awards-science-medals-musk-201500010.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-10T20:15:00.000Z"
-        },
-        {
-          "title": "Microsoft (MSFT) Posted 43% Azure Growth, Yet Trades Below Its Own Five-Year P/E. A Real Discount?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-posted-43-azure-132642768.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-10T17:11:42.000Z"
-        },
-        {
-          "title": "Microsoft vs. Alphabet: Which AI Cloud Stock Is Cheaper After the Capital Spending?",
-          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-vs-alphabet-ai-cloud-212027785.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-10T15:20:27.000Z"
         }
       ],
       "actions": [
@@ -392,34 +392,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Amazon and Alphabet Just Committed $420 Billion to Data Centers. 1 Stock Is the Better Buy.",
-          "link": "https://www.fool.com/investing/2026/10/11/amazon-and-alphabet-just-committed-420-billion-to/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-11T18:18:00.000Z"
-        },
-        {
-          "title": "Jeff Bezos makes surprising prediction for workers as Amazon cuts jobs",
-          "link": "https://www.thestreet.com/employment/jeff-bezos-predicts-ai-shorter-work-week-as-amazon-cuts-jobs?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-10-11T14:07:00.000Z"
-        },
-        {
-          "title": "Robert Reich Says Jeff Bezos Is ‘Partly Right’ That Doubling His Taxes Won’t Help Teacher In Queens Since Some Years He Pays $0 — You Can’t Double Nothing",
-          "link": "https://finance.yahoo.com/economy/policy/articles/robert-reich-says-jeff-bezos-123005221.html?.tsrc=rss",
+          "title": "Amazon in talks to acquire AI startup Decart for $7 bln- WSJ",
+          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-talks-acquire-ai-startup-235502420.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-11T12:30:05.000Z"
+          "at": "2026-10-11T23:55:02.000Z"
         },
         {
-          "title": "Amazon Reshuffles Alexa Leadership Right After Introducing New Tablet Lineup",
-          "link": "https://www.tikr.com/blog/amazon-amzn-stock-alexa-leadership-shake-up-new-tablets?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-11T05:26:26.000Z"
+          "title": "Jeff Bezos has a blunt answer for why housing is so expensive",
+          "link": "https://www.thestreet.com/real-estate/jeff-bezos-has-a-blunt-answer-for-why-housing-is-so-expensive?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-11T21:33:00.000Z"
         },
         {
-          "title": "Can CoreWeave Unseat Amazon Web Services as the Top Cloud Provider?",
-          "link": "https://www.fool.com/investing/2026/10/10/can-coreweave-unseat-amazon-web-services-as-the-to/?.tsrc=rss",
+          "title": "Amazon.com In Talks to Buy Software Start-Up Decart AI: WSJ",
+          "link": "https://finance.yahoo.com/m/23972825-d546-377d-9ea2-bbd46f4b7bf4/amazon.com-in-talks-to-buy.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-11T21:26:00.000Z"
+        },
+        {
+          "title": "Amazon Is in Talks to Buy AI Startup Decart, WSJ Reports",
+          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-talks-buy-ai-startup-204652661.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-11T20:46:52.000Z"
+        },
+        {
+          "title": "Not Alphabet. Not Amazon. Microsoft Trades at Big Tech's Cheapest Valuation.",
+          "link": "https://www.fool.com/investing/2026/10/11/not-alphabet-not-amazon-microsoft-trades-at-big-te/?.tsrc=rss",
           "source": "fool.com",
-          "at": "2026-10-10T23:30:00.000Z"
+          "at": "2026-10-11T20:14:00.000Z"
         }
       ],
       "actions": []
