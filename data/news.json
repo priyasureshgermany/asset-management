@@ -1,9 +1,23 @@
 {
-  "at": "2026-10-14T19:09:03.742Z",
+  "at": "2026-10-14T23:37:17.385Z",
   "market": {
     "IN": [
       {
-        "title": "US stocks: AI shares tumble, erasing $80 billion as hot US inflation fuels rate fears",
+        "title": "US stocks: Nasdaq ends sharply lower as hot inflation data stirs rate-hike worries",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-stocks-nasdaq-ends-sharply-lower-as-hot-inflation-data-stirs-rate-hike-worries/articleshow/134951150.cms",
+        "source": "Economic Times",
+        "at": "2026-10-14T20:16:53.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "BlackRock, SBI MF lead Tonbo Imaging’s Rs 255 crore anchor round ahead of IPO",
+        "link": "https://economictimes.indiatimes.com/markets/ipos/fpos/blackrock-sbi-mf-lead-tonbo-imagings-rs-255-crore-anchor-round-ahead-of-ipo/articleshow/134950868.cms",
+        "source": "Economic Times",
+        "at": "2026-10-14T19:46:52.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "US stocks: AI shares tumble up to 16%, erasing $80 billion as hot US inflation fuels rate fears",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-stocks-ai-shares-tumble-erasing-80-billion-as-hot-us-inflation-fuels-rate-fears/articleshow/134950204.cms",
         "source": "Economic Times",
         "at": "2026-10-14T18:52:22.000Z",
@@ -42,20 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/sebi-confirms-interim-curbs-on-rajesh-exports-says-financial-disclosure-concerns-remain-unresolved/articleshow/134946574.cms",
         "source": "Economic Times",
         "at": "2026-10-14T16:11:01.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "IPO ahead! Paramotor Digital Technology files updated draft papers with Sebi for Rs 1,000 crore issue",
-        "link": "https://economictimes.indiatimes.com/markets/ipos/fpos/ipo-ahead-paramotor-digital-technology-files-updated-draft-papers-with-sebi-for-rs-1000-crore-issue/articleshow/134946466.cms",
-        "source": "Economic Times",
-        "at": "2026-10-14T16:04:45.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "HDB Financial Q2 profit climbs 34%, NIM improves year on year, eyes stronger disbursements in H2",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/hdb-financial-q2-profit-climbs-34-nim-improves-year-on-year-eyes-stronger-disbursements-in-h2/articleshow/134946431.cms",
-        "source": "Economic Times",
-        "at": "2026-10-14T16:02:06.000Z",
         "market": "Indian markets"
       }
     ],
@@ -326,6 +326,12 @@
     "INTU": {
       "news": [
         {
+          "title": "Intuit (INTU) Adds Payroll Tax Closure Support For QuickBooks Workforce",
+          "link": "https://finance.yahoo.com/small-business/articles/intuit-intu-adds-payroll-tax-191816030.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-14T19:18:16.000Z"
+        },
+        {
           "title": "Intuit (INTU) Stock May Be Undervalued As NFL Partnership Expands Through 2030",
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-stock-may-undervalued-181254142.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -348,12 +354,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-strong-fy26-beat-140618090.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-13T14:06:18.000Z"
-        },
-        {
-          "title": "Intuit's Mailchimp Faces Headwinds: Can It Stage a Turnaround?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/intuits-mailchimp-faces-headwinds-stage-134600080.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-13T13:46:00.000Z"
         }
       ],
       "actions": [
@@ -374,6 +374,18 @@
     "MSFT": {
       "news": [
         {
+          "title": "Microsoft Just Unveiled a Brand-New AI Chip. Could It Be the \"Nvidia Killer\" Everyone's Been Looking For?",
+          "link": "https://www.fool.com/investing/2026/10/14/microsoft-unveil-new-ai-chip-nvidia-killer/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-14T21:17:06.000Z"
+        },
+        {
+          "title": "Sara Eisen Went on Bill Maher and Said What Wall Street Will Not About the AI Race",
+          "link": "https://247wallst.com/investing/2026/10/14/sara-eisen-went-on-bill-maher-and-said-what-wall-street-will-not-about-the-ai-race/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-14T19:50:10.000Z"
+        },
+        {
           "title": "Citi Says the S&P 500 Hits 8,100. Half the Market Has to Cooperate First.",
           "link": "https://247wallst.com/investing/2026/10/14/citi-says-the-sp-500-hits-8100-half-the-market-has-to-cooperate-first/?.tsrc=rss",
           "source": "247wallst.com",
@@ -390,18 +402,6 @@
           "link": "https://www.trefis.com/articles/618692/should-microsoft-stocks-new-high-stop-you-from-buying/2026-10-14?.tsrc=rss",
           "source": "trefis.com",
           "at": "2026-10-14T18:19:33.000Z"
-        },
-        {
-          "title": "What Could Microsoft (MSFT) Gain From Its Maia 300 AI Chip Rollout?",
-          "link": "https://finance.yahoo.com/technology/ai/articles/could-microsoft-msft-gain-maia-170947572.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-14T17:09:47.000Z"
-        },
-        {
-          "title": "Not Microsoft. Not Alphabet. Here's the Cloud Giant I'm Most Bullish About.",
-          "link": "https://www.fool.com/investing/2026/10/14/not-microsoft-not-alphabet-heres-the-cloud-giant-i/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-14T15:43:00.000Z"
         }
       ],
       "actions": [
@@ -415,6 +415,18 @@
     },
     "AMZN": {
       "news": [
+        {
+          "title": "Amazon.com (AMZN) Could See Blue Origin Go Public",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-com-amzn-could-see-221605046.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-14T22:16:05.000Z"
+        },
+        {
+          "title": "Amazon Is the Most Crowded Stock for Hedge Funds. Tesla, Not So Much.",
+          "link": "https://finance.yahoo.com/m/6150becb-110a-3ef6-a3e3-c44485793023/amazon-is-the-most-crowded.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-14T19:20:00.000Z"
+        },
         {
           "title": "Amazon (AMZN) Has a $25B Chip Business. Is the Cash Burn Worth It?",
           "link": "https://finance.yahoo.com/technology/ai/articles/amazon-amzn-25b-chip-business-184617504.html?.tsrc=rss",
@@ -432,18 +444,6 @@
           "link": "https://www.thestreet.com/investing/amazon-alexa-tablet-12-pro-nanomatte-breaks-oldest-hardware-rule?.tsrc=rss",
           "source": "thestreet.com",
           "at": "2026-10-14T17:33:00.000Z"
-        },
-        {
-          "title": "Nectar Launches Customer Atlas, Extending Amazon Marketing Cloud Audience Targeting From Display Into Search Bidding",
-          "link": "https://finance.yahoo.com/media-advertising/articles/nectar-launches-customer-atlas-extending-152800468.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-14T15:28:00.000Z"
-        },
-        {
-          "title": "Amazon to close grocery partner storefronts",
-          "link": "https://www.grocerydive.com/news/amazon-grocery-partners-individual-storefronts-closing/832902/?.tsrc=rss",
-          "source": "grocerydive.com",
-          "at": "2026-10-14T14:39:33.000Z"
         }
       ],
       "actions": []
@@ -463,12 +463,6 @@
           "at": "2026-10-08T14:30:00.000Z"
         },
         {
-          "title": "Nasdaq Reports September 2026 Volumes and 3Q26 Statistics",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-reports-september-2026-volumes-200500561.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-07T20:05:00.000Z"
-        },
-        {
           "title": "1 Safe-and-Steady Stock to Target This Week and 2 We Avoid",
           "link": "https://finance.yahoo.com/markets/stocks/articles/1-safe-steady-stock-target-132703314.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -479,6 +473,12 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-stock-focus-volatility-tests-111119264.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-11T11:11:19.000Z"
+        },
+        {
+          "title": "Nasdaq Announces End-of-Month Open Short Interest Positions in Nasdaq Stocks as of Settlement Date September 30, 2026",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-announces-end-month-open-200500396.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-09T20:05:00.000Z"
         }
       ],
       "actions": [
