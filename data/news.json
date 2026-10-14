@@ -1,7 +1,21 @@
 {
-  "at": "2026-10-13T18:48:30.904Z",
+  "at": "2026-10-14T00:05:32.762Z",
   "market": {
     "IN": [
+      {
+        "title": "US stocks: Nasdaq ends down as chipmakers fall and bank earnings roll in",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-stocks-nasdaq-ends-down-as-chipmakers-fall-and-bank-earnings-roll-in/articleshow/134926328.cms",
+        "source": "Economic Times",
+        "at": "2026-10-13T20:13:21.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "NY Fed President Williams sees no need for a rate hike in 2027",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/ny-fed-president-williams-sees-no-need-for-a-rate-hike-in-2027/articleshow/134925718.cms",
+        "source": "Economic Times",
+        "at": "2026-10-13T18:58:02.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "US chip stocks slide as China’s CXMT advances; AI spending fears rattle investors",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-chip-stocks-slide-as-chinas-cxmt-advances-ai-spending-fears-rattle-investors/articleshow/134923498.cms",
@@ -42,20 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-wednesday/articleshow/134921558.cms",
         "source": "Economic Times",
         "at": "2026-10-13T15:43:30.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Market Trading Guide: Balrampur Chini Mills among 4 stock recommendations for Wednesday",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/market-trading-guide-balrampur-chini-mills-among-4-stock-recommendations-for-wednesday/slideshow/134921277.cms",
-        "source": "Economic Times",
-        "at": "2026-10-13T15:06:53.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "US banks post strong profits, but inflation and rate risks cloud outlook",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-banks-post-strong-profits-but-inflation-and-rate-risks-cloud-outlook/articleshow/134920643.cms",
-        "source": "Economic Times",
-        "at": "2026-10-13T14:45:10.000Z",
         "market": "Indian markets"
       }
     ],
@@ -357,34 +357,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Microsoft Stock Heads for a Record High. How It Suddenly Became an AI Winner.",
-          "link": "https://finance.yahoo.com/m/38e17a7f-7fd3-3a2e-846c-2c38415fb8aa/microsoft-stock-heads-for-a.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-13T18:23:00.000Z"
-        },
-        {
-          "title": "Improve Transparency and Demonstrate Community Impact of Government-Funded Infrastructure Projects",
-          "link": "https://finance.yahoo.com/economy/policy/articles/improve-transparency-demonstrate-community-impact-161800257.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-13T16:18:00.000Z"
-        },
-        {
-          "title": "Does The Maia Chip Bet Materially Alter Microsoft's Operating Margin Outlook?",
-          "link": "https://www.trefis.com/articles/618436/does-the-maia-chip-bet-materially-alter-microsofts-operating-margin-outlook/2026-10-13?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-10-13T15:35:57.000Z"
-        },
-        {
-          "title": "Microsoft Surface GM on New AI PCs, 5G Devices and Surface Innovation",
-          "link": "https://finance.yahoo.com/video/microsoft-surface-gm-ai-pcs-151132044.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-13T15:11:32.000Z"
-        },
-        {
-          "title": "MSFT Stock Gets A Thumbs Up From Barclays – Firm Expects Quarter To Start Showing ‘More Differentiation’ In Software",
-          "link": "https://stocktwits.com/news-articles/markets/equity/msft-stock-gets-a-thumbs-up-from-barclays-firm-expects-quarter-to-start-showing-more-differentiation-in-software/cZxBllTRBY4?.tsrc=rss",
+          "title": "Microsoft Weighs 20% Cost Cuts In Azure Vertical Amid Soaring AI Data Center Spending: Report",
+          "link": "https://stocktwits.com/news-articles/markets/equity/microsoft-weighs-20-cost-cuts/cZxBU8ARBYt?.tsrc=rss",
           "source": "stocktwits.com",
-          "at": "2026-10-13T14:51:59.000Z"
+          "at": "2026-10-13T23:40:48.000Z"
+        },
+        {
+          "title": "How much MSFT stock does Microsoft founder Bill Gates actually own?",
+          "link": "https://www.thestreet.com/personalities/how-much-msft-stock-does-microsoft-founder-bill-gates-own?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-13T23:24:57.000Z"
+        },
+        {
+          "title": "Franklin Templeton CEO says AI is hiding a bigger tech story",
+          "link": "https://www.thestreet.com/technology/franklin-templeton-ceo-johnson-ai-hiding-bigger-tech-story?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-13T22:33:00.000Z"
+        },
+        {
+          "title": "Microsoft Reports $130 Billion in Data Center Leases",
+          "link": "https://finance.yahoo.com/news/microsoft-reports-130-billion-data-210057149.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-13T21:00:57.000Z"
+        },
+        {
+          "title": "Microsoft Stock Reaches a Record High. How It Suddenly Became an AI Winner.",
+          "link": "https://finance.yahoo.com/m/38e17a7f-7fd3-3a2e-846c-2c38415fb8aa/microsoft-stock-reaches-a.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-13T20:56:00.000Z"
         }
       ],
       "actions": [
@@ -399,34 +399,34 @@
     "AMZN": {
       "news": [
         {
+          "title": "Jeff Bezos Aims for the Moon But Advises Retirees to Stick With Index Funds",
+          "link": "https://www.investopedia.com/jeff-bezos-aims-for-the-moon-but-advises-retirees-to-stick-with-index-funds-s-and-p-500-amazon-12171851?.tsrc=rss",
+          "source": "investopedia.com",
+          "at": "2026-10-13T21:13:37.000Z"
+        },
+        {
           "title": "Sector Update: Tech Stocks Fall Tuesday Afternoon",
           "link": "https://finance.yahoo.com/markets/stocks/articles/sector-tech-stocks-fall-tuesday-175454882.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-13T17:54:54.000Z"
         },
         {
-          "title": "Is Amazon Stock Poised to Gain on Strong Free Cash Flow Growth?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-stock-poised-gain-strong-162300788.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-13T16:23:00.000Z"
+          "title": "Franklin Templeton CEO says AI is hiding a bigger tech story",
+          "link": "https://www.thestreet.com/technology/franklin-templeton-ceo-johnson-ai-hiding-bigger-tech-story?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-13T22:33:00.000Z"
         },
         {
-          "title": "Should You Buy Amazon Stock Before October Ends?",
-          "link": "https://www.fool.com/investing/2026/10/13/should-you-buy-amazon-stock-before-october-ends/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-13T16:12:00.000Z"
-        },
-        {
-          "title": "Amazon.com (AMZN) Weighs Decart Deal, Is The Stock Still Undervalued?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-com-amzn-weighs-decart-160953253.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-13T16:09:53.000Z"
-        },
-        {
-          "title": "Amazon Wants to Pay $7 Billion for a 3-Year-Old AI Startup That Makes AI Run Faster on Nvidia’s Chips and Its Own",
-          "link": "https://247wallst.com/investing/2026/10/13/amazon-wants-to-pay-7-billion-for-a-3-year-old-ai-startup-that-makes-ai-run-faster-on-nvidias-chips-and-its-own/?.tsrc=rss",
+          "title": "Data Reveals Next Big AI Robotics Stock Investments",
+          "link": "https://247wallst.com/videos/data-reveals-next-big-ai-robotics-stock-investments/?.tsrc=rss",
           "source": "247wallst.com",
-          "at": "2026-10-13T15:32:57.000Z"
+          "at": "2026-10-13T20:12:19.000Z"
+        },
+        {
+          "title": "Investors Are Paying More for Walmart Than Amazon. Here’s Why That Doesn’t Add Up.",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/investors-paying-more-walmart-amazon-200115149.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-13T20:01:15.000Z"
         }
       ],
       "actions": []
@@ -476,6 +476,18 @@
     "NOW": {
       "news": [
         {
+          "title": "ServiceNow (NOW) Is Growing 24%, but Can Cash Flow Justify Its Valuation?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-now-growing-24-cash-205409345.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-13T20:54:09.000Z"
+        },
+        {
+          "title": "Sector Update: Tech Stocks Softer Late Afternoon",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/sector-tech-stocks-softer-afternoon-194135391.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-13T19:41:35.000Z"
+        },
+        {
           "title": "ServiceNow Positioned to Deliver Favorable Business Outcome in Q3, Oppenheimer Says",
           "link": "https://finance.yahoo.com/technology/articles/servicenow-positioned-deliver-favorable-business-153653625.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -492,18 +504,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-growth-intact-investors-paying-123026496.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-13T12:30:26.000Z"
-        },
-        {
-          "title": "2 Software Stocks to Buy That Are Down More Than 35% From Their Records",
-          "link": "https://www.fool.com/investing/2026/10/13/2-software-stocks-to-buy-that-are-down-more-than-35-from-their-records/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-13T10:41:02.000Z"
-        },
-        {
-          "title": "ServiceNow (NOW) Following AI Workflow Push Has Valuation Back In Focus",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-now-following-ai-workflow-031646537.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-13T03:16:46.000Z"
         }
       ],
       "actions": []
