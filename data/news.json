@@ -1,7 +1,21 @@
 {
-  "at": "2026-10-16T18:35:26.699Z",
+  "at": "2026-10-16T23:13:34.274Z",
   "market": {
     "IN": [
+      {
+        "title": "US stocks: US market ends down sharply; worries about AI trade and high oil prices weigh",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-stocks-us-market-ends-down-sharply-worries-about-ai-trade-and-high-oil-prices-weigh/articleshow/135003266.cms",
+        "source": "Economic Times",
+        "at": "2026-10-16T20:08:41.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Big US bank stocks head for longest weekly losing streak since 2008",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/big-us-bank-stocks-head-for-longest-weekly-losing-streak-since-2008/articleshow/135002546.cms",
+        "source": "Economic Times",
+        "at": "2026-10-16T18:54:46.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Chip selloff deepens Wall Street losses as doubts grew over AI returns",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/chip-selloff-deepens-wall-street-losses-as-doubts-grew-over-ai-returns/articleshow/135001236.cms",
@@ -42,20 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/dlf-q2-profit-rises-to-rs-1301-crore-as-luxury-project-sells-out/articleshow/134996827.cms",
         "source": "Economic Times",
         "at": "2026-10-16T13:40:03.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Ujjivan SFB to raise Rs 409 crore from IFC, three insurers",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/ujjivan-sfb-to-raise-rs-409-crore-from-ifc-three-insurers/articleshow/134996772.cms",
-        "source": "Economic Times",
-        "at": "2026-10-16T13:37:46.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Rupee rises 1.9% in a week, closes below 95 per dollar",
-        "link": "https://economictimes.indiatimes.com/markets/forex/forex-news/rupee-rises-1-9-in-a-week-closes-below-95-per-dollar/articleshow/134996292.cms",
-        "source": "Economic Times",
-        "at": "2026-10-16T13:14:16.000Z",
         "market": "Indian markets"
       }
     ],
@@ -381,6 +381,12 @@
     "MSFT": {
       "news": [
         {
+          "title": "Not Alphabet. Not Microsoft. This Is the Cloud Stock I'd Buy With $5,000 Right Now.",
+          "link": "https://www.fool.com/investing/2026/10/16/not-alphabet-not-microsoft-this-is-the-cloud-stock/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-16T21:43:00.000Z"
+        },
+        {
           "title": "Microsoft Signs 1,100 MW Power Deal With NiSource Until 2048 as AI Spending Outruns the Grid",
           "link": "https://www.tikr.com/blog/microsoft-signs-1100-mw-power-deal-with-nisource-until-2048-as-ai-spending-outruns-the-grid?ref=yahoofinance&.tsrc=rss",
           "source": "tikr.com",
@@ -399,16 +405,10 @@
           "at": "2026-10-16T16:06:51.000Z"
         },
         {
-          "title": "What Is The Biggest Threat To Microsoft Stock?",
-          "link": "https://www.trefis.com/articles/619006/what-is-the-biggest-threat-to-microsoft-stock/2026-10-16?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-10-16T15:43:27.000Z"
-        },
-        {
-          "title": "High Switching Costs Protect Microsoft Corporation (MSFT) in the AI Era",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/high-switching-costs-protect-microsoft-153203452.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-16T15:32:03.000Z"
+          "title": "Stock Market Today, Oct. 16: Apple Edges Higher on iPhone Duo Preorder Surge",
+          "link": "https://www.fool.com/coverage/stock-market-today/2026/10/16/stock-market-today-oct-16-apple-edges-higher-on-iphone-duo-preorder-surge/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-16T21:49:34.000Z"
         }
       ],
       "actions": [
@@ -422,6 +422,18 @@
     },
     "AMZN": {
       "news": [
+        {
+          "title": "This is the Cheapest Mag 7 Stock Right Now",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/cheapest-mag-7-stock-now-210700125.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-16T21:07:00.000Z"
+        },
+        {
+          "title": "Apple is Now the Top-Performing Magnificent 7 Stock in 2026. Here’s why it’s Beating NVIDIA, Tesla, and Amazon",
+          "link": "https://247wallst.com/videos/apple-is-now-the-top-performing-magnificent-7-stock-in-2026-heres-why-its-beating-nvidia-tesla-and-amazon/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-16T19:34:26.000Z"
+        },
         {
           "title": "Amazon's $70 screenless fitness band improves physical and mental health",
           "link": "https://www.thestreet.com/shopping/pjive-health-and-fitness-smart-bracelet-amazon-sale?.tsrc=rss",
@@ -439,18 +451,6 @@
           "link": "https://www.fool.com/investing/2026/10/16/amazon-is-12-below-its-high-heading-into-earnings/?.tsrc=rss",
           "source": "fool.com",
           "at": "2026-10-16T17:30:00.000Z"
-        },
-        {
-          "title": "2 Tech Stocks to Buy Now and Hold for a Decade (Hint: 1 Isn't in the AI Trade)",
-          "link": "https://www.fool.com/investing/2026/10/16/2-tech-stocks-to-buy-now-and-hold-for-a-decade/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-16T15:37:00.000Z"
-        },
-        {
-          "title": "Amazon Unveils Two Bee-Branded Hardware Devices Powered by AI",
-          "link": "https://www.tikr.com/blog/amazon-stock-bee-ai-devices-frontier-eclipse?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-16T14:00:22.000Z"
         }
       ],
       "actions": []
@@ -500,6 +500,12 @@
     "NOW": {
       "news": [
         {
+          "title": "Here's Why ServiceNow (NOW) Fell More Than Broader Market",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/heres-why-servicenow-now-fell-204503438.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-16T20:45:03.000Z"
+        },
+        {
           "title": "How Deep System Roots Protect ServiceNow (NOW) in AI Era",
           "link": "https://finance.yahoo.com/markets/stocks/articles/deep-system-roots-protect-servicenow-151258260.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -522,12 +528,6 @@
           "link": "https://finance.yahoo.com/m/b14bf4c9-b540-315c-a728-6230494d4f98/coreweave%2C-international.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-15T20:21:00.000Z"
-        },
-        {
-          "title": "Why ServiceNow (NOW) Stock Is Trading Up Today",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/why-servicenow-now-stock-trading-193109693.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-15T19:31:09.000Z"
         }
       ],
       "actions": []
@@ -557,12 +557,6 @@
           "link": "https://finance.yahoo.com/small-business/articles/global-guide-examines-international-relocation-130000682.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-13T13:00:00.000Z"
-        },
-        {
-          "title": "Wolters Kluwer (ENXTAM:WKL) Climbed, So What Is Driving Attention Now?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/wolters-kluwer-enxtam-wkl-climbed-231148218.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-09T23:11:48.000Z"
         }
       ],
       "actions": [
