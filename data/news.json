@@ -1,67 +1,81 @@
 {
-  "at": "2026-10-16T13:42:56.217Z",
+  "at": "2026-10-16T18:35:26.699Z",
   "market": {
     "IN": [
+      {
+        "title": "Chip selloff deepens Wall Street losses as doubts grew over AI returns",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/chip-selloff-deepens-wall-street-losses-as-doubts-grew-over-ai-returns/articleshow/135001236.cms",
+        "source": "Economic Times",
+        "at": "2026-10-16T17:59:09.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "CoreWeave stock wipeout exposes divide between AI fear and greed",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/coreweave-stock-wipeout-exposes-divide-between-ai-fear-and-greed/articleshow/134998742.cms",
+        "source": "Economic Times",
+        "at": "2026-10-16T16:03:56.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Crompton Greaves Consumer Electricals Ltd Q2 Results: Profit surges 65% to Rs 124 crore",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/crompton-greaves-q2-results-profit-surges-65-to-rs-124-crore/articleshow/134998426.cms",
+        "source": "Economic Times",
+        "at": "2026-10-16T15:33:01.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Cult.fit receives Sebi approval for proposed IPO",
+        "link": "https://economictimes.indiatimes.com/markets/ipos/fpos/cult-fit-receives-sebi-approval-for-proposed-ipo/articleshow/134997161.cms",
+        "source": "Economic Times",
+        "at": "2026-10-16T14:02:27.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "US stocks: S&P 500 muted as AI concerns hit chip stocks; bank gains lift Dow",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-wall-st-opens-muted-as-tech-jitters-linger-tesla-gains/articleshow/134996865.cms",
+        "source": "Economic Times",
+        "at": "2026-10-16T13:45:27.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "DLF Q2 profit rises to Rs 1,301 crore as luxury project sells out",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/dlf-q2-profit-rises-to-rs-1301-crore-as-luxury-project-sells-out/articleshow/134996827.cms",
+        "source": "Economic Times",
+        "at": "2026-10-16T13:40:03.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Ujjivan SFB to raise Rs 409 crore from IFC, three insurers",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/ujjivan-sfb-to-raise-rs-409-crore-from-ifc-three-insurers/articleshow/134996772.cms",
+        "source": "Economic Times",
+        "at": "2026-10-16T13:37:46.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Rupee rises 1.9% in a week, closes below 95 per dollar",
         "link": "https://economictimes.indiatimes.com/markets/forex/forex-news/rupee-rises-1-9-in-a-week-closes-below-95-per-dollar/articleshow/134996292.cms",
         "source": "Economic Times",
         "at": "2026-10-16T13:14:16.000Z",
         "market": "Indian markets"
-      },
-      {
-        "title": "Federal Bank Q2 profit jumps 45% to record Rs 1,386 crore",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/federal-bank-q2-profit-jumps-45-to-record-rs-1386-crore/articleshow/134996156.cms",
-        "source": "Economic Times",
-        "at": "2026-10-16T13:09:30.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Kotak Mahindra Bank among 5 stocks that hit 52-week highs & rallied up to 15% in a month",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/kotak-mahindra-bank-among-5-stocks-that-hit-52-week-highs-amp-rallied-up-to-15-in-a-month/slideshow/134995212.cms",
-        "source": "Economic Times",
-        "at": "2026-10-16T12:26:43.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Aggressive RBI measures hand India bonds a ninth weekly loss",
-        "link": "https://economictimes.indiatimes.com/markets/bonds/aggressive-rbi-measures-hand-india-bonds-a-ninth-weekly-loss/articleshow/134995086.cms",
-        "source": "Economic Times",
-        "at": "2026-10-16T12:25:36.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "LTM Q2 Results: PAT remains flat at Rs 1,380 crore; revenue rises 14% YoY; co declares Rs 25 per share dividend",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/ltm-q2-results-pat-remains-flat-at-rs-1380-crore-revenue-rises-14-yoy-co-declares-rs-25-per-share-dividend/articleshow/134994968.cms",
-        "source": "Economic Times",
-        "at": "2026-10-16T12:23:16.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Dow Jones| Nasdaq | US Stock Market Today | Live: US futures mixed as tech wobbles again, Tesla gains",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/dow-jones-us-stock-market-live-updates-nasdaq-sp-500-iran-war-hormuz-deal-brent-crude-oil-fed-rate-yield-earnings-tesla-nvidia-nebius-coreweave-varonis-systems-ai-chip-stock-price-news-16th-october-2026/liveblog/134994983.cms",
-        "source": "Economic Times",
-        "at": "2026-10-16T12:13:58.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "DEE Development Engineers signs framework pact with domestic EPC firm for nuclear power sector",
-        "link": "https://economictimes.indiatimes.com/markets/companies/dee-development-engineers-signs-framework-pact-with-domestic-epc-firm-for-nuclear-power-sector/articleshow/134993986.cms",
-        "source": "Economic Times",
-        "at": "2026-10-16T11:50:39.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Bajaj Housing Finance Q2 Results: PAT rises 18% YoY to Rs 757 crore, AUM grows 25%",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/bajaj-housing-finance-q2-results-pat-rises-18-yoy-to-rs-757-crore-aum-grows-25/articleshow/134993051.cms",
-        "source": "Economic Times",
-        "at": "2026-10-16T11:22:16.000Z",
-        "market": "Indian markets"
       }
     ],
     "GLOBAL": [
       {
-        "title": "European stocks on course for best week since Aug on easing yields",
+        "title": "European Stocks Close Higher in Friday Trading; Euro Area Inflation Surges to 3.8% in August",
+        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-close-higher-friday-153948715.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-10-16T15:39:48.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "FTSE 100 today: Index posts second weekly gain as defense shares climb",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/ftse-100-today-stocks-slip-074440909.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-10-16T07:44:40.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "European stocks post best week since June on easing yields",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-course-best-week-073632956.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-10-16T07:36:32.000Z",
@@ -100,20 +114,6 @@
         "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-close-higher-wednesday-155236645.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-10-14T15:52:36.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "FTSE 100 today: Stocks close higher after hot U.S. core CPI, BoE hike doubts",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-edge-075513596.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-10-14T07:55:13.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "European shares rise even as hotter U.S. CPI sparks yield surge",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-gain-asml-sales-075418432.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-10-14T07:54:18.000Z",
         "market": "European markets"
       }
     ]
@@ -381,34 +381,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Microsoft’s AI Chief Says It Built a Better Model Than OpenAI’s With a Quarter of the Computing Power",
-          "link": "https://247wallst.com/investing/2026/10/16/microsofts-ai-chief-says-it-built-a-better-model-than-openais-with-a-quarter-of-the-computing-power/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-16T12:57:29.000Z"
+          "title": "Microsoft Signs 1,100 MW Power Deal With NiSource Until 2048 as AI Spending Outruns the Grid",
+          "link": "https://www.tikr.com/blog/microsoft-signs-1100-mw-power-deal-with-nisource-until-2048-as-ai-spending-outruns-the-grid?ref=yahoofinance&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-10-16T16:36:19.000Z"
         },
         {
-          "title": "NiSource Expands Microsoft Power Deal, Projects $1.75B In Customer Savings",
-          "link": "https://stocktwits.com/news-articles/markets/equity/ni-source-expands-microsoft-power-deal-projects-1-75-b-in-customer-savings/cZxKTrVRBsi?.tsrc=rss",
-          "source": "stocktwits.com",
-          "at": "2026-10-16T12:51:00.000Z"
-        },
-        {
-          "title": "NiSource Signs 20-Year Microsoft Power Agreement for 1,100 MW Indiana Data Centre Campus",
-          "link": "https://investorshub.advfn.com/market-news/article/38209/nisource-signs-20-year-microsoft-power-agreement-for-1100-mw-indiana-data-centre-campus?.tsrc=rss",
-          "source": "investorshub.advfn.com",
-          "at": "2026-10-16T12:43:31.000Z"
-        },
-        {
-          "title": "NiSource announces long-term agreement with Microsoft expected to increase customer savings and support Indiana’s economic growth",
-          "link": "https://finance.yahoo.com/energy/articles/nisource-announces-long-term-agreement-111500978.html?.tsrc=rss",
+          "title": "Microsoft (MSFT) Remains a High-Quality AI Leader",
+          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-remains-high-quality-162832834.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-16T11:15:00.000Z"
+          "at": "2026-10-16T16:28:32.000Z"
         },
         {
-          "title": "How Bad Would Outspending Its Cash Flow Be For Meta Stock?",
-          "link": "https://www.trefis.com/articles/619028/how-bad-would-outspending-its-cash-flow-be-for-meta-stock/2026-10-16?.tsrc=rss",
+          "title": "Strong Azure Results Powered Microsoft Corporation’s (MSFT) Rally",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/strong-azure-results-powered-microsoft-160651006.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-16T16:06:51.000Z"
+        },
+        {
+          "title": "What Is The Biggest Threat To Microsoft Stock?",
+          "link": "https://www.trefis.com/articles/619006/what-is-the-biggest-threat-to-microsoft-stock/2026-10-16?.tsrc=rss",
           "source": "trefis.com",
-          "at": "2026-10-16T13:25:34.000Z"
+          "at": "2026-10-16T15:43:27.000Z"
+        },
+        {
+          "title": "High Switching Costs Protect Microsoft Corporation (MSFT) in the AI Era",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/high-switching-costs-protect-microsoft-153203452.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-16T15:32:03.000Z"
         }
       ],
       "actions": [
@@ -423,34 +423,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Nancy Pelosi and Trump Like This Top AI Stock",
-          "link": "https://finance.yahoo.com/technology/ai/articles/nancy-pelosi-trump-top-ai-130823531.html?.tsrc=rss",
+          "title": "Amazon's $70 screenless fitness band improves physical and mental health",
+          "link": "https://www.thestreet.com/shopping/pjive-health-and-fitness-smart-bracelet-amazon-sale?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-16T17:45:00.000Z"
+        },
+        {
+          "title": "Sector Update: Tech Stocks Fall Friday Afternoon",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/sector-tech-stocks-fall-friday-174215504.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-16T13:08:23.000Z"
+          "at": "2026-10-16T17:42:15.000Z"
         },
         {
-          "title": "Amazon Ads: The E-Commerce Search Monolith vs. Walmart Connect: The In-Store Data Goldmine",
-          "link": "https://247wallst.com/investing/2026/10/16/amazon-ads-the-e-commerce-search-monolith-vs-walmart-connect-the-in-store-data-goldmine/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-16T12:45:56.000Z"
-        },
-        {
-          "title": "Wall Street Agrees on Amazon and Can’t Agree on Tesla. The Targets Show Why",
-          "link": "https://247wallst.com/investing/2026/10/16/wall-street-agrees-on-amazon-and-cant-agree-on-tesla-the-targets-show-why/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-16T12:45:36.000Z"
-        },
-        {
-          "title": "Is Amazon Stock Poised to Gain as AI Boosts Cash Flow Prospects?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-stock-poised-gain-ai-122400266.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-16T12:24:00.000Z"
-        },
-        {
-          "title": "As Robotaxis Spread, Carmakers Must Choose Between Owning the Customer and Selling the Car",
-          "link": "https://www.fool.com/investing/2026/10/16/as-robotaxis-spread-carmakers-must-choose-between/?.tsrc=rss",
+          "title": "Amazon Is 11% Below Its High Heading Into Earnings on Oct. 29. Here's the 1 Number That Will Decide What Happens Next.",
+          "link": "https://www.fool.com/investing/2026/10/16/amazon-is-12-below-its-high-heading-into-earnings/?.tsrc=rss",
           "source": "fool.com",
-          "at": "2026-10-16T11:00:00.000Z"
+          "at": "2026-10-16T17:30:00.000Z"
+        },
+        {
+          "title": "2 Tech Stocks to Buy Now and Hold for a Decade (Hint: 1 Isn't in the AI Trade)",
+          "link": "https://www.fool.com/investing/2026/10/16/2-tech-stocks-to-buy-now-and-hold-for-a-decade/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-16T15:37:00.000Z"
+        },
+        {
+          "title": "Amazon Unveils Two Bee-Branded Hardware Devices Powered by AI",
+          "link": "https://www.tikr.com/blog/amazon-stock-bee-ai-devices-frontier-eclipse?ref=yahoofinance&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-10-16T14:00:22.000Z"
         }
       ],
       "actions": []
@@ -500,6 +500,12 @@
     "NOW": {
       "news": [
         {
+          "title": "How Deep System Roots Protect ServiceNow (NOW) in AI Era",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/deep-system-roots-protect-servicenow-151258260.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-16T15:12:58.000Z"
+        },
+        {
           "title": "ServiceNow Is Betting Big on AI. Investors Need to Watch These Growth Drivers",
           "link": "https://247wallst.com/investing/2026/10/16/servicenow-is-betting-big-on-ai-investors-need-to-watch-these-growth-drivers/?.tsrc=rss",
           "source": "247wallst.com",
@@ -522,12 +528,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/why-servicenow-now-stock-trading-193109693.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-15T19:31:09.000Z"
-        },
-        {
-          "title": "3 Reasons ServiceNow Stock Is Climbing When Tech Is Selling Off",
-          "link": "https://finance.yahoo.com/m/3c2543e1-6811-3219-a491-1ece7312b775/3-reasons-servicenow-stock-is.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-15T18:35:00.000Z"
         }
       ],
       "actions": []
