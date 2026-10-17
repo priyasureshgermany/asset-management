@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-17T12:39:36.844Z",
+  "at": "2026-10-17T17:43:24.055Z",
   "market": {
     "IN": [
       {
@@ -359,6 +359,18 @@
     "MSFT": {
       "news": [
         {
+          "title": "UBS resets Microsoft stock price target for investors",
+          "link": "https://www.thestreet.com/investing/stocks/ubs-raises-microsoft-msft-stock-price-target-for-investors?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-17T14:37:00.000Z"
+        },
+        {
+          "title": "Here's How Microsoft's $175 Billion in Capital Expenditures Is Hurting Its Business",
+          "link": "https://www.fool.com/investing/2026/10/17/heres-how-microsofts-175-billion-in-capital-expend/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-17T14:36:00.000Z"
+        },
+        {
           "title": "BofA Warns AI Investors Could Lose Even If the Technology Works",
           "link": "https://247wallst.com/investing/2026/10/17/bofa-warns-ai-investors-could-lose-even-if-the-technology-works/?.tsrc=rss",
           "source": "247wallst.com",
@@ -371,22 +383,10 @@
           "at": "2026-10-16T21:43:00.000Z"
         },
         {
-          "title": "Stock Market Today, Oct. 16: Apple Edges Higher on iPhone Duo Preorder Surge",
-          "link": "https://www.fool.com/coverage/stock-market-today/2026/10/16/stock-market-today-oct-16-apple-edges-higher-on-iphone-duo-preorder-surge/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-16T21:49:34.000Z"
-        },
-        {
-          "title": "Apple is Now the Top-Performing Magnificent 7 Stock in 2026. Here’s why it’s Beating NVIDIA, Tesla, and Amazon",
-          "link": "https://247wallst.com/videos/apple-is-now-the-top-performing-magnificent-7-stock-in-2026-heres-why-its-beating-nvidia-tesla-and-amazon/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-16T19:34:26.000Z"
-        },
-        {
-          "title": "The Next Stock Market Crash Could Start With Just 3 Companies",
-          "link": "https://247wallst.com/videos/the-next-stock-market-crash-could-start-with-just-3-companies/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-16T17:06:28.000Z"
+          "title": "Apple, Nvidia each gave $25M to Trump's White House ballroom — but the president's own name is nowhere on the donor list",
+          "link": "https://finance.yahoo.com/economy/policy/articles/apple-nvidia-gave-25m-trumps-150000953.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-17T15:00:00.000Z"
         }
       ],
       "actions": [
@@ -400,6 +400,18 @@
     },
     "AMZN": {
       "news": [
+        {
+          "title": "Ring founder Jamie Siminoff: 'I still have my email on every box' — here's why",
+          "link": "https://finance.yahoo.com/markets/article/ring-founder-jamie-siminoff-i-still-have-my-email-on-every-box--heres-why-143138725.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-17T14:31:38.000Z"
+        },
+        {
+          "title": "Twenty Hours a Week at an Amazon Warehouse for Health Insurance at 60? Here Is the Math a Retired Paralegal Will Run",
+          "link": "https://247wallst.com/personal-finance/2026/10/17/twenty-hours-a-week-at-an-amazon-warehouse-for-health-insurance-at-60-here-is-the-math-a-retired-paralegal-will-run/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-17T17:22:51.000Z"
+        },
         {
           "title": "These 7 Stocks Are Analyst Favorites For Magnificent Earnings Growth; Eli Lilly Leads Industry",
           "link": "https://finance.yahoo.com/m/2b47c372-177e-3051-aa01-406a8d82b220/these-7-stocks-are-analyst.html?.tsrc=rss",
@@ -417,18 +429,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/cheapest-mag-7-stock-now-210700125.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-16T21:07:00.000Z"
-        },
-        {
-          "title": "Apple is Now the Top-Performing Magnificent 7 Stock in 2026. Here’s why it’s Beating NVIDIA, Tesla, and Amazon",
-          "link": "https://247wallst.com/videos/apple-is-now-the-top-performing-magnificent-7-stock-in-2026-heres-why-its-beating-nvidia-tesla-and-amazon/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-16T19:34:26.000Z"
-        },
-        {
-          "title": "Amazon's $70 screenless fitness band improves physical and mental health",
-          "link": "https://www.thestreet.com/shopping/pjive-health-and-fitness-smart-bracelet-amazon-sale?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-10-16T17:45:00.000Z"
         }
       ],
       "actions": []
