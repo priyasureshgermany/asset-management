@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-18T20:00:15.776Z",
+  "at": "2026-10-18T22:43:13.125Z",
   "market": {
     "IN": [
       {
@@ -299,6 +299,12 @@
     "INTU": {
       "news": [
         {
+          "title": "Intuit Bets on AI-Powered Revenue Automation with Sequence Acquisition",
+          "link": "https://finance.yahoo.com/technology/ai/articles/intuit-bets-ai-powered-revenue-213011776.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-18T21:30:11.000Z"
+        },
+        {
           "title": "Intuit Inc. (INTU) is Attracting Investor Attention: Here is What You Should Know",
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-inc-intu-attracting-investor-120005324.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -321,12 +327,6 @@
           "link": "https://www.cfodive.com/news/intuit-deal-signals-bet-ai-demand-revenue-management/833166/?.tsrc=rss",
           "source": "cfodive.com",
           "at": "2026-10-15T19:57:30.000Z"
-        },
-        {
-          "title": "Why Intuit (INTU) Stock Is Trading Up Today",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/why-intuit-intu-stock-trading-193909024.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-15T19:39:09.000Z"
         }
       ],
       "actions": [
@@ -346,6 +346,12 @@
     },
     "MSFT": {
       "news": [
+        {
+          "title": "Some Investors Are Questioning the AI Trade. Microsoft Is Bucking the Trend",
+          "link": "https://www.fool.com/investing/2026/10/18/some-investors-are-questioning-the-ai-trade-micros/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-18T21:05:00.000Z"
+        },
         {
           "title": "Top 3 British Penny Stocks To Watch In October 2026",
           "link": "https://finance.yahoo.com/markets/stocks/articles/top-3-british-penny-stocks-131011661.html?.tsrc=rss",
@@ -369,12 +375,6 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-scraps-uk-data-center-083110363.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-18T08:31:10.000Z"
-        },
-        {
-          "title": "UBS resets Microsoft stock price target for investors",
-          "link": "https://www.thestreet.com/investing/stocks/ubs-raises-microsoft-msft-stock-price-target-for-investors?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-10-17T14:37:00.000Z"
         }
       ],
       "actions": [
@@ -466,6 +466,12 @@
     "NOW": {
       "news": [
         {
+          "title": "ServiceNow vs. Workday: Here's What Revenue Growth Trends Between These Software Companies Tell Investors",
+          "link": "https://www.fool.com/coverage/charts/2026/10/18/servicenow-vs-workday-here-s-what-revenue-growth-trends-between-these-software-companies-tell-investors/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-18T21:24:01.000Z"
+        },
+        {
           "title": "Here's Why ServiceNow (NOW) Fell More Than Broader Market",
           "link": "https://finance.yahoo.com/markets/stocks/articles/heres-why-servicenow-now-fell-204503438.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -488,12 +494,6 @@
           "link": "https://www.fool.com/coverage/charts/2026/10/16/crowdstrike-vs-servicenow-comparing-revenue-trends-between-these-growing-software-giants/?.tsrc=rss",
           "source": "fool.com",
           "at": "2026-10-16T06:53:07.000Z"
-        },
-        {
-          "title": "CoreWeave, International Paper, Dell, FMC, Bloom Energy, Rocket Lab, and More Stocks That Explain Today’s Market",
-          "link": "https://finance.yahoo.com/m/b14bf4c9-b540-315c-a728-6230494d4f98/coreweave%2C-international.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-15T20:21:00.000Z"
         }
       ],
       "actions": []
