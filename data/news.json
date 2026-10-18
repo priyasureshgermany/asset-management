@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-18T12:56:53.116Z",
+  "at": "2026-10-18T17:45:54.141Z",
   "market": {
     "IN": [
       {
@@ -347,6 +347,12 @@
     "MSFT": {
       "news": [
         {
+          "title": "Top 3 British Penny Stocks To Watch In October 2026",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/top-3-british-penny-stocks-131011661.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-18T13:10:11.000Z"
+        },
+        {
           "title": "Microsoft pulls out of UK data centre deal with Nscale, Telegraph reports",
           "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-pulls-uk-data-centre-095253878.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -369,12 +375,6 @@
           "link": "https://www.thestreet.com/investing/stocks/ubs-raises-microsoft-msft-stock-price-target-for-investors?.tsrc=rss",
           "source": "thestreet.com",
           "at": "2026-10-17T14:37:00.000Z"
-        },
-        {
-          "title": "Here's How Microsoft's $175 Billion in Capital Expenditures Is Hurting Its Business",
-          "link": "https://www.fool.com/investing/2026/10/17/heres-how-microsofts-175-billion-in-capital-expend/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-17T14:36:00.000Z"
         }
       ],
       "actions": [
