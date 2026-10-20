@@ -1,7 +1,21 @@
 {
-  "at": "2026-10-20T14:03:24.925Z",
+  "at": "2026-10-20T18:52:30.015Z",
   "market": {
     "IN": [
+      {
+        "title": "Ahead of Market: 10 things that will decide stock market action on Wednesday",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-wednesday/articleshow/135072460.cms",
+        "source": "Economic Times",
+        "at": "2026-10-20T15:12:11.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Aerospace and military contractors raise 2026 profit forecasts",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/aerospace-and-military-contractors-raise-2026-profit-forecasts/articleshow/135072414.cms",
+        "source": "Economic Times",
+        "at": "2026-10-20T15:09:22.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Fed sneezes, but emerging markets aren't catching a cold yet: McGeever",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/fed-sneezes-but-emerging-markets-arent-catching-a-cold-yet-mcgeever/articleshow/135071362.cms",
@@ -10,7 +24,7 @@
         "market": "Indian markets"
       },
       {
-        "title": "US stocks today: US stocks open lower as AI stocks decline, oil prices rise",
+        "title": "US stocks today: US stocks gain as healthcare stocks hit record high, oil prices fall",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-us-stocks-open-lower-as-ai-stocks-decline-oil-prices-rise/articleshow/135071224.cms",
         "source": "Economic Times",
         "at": "2026-10-20T13:39:30.000Z",
@@ -31,35 +45,28 @@
         "market": "Indian markets"
       },
       {
-        "title": "Dow Jones| Nasdaq | S&P 500 | US Stock Market Today |Live Updates: US stocks open lower as AI stocks decline, oil prices rise",
+        "title": "Dow Jones| Nasdaq | S&P 500 | US Stock Market Today |Live Updates: S&P 500 Healthcare hits record high, Dow soars over 500 points",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/dow-jones-stock-market-live-updates-nasdaq-sp-500-us-iran-israel-war-hormuz-deal-brent-crude-oil-fed-rate-treasury-yields-earnings-forecast-nvidia-macys-gamestop-stock-price-news-20th-september-2026/liveblog/135069926.cms",
         "source": "Economic Times",
         "at": "2026-10-20T12:01:22.000Z",
         "market": "Indian markets"
       },
       {
-        "title": "Meta's AI spending, Muse assistant adoption in focus for quarterly results",
+        "title": "Meta’s AI spending and Muse adoption set to test Zuckerberg’s strategy",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/metas-ai-spending-muse-assistant-adoption-in-focus-for-quarterly-results/articleshow/135068976.cms",
         "source": "Economic Times",
         "at": "2026-10-20T11:32:11.000Z",
         "market": "Indian markets"
-      },
-      {
-        "title": "Oyo parent PRISM to cut IPO fresh issue nearly 50% to Rs 3,350 crore: Sources",
-        "link": "https://economictimes.indiatimes.com/markets/ipos/fpos/oyo-parent-prism-to-nearly-halve-ipo-fresh-issue-size-to-up-to-rs-3350-cr-sources/articleshow/135068962.cms",
-        "source": "Economic Times",
-        "at": "2026-10-20T11:30:10.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "French bond yields near 24-year high as new protests loom",
-        "link": "https://economictimes.indiatimes.com/markets/bonds/french-bond-yields-near-24-year-high-as-new-protests-loom/articleshow/135068905.cms",
-        "source": "Economic Times",
-        "at": "2026-10-20T11:27:57.000Z",
-        "market": "Indian markets"
       }
     ],
     "GLOBAL": [
+      {
+        "title": "FTSE 100 today: Stocks lower despite oil slide",
+        "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-extend-080408491.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-10-20T08:04:08.000Z",
+        "market": "European markets"
+      },
       {
         "title": "European stocks extend slide as French unrest triggers de-risking",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-extend-slide-french-055250095.html?.tsrc=rss",
@@ -108,13 +115,6 @@
         "source": "finance.yahoo.com",
         "at": "2026-10-16T07:44:40.000Z",
         "market": "European markets"
-      },
-      {
-        "title": "European stocks post best week since June on easing yields",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-course-best-week-073632956.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-10-16T07:36:32.000Z",
-        "market": "European markets"
       }
     ]
   },
@@ -154,6 +154,12 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/global-customer-technical-support-market-093500183.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-19T09:35:00.000Z"
+        },
+        {
+          "title": "From pilot to fleet: Automa 2026 on scaling digital offshore",
+          "link": "https://www.offshore-technology.com/news/from-pilot-to-fleet-automa-2026-on-scaling-digital-offshore/?.tsrc=rss",
+          "source": "offshore-technology.com",
+          "at": "2026-10-20T16:39:07.000Z"
         }
       ],
       "actions": [
@@ -292,6 +298,12 @@
     "INTU": {
       "news": [
         {
+          "title": "INTU vs. MSFT: Which Stock Is the Better Value Option?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/intu-vs-msft-stock-better-144003044.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-20T14:40:03.000Z"
+        },
+        {
           "title": "Intuit (INTU): Can Credit Karma Grow Beyond the Lending Cycle?",
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-credit-karma-grow-134949672.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -310,16 +322,10 @@
           "at": "2026-10-20T13:00:00.000Z"
         },
         {
-          "title": "2026 BayAreaCMO ORBIE Awards Recognize Bay Area’s Top Marketing Executives",
-          "link": "https://finance.yahoo.com/media-advertising/articles/2026-bayareacmo-orbie-awards-recognize-194200762.html?.tsrc=rss",
+          "title": "Wall Street Analysts Think Intuit (INTU) Could Surge 26.36%: Read This Before Placing a Bet",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/wall-street-analysts-think-intuit-125502190.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-19T19:42:00.000Z"
-        },
-        {
-          "title": "How Investors Are Reacting To Intuit (INTU) Global AI Rollout",
-          "link": "https://finance.yahoo.com/technology/ai/articles/investors-reacting-intuit-intu-global-151340497.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-19T15:13:40.000Z"
+          "at": "2026-10-20T12:55:02.000Z"
         }
       ],
       "actions": [
@@ -340,34 +346,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Pax8 Marketplace Lists Nitro's Fortune 500-Trusted PDF, eSign, and Document Security Tools",
-          "link": "https://finance.yahoo.com/small-business/articles/pax8-marketplace-lists-nitros-fortune-130000473.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T13:00:00.000Z"
+          "title": "What Happened to $1,000 Invested in Microsoft Before Its Cloud and AI Boom?",
+          "link": "https://247wallst.com/investing/2026/10/20/what-happened-to-1000-invested-in-microsoft-before-its-cloud-and-ai-boom/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-20T18:15:59.000Z"
         },
         {
-          "title": "Armadin Names Vasu Jakkal Chief Strategy and Business Officer",
-          "link": "https://finance.yahoo.com/technology/ai/articles/armadin-names-vasu-jakkal-chief-130000946.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T13:00:00.000Z"
+          "title": "Trump’s FTC Subpoenas OpenAI and Anthropic. Inside the $500 Billion Threat Faced by Microsoft, Amazon, and Google",
+          "link": "https://www.tikr.com/blog/trumps-ftc-subpoenas-openai-and-anthropic-inside-the-500-billion-threat-faced-by-microsoft-amazon-and-google?ref=yahoofinance&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-10-20T17:47:41.000Z"
         },
         {
-          "title": "32% of Managed Service Providers Have Adopted AI, but Only 12% Can Show It’s Paying Off",
-          "link": "https://finance.yahoo.com/technology/ai/articles/32-managed-providers-adopted-ai-130000483.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T13:00:00.000Z"
+          "title": "Anthropic may double down on the site Microsoft walked away from",
+          "link": "https://www.thestreet.com/technology/anthropic-45b-nscale-expansion-microsoft-site?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-20T17:07:00.000Z"
         },
         {
-          "title": "Blackpoint Cyber Named Most Promising AI SOC in Cyber Defense Magazine’s 2026 Top InfoSec Innovator Awards",
-          "link": "https://finance.yahoo.com/technology/ai/articles/blackpoint-cyber-named-most-promising-130000197.html?.tsrc=rss",
+          "title": "Microsoft Stock Strength Sets Up Strategy For A Fast Double-Digit Return",
+          "link": "https://finance.yahoo.com/m/d60511e2-3c30-3ea4-a39e-e71cf4060ff5/microsoft-stock-strength-sets.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-20T13:00:00.000Z"
+          "at": "2026-10-20T15:40:02.000Z"
         },
         {
-          "title": "Update: Market Chatter: Microsoft Pulls Out of UK Data Center Deal With Nscale",
-          "link": "https://finance.yahoo.com/technology/articles/market-chatter-microsoft-pulls-uk-125312687.html?.tsrc=rss",
+          "title": "Will Microsoft (MSFT) Beat Estimates Again in Its Next Earnings Report?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-beat-estimates-again-151002495.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-20T12:53:12.000Z"
+          "at": "2026-10-20T15:10:02.000Z"
         }
       ],
       "actions": [
@@ -382,34 +388,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Amazon (AMZN): How Much More Can It Earn From Sellers Before Their Economics Suffer?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-amzn-much-more-earn-134004519.html?.tsrc=rss",
+          "title": "Amazon Creates Over 300,000 New U.S. Jobs This Holiday Season with Increased Pay and Expanded Benefits",
+          "link": "https://finance.yahoo.com/small-business/articles/amazon-creates-over-300-000-183100154.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-20T13:40:04.000Z"
+          "at": "2026-10-20T18:31:00.000Z"
         },
         {
-          "title": "Dow Giant 3M Reports Mixed Earnings, Expanded Amazon Data Center Deal",
-          "link": "https://finance.yahoo.com/m/9f746d33-c17c-38dd-9fb5-a7b8bead6c9c/dow-giant-3m-reports-mixed.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T13:13:28.000Z"
+          "title": "Amazon to hire 300,000 workers for seasonal jobs this year",
+          "link": "https://www.cbsnews.com/news/amazon-seasonal-jobs-holiday-hiring-pay/?.tsrc=rss",
+          "source": "cbsnews.com",
+          "at": "2026-10-20T18:28:11.000Z"
         },
         {
-          "title": "SnapLogic Expands Agentic Integration Platform to Help Enterprises Build, Connect, and Operate AI Agents",
-          "link": "https://finance.yahoo.com/technology/ai/articles/snaplogic-expands-agentic-integration-platform-130000733.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T13:00:00.000Z"
+          "title": "Trump’s FTC Subpoenas OpenAI and Anthropic. Inside the $500 Billion Threat Faced by Microsoft, Amazon, and Google",
+          "link": "https://www.tikr.com/blog/trumps-ftc-subpoenas-openai-and-anthropic-inside-the-500-billion-threat-faced-by-microsoft-amazon-and-google?ref=yahoofinance&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-10-20T17:47:41.000Z"
         },
         {
-          "title": "Rosie Raises $7 Million to Bring Flexible Childcare and Household Support Beyond Seattle",
-          "link": "https://finance.yahoo.com/small-business/articles/rosie-raises-7-million-bring-130000934.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T13:00:00.000Z"
+          "title": "Amazon Pops on a Target Raise. 59 Analysts, Zero Sells",
+          "link": "https://247wallst.com/investing/2026/10/20/amazon-pops-on-a-target-raise-59-analysts-zero-sells/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-20T17:00:55.000Z"
         },
         {
-          "title": "Oracle (ORCL): Can Rival Clouds Become Its Best Database Sales Channel?",
-          "link": "https://finance.yahoo.com/technology/articles/oracle-orcl-rival-clouds-become-134541503.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T13:45:41.000Z"
+          "title": "Is Amazon still sending FTC refunds to Prime customers?",
+          "link": "https://www.usatoday.com/story/money/2026/10/20/can-i-still-get-an-amazon-prime-settlement-check-more-on-ftc-refund/92344095007/?.tsrc=rss",
+          "source": "usatoday.com",
+          "at": "2026-10-20T16:37:38.000Z"
         }
       ],
       "actions": []
@@ -459,6 +465,24 @@
     "NOW": {
       "news": [
         {
+          "title": "Can ServiceNow (NOW) Keep Growing at This Size?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-now-keep-growing-size-144709628.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-20T14:47:09.000Z"
+        },
+        {
+          "title": "ServiceNow Fell 20% Over a Year But This Wall Street Analyst Predicts 70% Gains From Here",
+          "link": "https://247wallst.com/investing/2026/10/20/servicenow-fell-20-over-a-year-but-this-wall-street-analyst-predicts-70-gains-from-here/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-20T14:45:34.000Z"
+        },
+        {
+          "title": "Should AI Product Wins Require Action From ServiceNow Stock Investors?",
+          "link": "https://finance.yahoo.com/technology/ai/articles/ai-product-wins-require-action-140909044.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-20T14:09:09.000Z"
+        },
+        {
           "title": "ServiceNow Research Study Warns Security Leaders: Ungoverned Agentic AI Exposure Is Compounding Inside Enterprises",
           "link": "https://finance.yahoo.com/technology/ai/articles/servicenow-research-study-warns-security-130000749.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -469,24 +493,6 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/servicenow-gets-street-high-266-122052290.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-20T12:20:52.000Z"
-        },
-        {
-          "title": "These 2 software stocks are new Top Picks at BMO",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/2-software-stocks-top-picks-103726515.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T10:37:26.000Z"
-        },
-        {
-          "title": "Top Research Reports for UnitedHealth, ServiceNow & 3M",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/top-research-reports-unitedhealth-servicenow-194800989.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-19T19:48:00.000Z"
-        },
-        {
-          "title": "Simplify Alpha Expands Partnership with ServiceNow to Build Payer-Specific Solutions",
-          "link": "https://finance.yahoo.com/healthcare/articles/simplify-alpha-expands-partnership-servicenow-163700718.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-19T16:37:00.000Z"
         }
       ],
       "actions": []
