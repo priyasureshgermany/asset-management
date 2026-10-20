@@ -1,9 +1,9 @@
 {
-  "at": "2026-10-19T21:42:35.715Z",
+  "at": "2026-10-20T20:48:02.330Z",
   "fx": {
-    "EURINR": 106.4445,
-    "EURUSD": 1.1216,
-    "EURSEK": 11.1129
+    "EURINR": 106.5104,
+    "EURUSD": 1.124,
+    "EURSEK": 11.1192
   },
   "quotes": {
     "HDFCBANK.NS": {
@@ -12,7 +12,7 @@
       "name": "HDFC Bank Limited",
       "sector": "Financial Services",
       "in": {
-        "EUR": 6.69,
+        "EUR": 6.68,
         "INR": 712
       }
     },
@@ -42,7 +42,7 @@
       "name": "Redington Limited",
       "sector": "Technology",
       "in": {
-        "EUR": 3.49,
+        "EUR": 3.48,
         "INR": 371.05
       }
     },
@@ -52,7 +52,7 @@
       "name": "Tata Consultancy Services Limited",
       "sector": "Technology",
       "in": {
-        "EUR": 23.12,
+        "EUR": 23.1,
         "INR": 2460.9
       }
     },
@@ -207,73 +207,73 @@
       }
     },
     "INTU": {
-      "raw": 325.62,
+      "raw": 335.29,
       "currency": "USD",
       "name": "Intuit Inc.",
       "sector": "Technology",
       "in": {
-        "EUR": 290.32,
-        "INR": 30902.69
+        "EUR": 298.3,
+        "INR": 31772.13
       }
     },
     "MSFT": {
-      "raw": 533.52,
+      "raw": 531.87,
       "currency": "USD",
       "name": "Microsoft Corporation",
       "sector": "Technology",
       "in": {
-        "EUR": 475.68,
-        "INR": 50633.26
+        "EUR": 473.19,
+        "INR": 50400.08
       }
     },
     "AMZN": {
-      "raw": 262.45,
+      "raw": 262.63,
       "currency": "USD",
       "name": "Amazon.com, Inc.",
       "sector": "Consumer Cyclical",
       "in": {
-        "EUR": 234,
-        "INR": 24907.6
+        "EUR": 233.66,
+        "INR": 24886.86
       }
     },
     "NDAQ": {
-      "raw": 93.2,
+      "raw": 94.8,
       "currency": "USD",
       "name": "Nasdaq, Inc.",
       "sector": "Financial Services",
       "in": {
-        "EUR": 83.1,
-        "INR": 8845.07
+        "EUR": 84.34,
+        "INR": 8983.26
       }
     },
     "NOW": {
-      "raw": 145.36,
+      "raw": 149.54,
       "currency": "USD",
       "name": "ServiceNow, Inc.",
       "sector": "Technology",
       "in": {
-        "EUR": 129.6,
-        "INR": 13795.27
+        "EUR": 133.04,
+        "INR": 14170.43
       }
     },
     "WKL.AS": {
-      "raw": 84.1,
+      "raw": 83.72,
       "currency": "EUR",
       "name": "Wolters Kluwer N.V.",
       "sector": "Industrials",
       "in": {
-        "EUR": 84.1,
-        "INR": 8951.98
+        "EUR": 83.72,
+        "INR": 8917.05
       }
     },
     "LIME.ST": {
-      "raw": 259.5,
+      "raw": 267,
       "currency": "SEK",
       "name": "Lime Technologies AB (publ)",
       "sector": "Technology",
       "in": {
-        "EUR": 23.35,
-        "INR": 2485.61
+        "EUR": 24.01,
+        "INR": 2557.58
       }
     }
   },
