@@ -1,7 +1,28 @@
 {
-  "at": "2026-10-20T18:52:30.015Z",
+  "at": "2026-10-20T23:35:51.906Z",
   "market": {
     "IN": [
+      {
+        "title": "US stocks today: US stocks end higher as healthcare stocks lift Dow, tech a breather",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-us-stocks-end-higher-as-healthcare-stocks-lift-dow-tech-a-breather/articleshow/135076667.cms",
+        "source": "Economic Times",
+        "at": "2026-10-20T20:24:39.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "SpaceX Q3 revenue soars 161% YoY on AI business growth, beating estimates",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/spacex-q3-revenue-soars-161-yoy-on-ai-business-growth-beating-estimates/articleshow/135076651.cms",
+        "source": "Economic Times",
+        "at": "2026-10-20T20:20:41.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Copper stays range bound as US tariff uncertainty, oil inflation risks weigh",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/copper-stays-range-bound-as-us-tariff-uncertainty-oil-inflation-risks-weigh/articleshow/135074839.cms",
+        "source": "Economic Times",
+        "at": "2026-10-20T17:54:33.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Ahead of Market: 10 things that will decide stock market action on Wednesday",
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-wednesday/articleshow/135072460.cms",
@@ -35,27 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/hilton-to-move-stock-listing-to-nasdaq/articleshow/135070768.cms",
         "source": "Economic Times",
         "at": "2026-10-20T13:13:06.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "China's CATL third-quarter profit growth slowest in nearly two years as competition intensifies",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/chinas-catl-third-quarter-profit-growth-slowest-in-nearly-two-years-as-competition-intensifies/articleshow/135070675.cms",
-        "source": "Economic Times",
-        "at": "2026-10-20T13:08:17.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Dow Jones| Nasdaq | S&P 500 | US Stock Market Today |Live Updates: S&P 500 Healthcare hits record high, Dow soars over 500 points",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/dow-jones-stock-market-live-updates-nasdaq-sp-500-us-iran-israel-war-hormuz-deal-brent-crude-oil-fed-rate-treasury-yields-earnings-forecast-nvidia-macys-gamestop-stock-price-news-20th-september-2026/liveblog/135069926.cms",
-        "source": "Economic Times",
-        "at": "2026-10-20T12:01:22.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Meta’s AI spending and Muse adoption set to test Zuckerberg’s strategy",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/metas-ai-spending-muse-assistant-adoption-in-focus-for-quarterly-results/articleshow/135068976.cms",
-        "source": "Economic Times",
-        "at": "2026-10-20T11:32:11.000Z",
         "market": "Indian markets"
       }
     ],
@@ -298,6 +298,12 @@
     "INTU": {
       "news": [
         {
+          "title": "Intuit (INTU) Outperforms Broader Market: What You Need to Know",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-outperforms-broader-market-205005383.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-20T20:50:05.000Z"
+        },
+        {
           "title": "INTU vs. MSFT: Which Stock Is the Better Value Option?",
           "link": "https://finance.yahoo.com/markets/stocks/articles/intu-vs-msft-stock-better-144003044.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -320,12 +326,6 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/aprio-broadens-ai-powered-advisory-130000662.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-20T13:00:00.000Z"
-        },
-        {
-          "title": "Wall Street Analysts Think Intuit (INTU) Could Surge 26.36%: Read This Before Placing a Bet",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/wall-street-analysts-think-intuit-125502190.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T12:55:02.000Z"
         }
       ],
       "actions": [
@@ -346,34 +346,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "What Happened to $1,000 Invested in Microsoft Before Its Cloud and AI Boom?",
-          "link": "https://247wallst.com/investing/2026/10/20/what-happened-to-1000-invested-in-microsoft-before-its-cloud-and-ai-boom/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-20T18:15:59.000Z"
-        },
-        {
-          "title": "Trump’s FTC Subpoenas OpenAI and Anthropic. Inside the $500 Billion Threat Faced by Microsoft, Amazon, and Google",
-          "link": "https://www.tikr.com/blog/trumps-ftc-subpoenas-openai-and-anthropic-inside-the-500-billion-threat-faced-by-microsoft-amazon-and-google?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-20T17:47:41.000Z"
-        },
-        {
-          "title": "Anthropic may double down on the site Microsoft walked away from",
-          "link": "https://www.thestreet.com/technology/anthropic-45b-nscale-expansion-microsoft-site?.tsrc=rss",
+          "title": "Morgan Stanley sees new hurdle for Microsoft stock",
+          "link": "https://www.thestreet.com/investing/morgan-stanley-microsoft-earnings-test?.tsrc=rss",
           "source": "thestreet.com",
-          "at": "2026-10-20T17:07:00.000Z"
+          "at": "2026-10-20T23:00:00.000Z"
         },
         {
-          "title": "Microsoft Stock Strength Sets Up Strategy For A Fast Double-Digit Return",
-          "link": "https://finance.yahoo.com/m/d60511e2-3c30-3ea4-a39e-e71cf4060ff5/microsoft-stock-strength-sets.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T15:40:02.000Z"
+          "title": "Microsoft, Alphabet, Goldman Sachs Join Growing List of Companies Objecting to Tokenized Stocks",
+          "link": "https://decrypt.co/381448/microsoft-alphabet-goldman-sachs-growing-list-objecting-tokenized-stocks?.tsrc=rss",
+          "source": "decrypt.co",
+          "at": "2026-10-20T20:16:04.000Z"
         },
         {
-          "title": "Will Microsoft (MSFT) Beat Estimates Again in Its Next Earnings Report?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-beat-estimates-again-151002495.html?.tsrc=rss",
+          "title": "Microsoft (MSFT) Withdraws From UK AI Data Center Project",
+          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-withdraws-uk-ai-200925824.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-20T15:10:02.000Z"
+          "at": "2026-10-20T20:09:25.000Z"
+        },
+        {
+          "title": "Boeing, Microsoft Reveal AI Aircraft Platform, FAA Certifies 737 Max 10",
+          "link": "https://finance.yahoo.com/m/71d9b8d2-7bae-3287-a073-f80ce7e01129/boeing%2C-microsoft-reveal-ai.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-20T19:52:41.000Z"
+        },
+        {
+          "title": "Sector Update: Tech Stocks Mixed Late Afternoon",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/sector-tech-stocks-mixed-afternoon-194226083.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-20T19:42:26.000Z"
         }
       ],
       "actions": [
@@ -388,34 +388,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Amazon Creates Over 300,000 New U.S. Jobs This Holiday Season with Increased Pay and Expanded Benefits",
-          "link": "https://finance.yahoo.com/small-business/articles/amazon-creates-over-300-000-183100154.html?.tsrc=rss",
+          "title": "Why Is 3M (MMM) Stock Rocketing Higher Today",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/why-3m-mmm-stock-rocketing-222950865.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-20T18:31:00.000Z"
+          "at": "2026-10-20T22:29:50.000Z"
         },
         {
-          "title": "Amazon to hire 300,000 workers for seasonal jobs this year",
-          "link": "https://www.cbsnews.com/news/amazon-seasonal-jobs-holiday-hiring-pay/?.tsrc=rss",
-          "source": "cbsnews.com",
-          "at": "2026-10-20T18:28:11.000Z"
+          "title": "Amazon vs Alphabet: Which \"Magnificent Seven\" Stock Is the Better Buy Right Now?",
+          "link": "https://www.fool.com/investing/2026/10/20/amazon-vs-alphabet-which-magnificent-seven-stock-is-the-better-buy-right-now/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-20T22:15:02.000Z"
         },
         {
-          "title": "Trump’s FTC Subpoenas OpenAI and Anthropic. Inside the $500 Billion Threat Faced by Microsoft, Amazon, and Google",
-          "link": "https://www.tikr.com/blog/trumps-ftc-subpoenas-openai-and-anthropic-inside-the-500-billion-threat-faced-by-microsoft-amazon-and-google?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-20T17:47:41.000Z"
+          "title": "Amazon Stock Costs More Than the Market. I'd Still Buy It for the Next 5 Years.",
+          "link": "https://www.fool.com/investing/2026/10/20/amazon-stock-costs-more-than-the-market-i-d-still-buy-it-for-the-next-5-years/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-20T20:07:01.000Z"
         },
         {
-          "title": "Amazon Pops on a Target Raise. 59 Analysts, Zero Sells",
-          "link": "https://247wallst.com/investing/2026/10/20/amazon-pops-on-a-target-raise-59-analysts-zero-sells/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-20T17:00:55.000Z"
+          "title": "Amazon stockpiles Nvidia AI hardware ahead of power availability -Business Insider",
+          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-stockpiles-nvidia-ai-hardware-194615746.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-20T19:46:15.000Z"
         },
         {
-          "title": "Is Amazon still sending FTC refunds to Prime customers?",
-          "link": "https://www.usatoday.com/story/money/2026/10/20/can-i-still-get-an-amazon-prime-settlement-check-more-on-ftc-refund/92344095007/?.tsrc=rss",
-          "source": "usatoday.com",
-          "at": "2026-10-20T16:37:38.000Z"
+          "title": "Amazon’s $350 target rests on an AI bet beyond the cloud",
+          "link": "https://www.thestreet.com/investing/amazons-350-target-rests-on-an-ai-bet-beyond-the-cloud?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-20T19:37:00.000Z"
         }
       ],
       "actions": []
