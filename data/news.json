@@ -1,7 +1,42 @@
 {
-  "at": "2026-10-21T16:31:04.415Z",
+  "at": "2026-10-21T21:10:49.904Z",
   "market": {
     "IN": [
+      {
+        "title": "US stocks today: Nasdaq leads Wall Street higher as SpaceX, Super Micro lift AI sentiment",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-nasdaq-leads-wall-street-higher-as-spacex-super-micro-lift-ai-sentiment/articleshow/135100483.cms",
+        "source": "Economic Times",
+        "at": "2026-10-21T20:15:59.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Meta raises AI spending forecast to $145 billion, plans new share issue; Q3 revenue beats estimates",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/meta-raises-ai-spending-forecast-to-145-billion-plans-new-share-issue-q3-revenue-beats-estimates/articleshow/135100437.cms",
+        "source": "Economic Times",
+        "at": "2026-10-21T20:12:20.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "BlackRock expands AI push with new robotics ETF as investor enthusiasm cools",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/blackrock-expands-ai-push-with-new-robotics-etf-as-investor-enthusiasm-cools/articleshow/135099678.cms",
+        "source": "Economic Times",
+        "at": "2026-10-21T19:26:44.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "US Treasury yields slip as AI concerns boost safe haven demand ahead of 20 year auction",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-treasury-yields-slip-as-ai-concern-boost-safe-haven-demand-ahead-of-20-year-auction/articleshow/135097932.cms",
+        "source": "Economic Times",
+        "at": "2026-10-21T17:49:52.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Persistent Systems launches Rs 4,265-cr QIP; floor price set at Rs 5,550/share",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/persistent-systems-launches-rs-4265-cr-qip-floor-price-set-at-rs-5550/share/articleshow/135097602.cms",
+        "source": "Economic Times",
+        "at": "2026-10-21T17:31:22.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Stocks, gold or crypto? The last 3 years’ returns have a surprising answer",
         "link": "https://economictimes.indiatimes.com/markets/cryptocurrency/crypto-news/stocks-gold-or-crypto-the-last-3-years-returns-have-a-surprising-answer/articleshow/135096080.cms",
@@ -22,41 +57,6 @@
         "source": "Economic Times",
         "at": "2026-10-21T15:09:13.000Z",
         "market": "Indian markets"
-      },
-      {
-        "title": "Netflix shares slide 4% as slowing sales growth raises fresh concerns",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/netflix-shares-slide-4-as-slowing-sales-growth-raises-fresh-concerns/articleshow/135094744.cms",
-        "source": "Economic Times",
-        "at": "2026-10-21T14:40:40.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Mahindra Finance Q2 net profit surges 55% to Rs 882 crore on volumes, lower credit cost",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/mahindra-finance-q2-net-profit-surges-55-to-rs-882-crore-on-volumes-lower-credit-cost/articleshow/135094556.cms",
-        "source": "Economic Times",
-        "at": "2026-10-21T14:28:03.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Jio IPO strengthens Reliance’s financial flexibility; capex funding remains key: Moody’s",
-        "link": "https://economictimes.indiatimes.com/markets/ipos/fpos/jio-ipo-strengthens-reliances-financial-flexibility-capex-funding-remains-key-moodys/articleshow/135094225.cms",
-        "source": "Economic Times",
-        "at": "2026-10-21T14:02:53.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "PC Jewellers Q2 Results: Net profit shoots up 58% to Rs 331 crore; company says it is now debt-free",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/pc-jewellers-q2-results-net-profit-shoots-up-58-to-rs-331-crore-company-says-it-is-now-debt-free/articleshow/135094111.cms",
-        "source": "Economic Times",
-        "at": "2026-10-21T13:59:06.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "IHCL Q2 Results: Tata Group-owned hotel chain's net profit jumps 19% to Rs 379 crore",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/ihcl-q2-results-tata-group-owned-hotel-chains-net-profit-jumps-19-to-rs-379-crore/articleshow/135094055.cms",
-        "source": "Economic Times",
-        "at": "2026-10-21T13:57:18.000Z",
-        "market": "Indian markets"
       }
     ],
     "GLOBAL": [
@@ -68,14 +68,14 @@
         "market": "European markets"
       },
       {
-        "title": "FTSE 100 today: Stocks edge up despite UK inflation at 3.5%",
+        "title": "FTSE 100 today: Stocks edge higher despite UK inflation at 3.5%",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-slip-075009018.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-10-21T07:50:09.000Z",
         "market": "European markets"
       },
       {
-        "title": "European shares edge up on earnings support; Big Tech results awaited",
+        "title": "European shares rise on earnings support; Big Tech results awaited",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/european-shares-steady-ahead-big-074351098.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-10-21T07:43:51.000Z",
@@ -298,6 +298,18 @@
     "INTU": {
       "news": [
         {
+          "title": "Top Analyst Reports for Salesforce, S&P & Intuit",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/top-analyst-reports-salesforce-p-193300324.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-21T19:33:00.000Z"
+        },
+        {
+          "title": "3 Reasons to Sell INTU and 1 Stock to Buy Instead",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-sell-intu-1-181439394.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-21T18:14:39.000Z"
+        },
+        {
           "title": "Intuit (INTU) Outperforms Broader Market: What You Need to Know",
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-outperforms-broader-market-205005383.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -314,18 +326,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-credit-karma-grow-134949672.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-20T13:49:49.000Z"
-        },
-        {
-          "title": "Intuit Launches Credit Karma Tax: Free Federal Filing With Faster Refunds, Expanding Its Daily AI-Powered Financial Assistance",
-          "link": "https://finance.yahoo.com/technology/ai/articles/intuit-launches-credit-karma-tax-133000733.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T13:30:00.000Z"
-        },
-        {
-          "title": "Aprio Broadens its AI-Powered Advisory Partnership with Intuit to Further Accelerate Mid-Market Business Growth",
-          "link": "https://finance.yahoo.com/technology/ai/articles/aprio-broadens-ai-powered-advisory-130000662.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T13:00:00.000Z"
         }
       ],
       "actions": [
@@ -346,34 +346,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Alphabet Slips 2% Despite NASDAQ Rally as Pichai Says Google Cloud Is Giving Up Revenue for AI Capacity; Amazon Dips, Microsoft Holds Steady",
-          "link": "https://247wallst.com/investing/2026/10/21/alphabet-slips-2-despite-nasdaq-rally-as-pichai-says-google-cloud-is-giving-up-revenue-for-ai-capacity-amazon-dips-microsoft-holds-steady/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-21T15:48:39.000Z"
-        },
-        {
-          "title": "Nvidia vs. Microsoft: Is NVDA’s Explosive Growth Being Undervalued?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-vs-microsoft-nvda-explosive-151810490.html?.tsrc=rss",
+          "title": "Jensen Huang on RTK Spark: One petaflop of AI power 'you can hold in your hands'",
+          "link": "https://finance.yahoo.com/video/jensen-huang-on-rtk-spark-one-petaflop-of-ai-power-you-can-hold-in-your-hands-163102578.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-21T15:18:10.000Z"
+          "at": "2026-10-21T16:31:02.000Z"
         },
         {
-          "title": "What Will $5,000 Invested in Microsoft Stock Be Worth in 5 Years?",
-          "link": "https://247wallst.com/investing/2026/10/21/what-will-5000-invested-in-microsoft-stock-be-worth-in-5-years/?.tsrc=rss",
+          "title": "Anthropic Has Over $600 Billion in Compute Contracts — And It's Not Enough",
+          "link": "https://www.benzinga.com/markets/tech/26/10/62508469/anthropic-has-over-600-billion-in-compute-contracts-and-its-not-enough?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral&.tsrc=rss",
+          "source": "benzinga.com",
+          "at": "2026-10-21T18:55:25.000Z"
+        },
+        {
+          "title": "Steve Ballmer Is Worth $164 Billion, After Being Kicked Out Of Microsoft",
+          "link": "https://247wallst.com/investing/2026/10/21/steve-ballmer-is-worth-164-billion-after-being-kicked-out-of-microsoft/?.tsrc=rss",
           "source": "247wallst.com",
-          "at": "2026-10-21T15:00:11.000Z"
+          "at": "2026-10-21T18:51:59.000Z"
         },
         {
-          "title": "The Market Will Wake Up to Microsoft’s Value Sooner or Later",
-          "link": "https://247wallst.com/investing/2026/10/21/the-market-will-wake-up-to-microsofts-value-sooner-or-later/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-21T14:45:47.000Z"
+          "title": "Microsoft Must Say This on Oct. 28 or the Stock Will Go Into Free Fall",
+          "link": "https://www.fool.com/investing/2026/10/21/microsoft-must-say-this-on-oct-28-or-the-stock-wil/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-21T17:17:00.000Z"
         },
         {
-          "title": "Jim Cramer and Ken Fisher’s AI Pick: Microsoft (MSFT)",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-ken-fisher-ai-132354698.html?.tsrc=rss",
+          "title": "Microsoft and Alphabet opt out of tokenized stocks in latest blow to ambitious plan from OKK and NYSE parent firm",
+          "link": "https://finance.yahoo.com/markets/crypto/articles/microsoft-alphabet-opt-tokenized-stocks-170821308.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-21T13:23:54.000Z"
+          "at": "2026-10-21T17:08:21.000Z"
         }
       ],
       "actions": [
@@ -388,40 +388,46 @@
     "AMZN": {
       "news": [
         {
-          "title": "Amazon Stock Could Climb Higher as AWS Becomes an Even Bigger Growth Engine",
-          "link": "https://247wallst.com/investing/2026/10/21/amazon-stock-could-climb-higher-as-aws-becomes-an-even-bigger-growth-engine/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-21T16:00:12.000Z"
+          "title": "Amazon logistics automation offers long-term margin gains, Jefferies says",
+          "link": "https://www.proactiveinvestors.com/companies/news/1100499/amazon-logistics-automation-offers-long-term-margin-gains-jefferies-says-1100499.html?.tsrc=rss",
+          "source": "proactiveinvestors.com",
+          "at": "2026-10-21T19:43:00.000Z"
         },
         {
-          "title": "Alphabet Slips 2% Despite NASDAQ Rally as Pichai Says Google Cloud Is Giving Up Revenue for AI Capacity; Amazon Dips, Microsoft Holds Steady",
-          "link": "https://247wallst.com/investing/2026/10/21/alphabet-slips-2-despite-nasdaq-rally-as-pichai-says-google-cloud-is-giving-up-revenue-for-ai-capacity-amazon-dips-microsoft-holds-steady/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-21T15:48:39.000Z"
+          "title": "Amazon Ditches Ashburn Data Center Plan, Shifts To Mixed-Use Vision",
+          "link": "https://www.bisnow.com/news/national/data-center-development/amazon-ditches-ashburn-data-center-plans-mixed-use-development?.tsrc=rss",
+          "source": "bisnow.com",
+          "at": "2026-10-21T18:15:34.000Z"
         },
         {
-          "title": "Amazon (AMZN) Trades at 24 Times Forward Earnings. Can Its Cash Engines Fund the Robotaxi Bet?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-amzn-trades-24-times-134507852.html?.tsrc=rss",
+          "title": "Amazon's Nvidia Chips Are Sitting in Warehouses Without Power as AI Spending Soars, Business Insider Reports",
+          "link": "https://www.benzinga.com/markets/prediction-markets/26/10/62506868/amazon-nvidia-chips-warehouses-power?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral&.tsrc=rss",
+          "source": "benzinga.com",
+          "at": "2026-10-21T18:06:30.000Z"
+        },
+        {
+          "title": "With Amazon Earnings On Tap, Here's How To Ride Out The Volatility",
+          "link": "https://finance.yahoo.com/m/4c344b96-4cb6-3cfe-ba6a-cbab0c8da726/with-amazon-earnings-on-tap%2C.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-21T15:30:07.000Z"
+          "at": "2026-10-21T17:58:36.000Z"
         },
         {
-          "title": "Amazon vs. Alphabet: Is GOOGL’s Cloud Growth Being Undervalued?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-vs-alphabet-googl-cloud-151741846.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-21T15:17:41.000Z"
-        },
-        {
-          "title": "Amazon (AMZN): Can Custom AI Silicon Outpace Capex Commitments?",
-          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-amzn-custom-ai-silicon-151622246.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-21T15:16:22.000Z"
+          "title": "Amazon or Alphabet: If I Could Only Own One for the Next Decade, It Would Be This One",
+          "link": "https://www.fool.com/investing/2026/10/21/amazon-or-alphabet-if-i-could-only-own-one-for-the/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-21T17:50:00.000Z"
         }
       ],
       "actions": []
     },
     "NDAQ": {
       "news": [
+        {
+          "title": "Robot Consulting Co., Ltd. Notified of Anticipated Delisting from The Nasdaq Stock Market",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/robot-consulting-co-ltd-notified-200500412.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-21T20:05:00.000Z"
+        },
         {
           "title": "What To Expect From Nasdaq’s (NDAQ) Q3 Earnings",
           "link": "https://finance.yahoo.com/markets/stocks/articles/expect-nasdaq-ndaq-q3-earnings-043039722.html?.tsrc=rss",
@@ -445,12 +451,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/zacks-industry-outlook-highlights-p-120000904.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-16T12:00:00.000Z"
-        },
-        {
-          "title": "Nasdaq (NDAQ) Completes LeveL Markets Deal And Deepens Its Trading Reach",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-ndaq-completes-level-markets-211801307.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-15T21:18:01.000Z"
         }
       ],
       "actions": [
@@ -464,6 +464,12 @@
     },
     "NOW": {
       "news": [
+        {
+          "title": "Palantir Rises 4% as Software Stocks Rally; ServiceNow Gains 3%, Salesforce Holds Flat",
+          "link": "https://247wallst.com/investing/2026/10/21/palantir-rises-4-as-software-stocks-rally-servicenow-gains-3-salesforce-holds-flat/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-21T16:55:08.000Z"
+        },
         {
           "title": "ServiceNow (NOW) Needs Stronger Cash Flow to Support Its AI Expansion",
           "link": "https://finance.yahoo.com/technology/ai/articles/servicenow-now-needs-stronger-cash-141556059.html?.tsrc=rss",
@@ -487,18 +493,18 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/servicenow-delivers-industry-first-personal-113000101.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-21T11:30:00.000Z"
-        },
-        {
-          "title": "ServiceNow's Quarterly Earnings Preview: What You Need to Know",
-          "link": "https://www.barchart.com/story/news/8264275/servicenow-s-quarterly-earnings-preview-what-you-need-to-know?.tsrc=rss",
-          "source": "barchart.com",
-          "at": "2026-10-21T07:59:20.000Z"
         }
       ],
       "actions": []
     },
     "WKL.AS": {
       "news": [
+        {
+          "title": "Wolters Kluwer announces winners of the 2026 CCH William Awards",
+          "link": "https://finance.yahoo.com/small-business/articles/wolters-kluwer-announces-winners-2026-170200996.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-21T17:02:00.000Z"
+        },
         {
           "title": "Federal regulatory enforcement dropped again in H1 2026",
           "link": "https://www.cfo.com/news/federal-regulatory-enforcement-dropped-again-in-h1-2026/833531/?.tsrc=rss",
