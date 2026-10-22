@@ -1,7 +1,49 @@
 {
-  "at": "2026-10-22T16:31:59.656Z",
+  "at": "2026-10-22T21:08:42.027Z",
   "market": {
     "IN": [
+      {
+        "title": "US stocks today: Nasdaq slumps 2.5%, S&P 1% as revived AI doubts ignite tech selloff",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-nasdaq-slumps-2-5-sp-1-as-revived-ai-doubts-ignite-tech-selloff/articleshow/135127224.cms",
+        "source": "Economic Times",
+        "at": "2026-10-22T20:15:19.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Moderna stock crashes 25%, loses about $24 billion after cancer vaccine data leak",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/moderna-shares-plummet-25-loses-about-24-billion-after-cancer-vaccine-data-leak/articleshow/135127206.cms",
+        "source": "Economic Times",
+        "at": "2026-10-22T20:11:53.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Treasuries see best day in over a year as AI selloff revives haven demand",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/treasuries-eye-best-day-in-over-a-year-as-ai-selloff-revives-haven-demand/articleshow/135126406.cms",
+        "source": "Economic Times",
+        "at": "2026-10-22T19:03:07.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Neocloud short sellers rack up $6 billion as AI debt fears deepen",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/neocloud-short-sellers-rack-up-6-billion-as-ai-debt-fears-deepen/articleshow/135123634.cms",
+        "source": "Economic Times",
+        "at": "2026-10-22T17:13:04.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Pershing's Ackman sees a $1 trillion Israeli company within a decade",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/pershings-ackman-sees-a-1-trillion-israeli-company-within-a-decade/articleshow/135123317.cms",
+        "source": "Economic Times",
+        "at": "2026-10-22T16:56:49.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Average long-term US mortgage rate eases to 7.32% in first pullback since late August",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/average-long-term-us-mortgage-rate-eases-to-7-32-in-first-pullback-since-late-august/articleshow/135123287.cms",
+        "source": "Economic Times",
+        "at": "2026-10-22T16:52:07.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Ahead of Market: 10 things that will decide stock market action on Friday",
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-friday/articleshow/135122517.cms",
@@ -15,48 +57,6 @@
         "source": "Economic Times",
         "at": "2026-10-22T16:01:43.000Z",
         "market": "Indian markets"
-      },
-      {
-        "title": "Sebi warns investors against WhatsApp stock tips. Here's how you can avoid such traps",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/sebi-warns-investors-against-whatsapp-stock-tips-heres-how-you-can-avoid-such-traps/articleshow/135121957.cms",
-        "source": "Economic Times",
-        "at": "2026-10-22T15:17:48.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Anthropic IPO stands alone as AI market jitters sideline others",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/anthropic-ipo-stands-alone-as-ai-market-jitters-sideline-others/articleshow/135121938.cms",
-        "source": "Economic Times",
-        "at": "2026-10-22T15:16:29.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "NCDEX launches NDEX and FINNDEX to expand into equity benchmarks",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/ncdex-launches-ndex-and-finndex-to-expand-into-equity-benchmarks/articleshow/135121233.cms",
-        "source": "Economic Times",
-        "at": "2026-10-22T14:25:22.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "CreditAccess Grameen Q2 profit jumps fourfold to Rs 502 crore",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/creditaccess-grameen-q2-profit-jumps-fourfold-to-rs-502-crore/articleshow/135121186.cms",
-        "source": "Economic Times",
-        "at": "2026-10-22T14:22:46.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Tesla shares slip as capex cut clouds Musk’s AI, robotics ambitions",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/tesla-shares-slip-after-capex-cut-raises-doubts-over-musks-ai-and-robotics-push/articleshow/135121152.cms",
-        "source": "Economic Times",
-        "at": "2026-10-22T14:18:54.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Kolkata home registrations dip 12 per cent in Jan-Sep; larger flats gain share",
-        "link": "https://economictimes.indiatimes.com/markets/digital-real-estate/realty-news/kolkata-home-registrations-dip-12-per-cent-in-jan-sep-larger-flats-gain-share/articleshow/135121131.cms",
-        "source": "Economic Times",
-        "at": "2026-10-22T14:17:16.000Z",
-        "market": "Indian markets"
       }
     ],
     "GLOBAL": [
@@ -68,7 +68,7 @@
         "market": "European markets"
       },
       {
-        "title": "FTSE 100 today: Stocks slip as miners drag, Iran threat lifts oil",
+        "title": "FTSE 100 today: Stocks fall as miners drag, Iran threat lifts oil",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-fall-080812220.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-10-22T08:08:12.000Z",
@@ -292,6 +292,12 @@
     "INTU": {
       "news": [
         {
+          "title": "Intuit (INTU) vs. PYPL and XYZ: Can an 81% Gross Margin and $8.6B Free Cash Flow Justify a Rebound?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-vs-pypl-xyz-201708619.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-22T20:17:08.000Z"
+        },
+        {
           "title": "Coast Raises $35 Million to Build the Financial Platform for the Physical Economy",
           "link": "https://finance.yahoo.com/small-business/articles/coast-raises-35-million-build-130100323.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -314,12 +320,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/top-analyst-reports-salesforce-p-193300324.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-21T19:33:00.000Z"
-        },
-        {
-          "title": "3 Reasons to Sell INTU and 1 Stock to Buy Instead",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-sell-intu-1-181439394.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-21T18:14:39.000Z"
         }
       ],
       "actions": [
@@ -340,6 +340,18 @@
     "MSFT": {
       "news": [
         {
+          "title": "How much MSFT stock does Microsoft CEO Satya Nadella actually own?",
+          "link": "https://www.thestreet.com/personalities/how-much-msft-stock-does-microsoft-ceo-satya-nadella-actually-own?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-22T17:07:02.000Z"
+        },
+        {
+          "title": "Microsoft, Google parent and McDonald’s protest new trading plan",
+          "link": "https://www.thestreet.com/crypto/markets/microsoft-google-parent-and-mcdonalds-protest-new-trading-plan-?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-22T17:00:00.000Z"
+        },
+        {
           "title": "Waymo, Google and Microsoft Alums Raise $30M to Build the Data Layer for Physical AI",
           "link": "https://finance.yahoo.com/technology/ai/articles/waymo-google-microsoft-alums-raise-160000050.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -352,22 +364,10 @@
           "at": "2026-10-22T15:30:56.000Z"
         },
         {
-          "title": "Nvidia, Apple, Alphabet, Microsoft, and Amazon Now Make Up 30.8% of VOO and 49.2% of VUG. Here's a Better Low-Cost Vanguard ETF to Buy Now.",
-          "link": "https://www.fool.com/investing/2026/10/22/nvidia-apple-alphabet-microsoft-and-amazon-now-mak/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-22T14:05:00.000Z"
-        },
-        {
-          "title": "Famous Billionaire Calls AI a Bubble — But That Is Not What His Money Says",
-          "link": "https://247wallst.com/investing/2026/10/22/famous-billionaire-calls-ai-a-bubble-but-that-is-not-what-his-money-says/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-22T16:03:14.000Z"
-        },
-        {
-          "title": "3 Dividend Stocks to Buy and Hold Forever",
-          "link": "https://www.fool.com/investing/2026/10/22/3-dividend-stocks-to-buy-and-hold-forever/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-22T15:40:02.000Z"
+          "title": "Alphabet (GOOGL) vs. MSFT and AMZN: Can AI Investments and Google Cloud Growth Unlock a 26% Upside?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/alphabet-googl-vs-msft-amzn-202624782.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-22T20:26:24.000Z"
         }
       ],
       "actions": [
@@ -382,40 +382,58 @@
     "AMZN": {
       "news": [
         {
+          "title": "Alphabet (GOOGL) vs. MSFT and AMZN: Can AI Investments and Google Cloud Growth Unlock a 26% Upside?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/alphabet-googl-vs-msft-amzn-202624782.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-22T20:26:24.000Z"
+        },
+        {
+          "title": "TEAMSTERS RALLY FOR DELIVERY PROTECTION ACT AT NEW YORK CITY HALL",
+          "link": "https://finance.yahoo.com/economy/policy/articles/teamsters-rally-delivery-protection-act-182400090.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-22T18:24:00.000Z"
+        },
+        {
           "title": "Famous Billionaire Calls AI a Bubble — But That Is Not What His Money Says",
           "link": "https://247wallst.com/investing/2026/10/22/famous-billionaire-calls-ai-a-bubble-but-that-is-not-what-his-money-says/?.tsrc=rss",
           "source": "247wallst.com",
           "at": "2026-10-22T16:03:14.000Z"
         },
         {
-          "title": "If You Invest $1,000 in Amazon Each Month Starting Now, This is What You’d Have in 5 Years",
-          "link": "https://247wallst.com/investing/2026/10/22/if-you-invest-1000-in-amazon-each-month-starting-now-this-is-what-youd-have-in-5-years/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-22T15:00:35.000Z"
+          "title": "Duke Energy (DUK) Stock Could Be 19% Overvalued Despite Data Center Cost Deal",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/duke-energy-duk-stock-could-201407603.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-22T20:14:07.000Z"
         },
         {
-          "title": "Ken Griffin Says We’re ‘Almost Certainly’ in an AI Bubble, Recalls How Past Bubbles Created Market Leaders for Decades: ‘I Just Wish I’d Kept My Amazon Stock’",
-          "link": "https://finance.yahoo.com/technology/ai/articles/ken-griffin-says-almost-certainly-150007415.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-22T15:00:07.000Z"
-        },
-        {
-          "title": "Alliance for Open Media Sees Rapid AV2 Adoption Across the Video Ecosystem Just Four Months After Release",
-          "link": "https://finance.yahoo.com/technology/articles/alliance-open-media-sees-rapid-150000402.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-22T15:00:00.000Z"
-        },
-        {
-          "title": "Should You Buy Jim Cramer and Ken Fisher’s Top AI Stock Pick Ahead of Earnings?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/buy-jim-cramer-ken-fisher-142220229.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-22T14:22:20.000Z"
+          "title": "Google Is Paying SpaceX $11 Billion a Year for Compute. Here's the Concentration Risk Nobody Is Pricing In.",
+          "link": "https://www.fool.com/investing/2026/10/22/google-is-paying-spacex-11-billion-a-year-for-comp/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-22T20:10:00.000Z"
         }
       ],
       "actions": []
     },
     "NDAQ": {
       "news": [
+        {
+          "title": "Nasdaq (NDAQ) Q3 2026 Earnings Call Transcript",
+          "link": "https://www.fool.com/earnings/call-transcripts/2026/10/22/nasdaq-ndaq-q3-2026-earnings-call-transcript/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-22T18:15:24.000Z"
+        },
+        {
+          "title": "Sector Update: Financial Stocks Rise Thursday Afternoon",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/sector-financial-stocks-rise-thursday-180039674.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-22T18:00:39.000Z"
+        },
+        {
+          "title": "Nasdaq, Inc. Q3 2026 Earnings Call Summary",
+          "link": "https://app.moby.co/home/research/tools/earningsCalendar/earnings-nasdaq-inc-q3-2026-earnings-call-summary?utm_source=yahoo_finance&utm_medium=rss&.tsrc=rss",
+          "source": "app.moby.co",
+          "at": "2026-10-22T17:50:36.000Z"
+        },
         {
           "title": "Nasdaq Inc., CSX Flash Buy Signals As Nasdaq, S&P 500 Slide",
           "link": "https://finance.yahoo.com/m/71f09c98-08b5-3bad-9e9b-21cb22a46128/nasdaq-inc.%2C-csx-flash-buy.html?.tsrc=rss",
@@ -427,24 +445,6 @@
           "link": "https://www.marketbeat.com/instant-alerts/transcript-what-nasdaq-ndaq-said-on-its-q3-earnings-call-2026-10-22/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
           "source": "marketbeat.com",
           "at": "2026-10-22T15:05:02.000Z"
-        },
-        {
-          "title": "NDAQ Q3 Earnings Beat Estimates on Index and FinTech Growth",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/ndaq-q3-earnings-beat-estimates-133800459.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-22T13:38:00.000Z"
-        },
-        {
-          "title": "Here's What Key Metrics Tell Us About Nasdaq (NDAQ) Q3 Earnings",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/heres-key-metrics-tell-us-123003197.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-22T12:30:03.000Z"
-        },
-        {
-          "title": "Nasdaq (NASDAQ:NDAQ) posts better-than-expected sales in Q3 2026",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-nasdaq-ndaq-posts-better-113340124.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-22T11:33:40.000Z"
         }
       ],
       "actions": [
@@ -458,6 +458,12 @@
     },
     "NOW": {
       "news": [
+        {
+          "title": "AUSA: ServiceNow VP of Global Defense and National Security Kevin Brooks",
+          "link": "https://finance.yahoo.com/video/ausa-servicenow-vp-global-defense-182353416.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-22T18:23:53.000Z"
+        },
         {
           "title": "AI TRiSM Market Surges to $11.61 billion at a CAGR 30.3% by 2031 | Report by MarketsandMarkets™",
           "link": "https://finance.yahoo.com/technology/ai/articles/ai-trism-market-surges-11-143000444.html?.tsrc=rss",
@@ -481,18 +487,18 @@
           "link": "https://www.tikr.com/blog/servicenow-just-gained-10-in-a-month-take-profits-or-buy-more?ref=yahoofinance&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-10-22T12:35:59.000Z"
-        },
-        {
-          "title": "Boardwalktech Partners with ServiceNow to Automate Business and Financial Controls",
-          "link": "https://finance.yahoo.com/technology/articles/boardwalktech-partners-servicenow-automate-business-110000474.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-22T11:00:00.000Z"
         }
       ],
       "actions": []
     },
     "WKL.AS": {
       "news": [
+        {
+          "title": "Wolters Kluwer partners with Inscope to launch agentic financial statement preparation in CCH Axcess",
+          "link": "https://finance.yahoo.com/technology/ai/articles/wolters-kluwer-partners-inscope-launch-194500494.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-22T19:45:00.000Z"
+        },
         {
           "title": "Share Buyback Transaction Details October 15 – October 21, 2026",
           "link": "https://finance.yahoo.com/markets/stocks/articles/share-buyback-transaction-details-october-080000016.html?.tsrc=rss",
@@ -516,12 +522,6 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/ai-tax-tools-wolters-kluwer-221445283.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-19T22:14:45.000Z"
-        },
-        {
-          "title": "Doximity and Wolters Kluwer Sign Partnership to Bring UpToDate to Doximity Ask",
-          "link": "https://finance.yahoo.com/healthcare/articles/doximity-wolters-kluwer-sign-partnership-133000055.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-20T13:30:00.000Z"
         }
       ],
       "actions": [
