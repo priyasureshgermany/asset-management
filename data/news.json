@@ -1,7 +1,21 @@
 {
-  "at": "2026-10-23T23:43:53.029Z",
+  "at": "2026-10-24T03:03:52.429Z",
   "market": {
     "IN": [
+      {
+        "title": "Small and midcap indices post worst weekly decline in two years",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/small-and-midcap-indices-post-worst-weekly-decline-in-two-years/articleshow/135160009.cms",
+        "source": "Economic Times",
+        "at": "2026-10-24T02:36:47.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "RBI net forex buys hit a record $43 billion in August, balances it with swaps",
+        "link": "https://economictimes.indiatimes.com/markets/forex/forex-news/rbi-net-forex-buys-hit-a-record-43-billion-in-august-balances-it-with-swaps/articleshow/135159794.cms",
+        "source": "Economic Times",
+        "at": "2026-10-24T02:20:15.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "iPhone Duo internal display break: Are iPhone Duo displays too fragile? Users report alarming cracks near hinge",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/iphone-duo-internal-display-break-are-iphone-duo-displays-too-fragile-users-report-alarming-cracks-near-hinge/articleshow/135155585.cms",
@@ -42,20 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/ipos/fpos/eaaa-india-alternatives-mops-up-rs-360-crore-from-anchor-investors-ipo-opens-on-oct-26/articleshow/135150980.cms",
         "source": "Economic Times",
         "at": "2026-10-23T16:50:32.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Shriram Finance Q2 profit jumps 59% YoY to Rs 3,677 crore on strong interest income, lower funding costs",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/shriram-finance-q2-profit-jumps-59-yoy-to-rs-3677-crore-on-strong-interest-income-lower-funding-costs/articleshow/135150195.cms",
-        "source": "Economic Times",
-        "at": "2026-10-23T16:05:28.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Shree Cement profit falls 15% YoY to Rs 263 crore on higher fuel costs",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/shree-cement-profit-falls-15-yoy-to-rs-263-crore-on-higher-fuel-costs/articleshow/135150160.cms",
-        "source": "Economic Times",
-        "at": "2026-10-23T16:03:04.000Z",
         "market": "Indian markets"
       }
     ],
@@ -340,6 +340,12 @@
           "at": "2026-10-23T18:33:20.000Z"
         },
         {
+          "title": "Amazon Stock And Other Mega Cap Tech Names For The AI Infrastructure Reset",
+          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-stock-other-mega-cap-001944653.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-24T00:19:44.000Z"
+        },
+        {
           "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings Wave; What To Do Amid Mixed Signals",
           "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures%3A-microsoft%2C.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -356,12 +362,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/sector-tech-stocks-rise-afternoon-195459596.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-23T19:54:59.000Z"
-        },
-        {
-          "title": "Microsoft Poised for Largely In-Line Quarterly Earnings Amid Azure Strength, BofA Says",
-          "link": "https://finance.yahoo.com/technology/articles/microsoft-poised-largely-line-quarterly-184500345.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-23T18:45:00.000Z"
         }
       ],
       "actions": [
@@ -375,6 +375,12 @@
     },
     "AMZN": {
       "news": [
+        {
+          "title": "Amazon Stock And Other Mega Cap Tech Names For The AI Infrastructure Reset",
+          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-stock-other-mega-cap-001944653.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-24T00:19:44.000Z"
+        },
         {
           "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings Wave; What To Do Amid Mixed Signals",
           "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures%3A-microsoft%2C.html?.tsrc=rss",
@@ -398,12 +404,6 @@
           "link": "https://www.businessinsider.com/recent-company-layoffs-laying-off-workers-2026?.tsrc=rss",
           "source": "businessinsider.com",
           "at": "2026-10-23T16:12:04.000Z"
-        },
-        {
-          "title": "Will AI Fiber Demand Change Corning (GLW) Narrative",
-          "link": "https://finance.yahoo.com/technology/ai/articles/ai-fiber-demand-change-corning-201535671.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-23T20:15:35.000Z"
         }
       ],
       "actions": []
