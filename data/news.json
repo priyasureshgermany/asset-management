@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-24T20:07:24.237Z",
+  "at": "2026-10-24T22:50:39.210Z",
   "market": {
     "IN": [
       {
@@ -334,6 +334,12 @@
     "MSFT": {
       "news": [
         {
+          "title": "How much MSFT stock does former CEO Steve Ballmer actually own?",
+          "link": "https://www.thestreet.com/personalities/how-much-msft-stock-does-former-ceo-steve-ballmer-actually-own?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-24T20:30:22.000Z"
+        },
+        {
           "title": "Chamath: “$0.70-75 of Every Dollar” of AI Spend Is VC Money. The Real Winners Are Already Publicly Traded",
           "link": "https://www.tikr.com/blog/chamath-0-70-75-of-every-dollar-of-ai-spend-is-vc-money-the-real-winners-are-already-publicly-traded?ref=yahoofinance&.tsrc=rss",
           "source": "tikr.com",
@@ -346,22 +352,16 @@
           "at": "2026-10-24T15:44:52.000Z"
         },
         {
+          "title": "Microsoft May Be the Only Hyperscaler to Stay Cash-Flow Positive. What It Means for MSFT Stock",
+          "link": "https://www.barchart.com/story/news/8415488/microsoft-may-be-the-only-hyperscaler-to-stay-cash-flow-positive-what-it-means-for-msft-stock?.tsrc=rss",
+          "source": "barchart.com",
+          "at": "2026-10-24T15:30:02.000Z"
+        },
+        {
           "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings In Doom-And-Bloom Market",
           "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures%3A-microsoft%2C.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-24T15:08:44.000Z"
-        },
-        {
-          "title": "Microsoft Stock And 2 Other Best Defensive Stocks",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-stock-2-other-best-120954839.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-24T12:09:54.000Z"
-        },
-        {
-          "title": "The tech ‘death spiral’ that could destroy the AI boom",
-          "link": "https://www.telegraph.co.uk/business/2026/10/24/warning-signs-flash-for-ai-boom-as-risky-debt-piles-up/?.tsrc=rss",
-          "source": "telegraph.co.uk",
-          "at": "2026-10-24T07:00:00.000Z"
         }
       ],
       "actions": [
@@ -375,6 +375,12 @@
     },
     "AMZN": {
       "news": [
+        {
+          "title": "Amazon.com (AMZN) Cancels $427 Million Loudoun County Data Center Project",
+          "link": "https://finance.yahoo.com/technology/articles/amazon-com-amzn-cancels-427-221154816.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-24T22:11:54.000Z"
+        },
         {
           "title": "Chamath: “$0.70-75 of Every Dollar” of AI Spend Is VC Money. The Real Winners Are Already Publicly Traded",
           "link": "https://www.tikr.com/blog/chamath-0-70-75-of-every-dollar-of-ai-spend-is-vc-money-the-real-winners-are-already-publicly-traded?ref=yahoofinance&.tsrc=rss",
@@ -398,12 +404,6 @@
           "link": "https://www.tikr.com/blog/some-of-amazons-new-ai-servers-are-reportedly-waiting-on-power-heres-what-october-29-has-to-prove?ref=yahoofinance&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-10-24T15:12:17.000Z"
-        },
-        {
-          "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings In Doom-And-Bloom Market",
-          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures%3A-microsoft%2C.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-24T15:08:44.000Z"
         }
       ],
       "actions": []
@@ -453,6 +453,12 @@
     "NOW": {
       "news": [
         {
+          "title": "ServiceNow Wants to Be No. 1 in Security. Here’s What Its $7.75 Billion Armis Bet Must Show on October 28",
+          "link": "https://www.tikr.com/blog/servicenow-wants-to-be-no-1-in-security-heres-what-its-7-75-billion-armis-bet-must-show-on-october-28?ref=yahoofinance&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-10-24T20:28:20.000Z"
+        },
+        {
           "title": "ServiceNow’s Moment of Truth: Can Agentic AI Growth Justify a Premium 80x Earnings Multiple on Oct. 28?",
           "link": "https://247wallst.com/investing/2026/10/24/servicenows-moment-of-truth-can-agentic-ai-growth-justify-a-premium-80x-earnings-multiple-on-oct-28/?.tsrc=rss",
           "source": "247wallst.com",
@@ -475,12 +481,6 @@
           "link": "https://finance.yahoo.com/video/servicenow-exec-ausa-defense-business-163904787.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-23T16:39:04.000Z"
-        },
-        {
-          "title": "SNX vs. NOW: Which Stock Is the Better Value Option?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/snx-vs-now-stock-better-144002409.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-23T14:40:02.000Z"
         }
       ],
       "actions": []
