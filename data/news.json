@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-25T18:03:58.886Z",
+  "at": "2026-10-25T22:59:49.487Z",
   "market": {
     "IN": [
       {
@@ -334,6 +334,18 @@
     "MSFT": {
       "news": [
         {
+          "title": "Dow Jones Futures Rise With Microsoft, Google, Amazon Ahead; Will Doom Or Bloom Control Market?",
+          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures-rise-with.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-25T22:48:43.000Z"
+        },
+        {
+          "title": "Why Is Microsoft (MSFT) Central To AI Cyberattacks And Digital Patient Twins?",
+          "link": "https://finance.yahoo.com/technology/ai/articles/why-microsoft-msft-central-ai-220628516.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-25T22:06:28.000Z"
+        },
+        {
           "title": "AI delivers ‘zero financial payoff’ to most companies, Apollo economist says",
           "link": "https://finance.yahoo.com/technology/ai/articles/ai-delivers-zero-financial-payoff-165732723.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -346,22 +358,10 @@
           "at": "2026-10-25T15:27:00.000Z"
         },
         {
-          "title": "Dow Jones Futures Due For Doom-And-Bloom Market; Microsoft, Google, Amazon Ahead",
-          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures-due-for.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-25T15:22:48.000Z"
-        },
-        {
           "title": "The Enterprise Agent Price Nobody Will Show You",
           "link": "https://finance.yahoo.com/technology/ai/articles/enterprise-agent-price-nobody-show-095924809.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-25T09:59:24.000Z"
-        },
-        {
-          "title": "Here's the Price at Which I'd Buy Microsoft Stock",
-          "link": "https://www.fool.com/investing/2026/10/25/here-s-the-price-at-which-i-d-buy-microsoft-stock/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-25T09:47:02.000Z"
         }
       ],
       "actions": [
@@ -382,6 +382,18 @@
           "at": "2026-10-25T17:39:49.000Z"
         },
         {
+          "title": "Dow Jones Futures Rise With Microsoft, Google, Amazon Ahead; Will Doom Or Bloom Control Market?",
+          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures-rise-with.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-25T22:48:43.000Z"
+        },
+        {
+          "title": "Amazon's $75 AI wearable hides a bigger $144-a-year bet",
+          "link": "https://www.thestreet.com/technology/amazons-75-ai-wearable-hides-a-bigger-144-a-year-bet?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-25T20:23:00.000Z"
+        },
+        {
           "title": "Can Walmart's New Bundled Subscription Beat Amazon?",
           "link": "https://www.fool.com/investing/2026/10/25/can-walmarts-new-bundled-subscription-beat-amazon/?.tsrc=rss",
           "source": "fool.com",
@@ -392,18 +404,6 @@
           "link": "https://247wallst.com/investing/2026/10/25/the-hidden-496-billion-catalyst-waiting-to-ignite-amazon-stock-on-oct-29/?.tsrc=rss",
           "source": "247wallst.com",
           "at": "2026-10-25T15:42:40.000Z"
-        },
-        {
-          "title": "Dow Jones Futures Due For Doom-And-Bloom Market; Microsoft, Google, Amazon Ahead",
-          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures-due-for.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-25T15:22:48.000Z"
-        },
-        {
-          "title": "Generac Q3 Earnings Preview: Can The Amazon AI Deal Deliver A Major Beat?",
-          "link": "https://247wallst.com/investing/2026/10/25/generac-q3-earnings-preview-can-the-amazon-ai-deal-deliver-a-major-beat/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-25T14:42:33.000Z"
         }
       ],
       "actions": []
