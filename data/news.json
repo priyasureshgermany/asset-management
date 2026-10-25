@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-25T13:31:50.333Z",
+  "at": "2026-10-25T18:03:58.886Z",
   "market": {
     "IN": [
       {
@@ -286,6 +286,12 @@
     "INTU": {
       "news": [
         {
+          "title": "Wells Fargo, Cisco, Intuit Among 6 More Companies Objecting to Tokenized Stocks",
+          "link": "https://decrypt.co/381784/wells-fargo-cisco-intuit-more-companies-object-tokenized-stocks?.tsrc=rss",
+          "source": "decrypt.co",
+          "at": "2026-10-25T16:01:03.000Z"
+        },
+        {
           "title": "Wells Fargo, Arm and Intuit Reject Tokenized Shares on OKX-ICE",
           "link": "https://www.cryptoprowl.com/releases/wells-fargo-arm-and-intuit-reject-tokenized-shares-on-okx-ice-7440?.tsrc=rss",
           "source": "cryptoprowl.com",
@@ -308,12 +314,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-vs-pypl-xyz-201708619.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-22T20:17:08.000Z"
-        },
-        {
-          "title": "Coast Raises $35 Million to Build the Financial Platform for the Physical Economy",
-          "link": "https://finance.yahoo.com/small-business/articles/coast-raises-35-million-build-130100323.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-22T13:01:00.000Z"
         }
       ],
       "actions": [
@@ -334,10 +334,22 @@
     "MSFT": {
       "news": [
         {
-          "title": "Dow Jones Futures: Microsoft, Google, Amazon Due; What To Do In Doom-And-Bloom Market",
-          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures%3A-microsoft%2C.html?.tsrc=rss",
+          "title": "AI delivers ‘zero financial payoff’ to most companies, Apollo economist says",
+          "link": "https://finance.yahoo.com/technology/ai/articles/ai-delivers-zero-financial-payoff-165732723.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-25T13:06:30.000Z"
+          "at": "2026-10-25T16:57:32.000Z"
+        },
+        {
+          "title": "What To Expect In Markets This Week: GOOGL, MSFT, AMZN, INTC, HOOD, LLY Earnings, Fed Meeting And More",
+          "link": "https://stocktwits.com/news-articles/markets/equity/what-to-expect-markets-this-week-oct-25-2026/cZUcyBcRBUp?.tsrc=rss",
+          "source": "stocktwits.com",
+          "at": "2026-10-25T15:27:00.000Z"
+        },
+        {
+          "title": "Dow Jones Futures Due For Doom-And-Bloom Market; Microsoft, Google, Amazon Ahead",
+          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures-due-for.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-25T15:22:48.000Z"
         },
         {
           "title": "The Enterprise Agent Price Nobody Will Show You",
@@ -350,18 +362,6 @@
           "link": "https://www.fool.com/investing/2026/10/25/here-s-the-price-at-which-i-d-buy-microsoft-stock/?.tsrc=rss",
           "source": "fool.com",
           "at": "2026-10-25T09:47:02.000Z"
-        },
-        {
-          "title": "As AI Labs Burn Cash, the Real Question Is Which Suppliers Get Paid",
-          "link": "https://www.fool.com/investing/2026/10/25/as-ai-labs-burn-cash-the-real-question-is-which-su/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-25T04:20:00.000Z"
-        },
-        {
-          "title": "How much MSFT stock does former CEO Steve Ballmer actually own?",
-          "link": "https://www.thestreet.com/personalities/how-much-msft-stock-does-former-ceo-steve-ballmer-actually-own?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-10-24T20:30:22.000Z"
         }
       ],
       "actions": [
@@ -376,34 +376,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Dow Jones Futures: Microsoft, Google, Amazon Due; What To Do In Doom-And-Bloom Market",
-          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures%3A-microsoft%2C.html?.tsrc=rss",
+          "title": "'The world's super company': Wall Street weighs SpaceX earnings, company's likely Tesla tie-up",
+          "link": "https://finance.yahoo.com/markets/stocks/article/the-worlds-super-company-wall-street-weighs-spacex-earnings-companys-likely-tesla-tie-up-173949705.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-25T13:06:30.000Z"
+          "at": "2026-10-25T17:39:49.000Z"
         },
         {
-          "title": "Prediction: Amazon Stock Will Skyrocket After Oct. 29 Thanks to AWS Growth",
-          "link": "https://www.fool.com/investing/2026/10/25/prediction-amazon-stock-will-skyrocket-after-oct-2/?.tsrc=rss",
+          "title": "Can Walmart's New Bundled Subscription Beat Amazon?",
+          "link": "https://www.fool.com/investing/2026/10/25/can-walmarts-new-bundled-subscription-beat-amazon/?.tsrc=rss",
           "source": "fool.com",
-          "at": "2026-10-25T08:33:00.000Z"
+          "at": "2026-10-25T16:47:00.000Z"
         },
         {
-          "title": "Should Aggregators block AI Agents?",
-          "link": "https://finance.yahoo.com/technology/ai/articles/aggregators-block-ai-agents-063053689.html?.tsrc=rss",
+          "title": "The Hidden $496 Billion Catalyst Waiting to Ignite Amazon Stock on Oct. 29",
+          "link": "https://247wallst.com/investing/2026/10/25/the-hidden-496-billion-catalyst-waiting-to-ignite-amazon-stock-on-oct-29/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-25T15:42:40.000Z"
+        },
+        {
+          "title": "Dow Jones Futures Due For Doom-And-Bloom Market; Microsoft, Google, Amazon Ahead",
+          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures-due-for.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-25T06:30:53.000Z"
+          "at": "2026-10-25T15:22:48.000Z"
         },
         {
-          "title": "Amazon.com (AMZN) Cancels $427 Million Loudoun County Data Center Project",
-          "link": "https://finance.yahoo.com/technology/articles/amazon-com-amzn-cancels-427-221154816.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-24T22:11:54.000Z"
-        },
-        {
-          "title": "Chamath: “$0.70-75 of Every Dollar” of AI Spend Is VC Money. The Real Winners Are Already Publicly Traded",
-          "link": "https://www.tikr.com/blog/chamath-0-70-75-of-every-dollar-of-ai-spend-is-vc-money-the-real-winners-are-already-publicly-traded?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-24T16:18:16.000Z"
+          "title": "Generac Q3 Earnings Preview: Can The Amazon AI Deal Deliver A Major Beat?",
+          "link": "https://247wallst.com/investing/2026/10/25/generac-q3-earnings-preview-can-the-amazon-ai-deal-deliver-a-major-beat/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-25T14:42:33.000Z"
         }
       ],
       "actions": []
