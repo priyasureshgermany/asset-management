@@ -1,9 +1,44 @@
 {
-  "at": "2026-10-25T08:13:27.963Z",
+  "at": "2026-10-25T13:31:50.333Z",
   "market": {
     "IN": [
       {
-        "title": "10 Penny stocks surged up to 180% in 3 months. Do you own any?",
+        "title": "Ahead of Market: 10 things that will decide stock market action on Monday",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-monday/articleshow/135189090.cms",
+        "source": "Economic Times",
+        "at": "2026-10-25T10:51:41.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Peter Lynch on stock picking: 'You shouldn't own a stock if you can't…'",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/peter-lynch-on-stock-picking-you-shouldnt-own-a-stock-if-you-cant/articleshow/135188450.cms",
+        "source": "Economic Times",
+        "at": "2026-10-25T10:02:51.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Mcap of 8 of top-10 firms erodes by Rs 1.55 lakh cr; HDFC Bank, Bajaj Fin biggest laggards",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/mcap-of-8-of-top-10-firms-erodes-by-rs-1-55-lakh-cr-hdfc-bank-bajaj-fin-biggest-laggards/articleshow/135186713.cms",
+        "source": "Economic Times",
+        "at": "2026-10-25T08:27:13.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "F&O Talk: Nifty plunged 2% this week. Are charts indicating a deeper sell-off?",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/fo-talk-nifty-plunged-2-this-week-do-charts-indicate-a-bearish-picture-for-coming-week/articleshow/135186474.cms",
+        "source": "Economic Times",
+        "at": "2026-10-25T08:14:31.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Warren Buffett’s 6 golden rules for investors after retirement",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/warren-buffetts-6-golden-rules-for-investors-after-retirement/articleshow/135186407.cms",
+        "source": "Economic Times",
+        "at": "2026-10-25T08:08:20.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "11 Penny stocks surged up to 180% in 3 months. Do you own any?",
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/10-penny-stocks-surged-up-to-180-in-3-months-do-you-own-any/slideshow/135185427.cms",
         "source": "Economic Times",
         "at": "2026-10-25T06:40:44.000Z",
@@ -21,41 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/expert-view/swiggymayrebound-to-rs-190-butchartsdonotsignal-a-trendreversal-lkps-vatsalbhuva/articleshow/135184363.cms",
         "source": "Economic Times",
         "at": "2026-10-25T05:41:46.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Dividends & stock splits: L&T Tech, Shriram Finance among 24 stocks turning ex-record date this week. Do you own?",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/dividends-stock-splits-lt-tech-shriram-finance-among-24-stocks-turning-ex-record-date-this-week-do-you-own/articleshow/135183913.cms",
-        "source": "Economic Times",
-        "at": "2026-10-25T05:18:18.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Jio IPO GMP today: All eyes on telecom major’s mega listing this week. What is grey market signalling?",
-        "link": "https://economictimes.indiatimes.com/markets/ipos/fpos/jioipogmptoday-alleyes-on-telecom-majors-megalisting-this-week-what-is-greymarketsignalling/articleshow/135183339.cms",
-        "source": "Economic Times",
-        "at": "2026-10-25T04:40:04.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "IDFC First Bank Q2 profit nearly triples to Rs 1,045 crore",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/idfc-first-bank-q2-profit-nearly-triples-to-rs-1045-cr/articleshow/135182984.cms",
-        "source": "Economic Times",
-        "at": "2026-10-25T04:11:15.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Post Jio boost: 5 IPOs to raise Rs 2,581 crore next week alongside India's biggest listing",
-        "link": "https://economictimes.indiatimes.com/markets/ipos/fpos/post-jio-boost-5-ipos-to-raise-rs-2581-crore-next-week-alongside-indias-biggest-listing/articleshow/135182846.cms",
-        "source": "Economic Times",
-        "at": "2026-10-25T04:00:17.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Sebi to revamp short-selling, securities lending rules",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/sebi-to-revamp-short-selling-securities-lending-rules/articleshow/135182788.cms",
-        "source": "Economic Times",
-        "at": "2026-10-25T03:58:23.000Z",
         "market": "Indian markets"
       }
     ],
@@ -334,34 +334,34 @@
     "MSFT": {
       "news": [
         {
+          "title": "Dow Jones Futures: Microsoft, Google, Amazon Due; What To Do In Doom-And-Bloom Market",
+          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures%3A-microsoft%2C.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-25T13:06:30.000Z"
+        },
+        {
+          "title": "The Enterprise Agent Price Nobody Will Show You",
+          "link": "https://finance.yahoo.com/technology/ai/articles/enterprise-agent-price-nobody-show-095924809.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-25T09:59:24.000Z"
+        },
+        {
+          "title": "Here's the Price at Which I'd Buy Microsoft Stock",
+          "link": "https://www.fool.com/investing/2026/10/25/here-s-the-price-at-which-i-d-buy-microsoft-stock/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-25T09:47:02.000Z"
+        },
+        {
           "title": "As AI Labs Burn Cash, the Real Question Is Which Suppliers Get Paid",
           "link": "https://www.fool.com/investing/2026/10/25/as-ai-labs-burn-cash-the-real-question-is-which-su/?.tsrc=rss",
           "source": "fool.com",
           "at": "2026-10-25T04:20:00.000Z"
         },
         {
-          "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings In Doom-And-Bloom Market",
-          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures%3A-microsoft%2C.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-25T04:00:44.000Z"
-        },
-        {
           "title": "How much MSFT stock does former CEO Steve Ballmer actually own?",
           "link": "https://www.thestreet.com/personalities/how-much-msft-stock-does-former-ceo-steve-ballmer-actually-own?.tsrc=rss",
           "source": "thestreet.com",
           "at": "2026-10-24T20:30:22.000Z"
-        },
-        {
-          "title": "Chamath: “$0.70-75 of Every Dollar” of AI Spend Is VC Money. The Real Winners Are Already Publicly Traded",
-          "link": "https://www.tikr.com/blog/chamath-0-70-75-of-every-dollar-of-ai-spend-is-vc-money-the-real-winners-are-already-publicly-traded?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-24T16:18:16.000Z"
-        },
-        {
-          "title": "Microsoft’s $50 Billion Gamble: Can Microsoft’s Azure Growth Justify Its Exploding AI Budget?",
-          "link": "https://247wallst.com/investing/2026/10/24/microsofts-50-billion-gamble-can-microsofts-azure-growth-justify-its-exploding-ai-budget/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-24T15:44:52.000Z"
         }
       ],
       "actions": [
@@ -376,16 +376,22 @@
     "AMZN": {
       "news": [
         {
+          "title": "Dow Jones Futures: Microsoft, Google, Amazon Due; What To Do In Doom-And-Bloom Market",
+          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures%3A-microsoft%2C.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-25T13:06:30.000Z"
+        },
+        {
+          "title": "Prediction: Amazon Stock Will Skyrocket After Oct. 29 Thanks to AWS Growth",
+          "link": "https://www.fool.com/investing/2026/10/25/prediction-amazon-stock-will-skyrocket-after-oct-2/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-25T08:33:00.000Z"
+        },
+        {
           "title": "Should Aggregators block AI Agents?",
           "link": "https://finance.yahoo.com/technology/ai/articles/aggregators-block-ai-agents-063053689.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-25T06:30:53.000Z"
-        },
-        {
-          "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings In Doom-And-Bloom Market",
-          "link": "https://finance.yahoo.com/m/cdb9c13b-db57-3551-acd0-7507e9d69b5a/dow-jones-futures%3A-microsoft%2C.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-25T04:00:44.000Z"
         },
         {
           "title": "Amazon.com (AMZN) Cancels $427 Million Loudoun County Data Center Project",
@@ -398,12 +404,6 @@
           "link": "https://www.tikr.com/blog/chamath-0-70-75-of-every-dollar-of-ai-spend-is-vc-money-the-real-winners-are-already-publicly-traded?ref=yahoofinance&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-10-24T16:18:16.000Z"
-        },
-        {
-          "title": "Amazon’s AWS Has Already Sold “a Good Chunk” of 2028 Capacity",
-          "link": "https://247wallst.com/investing/2026/10/24/amazons-aws-has-already-sold-a-good-chunk-of-2028-capacity/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-24T16:15:50.000Z"
         }
       ],
       "actions": []
@@ -453,6 +453,12 @@
     "NOW": {
       "news": [
         {
+          "title": "The Enterprise Agent Price Nobody Will Show You",
+          "link": "https://finance.yahoo.com/technology/ai/articles/enterprise-agent-price-nobody-show-095924809.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-25T09:59:24.000Z"
+        },
+        {
           "title": "ServiceNow Wants to Be No. 1 in Security. Here’s What Its $7.75 Billion Armis Bet Must Show on October 28",
           "link": "https://www.tikr.com/blog/servicenow-wants-to-be-no-1-in-security-heres-what-its-7-75-billion-armis-bet-must-show-on-october-28?ref=yahoofinance&.tsrc=rss",
           "source": "tikr.com",
@@ -475,12 +481,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-now-advances-while-market-204503013.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-23T20:45:03.000Z"
-        },
-        {
-          "title": "ServiceNow Exec at AUSA Defense Business Will be 'Major Driver' Over Next Year",
-          "link": "https://finance.yahoo.com/video/servicenow-exec-ausa-defense-business-163904787.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-23T16:39:04.000Z"
         }
       ],
       "actions": []
