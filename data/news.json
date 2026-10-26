@@ -1,74 +1,81 @@
 {
-  "at": "2026-10-26T15:47:26.591Z",
+  "at": "2026-10-26T22:13:50.565Z",
   "market": {
     "IN": [
+      {
+        "title": "US Markets Today: S&P, Nasdaq end higher as Anthropic IPO filing revives AI optimism; Tesla hits 3 month high",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-markets-today-us-stocks-end-higher-as-anthropic-ipo-filing-revives-ai-optimism-tesla-hits-3-month-high/articleshow/135219329.cms",
+        "source": "Economic Times",
+        "at": "2026-10-26T20:17:48.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Anthropic halts AI training for over a month over security concerns as models breach testing systems ahead of IPO",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-halts-ai-training-for-over-a-month-over-security-concerns-as-models-breach-testing-systems/articleshow/135218073.cms",
+        "source": "Economic Times",
+        "at": "2026-10-26T18:38:35.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Sunteck Realty H1FY27 net profit rises 20%, pre-sales up 19%",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/sunteck-realty-h1fy27-net-profit-rises-20-pre-sales-up-19/articleshow/135217893.cms",
+        "source": "Economic Times",
+        "at": "2026-10-26T18:28:06.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Dalmia Bharat posts Rs 205 crore Q2 loss on exceptional hit",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/dalmia-bharat-posts-rs-205-crore-q2-loss-on-exceptional-hit/articleshow/135217688.cms",
+        "source": "Economic Times",
+        "at": "2026-10-26T18:19:52.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Ahead of Market: 10 things that will decide stock market action on Tuesday",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-tuesday/articleshow/135215629.cms",
+        "source": "Economic Times",
+        "at": "2026-10-26T16:38:34.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Anthropic vs OpenAI: How Claude maker’s growth is challenging ChatGPT ahead of IPO",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-vs-openai-how-claude-makers-growth-is-challenging-chatgpt-ahead-of-ipo/articleshow/135215446.cms",
+        "source": "Economic Times",
+        "at": "2026-10-26T16:27:14.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Paytm Q2 Results: Profit rockets 976% YoY to Rs 226 crore, revenue jumps 28%",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/paytm-q2-results-profit-rockets-976-yoy-to-rs-226-crore-revenue-jumps-28/articleshow/135214973.cms",
+        "source": "Economic Times",
+        "at": "2026-10-26T15:45:42.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Tamilnad Mercantile Bank Q2 Results: Net profit rises 42% to record Rs 451 crore on high net interest income",
         "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/tamilnad-mercantile-bank-q2-results-net-profit-rises-42-to-record-rs-451-crore-on-high-net-interest-income/articleshow/135214844.cms",
         "source": "Economic Times",
         "at": "2026-10-26T15:26:51.000Z",
         "market": "Indian markets"
-      },
-      {
-        "title": "Indian Overseas Bank to raise $500 million as Q2 profit jumps 56%",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/indian-overseas-bank-to-raise-500-million-as-q2-profit-jumps-56/articleshow/135214567.cms",
-        "source": "Economic Times",
-        "at": "2026-10-26T15:14:37.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "MMT reports net profit of $1.8 million in Q2, revenues at $ 235.2 million",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/mmt-reports-net-profit-of-1-8-million-in-q2-revenues-at-235-2-million/articleshow/135214497.cms",
-        "source": "Economic Times",
-        "at": "2026-10-26T15:06:23.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Bank of Maharashtra Q2 profit jumps 41.5% as bad loans decline",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/bank-of-maharashtra-q2-profit-jumps-41-5-as-bad-loans-decline/articleshow/135214440.cms",
-        "source": "Economic Times",
-        "at": "2026-10-26T15:04:08.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "The Rs 1.5 lakh crore MTF problem: How shrinking leveraged positions are deepening India's smallcap sell-off",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/the-rs-1-5-lakh-crore-mtf-problem-how-shrinking-leveraged-positions-are-deepening-indias-smallcap-sell-off/articleshow/135214401.cms",
-        "source": "Economic Times",
-        "at": "2026-10-26T15:01:48.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Anthropic IPO: 5 jaw-dropping numbers investors need to know about $1.5 trillion public offer",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-5-jaw-dropping-numbers-investors-need-to-know-about-1-5-trillion-public-offer/articleshow/135214380.cms",
-        "source": "Economic Times",
-        "at": "2026-10-26T14:58:19.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Anthropic IPO: Rising costs, risks, rapid growth mark AI frontrunner",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-rising-costs-risks-rapid-growth-market-ai-frontrunner/articleshow/135213738.cms",
-        "source": "Economic Times",
-        "at": "2026-10-26T14:13:20.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Anthropic's top investors include Amazon, Google, Fidelity Management",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropics-top-investors-include-amazon-google-fidelity-management/articleshow/135213715.cms",
-        "source": "Economic Times",
-        "at": "2026-10-26T14:11:06.000Z",
-        "market": "Indian markets"
       }
     ],
     "GLOBAL": [
       {
-        "title": "FTSE 100 today: Stocks rise as oil slips on Iran de-escalation hopes",
+        "title": "European Stocks Close Higher in Monday Trading as Oil Prices Ease, Bond Yields Stabilize",
+        "link": "https://finance.yahoo.com/news/european-stocks-close-higher-monday-160729191.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-10-26T16:07:29.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "FTSE 100 today: Stocks climb as oil slips on Iran de-escalation hopes",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-rise-085210531.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-10-26T08:52:10.000Z",
         "market": "European markets"
       },
       {
-        "title": "European shares eebound on easing crude, Moody’s French reprieve",
+        "title": "European shares rebound on easing crude, Moody’s French reprieve",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/european-shares-hold-markets-weigh-084100829.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-10-26T08:41:00.000Z",
@@ -107,13 +114,6 @@
         "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-fall-080812220.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-10-22T08:08:12.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "European Stocks Close Higher in Wednesday Trading; UK Inflation Rises in September",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-close-higher-wednesday-155210567.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-10-21T15:52:10.000Z",
         "market": "European markets"
       }
     ]
@@ -172,14 +172,7 @@
       ]
     },
     "VEDL.NS": {
-      "news": [
-        {
-          "title": "Vedanta Ltd Doubles Zinc Capacity in South Africa with US$ 600 Mn investment",
-          "link": "https://finance.yahoo.com/markets/commodities/articles/vedanta-ltd-doubles-zinc-capacity-171900174.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-19T17:19:00.000Z"
-        }
-      ],
+      "news": [],
       "actions": [
         {
           "kind": "dividend",
@@ -286,6 +279,12 @@
     "INTU": {
       "news": [
         {
+          "title": "Intuit vs. BILL: Which Financial Software Stock Is a Better Buy Today?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-vs-bill-financial-software-152200890.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-26T15:22:00.000Z"
+        },
+        {
           "title": "Intuit's Multi-Year Strategy Supports Growth Outlook, Oppenheimer Says",
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-apos-multi-strategy-supports-152149833.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -308,12 +307,6 @@
           "link": "https://www.cryptoprowl.com/releases/wells-fargo-arm-and-intuit-reject-tokenized-shares-on-okx-ice-7440?.tsrc=rss",
           "source": "cryptoprowl.com",
           "at": "2026-10-24T03:59:00.000Z"
-        },
-        {
-          "title": "Intuit (INTU) Suffers a Larger Drop Than the General Market: Key Insights",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-suffers-larger-drop-204502055.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-23T20:45:02.000Z"
         }
       ],
       "actions": [
@@ -334,34 +327,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Microsoft's Healthy Enterprise Demand Supports Growth Ahead of Fiscal Q1 Results, Oppenheimer Says",
-          "link": "https://finance.yahoo.com/technology/articles/microsoft-apos-healthy-enterprise-demand-153350242.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-26T15:33:50.000Z"
+          "title": "Tech Earnings Are the Market’s Biggest Story This Week: Here’s Why Microsoft, Amazon, Intel, SanDisk, and Alphabet Will Drive the Stock Market’s Next Move",
+          "link": "https://247wallst.com/videos/tech-earnings-are-the-markets-biggest-story-this-week-heres-why-microsoft-amazon-intel-sandisk-and-alphabet-will-drive-the-stock-markets-next-move/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-26T21:15:14.000Z"
         },
         {
-          "title": "MSFT Stock Gets Wall Street’s Attention Ahead Of Earnings: Truist, Oppenheimer Raise Targets On Azure Growth Outlook",
-          "link": "https://stocktwits.com/news-articles/markets/equity/msft-stock-gets-wall-street-s-attention-ahead-of-earnings-truist-oppenheimer-raise-targets-on-azure-growth-outlook/cZU3d4BRByM?.tsrc=rss",
-          "source": "stocktwits.com",
-          "at": "2026-10-26T15:18:42.000Z"
+          "title": "Dow Jones Futures: Elon Musk-Led Tesla Leads Market Higher; Amazon, Alphabet, Microsoft Earnings On Deck",
+          "link": "https://finance.yahoo.com/m/4f45ec30-6388-381f-b8f7-2aed6d460b6f/dow-jones-futures%3A-elon.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-26T20:57:39.000Z"
         },
         {
-          "title": "Microsoft’s $678B AI backlog is massive, but is the stock priced for perfection",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-678b-ai-backlog-massive-151826866.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-26T15:18:26.000Z"
+          "title": "Microsoft offers around 60,000 employees voluntary buyouts",
+          "link": "https://www.euronews.com/2026/10/26/microsoft-offers-around-60000-employees-voluntary-buyouts?.tsrc=rss",
+          "source": "euronews.com",
+          "at": "2026-10-26T20:25:21.000Z"
         },
         {
-          "title": "Forget Alphabet and Microsoft: Is Amazon the smartest AI play ahead of earnings?",
-          "link": "https://finance.yahoo.com/technology/ai/articles/forget-alphabet-microsoft-amazon-smartest-133558125.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-26T15:16:57.000Z"
+          "title": "Why Did Microsoft Stock Beat UiPath Over Five Years?",
+          "link": "https://www.trefis.com/stock/path/articles/620537/why-did-microsoft-stock-beat-uipath-over-five-years/2026-10-26?.tsrc=rss",
+          "source": "trefis.com",
+          "at": "2026-10-26T20:08:15.000Z"
         },
         {
-          "title": "Clustering and Load Balancing Market Report 2026: Global Size, Trends, and Forecast to 2030 | Capitalize on AI, Kubernetes, and Multicloud with AWS, Microsoft, F5, and Cloudflare",
-          "link": "https://finance.yahoo.com/technology/articles/clustering-load-balancing-market-report-145400258.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-26T14:54:00.000Z"
+          "title": "Microsoft offers voluntary buyouts to 60,000 employees as tech giant reshapes its workforce",
+          "link": "https://www.foxbusiness.com/markets/microsoft-offers-voluntary-buyouts-60000-employees-tech-giant-reshapes-its-workforce?.tsrc=rss",
+          "source": "foxbusiness.com",
+          "at": "2026-10-26T20:03:11.000Z"
         }
       ],
       "actions": [
@@ -376,40 +369,46 @@
     "AMZN": {
       "news": [
         {
-          "title": "Anthropic IPO reminds this former Amazon board member of Jeff Bezos's AWS bet",
-          "link": "https://finance.yahoo.com/markets/article/anthropic-ipo-reminds-this-former-amazon-board-member-of-jeff-bezoss-aws-bet-152931151.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-26T14:44:06.000Z"
+          "title": "Tech Earnings Are the Market’s Biggest Story This Week: Here’s Why Microsoft, Amazon, Intel, SanDisk, and Alphabet Will Drive the Stock Market’s Next Move",
+          "link": "https://247wallst.com/videos/tech-earnings-are-the-markets-biggest-story-this-week-heres-why-microsoft-amazon-intel-sandisk-and-alphabet-will-drive-the-stock-markets-next-move/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-10-26T21:15:14.000Z"
         },
         {
-          "title": "How 'the Anthropic story' resembles Amazon's AWS bet",
-          "link": "https://finance.yahoo.com/video/how-the-anthropic-story-resembles-amazons-aws-bet-141152370.html?.tsrc=rss",
+          "title": "Dow Jones Futures: Elon Musk-Led Tesla Leads Market Higher; Amazon, Alphabet, Microsoft Earnings On Deck",
+          "link": "https://finance.yahoo.com/m/4f45ec30-6388-381f-b8f7-2aed6d460b6f/dow-jones-futures%3A-elon.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-26T14:11:52.000Z"
+          "at": "2026-10-26T20:57:39.000Z"
         },
         {
-          "title": "H2O.ai's TimeH2O Beats Mistral, Google, and Amazon in Time-Series Forecasting",
-          "link": "https://finance.yahoo.com/technology/ai/articles/h2o-ais-timeh2o-beats-mistral-152900943.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-26T15:29:00.000Z"
+          "title": "Should You Buy Amazon Stock Now or Wait for a Dip?",
+          "link": "https://www.fool.com/investing/2026/10/26/should-you-buy-amazon-stock-now-or-wait-for-a-dip/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-26T19:58:02.000Z"
         },
         {
-          "title": "Forget Alphabet and Microsoft: Is Amazon the smartest AI play ahead of earnings?",
-          "link": "https://finance.yahoo.com/technology/ai/articles/forget-alphabet-microsoft-amazon-smartest-133558125.html?.tsrc=rss",
+          "title": "DoorDash in advanced talks to acquire Instacart: WSJ",
+          "link": "https://finance.yahoo.com/video/doordash-in-advanced-talks-to-acquire-instacart-wsj-211415549.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-26T15:16:57.000Z"
+          "at": "2026-10-26T21:14:15.000Z"
         },
         {
-          "title": "Amazon Expected to Deliver AWS Growth Upside in Q3, BofA Says",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-expected-deliver-aws-growth-150255501.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-26T15:02:55.000Z"
+          "title": "Tesla Isn’t a Hyperscaler. Why the AI Bears Are Misreading Its $5 Billion Capex Cut.",
+          "link": "https://www.fool.com/investing/2026/10/26/tesla-isnt-a-hyperscaler-why-the-ai-bears-are-misreading-its-5-billion-capex-cut/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-26T20:53:02.000Z"
         }
       ],
       "actions": []
     },
     "NDAQ": {
       "news": [
+        {
+          "title": "Nasdaq Appoints Börje Ekholm to its Board of Directors; Holden Spaht to Step Down from Board at Year-End",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-appoints-b-rje-ekholm-200500528.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-26T20:05:00.000Z"
+        },
         {
           "title": "Franklin Templeton Prepares Nasdaq Debut For ETFs That Turn Stock Dividends Into Bitcoin",
           "link": "https://stocktwits.com/news-articles/markets/equity/franklin-templeton-bitcoin-dividend-etfs/cZUGoCLRBUK?.tsrc=rss",
@@ -433,12 +432,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-apos-fintech-growth-index-144732840.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-23T14:47:32.000Z"
-        },
-        {
-          "title": "NDAQ Q3 deep dive: AI solutions, tokenization, and recurring revenue drive robust growth",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/ndaq-q3-deep-dive-ai-105639843.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-23T10:56:39.000Z"
         }
       ],
       "actions": [
@@ -452,6 +445,18 @@
     },
     "NOW": {
       "news": [
+        {
+          "title": "ServiceNow (NOW) Rallies as Investors Reassess the Value of Enterprise AI Software",
+          "link": "https://finance.yahoo.com/technology/ai/articles/servicenow-now-rallies-investors-reassess-172614893.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-26T17:26:14.000Z"
+        },
+        {
+          "title": "ServiceNow Q3 Earnings Loom: Hold or Fold NOW Stock Ahead of Results?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-q3-earnings-loom-hold-170300623.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-26T17:03:00.000Z"
+        },
         {
           "title": "Information Technology (IT) Resilience Orchestration Market 2026-2030 | Capitalize on 14.2% CAGR as Microsoft, IBM, Broadcom and ServiceNow Scale AI and Hybrid Cloud",
           "link": "https://finance.yahoo.com/technology/articles/information-technology-resilience-orchestration-market-144100159.html?.tsrc=rss",
@@ -469,24 +474,18 @@
           "link": "https://www.tikr.com/blog/bank-of-america-raises-servicenow-price-target-third-quarter-earnings?ref=yahoofinance&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-10-26T06:56:15.000Z"
-        },
-        {
-          "title": "The Enterprise Agent Price Nobody Will Show You",
-          "link": "https://finance.yahoo.com/technology/ai/articles/enterprise-agent-price-nobody-show-095924809.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-25T09:59:24.000Z"
-        },
-        {
-          "title": "ServiceNow Wants to Be No. 1 in Security. Here’s What Its $7.75 Billion Armis Bet Must Show on October 28",
-          "link": "https://www.tikr.com/blog/servicenow-wants-to-be-no-1-in-security-heres-what-its-7-75-billion-armis-bet-must-show-on-october-28?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-24T20:28:20.000Z"
         }
       ],
       "actions": []
     },
     "WKL.AS": {
       "news": [
+        {
+          "title": "Wolters Kluwer expands agentic tax and audit capabilities in CCH Axcess",
+          "link": "https://finance.yahoo.com/technology/ai/articles/wolters-kluwer-expands-agentic-tax-180000749.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-26T18:00:00.000Z"
+        },
         {
           "title": "Wolters Kluwer adds agentic tax preparation capability to CCH Axcess Tax",
           "link": "https://www.internationalaccountingbulletin.com/news/wolters-kluwer-adds-agentic-tax-preparation-capability-to-cch-axcess-tax/?.tsrc=rss",
@@ -510,12 +509,6 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/wolters-kluwer-launches-agentic-tax-185000742.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-23T18:50:00.000Z"
-        },
-        {
-          "title": "Wolters Kluwer partners with Inscope to launch agentic financial statement preparation in CCH Axcess",
-          "link": "https://finance.yahoo.com/technology/ai/articles/wolters-kluwer-partners-inscope-launch-194500494.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-22T19:45:00.000Z"
         }
       ],
       "actions": [
