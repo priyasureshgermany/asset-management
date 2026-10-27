@@ -1,7 +1,49 @@
 {
-  "at": "2026-10-27T17:21:36.405Z",
+  "at": "2026-10-27T21:45:54.422Z",
   "market": {
     "IN": [
+      {
+        "title": "US stocks today: US stocks end higher as AI rally lifts Nasdaq ahead of Fed decision",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-us-stocks-end-higher-as-ai-rally-lifts-nasdaq-ahead-of-fed-decision/articleshow/135245403.cms",
+        "source": "Economic Times",
+        "at": "2026-10-27T20:16:54.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "NYSE bets on all-or-nothing options as event driven trading gains traction",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/nyse-bets-on-binary-options-as-event-driven-trading-gains-traction/articleshow/135244896.cms",
+        "source": "Economic Times",
+        "at": "2026-10-27T19:18:34.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Boeing cuts delivery target, shares hit 18-month low as recovery takes longer",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/boeing-cuts-delivery-target-shares-hit-18-month-low-as-recovery-takes-longer/articleshow/135243808.cms",
+        "source": "Economic Times",
+        "at": "2026-10-27T18:30:07.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Prediction market Kalshi expands safeguards for young traders",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/prediction-market-kalshi-expands-safeguards-for-young-traders/articleshow/135241699.cms",
+        "source": "Economic Times",
+        "at": "2026-10-27T17:19:02.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "GM to transfer stock listing to Nasdaq",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/gm-to-transfer-stock-listing-to-nasdaq/articleshow/135241585.cms",
+        "source": "Economic Times",
+        "at": "2026-10-27T17:14:44.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Trading starts on LME's first contract from Shanghai exchange collaboration",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/trading-starts-on-lmes-first-contract-from-shanghai-exchange-collaboration/articleshow/135241517.cms",
+        "source": "Economic Times",
+        "at": "2026-10-27T17:10:33.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Allied Blenders Q2 Results: Profit rises 9.7% to Rs 69 crore, revenue up 6.8%",
         "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/allied-blenders-q2-results-profit-rises-9-7-to-rs-69-crore-revenue-up-6-8/articleshow/135240967.cms",
@@ -15,48 +57,6 @@
         "source": "Economic Times",
         "at": "2026-10-27T16:56:07.000Z",
         "market": "Indian markets"
-      },
-      {
-        "title": "SAIL Q2 Results: Net profit surges four-fold to Rs 1750 crore on higher revenue",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/sail-q2-results-net-profit-surges-four-fold-to-rs-1750-crore-on-higher-revenue/articleshow/135240695.cms",
-        "source": "Economic Times",
-        "at": "2026-10-27T16:48:09.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "United Breweries Q2 Results: Profit jumps nearly 3 times to Rs 134 crore on volume growth, premiumisation",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/united-breweries-q2-results-profit-jumps-nearly-3-times-to-rs-134-crore-on-volume-growth-premiumisation/articleshow/135240644.cms",
-        "source": "Economic Times",
-        "at": "2026-10-27T16:39:32.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "SBI Life Insurance Q2 Results: Net profit grows 11% YoY to Rs 549 crore",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/sbi-life-insurance-q2-results-net-profit-grows-11-yoy-to-rs-549-crore/articleshow/135240500.cms",
-        "source": "Economic Times",
-        "at": "2026-10-27T16:31:57.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Tata Capital Q2 net profit rises 51% on higher income",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/tata-capital-q2-net-profit-rises-51-on-higher-income/articleshow/135239343.cms",
-        "source": "Economic Times",
-        "at": "2026-10-27T15:41:07.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Ahead of Market: 10 things that will decide stock market action on Wednesday",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-wednesday/articleshow/135239298.cms",
-        "source": "Economic Times",
-        "at": "2026-10-27T15:37:19.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Waaree Energies Q2 Results: Profit falls 15% YoY to Rs 719 crore, revenue rises 24%",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/waaree-energies-q2-results-profit-falls-15-yoy-to-rs-719-crore-revenue-rises-24/articleshow/135239084.cms",
-        "source": "Economic Times",
-        "at": "2026-10-27T15:26:33.000Z",
-        "market": "Indian markets"
       }
     ],
     "GLOBAL": [
@@ -68,14 +68,14 @@
         "market": "European markets"
       },
       {
-        "title": "FTSE 100 today: Stocks fall further as HSBC, Reckitt drag; budget, Fed caution",
+        "title": "FTSE 100 today: Stocks slip further as HSBC, Reckitt drag; budget, Fed caution",
         "link": "https://finance.yahoo.com/markets/stocks/articles/ftse-100-today-stocks-fall-085208144.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-10-27T08:52:08.000Z",
         "market": "European markets"
       },
       {
-        "title": "European shares stall as HSBC and Reckitt slumps offset tech gains",
+        "title": "European shares mostly higher amid tech gains; HSBC and Reckitt fall",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/european-shares-fall-hsbc-slump-084312388.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-10-27T08:43:12.000Z",
@@ -327,34 +327,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Microsoft to report Q1 earnings with Wall Street looking for further Azure growth",
-          "link": "https://finance.yahoo.com/technology/article/microsoft-to-report-q1-earnings-with-wall-street-looking-for-further-azure-growth-160835128.html?.tsrc=rss",
+          "title": "Microsoft and Skydance announced buyouts. What does it mean for workers in a 'low-hire' market?",
+          "link": "https://finance.yahoo.com/economy/article/microsoft-and-skydance-announced-buyouts-what-does-it-mean-for-workers-in-a-low-hire-market-191021868.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-27T16:08:35.000Z"
+          "at": "2026-10-27T19:10:21.000Z"
         },
         {
-          "title": "Oracle Rises 5% as Google TPUs Come to Oracle Cloud and NVIDIA Deal Expands; Amazon Nudges Higher, Microsoft Treads Water",
-          "link": "https://247wallst.com/investing/2026/10/27/oracle-rises-5-as-google-tpus-come-to-oracle-cloud-and-nvidia-deal-expands-amazon-nudges-higher-microsoft-treads-water/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-27T17:02:23.000Z"
+          "title": "Dow Jones Futures: Growth Stocks Rally, Tesla Clears Buy Point; Fed, Microsoft, Google On Tap",
+          "link": "https://finance.yahoo.com/m/7066a700-b33b-3fa1-858d-f75f49b920da/dow-jones-futures%3A-growth.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-27T21:34:18.000Z"
         },
         {
-          "title": "Microsoft, Amazon, and Intel Earnings Are on Deck This Week",
-          "link": "https://247wallst.com/videos/tech-earnings-are-the-markets-biggest-story-this-week-heres-why-microsoft-amazon-intel-sandisk-and-alphabet-will-drive-the-stock-markets-next-move/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-27T15:22:14.000Z"
+          "title": "Artificial Intelligence (AI) in Pharmacovigilance Global Market Report 2026 | Capitalize on 19.6% CAGR to 2030 as Oracle, Microsoft, Google and IQVIA Accelerate Automation",
+          "link": "https://finance.yahoo.com/healthcare/articles/artificial-intelligence-ai-pharmacovigilance-global-211000913.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-27T21:10:00.000Z"
         },
         {
-          "title": "Microsoft is offering 60,000 employees a way out",
-          "link": "https://www.thestreet.com/employment/microsoft-is-offering-60000-employees-a-way-out?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-10-27T15:17:00.000Z"
+          "title": "Artificial Intelligence (AI)-Driven Drug Safety and Pharmacovigilance Platforms Market Report 2026 | Capitalize on 20.2% CAGR with Microsoft, IBM, Oracle, IQVIA, and Veeva",
+          "link": "https://finance.yahoo.com/healthcare/articles/artificial-intelligence-ai-driven-drug-210800065.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-27T21:08:00.000Z"
         },
         {
-          "title": "Why YouTube’s Native Multimodal Library and AI Search Overviews Make Alphabet a Must-Own Compounder",
-          "link": "https://247wallst.com/investing/2026/10/27/why-youtubes-native-multimodal-library-and-ai-search-overviews-make-alphabet-a-must-own-compounder/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-27T16:45:28.000Z"
+          "title": "Global Edge Infrastructure Market Report 2026: Size, Share, Trends and Forecast to 2030 | Capitalize on 5G, AI and IoT with Microsoft, AWS, Dell, NVIDIA and Cisco",
+          "link": "https://finance.yahoo.com/technology/articles/global-edge-infrastructure-market-report-210400243.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-27T21:04:00.000Z"
         }
       ],
       "actions": [
@@ -369,34 +369,34 @@
     "AMZN": {
       "news": [
         {
+          "title": "Amazon has a Muse problem. Is a deal with OpenAI a solution?",
+          "link": "https://finance.yahoo.com/video/amazon-has-a-muse-problem-is-a-deal-with-openai-a-solution-203942441.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-27T20:39:42.000Z"
+        },
+        {
+          "title": "RIVN Stock Rebounds As Unconfirmed Walmart Delivery Van Sparks Fleet Hopes",
+          "link": "https://stocktwits.com/news-articles/markets/equity/rivn-stock-rebounds-as-unconfirmed-walmart-delivery-van-sparks-fleet-hopes/cZUemCqRBCy?.tsrc=rss",
+          "source": "stocktwits.com",
+          "at": "2026-10-27T21:20:09.000Z"
+        },
+        {
+          "title": "Is Amazon.com (AMZN) Undervalued As Investors Eye Q3 2026 Earnings?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-com-amzn-undervalued-investors-180936160.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-27T18:09:36.000Z"
+        },
+        {
           "title": "Oracle Rises 5% as Google TPUs Come to Oracle Cloud and NVIDIA Deal Expands; Amazon Nudges Higher, Microsoft Treads Water",
           "link": "https://247wallst.com/investing/2026/10/27/oracle-rises-5-as-google-tpus-come-to-oracle-cloud-and-nvidia-deal-expands-amazon-nudges-higher-microsoft-treads-water/?.tsrc=rss",
           "source": "247wallst.com",
           "at": "2026-10-27T17:02:23.000Z"
         },
         {
-          "title": "Amazon and Alphabet Are Each Spending At Least $200 Billion on Data Centers This Year. Here's Which Stock Outperforms Through 2028.",
-          "link": "https://www.fool.com/investing/2026/10/27/amazon-and-alphabet-are-each-spending-200-billion/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-27T16:38:00.000Z"
-        },
-        {
-          "title": "UPS gears up for peak season with less Amazon volume in tow",
-          "link": "https://www.supplychaindive.com/news/ups-gears-up-for-peak-season-with-less-amazon-volume-in-tow/872845/?.tsrc=rss",
-          "source": "supplychaindive.com",
-          "at": "2026-10-27T16:06:00.000Z"
-        },
-        {
-          "title": "Microsoft, Amazon, and Intel Earnings Are on Deck This Week",
-          "link": "https://247wallst.com/videos/tech-earnings-are-the-markets-biggest-story-this-week-heres-why-microsoft-amazon-intel-sandisk-and-alphabet-will-drive-the-stock-markets-next-move/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-27T15:22:14.000Z"
-        },
-        {
-          "title": "Should You Buy Amazon Stock Before Oct. 29?",
-          "link": "https://www.fool.com/investing/2026/10/27/should-you-buy-amazon-stock-before-oct-29/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-27T14:49:35.000Z"
+          "title": "Google earnings checklist: Why YouTube, Search, & Cloud are key",
+          "link": "https://finance.yahoo.com/video/google-earnings-checklist-why-youtube-search--cloud-are-key-205219168.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-27T20:52:19.000Z"
         }
       ],
       "actions": []
