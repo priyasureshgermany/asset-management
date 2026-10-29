@@ -1,7 +1,28 @@
 {
-  "at": "2026-10-28T20:02:17.524Z",
+  "at": "2026-10-29T00:34:10.407Z",
   "market": {
     "IN": [
+      {
+        "title": "Fed holds rates, says data will guide next move",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/fed-holds-rates-says-data-will-guide-next-move/articleshow/135284541.cms",
+        "source": "Economic Times",
+        "at": "2026-10-29T00:18:16.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "US stocks today: US stocks end higher as Fed holds rates; focus turns to earnings",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-us-stocks-end-higher-as-fed-holds-rates-earnings-in-focus/articleshow/135279631.cms",
+        "source": "Economic Times",
+        "at": "2026-10-28T20:14:51.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Fed's Kevin Warsh says US economy not running too hot from AI boom",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/feds-kevin-warsh-says-us-economy-not-running-too-hot-from-ai-boom/articleshow/135279091.cms",
+        "source": "Economic Times",
+        "at": "2026-10-28T19:48:14.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Wendy’s draws buyout bid as beef costs and burger rivalry weigh on business",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/wendys-draws-buyout-bid-as-beef-costs-and-burger-rivalry-weigh-on-business/articleshow/135278283.cms",
@@ -35,27 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/cholamandalam-investment-q2-net-profit-rises-41-on-strong-income-growth-plans-rs-5000-crore-capital-raise/articleshow/135272371.cms",
         "source": "Economic Times",
         "at": "2026-10-28T16:04:42.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Hero MotoCorp Q2 profit jumps 41% as scooter and EV sales surge",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/hero-motocorp-q2-profit-jumps-41-as-scooter-and-ev-sales-surge/articleshow/135272243.cms",
-        "source": "Economic Times",
-        "at": "2026-10-28T16:01:33.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Ahead of Market: 10 things that will decide stock market action on Thursday",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-wednesday/articleshow/135271636.cms",
-        "source": "Economic Times",
-        "at": "2026-10-28T15:38:47.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "British homebuilder shares slump on lack of clarity over first-time buyer plan in budget",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/british-homebuilder-shares-slump-on-lack-of-clarity-over-first-time-buyer-plan-in-budget/articleshow/135271559.cms",
-        "source": "Economic Times",
-        "at": "2026-10-28T15:36:36.000Z",
         "market": "Indian markets"
       }
     ],
@@ -143,6 +143,12 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/tcs-workato-join-forces-speed-130000825.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-26T13:00:00.000Z"
+        },
+        {
+          "title": "Thoroughbred Championship Series Expands to Include Oaks Division for Three-Year-Old Fillies",
+          "link": "https://finance.yahoo.com/media-advertising/articles/thoroughbred-championship-series-expands-oaks-200100838.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-28T20:01:00.000Z"
         }
       ],
       "actions": [
@@ -323,34 +329,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Microsoft earnings live: Microsoft to report Q1 earnings with Wall Street looking for further Azure growth",
-          "link": "https://finance.yahoo.com/markets/stocks/live/microsoft-earnings-live-microsoft-to-report-q1-earnings-with-wall-street-looking-for-further-azure-growth-173000086.html?.tsrc=rss",
+          "title": "Microsoft's Satya Nadella says 24 new data centers built during Q1",
+          "link": "https://finance.yahoo.com/video/microsofts-satya-nadella-says-24-new-data-centers-built-during-q1-221832598.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-28T17:30:00.000Z"
+          "at": "2026-10-28T22:18:32.000Z"
         },
         {
-          "title": "Is job hopping still benefiting workers?",
-          "link": "https://finance.yahoo.com/video/is-job-hopping-still-benefiting-workers-181218554.html?.tsrc=rss",
+          "title": "Dow Jones Futures: Microsoft Rises, But Google, ServiceNow, Fortinet Dive On Earnings",
+          "link": "https://finance.yahoo.com/m/6c0b166b-19af-3d40-b6ff-7c6d65d3c4da/dow-jones-futures%3A-microsoft.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-28T18:12:18.000Z"
+          "at": "2026-10-29T00:28:04.000Z"
         },
         {
-          "title": "Microsoft might be the 'adult in the room' when it comes AI. Here's why.",
-          "link": "https://finance.yahoo.com/video/microsoft-might-be-the-adult-in-the-room-when-it-comes-ai-heres-why-174338169.html?.tsrc=rss",
+          "title": "Why Is Microsoft (MSFT) Offering Buyouts To 60,000 Employees?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/why-microsoft-msft-offering-buyouts-001913452.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-28T17:43:38.000Z"
+          "at": "2026-10-29T00:19:13.000Z"
         },
         {
-          "title": "Microsoft and Alphabet tapped to set the AI trade tone",
-          "link": "https://finance.yahoo.com/video/microsoft-and-alphabet-tapped-to-set-the-ai-trade-tone-174106409.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-28T17:41:06.000Z"
+          "title": "Microsoft and Alphabet Just Reported Earnings, Putting the AI Boom to the Test",
+          "link": "https://www.fool.com/investing/2026/10/28/microsoft-and-alphabet-just-reported-earnings-putting-the-ai-boom-to-the-test/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-29T00:19:01.000Z"
         },
         {
-          "title": "'Wall Street Cares About Free Cash Flow Now': Bloomberg's Ed Ludlow on Buyouts and AI Spending",
-          "link": "https://www.benzinga.com/markets/prediction-markets/26/10/62671525/big-tech-free-cash-flow?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral&.tsrc=rss",
-          "source": "benzinga.com",
-          "at": "2026-10-28T19:30:47.000Z"
+          "title": "S&P 500, Nasdaq Futures Dip As Weaker-Than-Expected Alphabet Earnings Reignite AI Spending Worries — GOOGL, MSFT, ORCL, NVDA, MRVL In Focus",
+          "link": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-futures-dip-as-weaker-than-expected-alphabet-earnings-reignite-ai-spending-worries-googl-msft-orcl-nvda-mrvl-in-focus/cZUQ2gwR9Gq?.tsrc=rss",
+          "source": "stocktwits.com",
+          "at": "2026-10-29T00:10:28.000Z"
         }
       ],
       "actions": [
@@ -365,10 +371,16 @@
     "AMZN": {
       "news": [
         {
-          "title": "Yahoo Finance drives the new Slate EV, a $27,000 truck with hand-crank windows",
-          "link": "https://finance.yahoo.com/video/yahoo-finance-drives-the-new-slate-ev-a-27000-truck-with-hand-crank-windows-171121348.html?.tsrc=rss",
+          "title": "How Microsoft, Coca-Cola And Amazon Are Adapting Their Offices For AI Age",
+          "link": "https://www.bisnow.com/news/national/office/how-microsoft-citadel-amazon-adapting-offices-ai-age?.tsrc=rss",
+          "source": "bisnow.com",
+          "at": "2026-10-28T22:58:16.000Z"
+        },
+        {
+          "title": "Global Product Take-Back Program Market Report 2026 | Capitalize on 10.7% CAGR to $63.73 Billion by 2030 as Apple, Amazon, Samsung, Dell, and Sony Scale Circular Returns",
+          "link": "https://finance.yahoo.com/markets/articles/global-product-back-program-market-205800283.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-28T17:11:21.000Z"
+          "at": "2026-10-28T20:58:00.000Z"
         },
         {
           "title": "Amazon Earnings Preview: Why Wall Street Is Bullish On Cloud Growth",
@@ -383,16 +395,10 @@
           "at": "2026-10-28T17:26:11.000Z"
         },
         {
-          "title": "Will Strong AWS Performance Boost Amazon's Q3 Earnings Report?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/strong-aws-performance-boost-amazons-164200384.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-28T16:42:00.000Z"
-        },
-        {
-          "title": "Companies laying off staff this year include Meta, Amazon, and Dropbox — see the list",
-          "link": "https://www.businessinsider.com/recent-company-layoffs-laying-off-workers-2026?.tsrc=rss",
-          "source": "businessinsider.com",
-          "at": "2026-10-28T16:52:08.000Z"
+          "title": "Generac reports record sales of $1.29 billion, driven by data centers",
+          "link": "https://www.jsonline.com/story/money/business/2026/10/28/generac-reports-record-sales-driven-by-booming-data-center-demand/92481298007/?.tsrc=rss",
+          "source": "jsonline.com",
+          "at": "2026-10-28T19:59:25.000Z"
         }
       ],
       "actions": []
@@ -442,34 +448,34 @@
     "NOW": {
       "news": [
         {
-          "title": "ServiceNow (NOW) Stock Still Looks Below Fair Value On Cash Flow",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-now-stock-still-looks-191242560.html?.tsrc=rss",
+          "title": "Q3 earnings round-up: Chipotle, Jersey Mike's, ServiceNow",
+          "link": "https://finance.yahoo.com/video/q3-earnings-round-up-chipotle-jersey-mikes-servicenow-204405716.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-28T19:12:42.000Z"
+          "at": "2026-10-28T20:44:05.000Z"
         },
         {
-          "title": "ServiceNow admits its help desk bots are after payroll dollars",
-          "link": "https://www.thestreet.com/investing/servicenow-stock-morgan-stanley-labor-arbitrage?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-10-28T16:47:00.000Z"
-        },
-        {
-          "title": "IT Management as a Service - Global Strategic Business Report: Capitalize on 16.1% CAGR to $35.7 Billion by 2032 as IBM, Microsoft, ServiceNow, Cisco, and Broadcom Disrupt Enterprise IT",
-          "link": "https://finance.yahoo.com/technology/articles/management-global-strategic-business-report-152700861.html?.tsrc=rss",
+          "title": "Dow Jones Futures: Microsoft Rises, But Google, ServiceNow, Fortinet Dive On Earnings",
+          "link": "https://finance.yahoo.com/m/6c0b166b-19af-3d40-b6ff-7c6d65d3c4da/dow-jones-futures%3A-microsoft.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-28T15:27:00.000Z"
+          "at": "2026-10-29T00:28:04.000Z"
         },
         {
-          "title": "Netflix and ServiceNow Have Fallen More Than 30% From Their Records. Both Are Stocks to Buy and Hold Through 2030.",
-          "link": "https://www.fool.com/investing/2026/10/28/netflix-and-servicenow-have-fallen-more-than-30-from-their-records-both-are-stocks-to-buy-and-hold-through-2030/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-10-28T08:08:02.000Z"
+          "title": "NOW Stock Declines Double Digits After Hours On Earnings Miss And AI Concerns",
+          "link": "https://stocktwits.com/news-articles/markets/equity/now-stock-declines-double-digits-after-hours-on-earnings-miss-and-ai-concerns/cZUQ2ikR9GA?.tsrc=rss",
+          "source": "stocktwits.com",
+          "at": "2026-10-29T00:12:55.000Z"
         },
         {
-          "title": "ServiceNow and Google Cloud advance agentic AI for industry workflows",
-          "link": "https://finance.yahoo.com/technology/ai/articles/servicenow-google-cloud-advance-agentic-130000993.html?.tsrc=rss",
+          "title": "ServiceNow (NOW) Rolls Out Secure Agentic AI Across Retail, Telecom, Sales And IT",
+          "link": "https://finance.yahoo.com/technology/ai/articles/servicenow-now-rolls-secure-agentic-231105163.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-27T13:00:00.000Z"
+          "at": "2026-10-28T23:11:05.000Z"
+        },
+        {
+          "title": "ServiceNow Fans AI Fears on Quarterly Subscription Sales Outlook",
+          "link": "https://finance.yahoo.com/m/3192ef65-f4c6-34b3-ad53-e2b293c3cbdc/servicenow-fans-ai-fears-on.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-28T23:06:00.000Z"
         }
       ],
       "actions": []
