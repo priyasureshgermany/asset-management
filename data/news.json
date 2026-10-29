@@ -1,7 +1,28 @@
 {
-  "at": "2026-10-29T17:57:18.950Z",
+  "at": "2026-10-29T22:31:34.541Z",
   "market": {
     "IN": [
+      {
+        "title": "US Markets Today: US stocks end lower as Alphabet revenue miss revives AI capex jitters",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-markets-today-us-stocks-end-lower-as-alphabet-revenue-miss-revives-ai-capex-jitters/articleshow/135331051.cms",
+        "source": "Economic Times",
+        "at": "2026-10-29T20:16:15.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Cash takes centre stage as investors rethink AI spending boom",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/cash-takes-centre-stage-as-investors-rethink-ai-spending-boom/articleshow/135327536.cms",
+        "source": "Economic Times",
+        "at": "2026-10-29T18:57:00.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Alphabet’s AI risks deepen as filing reveals $98 billion in commitments beyond the $1 trillion spending",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/alphabets-ai-risks-deepen-as-filing-reveals-98-5-billion-in-commitments-beyond-the-1-trillion-spending/articleshow/135325480.cms",
+        "source": "Economic Times",
+        "at": "2026-10-29T17:37:58.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Sagility block deal: Promoter Sagility BV likely to sell 12% stake for Rs 2,377 crore",
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/sagility-block-deal-promoter-sagility-bv-likely-to-sell-12-stake-for-rs-2377-crore/articleshow/135322817.cms",
@@ -35,27 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/milky-mist-q2-revenue-surges-42-yoy-ebitda-soars-54/articleshow/135320553.cms",
         "source": "Economic Times",
         "at": "2026-10-29T14:44:41.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Brigade Group reports 29% growth in Q2 net profit at Rs 219 crore",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/brigade-group-reports-29-growth-in-q2-net-profit-at-rs-219-crore/articleshow/135320326.cms",
-        "source": "Economic Times",
-        "at": "2026-10-29T14:39:53.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Google shares crash 13% after $9 billion cash burn sparks AI spending fears",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/google-shares-crash-13-after-9-billion-cash-burn-sparks-ai-spending-fears/articleshow/135319102.cms",
-        "source": "Economic Times",
-        "at": "2026-10-29T14:11:28.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "ET EXPLAINER: What do the new REIT regulation amendments mean for investors?",
-        "link": "https://economictimes.indiatimes.com/markets/digital-real-estate/realty-news/et-explainer-what-do-the-new-reit-regulation-amendments-mean-for-investors/articleshow/135317911.cms",
-        "source": "Economic Times",
-        "at": "2026-10-29T13:40:03.000Z",
         "market": "Indian markets"
       }
     ],
@@ -281,6 +281,12 @@
     "INTU": {
       "news": [
         {
+          "title": "Intuit to Announce First-Quarter Fiscal Year 2027 Results on Nov. 19",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-announce-first-quarter-fiscal-200000019.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-29T20:00:00.000Z"
+        },
+        {
           "title": "BILL Holdings (BILL) vs. INTU and PYPL: Can Its Financial Workflow Platform Become a Long-Term Compounder?",
           "link": "https://finance.yahoo.com/markets/stocks/articles/bill-holdings-bill-vs-intu-171956676.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -303,12 +309,6 @@
           "link": "https://www.barchart.com/story/news/8496192/what-you-need-to-know-ahead-of-intuit-s-earnings-release?.tsrc=rss",
           "source": "barchart.com",
           "at": "2026-10-28T10:22:41.000Z"
-        },
-        {
-          "title": "Intuit (INTU) Following New AI Rollout, Is The Growth Story Already Priced In",
-          "link": "https://finance.yahoo.com/technology/ai/articles/intuit-intu-following-ai-rollout-140822087.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-27T14:08:22.000Z"
         }
       ],
       "actions": [
@@ -329,34 +329,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Google Search faces an existential question in the AI age",
-          "link": "https://finance.yahoo.com/video/google-search-faces-an-existential-question-in-the-ai-age-170929813.html?.tsrc=rss",
+          "title": "Billionaire Bill Gates Just Issued a Blunt Warning About Artificial Intelligence",
+          "link": "https://www.fool.com/investing/2026/10/29/billionaire-bill-gates-just-issued-a-blunt-warning/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-29T22:20:00.000Z"
+        },
+        {
+          "title": "Things to consider if a company that made AI-related job cuts wants to rehire you",
+          "link": "https://www.independent.co.uk/tech/ai-layoffs-rehire-artificial-intelligence-b3076034.html?.tsrc=rss",
+          "source": "independent.co.uk",
+          "at": "2026-10-29T21:43:37.000Z"
+        },
+        {
+          "title": "Big Tech Earnings Couldn’t Ignite Chip Stocks. What The Semis Need Now.",
+          "link": "https://finance.yahoo.com/m/792cbf7a-885c-3a76-8cf5-7e84ab8048cf/big-tech-earnings-couldn%E2%80%99t.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-29T17:09:29.000Z"
+          "at": "2026-10-29T21:40:00.000Z"
         },
         {
-          "title": "Wall Street's top analysts are loving Microsoft's Q1 results",
-          "link": "https://finance.yahoo.com/technology/article/wall-streets-top-analysts-are-loving-microsofts-q1-results-161837180.html?.tsrc=rss",
+          "title": "Microsoft Issues $25 Billion in New Bonds, Adding to AI Debt Spree",
+          "link": "https://finance.yahoo.com/m/b19c6e1a-ed1d-3f04-8a85-fb91af9a3ec9/microsoft-issues-%2425-billion.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-29T16:18:37.000Z"
-        },
-        {
-          "title": "The Memory Crunch Is Crushing Microsoft Windows PC Sales",
-          "link": "https://247wallst.com/investing/2026/10/29/the-memory-crunch-is-crushing-microsoft-windows-pc-sales/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-29T17:06:14.000Z"
-        },
-        {
-          "title": "Intel Drops 4% Ahead of Earnings as Foundry Hopes Fade; Alphabet Tumbles 12%, Microsoft Edges Lower",
-          "link": "https://247wallst.com/investing/2026/10/29/intel-drops-4-ahead-of-earnings-as-foundry-hopes-fade-alphabet-tumbles-12-microsoft-edges-lower/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-29T17:04:47.000Z"
+          "at": "2026-10-29T21:39:00.000Z"
         },
         {
           "title": "Microsoft, IBD Stock Of The Day, Showing Quickening Cloud Growth",
           "link": "https://finance.yahoo.com/m/ebb60b70-4292-33f6-9001-6afe3488adf5/microsoft%2C-ibd-stock-of-the.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-29T16:23:28.000Z"
+          "at": "2026-10-29T20:56:44.000Z"
         }
       ],
       "actions": [
@@ -371,40 +371,46 @@
     "AMZN": {
       "news": [
         {
-          "title": "Amazon earnings live: AI growth takes center stage",
-          "link": "https://finance.yahoo.com/markets/stocks/live/amazon-earnings-live-ai-growth-takes-center-stage-173000277.html?.tsrc=rss",
+          "title": "'Workloads are moving': Amazon's Jassy says AWS still growing amid cloud move",
+          "link": "https://finance.yahoo.com/video/workloads-moving-amazons-jassy-says-214000126.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-29T17:30:00.000Z"
+          "at": "2026-10-29T21:40:00.000Z"
         },
         {
-          "title": "Amazon Slides 3% as Alphabet’s 12% Plunge Raises Stakes for AWS Report; Meta Rises 3%, Microsoft Pulls Back",
-          "link": "https://247wallst.com/investing/2026/10/29/amazon-slides-3-as-alphabets-12-plunge-raises-stakes-for-aws-report-meta-rises-3-microsoft-pulls-back/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-29T16:22:43.000Z"
-        },
-        {
-          "title": "Amazon Earnings Prediction Market Preview: What Will Andy Jassy Say?",
-          "link": "https://www.benzinga.com/markets/prediction-markets/26/10/62702577/amazon-earnings-preview?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral&.tsrc=rss",
-          "source": "benzinga.com",
-          "at": "2026-10-29T14:59:57.000Z"
-        },
-        {
-          "title": "Connectivity Constraint Computing - Global Strategic Business Report: Capitalize on 21.1% CAGR and Capture US$50B by 2032 as Amazon, Cisco, Google, Microsoft, and IBM Accelerate Edge Dominance",
-          "link": "https://finance.yahoo.com/technology/articles/connectivity-constraint-computing-global-strategic-145000205.html?.tsrc=rss",
+          "title": "Amazon cloud business accelerates but shares drop on profit miss",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-cloud-business-accelerates-shares-222112520.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-29T14:50:00.000Z"
+          "at": "2026-10-29T22:21:12.000Z"
         },
         {
-          "title": "Strength Seen in Electrovaya Inc. (ELVA): Can Its 10.2% Jump Turn into More Strength?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/strength-seen-electrovaya-inc-elva-160900403.html?.tsrc=rss",
+          "title": "Dow Jones Futures: Amazon, Intel Lead Earnings Losers After Google, ServiceNow, Fortinet Hit Nasdaq",
+          "link": "https://finance.yahoo.com/m/0a5ce393-a6df-312b-af64-1893a264d0df/dow-jones-futures%3A-amazon%2C.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-29T16:09:00.000Z"
+          "at": "2026-10-29T22:16:40.000Z"
+        },
+        {
+          "title": "Amazon shares sink as it spends heavily on AI",
+          "link": "https://www.axios.com/2026/10/29/amazon-stock-earnings-ai#utm_source=yahoo_finance&utm_medium=partner&utm_campaign=subs-partner-yahoo-finance-media?.tsrc=rss",
+          "source": "axios.com",
+          "at": "2026-10-29T22:11:22.000Z"
+        },
+        {
+          "title": "AMZN Stock Drops 7% As AI Spending Soars Past Expectations, While E-Commerce Growth Cools",
+          "link": "https://stocktwits.com/news-articles/markets/equity/amzn-stock-drops-7-as-ai-spending-soars-past-expectations-while-e-commerce-growth-cools/cZUXG0SR9RX?.tsrc=rss",
+          "source": "stocktwits.com",
+          "at": "2026-10-29T22:04:23.000Z"
         }
       ],
       "actions": []
     },
     "NDAQ": {
       "news": [
+        {
+          "title": "Charming Medical Limited Notified of Anticipated Delisting from The Nasdaq Stock Market",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/charming-medical-limited-notified-anticipated-200500470.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-29T20:05:00.000Z"
+        },
         {
           "title": "Nasdaq Appoints Börje Ekholm to its Board of Directors; Holden Spaht to Step Down from Board at Year-End",
           "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-appoints-b-rje-ekholm-200500528.html?.tsrc=rss",
@@ -428,12 +434,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/learn-why-bull-case-nasdaq-201250357.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-23T20:12:50.000Z"
-        },
-        {
-          "title": "Nasdaq's FinTech Growth, Index Strength Support Longer-Term Upside, Morgan Stanley Says",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-apos-fintech-growth-index-144732840.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-23T14:47:32.000Z"
         }
       ],
       "actions": [
@@ -448,34 +448,34 @@
     "NOW": {
       "news": [
         {
-          "title": "ServiceNow, Fortinet Q3 earnings reports lead software stocks lower as outlooks disappoint",
-          "link": "https://finance.yahoo.com/markets/stocks/article/fortinet-drags-down-cybersecurity-stocks-as-the-companys-service-revenue-forecast-misses-estimates-124146969.html?.tsrc=rss",
+          "title": "ServiceNow's AI boom faces a big test: Can it reassure Wall Street?",
+          "link": "https://finance.yahoo.com/video/servicenows-ai-boom-faces-a-big-test-can-it-reassure-wall-street-201935436.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-29T12:41:46.000Z"
+          "at": "2026-10-29T20:19:35.000Z"
         },
         {
-          "title": "Alphabet tumbles, software and cybersecurity stocks sink as earnings disappoint: AlphaCheck",
-          "link": "https://finance.yahoo.com/markets/article/software-stocks-sink-as-forecasts-disappoint-alphacheck-135300619.html?.tsrc=rss",
+          "title": "ServiceNow just can't seem to escape the SaaSpocalypse — even after strong Q3 AI growth",
+          "link": "https://finance.yahoo.com/video/servicenow-just-cant-seem-to-escape-the-saaspocalypse--even-after-strong-q3-ai-growth-180401129.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-29T13:53:00.000Z"
+          "at": "2026-10-29T18:04:01.000Z"
         },
         {
-          "title": "Tech stocks hit hard after Samsung, Fortinet, and ServiceNow miss earnings",
-          "link": "https://finance.yahoo.com/video/tech-stocks-hit-hard-after-samsung-fortinet-and-servicenow-miss-earnings-152207765.html?.tsrc=rss",
+          "title": "Dow Jones Futures: Amazon, Intel Lead Earnings Losers After Google, ServiceNow, Fortinet Hit Nasdaq",
+          "link": "https://finance.yahoo.com/m/0a5ce393-a6df-312b-af64-1893a264d0df/dow-jones-futures%3A-amazon%2C.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-29T13:32:00.000Z"
+          "at": "2026-10-29T22:16:40.000Z"
         },
         {
-          "title": "ServiceNow Sinks 19% on EPS Miss and Slower Backlog Outlook Despite “Unicorn Growth Company” Pitch",
-          "link": "https://www.tikr.com/blog/servicenow-sinks-19-on-eps-miss-and-slower-backlog-outlook-despite-unicorn-growth-company-pitch?ref=yahoofinance&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-10-29T17:02:02.000Z"
+          "title": "Why ServiceNow (NOW) stock is nosediving",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/why-servicenow-now-stock-nosediving-211234146.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-29T21:12:34.000Z"
         },
         {
-          "title": "NOW Stock On Track To Post Worst Single-Day Performance In Over 14 Years — Analysts See AI Upside Despite Slowing Growth",
-          "link": "https://stocktwits.com/news-articles/markets/equity/now-stock-on-track-to-post-worst-single-day-performance-in-over-14-years-analysts-see-ai-upside-despite-slowing-growth/cZUQrA2R9Rc?.tsrc=rss",
-          "source": "stocktwits.com",
-          "at": "2026-10-29T16:38:53.000Z"
+          "title": "ServiceNow Stock Is Worst in S&P 500 After a Key Revenue Measure Fell Short",
+          "link": "https://finance.yahoo.com/m/5f9750f9-b04e-3830-9f5a-d06f079281de/servicenow-stock-is-worst-in.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-29T21:08:00.000Z"
         }
       ],
       "actions": []
