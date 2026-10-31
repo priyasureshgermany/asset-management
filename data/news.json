@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-31T16:43:59.027Z",
+  "at": "2026-10-31T20:55:31.255Z",
   "market": {
     "IN": [
       {
@@ -330,6 +330,18 @@
     "MSFT": {
       "news": [
         {
+          "title": "Microsoft just gave Nvidia shareholders a reason to pay attention",
+          "link": "https://www.thestreet.com/investing/stocks/microsoft-just-gave-nvidia-shareholders-a-reason-to-pay-attention?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-10-31T19:37:00.000Z"
+        },
+        {
+          "title": "5 insightful analyst questions from Microsoft’s Q3 earnings call",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/5-insightful-analyst-questions-microsoft-182729596.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-31T18:27:29.000Z"
+        },
+        {
           "title": "OpenAI’s CEO Thinks Your Laptop’s Memory Should Be in a Data Center",
           "link": "https://247wallst.com/investing/2026/10/31/openais-ceo-thinks-your-laptops-memory-should-be-in-a-data-center/?.tsrc=rss",
           "source": "247wallst.com",
@@ -346,18 +358,6 @@
           "link": "https://www.axios.com/2026/10/30/axios-live-how-employers-are-rethinking-ais-role-in-entry-level-work#utm_source=yahoo_finance&utm_medium=partner&utm_campaign=subs-partner-yahoo-finance-AI?.tsrc=rss",
           "source": "axios.com",
           "at": "2026-10-30T21:10:16.000Z"
-        },
-        {
-          "title": "The Trump Trade Is Over? Plus, Microsoft vs. Google, and Nebius’ Capex Guidance",
-          "link": "https://blockspace.media/podcast/the-trump-trade-is-over-plus-microsoft-vs-google-and-nebius-capex-guidance/?.tsrc=rss",
-          "source": "blockspace.media",
-          "at": "2026-10-30T21:08:39.000Z"
-        },
-        {
-          "title": "Big Tech Now Spends More on AI Than It Brings In From Operations",
-          "link": "https://247wallst.com/investing/2026/10/31/big-tech-now-spends-more-on-ai-than-it-brings-in-from-operations/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-31T15:08:03.000Z"
         }
       ],
       "actions": [
