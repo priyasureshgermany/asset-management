@@ -1,7 +1,28 @@
 {
-  "at": "2026-10-30T19:49:43.336Z",
+  "at": "2026-10-31T00:19:42.830Z",
   "market": {
     "IN": [
+      {
+        "title": "US stocks today: Dow Jones crashes 500 pts, Nasdaq over 2.5% as AI cash burn fears spark tech selloff",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-dow-jones-crashes-500-pts-nasdaq-over-2-5-as-ai-cash-burn-fears-spark-tech-selloff/articleshow/135377269.cms",
+        "source": "Economic Times",
+        "at": "2026-10-30T20:19:20.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Nasdaq 100 cracks 5%, wipes out $2 trillion in October as AI spending fears deepen",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/nasdaq-100-cracks-5-faces-2-trillion-wipeout-in-october-as-ai-spending-fears-deepen/articleshow/135376949.cms",
+        "source": "Economic Times",
+        "at": "2026-10-30T20:10:09.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Reddit stock plunges 30% as Google's AI search threatens traffic and user growth",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/reddit-plunges-23-as-googles-ai-search-threatens-traffic-and-user-growth/articleshow/135374718.cms",
+        "source": "Economic Times",
+        "at": "2026-10-30T18:33:48.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Intel stock plunges 30% as weak PC demand and AI costs trigger global chip selloff",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/intel-plunges-25-as-weak-pc-demand-and-ai-costs-trigger-global-chip-selloff/articleshow/135371230.cms",
@@ -35,27 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/lodha-developers-h1fy27-net-profit-soars-63-expects-to-beat-full-year-guidance/articleshow/135369310.cms",
         "source": "Economic Times",
         "at": "2026-10-30T16:13:16.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Spandana Sphoorty returns to profit at Rs 18 crore in Q2FY27",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/spandana-sphoorty-returns-to-profit-at-rs-18-crore-in-q2fy27/articleshow/135369091.cms",
-        "source": "Economic Times",
-        "at": "2026-10-30T16:05:19.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Bank of Baroda Q2 profit jumps 36% to Rs 6,532 crore on NSE stake sale",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/bank-of-baroda-q2-profit-jumps-36-to-rs-6532-crore-on-nse-stake-sale/articleshow/135369087.cms",
-        "source": "Economic Times",
-        "at": "2026-10-30T16:02:22.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Record earnings! 5 big takeaways from RIL Q2 results investors should watch for Monday trading",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/record-earnings-5-big-takeaways-from-ril-q2-results-investors-should-watch-for-monday-trading/articleshow/135367917.cms",
-        "source": "Economic Times",
-        "at": "2026-10-30T15:18:47.000Z",
         "market": "Indian markets"
       }
     ],
@@ -132,6 +132,12 @@
     },
     "TCS.NS": {
       "news": [
+        {
+          "title": "TCS-Partnered Marathons Generate US$3.2 Billion for Host Cities and Raise US$315 Million for Charity, According to Brand Finance",
+          "link": "https://finance.yahoo.com/economy/articles/tcs-partnered-marathons-generate-us-201500937.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-30T20:15:00.000Z"
+        },
         {
           "title": "TCS Shares Insights on Advancing Digital Opportunity Through Cross-Sector Collaboration",
           "link": "https://finance.yahoo.com/technology/articles/tcs-shares-insights-advancing-digital-135500322.html?.tsrc=rss",
@@ -287,6 +293,18 @@
     "INTU": {
       "news": [
         {
+          "title": "Why the Market Dipped But Intuit (INTU) Gained Today",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/why-market-dipped-intuit-intu-204503738.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-30T20:45:03.000Z"
+        },
+        {
+          "title": "Has Intuit (INTU) Fallen Far Enough To Look Undervalued On Earnings?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-fallen-far-enough-201131462.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-30T20:11:31.000Z"
+        },
+        {
           "title": "The Orchard, Queens’ Tallest Tower with 800+ Residences, Surpasses 90% Leased in Only Nine Months as Tokimo, Intuit and Mollytea Join Development’s Retail Offerings",
           "link": "https://finance.yahoo.com/real-estate/articles/orchard-queens-tallest-tower-800-171000418.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -303,18 +321,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/bill-holdings-bill-vs-intu-171956676.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-29T17:19:56.000Z"
-        },
-        {
-          "title": "Intuit (INTU): Exiting Amid AI-Driven Business Model Uncertainty",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-exiting-amid-ai-140532315.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-29T14:05:32.000Z"
-        },
-        {
-          "title": "Is Trending Stock Intuit Inc. (INTU) a Buy Now?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/trending-stock-intuit-inc-intu-120003723.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-28T12:00:03.000Z"
         }
       ],
       "actions": [
@@ -335,34 +341,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Amazon earnings fall short amid tech sell-off, and Anthropic becomes SpaceX's top partner",
-          "link": "https://finance.yahoo.com/video/amazon-earnings-fall-short-amid-tech-sell-off-and-anthropic-becomes-spacexs-top-partner-174024326.html?.tsrc=rss",
+          "title": "Axios Live: How employers are rethinking AI's role in entry-level work",
+          "link": "https://www.axios.com/2026/10/30/axios-live-how-employers-are-rethinking-ais-role-in-entry-level-work#utm_source=yahoo_finance&utm_medium=partner&utm_campaign=subs-partner-yahoo-finance-AI?.tsrc=rss",
+          "source": "axios.com",
+          "at": "2026-10-30T21:10:16.000Z"
+        },
+        {
+          "title": "Leaders from Wolters Kluwer, Microsoft, Salesforce, and McKinsey challenge accounting firms to make one AI move in the next 90 days",
+          "link": "https://finance.yahoo.com/technology/ai/articles/leaders-wolters-kluwer-microsoft-salesforce-201500186.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-30T17:40:24.000Z"
+          "at": "2026-10-30T20:15:00.000Z"
         },
         {
-          "title": "While the AI Trade Is Troubled, Microsoft Retains Its Fans on Wall Street",
-          "link": "https://finance.yahoo.com/m/9ea3f118-9870-357e-9949-e588210f0d24/while-the-ai-trade-is.html?.tsrc=rss",
+          "title": "CME vs. Morningstar: Scale vs. Consistent Trajectories in Revenue",
+          "link": "https://www.fool.com/coverage/charts/2026/10/30/cme-vs-morningstar-scale-vs-consistent-trajectories-in-revenue/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-30T20:43:01.000Z"
+        },
+        {
+          "title": "B. Riley’s $64 Target Says IREN’s Selloff Went Too Far",
+          "link": "https://www.tikr.com/blog/b-rileys-64-target-says-irens-selloff-went-too-far?ref=yahoofinance&tlnk=yf-261030-4f8m8346&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-10-30T20:38:26.000Z"
+        },
+        {
+          "title": "Big Homes, Big Loans",
+          "link": "https://finance.yahoo.com/m/9aa518a9-bace-3e02-a215-82b14364d8d4/big-homes%2C-big-loans.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-30T16:45:00.000Z"
-        },
-        {
-          "title": "Estée Lauder Expands Microsoft AI Partnership As It Targets Productivity, Personalized Experiences",
-          "link": "https://stocktwits.com/news-articles/markets/equity/estee-lauder-expands-microsoft-ai-partnership-as-it-targets-productivity-personalized-experiences/cZUhzeTR9Tt?.tsrc=rss",
-          "source": "stocktwits.com",
-          "at": "2026-10-30T16:12:45.000Z"
-        },
-        {
-          "title": "Adobe Drops 29% YTD: Should You Buy, Sell or Hold the Stock?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/adobe-drops-29-ytd-buy-171300479.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-30T17:13:00.000Z"
-        },
-        {
-          "title": "Microsoft Copilot AI Predicts an Unbelievable Price for XRP",
-          "link": "https://www.coinspeaker.com/microsoft-copilot-ai-predicts-unbelievable-price-xrp/?.tsrc=rss",
-          "source": "coinspeaker.com",
-          "at": "2026-10-30T16:02:10.000Z"
+          "at": "2026-10-30T22:51:00.000Z"
         }
       ],
       "actions": [
@@ -377,34 +383,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Amazon earnings fall short amid tech sell-off, and Anthropic becomes SpaceX's top partner",
-          "link": "https://finance.yahoo.com/video/amazon-earnings-fall-short-amid-tech-sell-off-and-anthropic-becomes-spacexs-top-partner-174024326.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-30T17:40:24.000Z"
-        },
-        {
-          "title": "AMZN Stock Set To Drop For Third Straight Week: Amazon Taps $80B Credit Line To Fund AI Capex",
-          "link": "https://stocktwits.com/news-articles/markets/equity/amzn-stock-set-to-drop-for-third-straight-week-amazon-taps-80-b-credit-line-to-fund-ai-capex/cZUL2F6R9c3?.tsrc=rss",
+          "title": "S&P 500, Nasdaq End Third Straight Week Lower As Investors Move Away From Tech, AI — AMZN, INTC, LLY, RBLX In Focus",
+          "link": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-third-straight-week-lower-as-investors-move-away-from-tech-ai-amzn-intc-lly-rblx-in-focus/cZUKKlTR9cJ?.tsrc=rss",
           "source": "stocktwits.com",
-          "at": "2026-10-30T19:37:29.000Z"
+          "at": "2026-10-31T00:05:39.000Z"
         },
         {
-          "title": "The Tech Sell-Off is Putting the AI Trade on Notice. An Expert is Questioning Whether the Spending is Justified.",
-          "link": "https://www.ibtimes.com/amazon-intel-selloffs-ai-spending-investor-scrutiny-3809202?.tsrc=rss",
-          "source": "ibtimes.com",
-          "at": "2026-10-30T19:14:16.000Z"
+          "title": "Amazon Just Lost $42 Billion in Free Cash Flow. Is It a Red Flag for Investors?",
+          "link": "https://www.fool.com/investing/2026/10/30/amazon-just-lost-usd42-billion-in-free-cash-flow-is-it-a-red-flag-for-investors/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-30T23:50:01.000Z"
         },
         {
-          "title": "Amazon (AMZN) Stock After Q3 Earnings: Buy the Dip, Sell, or Hold?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-amzn-stock-q3-earnings-182300807.html?.tsrc=rss",
+          "title": "Stock Market Today, Oct. 30: Amazon Misses Revenue and Earnings Expectations",
+          "link": "https://www.fool.com/coverage/stock-market-today/2026/10/30/stock-market-today-oct-30-amazon-misses-revenue-and-earnings-expectations/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-30T21:35:02.000Z"
+        },
+        {
+          "title": "Gene Munster 'More Concerned' About Amazon and Alphabet — Says AI Bots Mean Shopping Edge 'Will Increasingly Be Under Attack'",
+          "link": "https://finance.yahoo.com/technology/ai/articles/gene-munster-more-concerned-amazon-211012721.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-30T18:23:00.000Z"
+          "at": "2026-10-30T21:10:12.000Z"
         },
         {
-          "title": "Amazon’s AI Bill Accelerates, but Its Cost to Deliver Each Order Keeps Shrinking",
-          "link": "https://wwd.com/sourcing-journal/logistics/amazon-ai-spending-fuel-shipping-costs-q3-earnings-delivery-robotics-1239393756/?.tsrc=rss",
-          "source": "wwd.com",
-          "at": "2026-10-30T18:16:56.000Z"
+          "title": "US Equity Indexes Drop This Week as Disappointing Hyperscaler Results Offset Gains From Anthropic's IPO Boost",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/us-equity-indexes-drop-week-204054955.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-30T20:40:54.000Z"
         }
       ],
       "actions": []
@@ -436,10 +442,10 @@
           "at": "2026-10-24T02:30:08.000Z"
         },
         {
-          "title": "Learn Why The Bull Case For Nasdaq (NDAQ) Could Change Following Earnings Beat",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/learn-why-bull-case-nasdaq-201250357.html?.tsrc=rss",
+          "title": "Nasdaq Halts TJGC Group Limited",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-halts-tjgc-group-limited-120000876.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-10-23T20:12:50.000Z"
+          "at": "2026-10-29T12:00:00.000Z"
         }
       ],
       "actions": [
@@ -453,6 +459,12 @@
     },
     "NOW": {
       "news": [
+        {
+          "title": "IBM vs. ServiceNow: Which Technology Stock Is a Better Buy in 2026?",
+          "link": "https://www.fool.com/coverage/better-buy/2026/10/30/ibm-vs-servicenow-which-technology-stock-is-a-better-buy-in-2026/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-10-30T20:35:01.000Z"
+        },
         {
           "title": "ServiceNow CEO makes striking 'unicorn' claim after $3M bet",
           "link": "https://www.thestreet.com/investing/stocks/now-servicenow-ceo-bill-mcdermott-calls-company-a-unicorn-great-company-after-3m-stock-buy?.tsrc=rss",
@@ -476,18 +488,18 @@
           "link": "https://www.trefis.com/stock/now/articles/621495/how-risky-is-servicenow-stock/2026-10-30?.tsrc=rss",
           "source": "trefis.com",
           "at": "2026-10-30T14:42:00.000Z"
-        },
-        {
-          "title": "BDO Canada partners with ServiceNow to help organizations govern AI and simplify operations",
-          "link": "https://finance.yahoo.com/technology/ai/articles/bdo-canada-partners-servicenow-help-130000969.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-30T13:00:00.000Z"
         }
       ],
       "actions": []
     },
     "WKL.AS": {
       "news": [
+        {
+          "title": "Leaders from Wolters Kluwer, Microsoft, Salesforce, and McKinsey challenge accounting firms to make one AI move in the next 90 days",
+          "link": "https://finance.yahoo.com/technology/ai/articles/leaders-wolters-kluwer-microsoft-salesforce-201500186.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-30T20:15:00.000Z"
+        },
         {
           "title": "Wolters Kluwer to divest German consumer tax business",
           "link": "https://finance.yahoo.com/small-business/articles/wolters-kluwer-divest-german-consumer-070000671.html?.tsrc=rss",
@@ -511,12 +523,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/does-wolters-kluwer-enxtam-wkl-131327601.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-29T13:13:27.000Z"
-        },
-        {
-          "title": "Can Wolters Kluwer (ENXTAM:WKL) Keep Looking Cheap On Earnings?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/wolters-kluwer-enxtam-wkl-keep-111920190.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-29T11:19:20.000Z"
         }
       ],
       "actions": [
