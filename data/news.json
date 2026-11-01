@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-31T23:56:24.800Z",
+  "at": "2026-11-01T04:34:56.905Z",
   "market": {
     "IN": [
       {
@@ -330,6 +330,18 @@
     "MSFT": {
       "news": [
         {
+          "title": "I Graded Microsoft's Latest Report on 3 Things. Here's My Verdict on the Stock.",
+          "link": "https://www.fool.com/investing/2026/10/31/i-graded-microsoft-s-latest-report-on-3-things-here-s-my-verdict-on-the-stock/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-01T01:46:01.000Z"
+        },
+        {
+          "title": "Microsoft (MSFT) Lands $25 Billion Bond Deal As AI Push Deepens",
+          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-lands-25-billion-011021686.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-01T01:10:21.000Z"
+        },
+        {
           "title": "Microsoft just gave Nvidia shareholders a reason to pay attention",
           "link": "https://www.thestreet.com/investing/stocks/microsoft-just-gave-nvidia-shareholders-a-reason-to-pay-attention?.tsrc=rss",
           "source": "thestreet.com",
@@ -346,18 +358,6 @@
           "link": "https://247wallst.com/investing/2026/10/31/openais-ceo-thinks-your-laptops-memory-should-be-in-a-data-center/?.tsrc=rss",
           "source": "247wallst.com",
           "at": "2026-10-31T13:49:57.000Z"
-        },
-        {
-          "title": "Microsoft Offers Voluntary Exits to 60,000 Workers. After 37 Years, He Risks Losing a 401(k) Tax Break With One IRA Rollover",
-          "link": "https://247wallst.com/personal-finance/2026/10/31/microsoft-offers-voluntary-exits-to-60000-workers-after-37-years-he-risks-losing-a-401k-tax-break-with-one-ira-rollover/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-10-31T13:33:51.000Z"
-        },
-        {
-          "title": "Axios Live: How employers are rethinking AI's role in entry-level work",
-          "link": "https://www.axios.com/2026/10/30/axios-live-how-employers-are-rethinking-ais-role-in-entry-level-work#utm_source=yahoo_finance&utm_medium=partner&utm_campaign=subs-partner-yahoo-finance-AI?.tsrc=rss",
-          "source": "axios.com",
-          "at": "2026-10-30T21:10:16.000Z"
         }
       ],
       "actions": [
@@ -371,6 +371,12 @@
     },
     "AMZN": {
       "news": [
+        {
+          "title": "Andy Jassy Says West Is 'Very Hungry' For More Western Open Source AI Models as Amazon Adds China's Kimi and GLM to Bedrock",
+          "link": "https://finance.yahoo.com/technology/ai/articles/andy-jassy-says-west-very-233005253.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-10-31T23:30:05.000Z"
+        },
         {
           "title": "Amazon Is Borrowing Against Its Own Data Center Gear to Fund More Data Centers",
           "link": "https://247wallst.com/investing/2026/10/31/amazon-is-borrowing-against-its-own-data-center-gear-to-fund-more-data-centers/?.tsrc=rss",
@@ -394,12 +400,6 @@
           "link": "https://www.tikr.com/blog/barclays-ai-capex-trillion-dollars-revenue-2028-amazon-stock?ref=yahoofinance&tlnk=yf-261031-xfcr4c53&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-10-31T13:45:00.000Z"
-        },
-        {
-          "title": "Amazon CEO Andy Jassy makes a strong prediction on Amazon stock",
-          "link": "https://www.thestreet.com/investing/stocks/amazon-ceo-andy-jassy-predicts-two-trillion-dollar-businesses-amazon-stock?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-10-31T12:03:00.000Z"
         }
       ],
       "actions": []
