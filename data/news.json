@@ -1,7 +1,42 @@
 {
-  "at": "2026-11-04T19:17:10.145Z",
+  "at": "2026-11-05T01:15:17.305Z",
   "market": {
     "IN": [
+      {
+        "title": "Global Market Today: Asian stocks rise as oil slides after US midterm elections",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-today-asian-stocks-rise-as-oil-slides-after-us-midterm-elections/articleshow/135555294.cms",
+        "source": "Economic Times",
+        "at": "2026-11-05T00:54:26.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Alcohol stocks jump as blue wave boosts industry prospects",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/alcohol-stocks-jump-as-blue-wave-boosts-industry-prospects/articleshow/135551002.cms",
+        "source": "Economic Times",
+        "at": "2026-11-04T20:04:38.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "US midterm elections: Crude cools, but Iran war risks keeps markets guessing",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-midterm-elections-crude-cools-but-iran-war-risks-keeps-markets-guessing/articleshow/135555256.cms",
+        "source": "Economic Times",
+        "at": "2026-11-04T19:56:12.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Musk stocks lose $120 billion as Democrats’ Texas win rattles investors",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/musk-stocks-lose-120-billion-as-democrats-texas-win-rattles-investors/articleshow/135550872.cms",
+        "source": "Economic Times",
+        "at": "2026-11-04T19:55:59.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Bitcoin rebounds with stocks despite threat to crypto agenda",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/bitcoin-rebounds-with-stocks-despite-threat-to-crypto-agenda/articleshow/135550638.cms",
+        "source": "Economic Times",
+        "at": "2026-11-04T19:32:16.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "AI data center stocks dip, renewables surge after Democrat sweep in US midterm elections",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/ai-data-center-stocks-dip-renewables-surge-after-democrat-sweep-in-us-midterm-elections/articleshow/135545518.cms",
@@ -21,41 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/meta-draws-record-orders-for-debut-euro-bond-sale-bloomberg-news-reports/articleshow/135543860.cms",
         "source": "Economic Times",
         "at": "2026-11-04T15:20:06.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Gold gains 3% as dollar slides after Democratic midterm gains",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/gold-gains-3-as-dollar-slides-after-democratic-midterm-gains/articleshow/135543824.cms",
-        "source": "Economic Times",
-        "at": "2026-11-04T15:18:47.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Prediction markets get Democratic win right, with a few surprises",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/prediction-markets-get-democratic-win-right-with-a-few-surprises/articleshow/135543698.cms",
-        "source": "Economic Times",
-        "at": "2026-11-04T15:17:04.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Indian bonds rally most since April as oil slides after US midterm verdict",
-        "link": "https://economictimes.indiatimes.com/markets/bonds/indian-bonds-rally-most-since-april-as-oil-slides-after-us-midterm-verdict/articleshow/135543664.cms",
-        "source": "Economic Times",
-        "at": "2026-11-04T15:15:23.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Aptus Value Housing Finance Q2 profit rises 18% to Rs 267 cr",
-        "link": "https://economictimes.indiatimes.com/markets/digital-real-estate/realty-news/aptus-value-housing-finance-q2-profit-rises-18-to-rs-267-cr/articleshow/135543628.cms",
-        "source": "Economic Times",
-        "at": "2026-11-04T15:13:37.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Keystone Realtors Q2 profit jumps 10-fold to Rs 101 cr",
-        "link": "https://economictimes.indiatimes.com/markets/digital-real-estate/realty-news/keystone-realtors-q2-profit-jumps-10-fold-to-rs-101-cr/articleshow/135543604.cms",
-        "source": "Economic Times",
-        "at": "2026-11-04T15:12:09.000Z",
         "market": "Indian markets"
       }
     ],
@@ -126,12 +126,6 @@
           "link": "https://finance.yahoo.com/economy/articles/tcs-partnered-marathons-generate-us-201500937.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-30T21:15:00.000Z"
-        },
-        {
-          "title": "Thoroughbred Championship Series Expands to Include Oaks Division for Three-Year-Old Fillies",
-          "link": "https://finance.yahoo.com/media-advertising/articles/thoroughbred-championship-series-expands-oaks-200100838.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-28T20:01:00.000Z"
         }
       ],
       "actions": [
@@ -332,34 +326,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "This Magnificent 7 Stock Is Quietly Building an AI Empire",
-          "link": "https://247wallst.com/investing/2026/11/04/this-magnificent-7-stock-is-quietly-building-an-ai-empire/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-11-04T18:03:24.000Z"
-        },
-        {
-          "title": "AIMG® Sizes AI Governance Platforms Market at $12.5 Billion by 2030; Microsoft, Databricks and Salesforce Top AI LeaderMap®",
-          "link": "https://finance.yahoo.com/technology/ai/articles/aimg-sizes-ai-governance-platforms-175300103.html?.tsrc=rss",
+          "title": "Dow Jones Futures Rise After Apple, Microsoft, Amazon Flash Buy Signals In Postelection Rally. CoreWeave, SpaceX Skid.",
+          "link": "https://finance.yahoo.com/m/a147bf9a-4218-3171-97a4-fb80fda211eb/dow-jones-futures-rise-after.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-04T17:53:00.000Z"
+          "at": "2026-11-05T01:04:33.000Z"
         },
         {
-          "title": "U.S. Stocks Jump After Democrats Sweep Congress",
-          "link": "https://www.wsj.com/finance/investing/stock-futures-edge-lower-treasurys-strengthen-after-democratic-sweep-f2198d07?.tsrc=rss",
-          "source": "wsj.com",
-          "at": "2026-11-04T17:23:00.000Z"
-        },
-        {
-          "title": "Mag 7 Stocks Rise After Elections, Set to Add $600B in Market Cap",
-          "link": "https://finance.yahoo.com/m/d58819ae-9dfd-369b-865e-0165dc6e99c5/mag-7-stocks-rise-after.html?.tsrc=rss",
+          "title": "Stock Market Today: Dow Soars 1,569 Points In postelection Rally; Microsoft Leaps Nearly 7% Off New Entry",
+          "link": "https://finance.yahoo.com/m/762d358c-ec5a-3821-a3f9-e47c4e4c3f0c/stock-market-today%3A-dow-soars.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-04T17:23:00.000Z"
+          "at": "2026-11-04T21:47:54.000Z"
         },
         {
-          "title": "Tech, AI Stocks Split After Democratic Sweep: Microsoft Jumps, Tesla and Nvidia Tank",
-          "link": "https://decrypt.co/382528/tech-ai-stocks-split-democratic-microsoft-jumps-tesla-nvidia-tank?.tsrc=rss",
-          "source": "decrypt.co",
-          "at": "2026-11-04T17:06:03.000Z"
+          "title": "Arm stock slips after hours as lack of blowout guidance offsets quarterly results",
+          "link": "https://finance.yahoo.com/technology/ai/articles/arm-stock-slips-hours-lack-213203690.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-04T21:32:03.000Z"
+        },
+        {
+          "title": "After the midterms, Big Tech’s AI data center problem is only getting bigger",
+          "link": "https://finance.yahoo.com/technology/ai/articles/midterms-big-tech-ai-data-211836294.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-04T21:18:36.000Z"
+        },
+        {
+          "title": "The Nasdaq-100 Is Outperforming Nvidia, Microsoft, Amazon, Meta Platforms, Alphabet, and Tesla This Year. Here's My Favorite Low-Cost ETF to Buy the Dip.",
+          "link": "https://www.fool.com/investing/2026/11/04/the-nasdaq-100-is-outperforming-nvidia-microsoft-a/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-04T21:05:00.000Z"
         }
       ],
       "actions": [
@@ -374,40 +368,46 @@
     "AMZN": {
       "news": [
         {
-          "title": "Big Tech Stocks And Mag7 ETF Jumps After Democratic Sweep Raises Bets For Easing AI Capex",
-          "link": "https://stocktwits.com/news-articles/markets/equity/big-tech-stocks-and-mag7-etf-jumps-after-democratic-sweep-raises-bets-for-easing-ai-capex/cNGLlXXR93y?.tsrc=rss",
-          "source": "stocktwits.com",
-          "at": "2026-11-04T18:57:30.000Z"
-        },
-        {
-          "title": "Sector Update: Tech Stocks Mixed Wednesday Afternoon",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/sector-tech-stocks-mixed-wednesday-182712833.html?.tsrc=rss",
+          "title": "Dow Jones Futures Rise After Apple, Microsoft, Amazon Flash Buy Signals In Postelection Rally. CoreWeave, SpaceX Skid.",
+          "link": "https://finance.yahoo.com/m/a147bf9a-4218-3171-97a4-fb80fda211eb/dow-jones-futures-rise-after.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-04T18:27:12.000Z"
+          "at": "2026-11-05T01:04:33.000Z"
         },
         {
-          "title": "Nexxus Capital Strengthens Market Position with Latest E-Commerce Acquisition",
-          "link": "https://finance.yahoo.com/small-business/articles/nexxus-capital-strengthens-market-position-180700737.html?.tsrc=rss",
+          "title": "Amazon workers in the Greater Toronto Area launch fight for better jobs with Unifor",
+          "link": "https://finance.yahoo.com/small-business/articles/amazon-workers-greater-toronto-area-234300921.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-04T18:07:00.000Z"
+          "at": "2026-11-04T23:43:00.000Z"
         },
         {
-          "title": "Amazon is saying bye-bye to Muse while Walmart is rolling out the welcome mat for Meta’s shopping agent",
-          "link": "https://www.digitaltrends.com/computing/amazon-is-saying-bye-bye-to-muse-while-walmart-is-rolling-out-the-welcome-mat-for-metas-shopping-agent/?.tsrc=rss",
-          "source": "digitaltrends.com",
-          "at": "2026-11-04T17:37:56.000Z"
+          "title": "Stock Market Today, Nov. 4: Amazon Jumps 6% From New Perspective on AWS Growth and AI Strategy Following Election Results",
+          "link": "https://www.fool.com/coverage/stock-market-today/2026/11/04/stock-market-today-nov-4-amazon-jumps-6-from-new-perspective-on-aws-growth-and-ai-strategy-following-election-results/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-04T22:13:28.000Z"
         },
         {
-          "title": "Amazon and Walmart's $74 Billion Ad Market Faces an AI Test",
-          "link": "https://finance.yahoo.com/media-advertising/articles/amazon-walmarts-74-billion-ad-172328442.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-04T17:23:28.000Z"
+          "title": "Alphabet Gains 3%, Amazon Up 6% as Big Tech Leads Post-Midterm Rebound",
+          "link": "https://www.tikr.com/blog/alphabet-gains-3-amazon-up-6-as-big-tech-leads-post-midterm-rebound?ref=yahoofinance&tlnk=yf-261104-hc676726&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-04T21:51:04.000Z"
+        },
+        {
+          "title": "The Nasdaq-100 Is Outperforming Nvidia, Microsoft, Amazon, Meta Platforms, Alphabet, and Tesla This Year. Here's My Favorite Low-Cost ETF to Buy the Dip.",
+          "link": "https://www.fool.com/investing/2026/11/04/the-nasdaq-100-is-outperforming-nvidia-microsoft-a/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-04T21:05:00.000Z"
         }
       ],
       "actions": []
     },
     "NDAQ": {
       "news": [
+        {
+          "title": "Nasdaq Reports October 2026 Volumes",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-reports-october-2026-volumes-210500610.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-04T21:05:00.000Z"
+        },
         {
           "title": "Charming Medical Limited Notified of Anticipated Delisting from The Nasdaq Stock Market",
           "link": "https://finance.yahoo.com/markets/stocks/articles/charming-medical-limited-notified-anticipated-200500470.html?.tsrc=rss",
@@ -431,12 +431,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-halts-tjgc-group-limited-120000876.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-10-29T12:00:00.000Z"
-        },
-        {
-          "title": "What Is Behind The Move In Applied Digital Stock?",
-          "link": "https://www.trefis.com/stock/apld/articles/622643/what-is-behind-the-move-in-applied-digital-stock/2026-11-04?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-04T12:55:44.000Z"
         }
       ],
       "actions": [
