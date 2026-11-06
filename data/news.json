@@ -1,65 +1,93 @@
 {
-  "at": "2026-11-06T01:20:38.130Z",
+  "at": "2026-11-06T10:19:02.781Z",
   "market": {
     "IN": [
       {
-        "title": "Global Market Today: Asian stocks join US selloff as AI slump deepens",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-today-asian-stocks-join-us-selloff-as-ai-slump-deepens/articleshow/135589759.cms",
+        "title": "Anthropic listing under pressure: Investors question timing and sky-high valuation",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-listing-under-pressure-investors-question-timing-and-sky-high-valuation/slideshow/135600960.cms",
         "source": "Economic Times",
-        "at": "2026-11-06T00:54:01.000Z",
+        "at": "2026-11-06T08:42:31.000Z",
         "market": "Indian markets"
       },
       {
-        "title": "AI backlash could threaten Anthropic IPO timing, potential investors say",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/ai-backlash-could-threaten-anthropic-ipo-timing-potential-investors-say/articleshow/135589533.cms",
+        "title": "BMW Industries Q2 Results: Net profit rise 43% YoY to Rs 21.62 crore",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/bmw-industries-q2-results-net-profit-rise-43-yoy-to-rs-21-62-crore/articleshow/135600062.cms",
         "source": "Economic Times",
-        "at": "2026-11-06T00:32:25.000Z",
+        "at": "2026-11-06T08:20:29.000Z",
         "market": "Indian markets"
       },
       {
-        "title": "JP Morgan to add Philippines and Saudi Arabia to key EM bond index over 10 months",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/jp-morgan-to-add-philippines-and-saudi-arabia-to-key-em-bond-index-over-10-months/articleshow/135585489.cms",
+        "title": "HCC Q2 profit slumps 53% to Rs 22 crore",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/hcc-q2-profit-slumps-53-to-rs-22-crore/articleshow/135599840.cms",
         "source": "Economic Times",
-        "at": "2026-11-05T19:26:01.000Z",
+        "at": "2026-11-06T08:10:34.000Z",
         "market": "Indian markets"
       },
       {
-        "title": "The average US 30-year mortgage rate falls to 7.18% this week, its third straight decline",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/the-average-us-30-year-mortgage-rate-falls-to-7-18-this-week-its-third-straight-decline-/articleshow/135585420.cms",
+        "title": "Rupee falls 9 paise to 94.50 against US dollar in early trade",
+        "link": "https://economictimes.indiatimes.com/markets/forex/rupee-falls-9-paise-to-94-50-against-us-dollar-in-early-trade/articleshow/135597848.cms",
         "source": "Economic Times",
-        "at": "2026-11-05T19:24:21.000Z",
+        "at": "2026-11-06T07:04:25.000Z",
         "market": "Indian markets"
       },
       {
-        "title": "US yields fall in choppy session as oil rises and equities sink",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-yields-fall-in-choppy-session-as-oil-rises-and-equities-sink/articleshow/135585328.cms",
+        "title": "India bonds emerge as top Asian performers as oil, Treasury yields decline",
+        "link": "https://economictimes.indiatimes.com/markets/bonds/india-bonds-emerge-as-top-asian-performers-as-oil-treasury-yields-decline/articleshow/135597789.cms",
         "source": "Economic Times",
-        "at": "2026-11-05T19:19:17.000Z",
+        "at": "2026-11-06T07:03:11.000Z",
         "market": "Indian markets"
       },
       {
-        "title": "Paras Healthcare posts Rs 40 crore Q2 net profit in first results after listing",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/paras-healthcare-posts-rs-40-crore-q2-net-profit-in-first-results-after-listing/articleshow/135580435.cms",
+        "title": "India’s new wealth rituals: What are millennials and Gen Z buying on Dhanteras?",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/indias-new-wealth-rituals-what-are-millennials-and-gen-z-buying-on-dhanteras/articleshow/135596463.cms",
         "source": "Economic Times",
-        "at": "2026-11-05T16:32:07.000Z",
+        "at": "2026-11-06T06:21:45.000Z",
         "market": "Indian markets"
       },
       {
-        "title": "Godfrey Phillips Q2 profit down 37% to Rs 190 cr; revenue up twofold at Rs 4,198 cr",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/godfrey-phillips-q2-profit-down-37-to-rs-190-cr-revenue-up-twofold-at-rs-4198-cr/articleshow/135578939.cms",
+        "title": "Beyond gold: What $340 billion in crypto flows says about India's investment preferences this Dhanteras",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/beyond-gold-what-340-billion-in-crypto-flows-says-about-indias-investment-preferences-this-dhanteras/articleshow/135596165.cms",
         "source": "Economic Times",
-        "at": "2026-11-05T15:39:02.000Z",
+        "at": "2026-11-06T06:07:20.000Z",
         "market": "Indian markets"
       },
       {
-        "title": "Apple seeks about $7 billion from bond sale, Bloomberg News reports",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/apple-seeks-about-7-billion-from-bond-sale-bloomberg-news-reports/articleshow/135578897.cms",
+        "title": "Micron stock tanks 17% as AI chip selloff deepens: What's next?",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/micron-stock-tanks-17-as-ai-chip-selloff-deepens-whats-next/slideshow/135595811.cms",
         "source": "Economic Times",
-        "at": "2026-11-05T15:37:12.000Z",
+        "at": "2026-11-06T05:44:39.000Z",
         "market": "Indian markets"
       }
     ],
     "GLOBAL": [
+      {
+        "title": "European stocks join global rout after worst US chip sell-off since 2020",
+        "link": "https://www.euronews.com/2026/11/06/global-stock-rout-deepens-as-ai-data-centre-fears-fuel-worst-us-chip-sell-off-since-2020?.tsrc=rss",
+        "source": "euronews.com",
+        "at": "2026-11-06T09:22:08.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "FTSE 100 today: Stocks slump as global tech rout deepens",
+        "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-slump-085808736.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-11-06T08:58:08.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "Europe stocks drop on tech drag; STOXX 600 overtakes S&P 500 in YTD gains",
+        "link": "https://finance.yahoo.com/markets/world-indices/articles/europe-stocks-drop-tech-drag-084024831.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-11-06T08:40:24.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "Global shares skid after AI worries send Wall Street tumbling",
+        "link": "https://finance.yahoo.com/markets/world-indices/articles/japans-stock-benchmark-nikkei-tumbles-004324375.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-11-06T00:43:24.000Z",
+        "market": "European markets"
+      },
       {
         "title": "European Stocks Close Mostly Lower in Thursday Trading as Investors Parse Earnings Reports, US Elections, Rising Oil Prices",
         "link": "https://finance.yahoo.com/markets/stocks/articles/european-stocks-close-mostly-lower-165559834.html?.tsrc=rss",
@@ -86,34 +114,6 @@
         "link": "https://finance.yahoo.com/markets/stocks/articles/european-stocks-close-lower-tuesday-170259558.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-11-03T17:02:59.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "European shares falls as Apple margin warning triggers global tech rout",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-shares-slide-apple-margin-083902572.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-11-03T08:39:02.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "European Stocks Close Mostly Higher in Monday Trading; Oil Prices Fall on Hopes US-Iran Talks Resume",
-        "link": "https://finance.yahoo.com/markets/stocks/articles/european-stocks-close-mostly-higher-164714237.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-11-02T16:47:14.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "FTSE 100 today: Stocks close up as oil sinks on hopes of U.S.-Iran talks",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-fall-085408745.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-11-02T08:54:08.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "European shares rise as markets weigh France’s outlook cut; earnings in focus",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-shares-inch-lower-fitch-083811125.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-11-02T08:38:11.000Z",
         "market": "European markets"
       }
     ]
@@ -338,6 +338,12 @@
           "at": "2026-11-05T20:54:15.000Z"
         },
         {
+          "title": "Is Microsoft Souring on Neoclouds? Here’s Why IREN Fell 16%",
+          "link": "https://blockspace.media/short/is-microsoft-souring-on-neoclouds-heres-why-iren-fell-16/?.tsrc=rss",
+          "source": "blockspace.media",
+          "at": "2026-11-05T20:28:23.000Z"
+        },
+        {
           "title": "Nvidia and Microsoft Get a New Spotlight From Bank of America",
           "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-microsoft-spotlight-bank-america-193451774.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -350,16 +356,10 @@
           "at": "2026-11-05T18:59:42.000Z"
         },
         {
-          "title": "Update: Market Chatter: Microsoft Declines Texas Data Center Contract Extension With Nscale, Tightening Data Center Oversight",
-          "link": "https://finance.yahoo.com/technology/articles/market-chatter-microsoft-declines-texas-182142412.html?.tsrc=rss",
+          "title": "ePlus Inc (PLUS) (Q2 2027) Earnings Call Highlights: Record $1 Billion in Gross Billings and ...",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/eplus-inc-plus-q2-2027-072324454.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-05T18:21:42.000Z"
-        },
-        {
-          "title": "Don’t Rush to Buy the Dip in Neocloud Stocks. Microsoft’s Cold Feet Could Be a Bigger Problem Than the Blue Wave.",
-          "link": "https://www.barchart.com/story/news/8679995/dont-rush-to-buy-the-dip-in-neocloud-stocks-microsofts-cold-feet-could-be-a-bigger-problem-than-the-blue-wave?.tsrc=rss",
-          "source": "barchart.com",
-          "at": "2026-11-05T18:19:36.000Z"
+          "at": "2026-11-06T07:23:24.000Z"
         }
       ],
       "actions": [
@@ -374,6 +374,12 @@
     "AMZN": {
       "news": [
         {
+          "title": "Purple Innovation Inc (PRPL) Q3 2026 Earnings Call Highlights: Cash Flow Turns Positive as ...",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/purple-innovation-inc-prpl-q3-010759073.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-06T01:07:59.000Z"
+        },
+        {
           "title": "Amazon Challenges Google Shopping With Direct Product Feeds",
           "link": "https://www.mediapost.com/publications/article/419260/amazon-challenges-google-shopping-with-direct-prod.html?.tsrc=rss",
           "source": "mediapost.com",
@@ -386,22 +392,16 @@
           "at": "2026-11-05T22:59:37.000Z"
         },
         {
-          "title": "Amazon-Uber Eats Deal Sends DASH Stock To Biggest Drop In A Year",
-          "link": "https://stocktwits.com/news-articles/markets/equity/amazon-uber-eats-deal-sends-dash-stock-to-biggest-drop-in-a-year/cNG1MHxR94F?.tsrc=rss",
-          "source": "stocktwits.com",
-          "at": "2026-11-05T20:24:40.000Z"
+          "title": "Can One Man Save the World? Possibly!",
+          "link": "https://finance.yahoo.com/media-advertising/articles/one-man-save-world-possibly-050000397.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-06T05:00:00.000Z"
         },
         {
-          "title": "X-energy, Fluor Corporation Advance Nuclear Engineering and Design for Second Xe-100 Project",
-          "link": "https://finance.yahoo.com/energy/articles/x-energy-fluor-corporation-advance-213000913.html?.tsrc=rss",
+          "title": "Affirm delivers quarterly results beat, but shares fall on GMV guide",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/affirm-delivers-quarterly-results-guidance-215510525.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-05T21:30:00.000Z"
-        },
-        {
-          "title": "Qualcomm's Data Center Investments Could Weigh on Near-Term Margins, RBC Says",
-          "link": "https://finance.yahoo.com/technology/articles/qualcomm-apos-data-center-investments-205746920.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-05T20:57:46.000Z"
+          "at": "2026-11-05T21:55:10.000Z"
         }
       ],
       "actions": []
@@ -451,6 +451,12 @@
     "NOW": {
       "news": [
         {
+          "title": "ServiceNow (NOW) Expands Partnerships For Enterprise AI Workflows",
+          "link": "https://finance.yahoo.com/technology/ai/articles/servicenow-now-expands-partnerships-enterprise-031942186.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-06T03:19:42.000Z"
+        },
+        {
           "title": "Arista Networks vs. ServiceNow: Which Technology Stock Is a Better Buy for 2027?",
           "link": "https://www.fool.com/coverage/better-buy/2026/11/05/arista-networks-vs-servicenow-which-technology-stock-is-a-better-buy-for-2027/?.tsrc=rss",
           "source": "fool.com",
@@ -473,12 +479,6 @@
           "link": "https://unchainedcrypto.com/boeing-servicenow-and-nebius-keep-their-stock-off-ice-okx-token-venue-lifting-objectors-to-62/?.tsrc=rss",
           "source": "unchainedcrypto.com",
           "at": "2026-11-05T09:30:46.000Z"
-        },
-        {
-          "title": "LTM and ServiceNow expand partnership to scale agentic AI and accelerate joint go-to-market",
-          "link": "https://finance.yahoo.com/technology/ai/articles/ltm-servicenow-expand-partnership-scale-043000747.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-05T04:30:00.000Z"
         }
       ],
       "actions": []
@@ -510,10 +510,10 @@
           "at": "2026-10-30T20:15:00.000Z"
         },
         {
-          "title": "Wolters Kluwer to divest German consumer tax business",
-          "link": "https://finance.yahoo.com/small-business/articles/wolters-kluwer-divest-german-consumer-070000671.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-30T07:00:00.000Z"
+          "title": "Wells Fargo wants customers to prove they've revoked AI agents",
+          "link": "https://www.americanbanker.com/news/wells-fargo-wants-customers-to-prove-theyve-revoked-ai-agents?.tsrc=rss",
+          "source": "americanbanker.com",
+          "at": "2026-11-02T17:10:14.000Z"
         }
       ],
       "actions": [
