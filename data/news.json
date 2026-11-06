@@ -1,7 +1,35 @@
 {
-  "at": "2026-11-05T19:25:30.965Z",
+  "at": "2026-11-06T01:20:38.130Z",
   "market": {
     "IN": [
+      {
+        "title": "Global Market Today: Asian stocks join US selloff as AI slump deepens",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-today-asian-stocks-join-us-selloff-as-ai-slump-deepens/articleshow/135589759.cms",
+        "source": "Economic Times",
+        "at": "2026-11-06T00:54:01.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "AI backlash could threaten Anthropic IPO timing, potential investors say",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/ai-backlash-could-threaten-anthropic-ipo-timing-potential-investors-say/articleshow/135589533.cms",
+        "source": "Economic Times",
+        "at": "2026-11-06T00:32:25.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "JP Morgan to add Philippines and Saudi Arabia to key EM bond index over 10 months",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/jp-morgan-to-add-philippines-and-saudi-arabia-to-key-em-bond-index-over-10-months/articleshow/135585489.cms",
+        "source": "Economic Times",
+        "at": "2026-11-05T19:26:01.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "The average US 30-year mortgage rate falls to 7.18% this week, its third straight decline",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/the-average-us-30-year-mortgage-rate-falls-to-7-18-this-week-its-third-straight-decline-/articleshow/135585420.cms",
+        "source": "Economic Times",
+        "at": "2026-11-05T19:24:21.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "US yields fall in choppy session as oil rises and equities sink",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-yields-fall-in-choppy-session-as-oil-rises-and-equities-sink/articleshow/135585328.cms",
@@ -28,34 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/apple-seeks-about-7-billion-from-bond-sale-bloomberg-news-reports/articleshow/135578897.cms",
         "source": "Economic Times",
         "at": "2026-11-05T15:37:12.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Qualcomm shares 9% slump as weak smartphone chip sales overshadow data-center momentum",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/qualcomm-shares-9-slump-as-weak-smartphone-chip-sales-overshadow-data-center-momentum/articleshow/135578695.cms",
-        "source": "Economic Times",
-        "at": "2026-11-05T15:29:36.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Elon Musk gambled $445 million to boost Republicans in midterms and came up short",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/elon-musk-gambled-445-million-to-boost-republicans-in-midterms-and-came-up-short/articleshow/135578644.cms",
-        "source": "Economic Times",
-        "at": "2026-11-05T15:27:55.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Emerging markets lose $33.8 billion in October as investors flee Asian stocks",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/emerging-market-outflows-hit-33-8-billion-us-midterms-offer-some-relief/articleshow/135578199.cms",
-        "source": "Economic Times",
-        "at": "2026-11-05T15:09:12.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Nasdaq tumbles over 3% as tech stocks extend selloff after Democrats sweep midterms; Tesla plunges 9%, chipmakers slide",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-nasdaq-falls-at-open-after-midterms-fueled-surge-as-chip-data-center-stocks-fall/articleshow/135577537.cms",
-        "source": "Economic Times",
-        "at": "2026-11-05T14:40:26.000Z",
         "market": "Indian markets"
       }
     ],
@@ -332,6 +332,18 @@
     "MSFT": {
       "news": [
         {
+          "title": "Sector Update: Tech Stocks Tumble Late Afternoon",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/sector-tech-stocks-tumble-afternoon-205415545.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-05T20:54:15.000Z"
+        },
+        {
+          "title": "Nvidia and Microsoft Get a New Spotlight From Bank of America",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-microsoft-spotlight-bank-america-193451774.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-05T19:34:51.000Z"
+        },
+        {
           "title": "Microsoft Stocks Fall 2.59% as Cloud Returns Take Center Stage",
           "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-stocks-fall-2-59-185942487.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -344,22 +356,10 @@
           "at": "2026-11-05T18:21:42.000Z"
         },
         {
-          "title": "Microsoft Reportedly Steps Back From Renewing Data Center Contract With Nvidia-Backed Nscale",
-          "link": "https://stocktwits.com/news-articles/markets/equity/microsoft-reportedly-steps-back-from-renewing-data-center-contract-with-nvidia-backed-nscale/cNG1qdXR94S?.tsrc=rss",
-          "source": "stocktwits.com",
-          "at": "2026-11-05T18:04:58.000Z"
-        },
-        {
-          "title": "Why Microsoft Stock is Down Today",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/why-microsoft-stock-down-today-175913610.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-05T17:59:13.000Z"
-        },
-        {
-          "title": "Neocloud Stocks Fell More Than Hyperscalers After Election Night. Here's Why Exposure Differs.",
-          "link": "https://www.fool.com/investing/2026/11/05/neocloud-stocks-fell-more-than-hyperscalers-on-ele/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-05T17:50:00.000Z"
+          "title": "Don’t Rush to Buy the Dip in Neocloud Stocks. Microsoft’s Cold Feet Could Be a Bigger Problem Than the Blue Wave.",
+          "link": "https://www.barchart.com/story/news/8679995/dont-rush-to-buy-the-dip-in-neocloud-stocks-microsofts-cold-feet-could-be-a-bigger-problem-than-the-blue-wave?.tsrc=rss",
+          "source": "barchart.com",
+          "at": "2026-11-05T18:19:36.000Z"
         }
       ],
       "actions": [
@@ -374,34 +374,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Amazon Stocks Decline 3.52% With AWS Profitability in Focus",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-stocks-decline-3-52-185938413.html?.tsrc=rss",
+          "title": "Amazon Challenges Google Shopping With Direct Product Feeds",
+          "link": "https://www.mediapost.com/publications/article/419260/amazon-challenges-google-shopping-with-direct-prod.html?.tsrc=rss",
+          "source": "mediapost.com",
+          "at": "2026-11-05T23:27:27.000Z"
+        },
+        {
+          "title": "Stock Market Today, Nov. 5: Amazon Shares Slide as Technology Selloff Erases Early Gains",
+          "link": "https://www.fool.com/coverage/stock-market-today/2026/11/05/stock-market-today-nov-5-amazon-shares-slide-as-technology-selloff-erases-early-gains/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-05T22:59:37.000Z"
+        },
+        {
+          "title": "Amazon-Uber Eats Deal Sends DASH Stock To Biggest Drop In A Year",
+          "link": "https://stocktwits.com/news-articles/markets/equity/amazon-uber-eats-deal-sends-dash-stock-to-biggest-drop-in-a-year/cNG1MHxR94F?.tsrc=rss",
+          "source": "stocktwits.com",
+          "at": "2026-11-05T20:24:40.000Z"
+        },
+        {
+          "title": "X-energy, Fluor Corporation Advance Nuclear Engineering and Design for Second Xe-100 Project",
+          "link": "https://finance.yahoo.com/energy/articles/x-energy-fluor-corporation-advance-213000913.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-05T18:59:38.000Z"
+          "at": "2026-11-05T21:30:00.000Z"
         },
         {
-          "title": "Layoffs Hit Lowest October Level Since 2023, Report Shows Ahead of Friday's NFPs",
-          "link": "https://finance.yahoo.com/economy/articles/layoffs-hit-lowest-october-level-184605724.html?.tsrc=rss",
+          "title": "Qualcomm's Data Center Investments Could Weigh on Near-Term Margins, RBC Says",
+          "link": "https://finance.yahoo.com/technology/articles/qualcomm-apos-data-center-investments-205746920.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-05T18:46:05.000Z"
-        },
-        {
-          "title": "Amazon switches to Uber Eats for restaurant delivery perks",
-          "link": "https://www.nrn.com/restaurant-technology/amazon-switches-to-uber-eats-for-restaurant-delivery-perks?.tsrc=rss",
-          "source": "nrn.com",
-          "at": "2026-11-05T18:14:01.000Z"
-        },
-        {
-          "title": "Amazon adds over 100 Alexa for Shopping functions",
-          "link": "https://www.retaildive.com/news/amazon-adds-alexa-ai-shopping-functions/873602/?.tsrc=rss",
-          "source": "retaildive.com",
-          "at": "2026-11-05T17:38:00.000Z"
-        },
-        {
-          "title": "Snowflake Soars 32% Year to Date: Buy, Sell, or Hold the Stock?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/snowflake-soars-32-date-buy-170900458.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-05T17:09:00.000Z"
+          "at": "2026-11-05T20:57:46.000Z"
         }
       ],
       "actions": []
@@ -415,12 +415,6 @@
           "at": "2026-11-04T21:05:00.000Z"
         },
         {
-          "title": "Charming Medical Limited Notified of Anticipated Delisting from The Nasdaq Stock Market",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/charming-medical-limited-notified-anticipated-200500470.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-10-29T20:05:00.000Z"
-        },
-        {
           "title": "I Bonds Now Pay 5.51%. Can Dividend Stocks Compete?",
           "link": "https://247wallst.com/investing/2026/11/04/i-bonds-now-pay-5-51-can-dividend-stocks-compete/?.tsrc=rss",
           "source": "247wallst.com",
@@ -431,6 +425,12 @@
           "link": "https://www.barchart.com/story/news/8593922/trump-warns-of-a-1929-style-economic-depression-ahead-of-the-midterms-the-s-p-500-has-risen-after-all-19-midterms-since-1950?.tsrc=rss",
           "source": "barchart.com",
           "at": "2026-11-02T15:02:46.000Z"
+        },
+        {
+          "title": "Why GM and Hilton Are Moving to the Nasdaq From NYSE",
+          "link": "https://finance.yahoo.com/m/0ce35d8c-15af-3f57-88cf-1c1d03831d14/why-gm-and-hilton-are-moving.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-05T18:37:00.000Z"
         },
         {
           "title": "New Dividend Growth ETF Enters the Market",
@@ -450,6 +450,12 @@
     },
     "NOW": {
       "news": [
+        {
+          "title": "Arista Networks vs. ServiceNow: Which Technology Stock Is a Better Buy for 2027?",
+          "link": "https://www.fool.com/coverage/better-buy/2026/11/05/arista-networks-vs-servicenow-which-technology-stock-is-a-better-buy-for-2027/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-05T21:03:02.000Z"
+        },
         {
           "title": "Salesforce Vs. ServiceNow: You Can Trust Both Following The Recent Drop",
           "link": "https://247wallst.com/investing/2026/11/05/salesforce-vs-servicenow-you-can-trust-both-following-the-recent-drop/?.tsrc=rss",
@@ -473,12 +479,6 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/ltm-servicenow-expand-partnership-scale-043000747.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-05T04:30:00.000Z"
-        },
-        {
-          "title": "NBA and ServiceNow extend partnership to enhance employee experience with ServiceNow EmployeeWorks",
-          "link": "https://finance.yahoo.com/technology/articles/nba-servicenow-extend-partnership-enhance-140000095.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-04T14:00:00.000Z"
         }
       ],
       "actions": []
