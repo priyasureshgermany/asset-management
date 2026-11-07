@@ -1,7 +1,14 @@
 {
-  "at": "2026-11-07T09:33:46.103Z",
+  "at": "2026-11-07T17:20:20.254Z",
   "market": {
     "IN": [
+      {
+        "title": "Dalal Street Week Ahead: Nifty bulls come back to life, but 25,000–25,200 zone poses next test",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/dalal-street-week-ahead-nifty-bulls-come-back-to-life-but-2500025200-zone-poses-next-test/articleshow/135634291.cms",
+        "source": "Economic Times",
+        "at": "2026-11-07T11:07:31.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Concurrent Gainers: 9 stocks gain for 5 days in a row",
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/concurrent-gainers-9-stocks-gain-for-5-days-in-a-row/slideshow/135631187.cms",
@@ -49,13 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/risk-off-mood-sweeps-european-stocks-as-ai-concerns-deepen/articleshow/135626153.cms",
         "source": "Economic Times",
         "at": "2026-11-07T04:05:44.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Wall Street stocks rally after heavy AI-related selloff",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/wall-street-stocks-rally-after-heavy-ai-related-selloff/articleshow/135626123.cms",
-        "source": "Economic Times",
-        "at": "2026-11-07T04:04:36.000Z",
         "market": "Indian markets"
       }
     ],
@@ -319,34 +319,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Microsoft (MSFT) Is Pulling Back From Key Neocloud Data Center Deals",
-          "link": "https://finance.yahoo.com/technology/articles/microsoft-msft-pulling-back-key-031936381.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-07T03:19:36.000Z"
+          "title": "Apple Completes the Set: Every Magnificent Seven Stock Opts Out of OKX-ICE Venue",
+          "link": "https://decrypt.co/382768/apple-meta-every-magnificent-seven-stock-opts-out-okx-ice-venue?.tsrc=rss",
+          "source": "decrypt.co",
+          "at": "2026-11-07T17:01:03.000Z"
         },
         {
-          "title": "Dow Jones Futures: Market Needs Repair But Sandisk, Micron Look Broken; Apple, Amazon, Microsoft Strong",
+          "title": "Dow Jones Futures: Market Needs Repair But Apple, Amazon, Microsoft Strong; Berkshire Doubles Stock Buyback",
           "link": "https://finance.yahoo.com/m/283e1bd9-349e-390b-a32b-b4ed9a9034f3/dow-jones-futures%3A-market.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-06T23:41:36.000Z"
+          "at": "2026-11-07T16:19:28.000Z"
         },
         {
-          "title": "A Retiree Who Bought 1,000 Oracle Shares at $39 Just Watched Microsoft Walk Away",
-          "link": "https://247wallst.com/investing/2026/11/06/a-retiree-who-bought-1000-oracle-shares-at-39-just-watched-microsoft-walk-away/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-11-06T22:48:41.000Z"
+          "title": "AI Stocks Diverge as Democratic Election Victory Sparks Rotation Into Cloud Giants",
+          "link": "https://investorshub.advfn.com/market-news/article/39467/ai-stocks-diverge-as-democratic-election-victory-sparks-rotation-into-cloud-giants?.tsrc=rss",
+          "source": "investorshub.advfn.com",
+          "at": "2026-11-07T15:54:00.000Z"
         },
         {
-          "title": "Tech Stock Sell-Off 'Golden Buying Opportunity,' Says Dan Ives",
-          "link": "https://finance.yahoo.com/m/aeb920dc-4bcd-3531-8458-6a642b7135df/tech-stock-sell-off-%27golden.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-06T21:46:35.000Z"
+          "title": "Citi Raises AI Revenue Forecasts Through 2028 as Cloud Demand Accelerates",
+          "link": "https://investorshub.advfn.com/market-news/article/39463/citi-raises-ai-revenue-forecasts-through-2028-as-cloud-demand-accelerates?.tsrc=rss",
+          "source": "investorshub.advfn.com",
+          "at": "2026-11-07T11:48:00.000Z"
         },
         {
-          "title": "Microsoft and Oracle's AI ambitions are suddenly a lot more expensive",
-          "link": "https://www.thestreet.com/investing/stocks/microsoft-and-oracles-ai-ambitions-just-got-a-lot-more-expensive?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-11-06T21:07:00.000Z"
+          "title": "Big Tech’s $1 Trillion Rally Bets Regulation Won’t Touch “the Profits of the Tech Companies”",
+          "link": "https://www.tikr.com/blog/big-techs-1-trillion-rally-bets-regulation-wont-touch-the-profits-of-the-tech-companies?ref=yahoofinance&tlnk=yf-261107-76c7gj42&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-07T10:51:17.000Z"
         }
       ],
       "actions": [
@@ -361,34 +361,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Dow Jones Futures: Market Needs Repair But Sandisk, Micron Look Broken; Apple, Amazon, Microsoft Strong",
+          "title": "Dow Jones Futures: Market Needs Repair But Apple, Amazon, Microsoft Strong; Berkshire Doubles Stock Buyback",
           "link": "https://finance.yahoo.com/m/283e1bd9-349e-390b-a32b-b4ed9a9034f3/dow-jones-futures%3A-market.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-06T23:41:36.000Z"
+          "at": "2026-11-07T16:19:28.000Z"
         },
         {
-          "title": "Amazon's CEO Andy Jassy Just Announced Huge News for Amazon Investors",
-          "link": "https://www.fool.com/investing/2026/11/06/amazons-ceo-andy-jassy-just-announced-huge-news/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-06T20:20:00.000Z"
+          "title": "America Just Matched a 57-Year Employment Record. Why Are Workers Still Worried?",
+          "link": "https://247wallst.com/investing/2026/11/07/america-just-matched-a-57-year-employment-record-why-are-workers-still-worried/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-11-07T15:59:21.000Z"
         },
         {
-          "title": "Microsoft and Google Face a New Bill as Data Centers “Have to Pay Their Own Costs”",
-          "link": "https://www.tikr.com/blog/microsoft-and-google-face-a-new-bill-as-data-centers-have-to-pay-their-own-costs?ref=yahoofinance&tlnk=yf-261106-5qc3f788&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-11-06T19:35:17.000Z"
+          "title": "AI Stocks Diverge as Democratic Election Victory Sparks Rotation Into Cloud Giants",
+          "link": "https://investorshub.advfn.com/market-news/article/39467/ai-stocks-diverge-as-democratic-election-victory-sparks-rotation-into-cloud-giants?.tsrc=rss",
+          "source": "investorshub.advfn.com",
+          "at": "2026-11-07T15:54:00.000Z"
         },
         {
-          "title": "Not Alphabet. Not Meta. This Is the Digital Advertising Stock I'd Buy Right Now.",
-          "link": "https://www.fool.com/investing/2026/11/06/not-alphabet-not-meta-this-is-the-digital-ad-stock/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-06T19:20:00.000Z"
-        },
-        {
-          "title": "How Earnings Upgrades At Intuitive Surgical Stock Have Changed Its Investment Story",
-          "link": "https://finance.yahoo.com/healthcare/articles/earnings-upgrades-intuitive-surgical-stock-001140435.html?.tsrc=rss",
+          "title": "These 7 Stocks Are Analyst Favorites For Magnificent Earnings Growth; Amazon Holds Up Amid AI Rout",
+          "link": "https://finance.yahoo.com/m/2b47c372-177e-3051-aa01-406a8d82b220/these-7-stocks-are-analyst.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-07T00:11:40.000Z"
+          "at": "2026-11-07T13:01:21.000Z"
+        },
+        {
+          "title": "Dan Ives: Big Tech Free Cash Flow “Will Trough in 1H2027” as Capex Growth Peaks Early",
+          "link": "https://www.tikr.com/blog/dan-ives-big-tech-free-cash-flow-will-trough-in-1h2027-as-capex-growth-peaks-early?ref=yahoofinance&tlnk=yf-261107-37r8c94m&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-07T12:06:46.000Z"
         }
       ],
       "actions": []
@@ -414,16 +414,16 @@
           "at": "2026-11-02T15:02:46.000Z"
         },
         {
+          "title": "Nasdaq (NDAQ) Stock May Trade At A Premium As Board Changes Loom",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-ndaq-stock-may-trade-141236628.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-07T14:12:36.000Z"
+        },
+        {
           "title": "Why Did Applied Materials Stock Fall?",
           "link": "https://www.trefis.com/stock/amat/articles/623353/why-did-applied-materials-stock-fall/2026-11-06?.tsrc=rss",
           "source": "trefis.com",
           "at": "2026-11-06T14:41:58.000Z"
-        },
-        {
-          "title": "What Is Behind The Move In Tesla Stock?",
-          "link": "https://www.trefis.com/stock/tsla/articles/623330/what-is-behind-the-move-in-tesla-stock/2026-11-06?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-06T14:19:48.000Z"
         }
       ],
       "actions": [
