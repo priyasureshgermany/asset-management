@@ -1,7 +1,14 @@
 {
-  "at": "2026-11-07T21:22:23.950Z",
+  "at": "2026-11-08T04:06:47.995Z",
   "market": {
     "IN": [
+      {
+        "title": "AI stock selloff drives investors to China, India, and overlooked Asian sectors",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/ai-stock-selloff-drives-investors-013045557.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-11-08T01:30:45.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Dalal Street Week Ahead: Nifty bulls come back to life, but 25,000–25,200 zone poses next test",
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/dalal-street-week-ahead-nifty-bulls-come-back-to-life-but-2500025200-zone-poses-next-test/articleshow/135634291.cms",
@@ -49,13 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/commodities/news/gold-drops-as-strong-us-payrolls-boost-dollar-yields/articleshow/135626183.cms",
         "source": "Economic Times",
         "at": "2026-11-07T04:10:07.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Risk-off mood sweeps European stocks as AI concerns deepen",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/risk-off-mood-sweeps-european-stocks-as-ai-concerns-deepen/articleshow/135626153.cms",
-        "source": "Economic Times",
-        "at": "2026-11-07T04:05:44.000Z",
         "market": "Indian markets"
       }
     ],
@@ -319,6 +319,12 @@
     "MSFT": {
       "news": [
         {
+          "title": "Dow Jones Futures: Market Damaged, Big Winners Broken; Apple, Amazon, Microsoft Strong",
+          "link": "https://finance.yahoo.com/m/283e1bd9-349e-390b-a32b-b4ed9a9034f3/dow-jones-futures%3A-market.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-08T03:19:56.000Z"
+        },
+        {
           "title": "Older Nvidia Chips Just Cost Oracle Its Microsoft AI Deal",
           "link": "https://247wallst.com/investing/2026/11/07/older-nvidia-chips-just-cost-oracle-its-microsoft-ai-deal/?.tsrc=rss",
           "source": "247wallst.com",
@@ -331,22 +337,16 @@
           "at": "2026-11-07T17:01:03.000Z"
         },
         {
-          "title": "Dow Jones Futures: Market Needs Repair But Apple, Amazon, Microsoft Strong; Berkshire Doubles Stock Buyback",
-          "link": "https://finance.yahoo.com/m/283e1bd9-349e-390b-a32b-b4ed9a9034f3/dow-jones-futures%3A-market.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-07T16:19:28.000Z"
-        },
-        {
           "title": "AI Stocks Diverge as Democratic Election Victory Sparks Rotation Into Cloud Giants",
           "link": "https://investorshub.advfn.com/market-news/article/39467/ai-stocks-diverge-as-democratic-election-victory-sparks-rotation-into-cloud-giants?.tsrc=rss",
           "source": "investorshub.advfn.com",
           "at": "2026-11-07T15:54:00.000Z"
         },
         {
-          "title": "Citi Raises AI Revenue Forecasts Through 2028 as Cloud Demand Accelerates",
-          "link": "https://investorshub.advfn.com/market-news/article/39463/citi-raises-ai-revenue-forecasts-through-2028-as-cloud-demand-accelerates?.tsrc=rss",
-          "source": "investorshub.advfn.com",
-          "at": "2026-11-07T11:48:00.000Z"
+          "title": "Why AGI’s Fuzzy Definition Matters for Investors Betting on Google, Meta, and Microsoft",
+          "link": "https://www.barchart.com/story/news/8717688/why-agis-fuzzy-definition-matters-for-investors-betting-on-google-meta-and-microsoft?.tsrc=rss",
+          "source": "barchart.com",
+          "at": "2026-11-07T15:30:03.000Z"
         }
       ],
       "actions": [
@@ -361,6 +361,12 @@
     "AMZN": {
       "news": [
         {
+          "title": "Dow Jones Futures: Market Damaged, Big Winners Broken; Apple, Amazon, Microsoft Strong",
+          "link": "https://finance.yahoo.com/m/283e1bd9-349e-390b-a32b-b4ed9a9034f3/dow-jones-futures%3A-market.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-08T03:19:56.000Z"
+        },
+        {
           "title": "He Loses His Job at 62 as Amazon Cuts 95 More Positions. He Claims Social Security to Get By, Then Faces an $8,400 Bill to Undo It",
           "link": "https://247wallst.com/personal-finance/social-security/2026/11/07/he-loses-his-job-at-62-as-amazon-cuts-95-more-positions-he-claims-social-security-to-get-by-then-faces-an-8400-bill-to-undo-it/?.tsrc=rss",
           "source": "247wallst.com",
@@ -371,12 +377,6 @@
           "link": "https://www.thestreet.com/retail/amazon-prime-uber-eats-grubhub-delivery-change?.tsrc=rss",
           "source": "thestreet.com",
           "at": "2026-11-07T18:07:00.000Z"
-        },
-        {
-          "title": "Dow Jones Futures: Market Needs Repair But Apple, Amazon, Microsoft Strong; Berkshire Doubles Stock Buyback",
-          "link": "https://finance.yahoo.com/m/283e1bd9-349e-390b-a32b-b4ed9a9034f3/dow-jones-futures%3A-market.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-07T16:19:28.000Z"
         },
         {
           "title": "America Just Matched a 57-Year Employment Record. Why Are Workers Still Worried?",
@@ -414,16 +414,16 @@
           "at": "2026-11-02T15:02:46.000Z"
         },
         {
+          "title": "Robinhood Stock And Other Financial Plays On Rising Cash Balances",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/robinhood-stock-other-financial-plays-011341674.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-08T01:13:41.000Z"
+        },
+        {
           "title": "Nasdaq (NDAQ) Stock May Trade At A Premium As Board Changes Loom",
           "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-ndaq-stock-may-trade-141236628.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-07T14:12:36.000Z"
-        },
-        {
-          "title": "Why Did Applied Materials Stock Fall?",
-          "link": "https://www.trefis.com/stock/amat/articles/623353/why-did-applied-materials-stock-fall/2026-11-06?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-06T14:41:58.000Z"
         }
       ],
       "actions": [
