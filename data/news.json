@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-08T19:17:43.755Z",
+  "at": "2026-11-09T00:27:36.924Z",
   "market": {
     "IN": [
       {
@@ -319,10 +319,10 @@
     "MSFT": {
       "news": [
         {
-          "title": "Dow Jones Futures Loom With Market Damaged, Big Winners Broken; Apple, Amazon, Microsoft Strong",
-          "link": "https://finance.yahoo.com/m/283e1bd9-349e-390b-a32b-b4ed9a9034f3/dow-jones-futures-loom-with.html?.tsrc=rss",
+          "title": "Dow Jones Futures Rise, Techs Slide A Nvidia Probes CEO Jensen Huang Spying Case",
+          "link": "https://finance.yahoo.com/m/283e1bd9-349e-390b-a32b-b4ed9a9034f3/dow-jones-futures-rise%2C-techs.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-08T19:00:04.000Z"
+          "at": "2026-11-09T00:14:00.000Z"
         },
         {
           "title": "Microsoft Is Reportedly Getting Pickier About AI Data Center Deals. Is the Stock a Buy Now?",
@@ -343,10 +343,10 @@
           "at": "2026-11-08T09:13:15.000Z"
         },
         {
-          "title": "Older Nvidia Chips Just Cost Oracle Its Microsoft AI Deal",
-          "link": "https://247wallst.com/investing/2026/11/07/older-nvidia-chips-just-cost-oracle-its-microsoft-ai-deal/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-11-07T18:08:44.000Z"
+          "title": "Lumen Technologies (LUMN) Could Be 47% Undervalued On Fresh Third Quarter Results",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/lumen-technologies-lumn-could-47-140858911.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-08T14:08:58.000Z"
         }
       ],
       "actions": [
@@ -361,22 +361,16 @@
     "AMZN": {
       "news": [
         {
-          "title": "Dow Jones Futures Loom With Market Damaged, Big Winners Broken; Apple, Amazon, Microsoft Strong",
-          "link": "https://finance.yahoo.com/m/283e1bd9-349e-390b-a32b-b4ed9a9034f3/dow-jones-futures-loom-with.html?.tsrc=rss",
+          "title": "Amazon.com (AMZN) Added Over 100 New Alexa Shopping Functions",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-com-amzn-added-over-211017852.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-08T19:00:04.000Z"
+          "at": "2026-11-08T21:10:17.000Z"
         },
         {
           "title": "Amazon (AMZN): AWS Grew 39%, and Management Expects Growth Above 40% in 2027 and 2028",
           "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-amzn-aws-grew-39-173722876.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-08T17:37:22.000Z"
-        },
-        {
-          "title": "1 Stat That Makes Amazon Hard to Ignore Right Now",
-          "link": "https://www.fool.com/investing/2026/11/08/1-stat-that-makes-hot-ticker-hard-to-ignore-right/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-08T09:05:00.000Z"
         },
         {
           "title": "Why AI investors may favor established data-center owners",
@@ -389,6 +383,12 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/sustainable-ai-investment-boom-thursday-164711242.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-08T16:47:11.000Z"
+        },
+        {
+          "title": "Europe Wants €6 Billion From Cheap Parcels. Temu’s Owner PDD Trades at 7x Earnings",
+          "link": "https://www.tikr.com/blog/europe-wants-e6-billion-from-cheap-parcels-temus-owner-pdd-trades-at-7x-earnings?ref=yahoofinance&tlnk=yf-261108-xfhhh9w7&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-08T16:36:18.000Z"
         }
       ],
       "actions": []
