@@ -1,61 +1,61 @@
 {
-  "at": "2026-11-09T21:52:37.641Z",
+  "at": "2026-11-10T05:46:27.809Z",
   "market": {
     "IN": [
+      {
+        "title": "Anthropic plans IPO live stream with Amodei, JPMorgan CEO Dimon",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/anthropic-plans-ipo-live-stream-with-amodei-jpmorgan-ceo-dimon/articleshow/135699137.cms",
+        "source": "Economic Times",
+        "at": "2026-11-10T04:24:56.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Anthropic retracts details of $69 billion IPO filing sent to bankers. Why analysts are raising worries over valuations",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/anthropic-sends-out-then-retracts-details-of-ipo-filing-emails-show/articleshow/135696816.cms",
+        "source": "Economic Times",
+        "at": "2026-11-10T02:18:28.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "RBI said to query bank valuations of some bond derivative trades",
+        "link": "https://economictimes.indiatimes.com/markets/bonds/rbi-said-to-query-bank-valuations-of-some-bond-derivative-trades/articleshow/135696624.cms",
+        "source": "Economic Times",
+        "at": "2026-11-10T02:02:12.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Oil falls as Trump downplays prospect of escalation with Iran",
+        "link": "https://economictimes.indiatimes.com/markets/commodities/news/oil-falls-as-trump-downplays-prospect-of-escalation-with-iran/articleshow/135696497.cms",
+        "source": "Economic Times",
+        "at": "2026-11-10T01:45:29.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Gold dips ahead of US inflation data",
+        "link": "https://economictimes.indiatimes.com/markets/commodities/news/gold-dips-ahead-of-us-inflation-data/articleshow/135696094.cms",
+        "source": "Economic Times",
+        "at": "2026-11-10T00:56:50.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Dollar sellers hit pause for US inflation data",
+        "link": "https://economictimes.indiatimes.com/markets/forex/forex-news/dollar-sellers-hit-pause-for-us-inflation-data/articleshow/135696077.cms",
+        "source": "Economic Times",
+        "at": "2026-11-10T00:51:32.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Global Market Today: Asian stocks rally after US tech surge, oil slump",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-today-asian-stocks-rally-after-us-tech-surge-oil-slump/articleshow/135696042.cms",
+        "source": "Economic Times",
+        "at": "2026-11-10T00:45:50.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Trump administration's embrace of \"perp\" futures sets off risk alarms for Wall Street stalwarts",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/trump-administrations-embrace-of-perp-futures-sets-off-risk-alarms-for-wall-street-stalwarts/articleshow/135688561.cms",
         "source": "Economic Times",
         "at": "2026-11-09T16:58:59.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "US dollar dips as easing AI and Mideast worries limit its appeal",
-        "link": "https://economictimes.indiatimes.com/markets/forex/forex-news/us-dollar-dips-as-easing-ai-and-mideast-worries-limit-its-appeal/articleshow/135687593.cms",
-        "source": "Economic Times",
-        "at": "2026-11-09T16:16:36.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "US stocks: Dow Jones rallies 500 points, Nasdaq over 2% as chip stocks rebound; Nvidia probe weighs",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-us-market-opens-higher-after-last-weeks-ai-rout/articleshow/135685663.cms",
-        "source": "Economic Times",
-        "at": "2026-11-09T15:05:56.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Nvidia sell-off continues: Chipmaker stock plunges 9% as Jensen Huang faces espionage controversy",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/nvidia-stock-crashes-8-after-a-foreign-intelligence-probe-initiated-by-ai-company-into-ceo-jensen-huang/articleshow/135685302.cms",
-        "source": "Economic Times",
-        "at": "2026-11-09T14:44:09.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Dow Jones| Nasdaq | US Stock Market Today | Highlights: Dow rockets 1,200 pts after last week's tech-led rout; oil prices swing",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/dow-jones-us-stock-market-live-updates-nasdaq-sp-500-iran-war-hormuz-deal-brent-crude-oil-inflation-fed-rate-nvidia-jensen-huang-marvell-tech-qualcomm-meta-micrsoft-ai-chip-stock-price-news-9th-november-2026/liveblog/135683531.cms",
-        "source": "Economic Times",
-        "at": "2026-11-09T13:11:00.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "India bonds continue rally ahead of inflation data",
-        "link": "https://economictimes.indiatimes.com/markets/bonds/india-bonds-continue-rally-ahead-of-inflation-data/articleshow/135681750.cms",
-        "source": "Economic Times",
-        "at": "2026-11-09T12:11:27.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Uno Minda among 7 stocks hitting 52-week highs; rally up to 26% in a month",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/uno-minda-among-7-stocks-hitting-52-week-highs-rally-up-to-26-in-a-month/slideshow/135681703.cms",
-        "source": "Economic Times",
-        "at": "2026-11-09T11:49:40.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "US market remains tied to tech stocks despite sharp AI sell-off",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-markets-still-reliant-on-tech-stocks-despite-ai-selloff-and-democrat-win-triggered-political-risks/articleshow/135679992.cms",
-        "source": "Economic Times",
-        "at": "2026-11-09T11:16:25.000Z",
         "market": "Indian markets"
       }
     ],
@@ -312,6 +312,12 @@
     "MSFT": {
       "news": [
         {
+          "title": "Microsoft (MSFT) Signs Global AI Safety Declaration",
+          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-signs-global-ai-042734846.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-10T04:27:34.000Z"
+        },
+        {
           "title": "Soprano to Support Organisations Navigating Microsoft Entra MFA Changes",
           "link": "https://finance.yahoo.com/technology/articles/soprano-support-organisations-navigating-microsoft-210000722.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -334,12 +340,6 @@
           "link": "https://247wallst.com/investing/2026/11/09/300000-in-cisco-ibm-and-microsoft-could-pay-you-5150-a-year/?.tsrc=rss",
           "source": "247wallst.com",
           "at": "2026-11-09T19:17:55.000Z"
-        },
-        {
-          "title": "His Tech Employer Offers Him Nine Months of Pay to Retire at 55. His Social Security Window Won’t Open for Another Seven Years",
-          "link": "https://247wallst.com/personal-finance/social-security/2026/11/09/his-tech-employer-offers-him-nine-months-of-pay-to-retire-at-55-his-social-security-window-wont-open-for-another-seven-years/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-11-09T19:05:35.000Z"
         }
       ],
       "actions": [
@@ -353,6 +353,18 @@
     },
     "AMZN": {
       "news": [
+        {
+          "title": "Dow Jones Soars 1,132 Points As Amazon, Tesla Rally, But Nvidia Dives; CPI Inflation Report Next",
+          "link": "https://finance.yahoo.com/m/db2f6d95-b7a5-3274-8193-c767d2b681c1/dow-jones-soars-1%2C132-points.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-10T02:31:48.000Z"
+        },
+        {
+          "title": "Jeff Bezos says your family is 'not going to need' 2 paychecks thanks to AI",
+          "link": "https://www.thestreet.com/technology/jeff-bezos-predictions-ai-impact-on-jobs?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-11-09T22:03:00.000Z"
+        },
         {
           "title": "Amazon Stocks Rise 4.05% as JPMorgan Adds It to Focus List on AWS",
           "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-stocks-rise-4-05-180349063.html?.tsrc=rss",
@@ -370,18 +382,6 @@
           "link": "https://finance.yahoo.com/personal-finance/credit-cards/article/best-credit-cards-for-black-friday-shopping-171339344.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-09T17:13:39.000Z"
-        },
-        {
-          "title": "Andy Jassy Just Announced Fantastic News for Amazon Stock Investors",
-          "link": "https://www.fool.com/investing/2026/11/09/andy-jassy-just-announced-fantastic-news-for-amazon-stock-investors/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-09T16:59:02.000Z"
-        },
-        {
-          "title": "Wall Street's Four Main Benchmarks Start the Week Higher as Inflation Data Nears",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/wall-streets-four-main-benchmarks-164600239.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-09T16:46:00.000Z"
         }
       ],
       "actions": []
