@@ -1,67 +1,95 @@
 {
-  "at": "2026-11-11T13:28:00.048Z",
+  "at": "2026-11-11T21:42:43.950Z",
   "market": {
     "IN": [
+      {
+        "title": "Yes Bank bondholders press for compliance with Supreme Court's AT-1 order",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/yes-bank-bondholders-press-for-compliance-with-supreme-courts-at-1-order/articleshow/135744450.cms",
+        "source": "Economic Times",
+        "at": "2026-11-11T16:55:06.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Anthropic’s IPO is said to be multiple times oversubscribed",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/anthropics-ipo-is-said-to-be-multiple-times-oversubscribed/articleshow/135743507.cms",
+        "source": "Economic Times",
+        "at": "2026-11-11T16:25:21.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Market Trading Guide: Astra Microwave among 3 stock recommendations for Thursday",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/market-trading-guide-astra-microwave-among-3-stock-recommendations-for-thursday/slideshow/135742034.cms",
+        "source": "Economic Times",
+        "at": "2026-11-11T15:14:07.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "US stocks: S&P 500, Nasdaq rise as CoreWeave results ease AI spending concerns",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-us-market-opens-higher-as-coreweave-lifts-ai-trade/articleshow/135741336.cms",
+        "source": "Economic Times",
+        "at": "2026-11-11T14:56:26.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Baird downgrades Nvidia on China curbs, AI demand worries",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/baird-downgrades-nvidia-on-china-curbs-ai-demand-worries/articleshow/135740853.cms",
+        "source": "Economic Times",
+        "at": "2026-11-11T14:34:53.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "EasyJet shareholders approve £5.7 billion Apollo takeover",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/easyjet-shareholders-approve-5-7-billion-apollo-takeover/articleshow/135740460.cms",
+        "source": "Economic Times",
+        "at": "2026-11-11T14:16:04.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "India to switch bonds worth 250 billion rupees next week",
+        "link": "https://economictimes.indiatimes.com/markets/bonds/india-to-switch-bonds-worth-250-billion-rupees-next-week/articleshow/135740426.cms",
+        "source": "Economic Times",
+        "at": "2026-11-11T14:13:38.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Dollar firms as hot inflation, hawkish Fed talk lift rate-hike bets",
         "link": "https://economictimes.indiatimes.com/markets/forex/forex-news/dollar-firms-as-hot-inflation-hawkish-fed-talk-lift-rate-hike-bets/articleshow/135739033.cms",
         "source": "Economic Times",
         "at": "2026-11-11T13:17:36.000Z",
         "market": "Indian markets"
-      },
-      {
-        "title": "Nasdaq futures rise nearly 2% as CoreWeave earnings calm AI spending fears",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/nasdaq-futures-rise-nearly-2-as-coreweave-earnings-calm-ai-spending-fears/articleshow/135738901.cms",
-        "source": "Economic Times",
-        "at": "2026-11-11T13:13:58.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Fairfax Financial likely to exit IIFL Finance, sources say",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/fairfax-financial-likely-to-exit-iifl-finance-sources-say/articleshow/135738516.cms",
-        "source": "Economic Times",
-        "at": "2026-11-11T13:09:37.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Sterling drops against firmer dollar as markets price in a hawkish Fed",
-        "link": "https://economictimes.indiatimes.com/markets/forex/forex-news/sterling-drops-against-firmer-dollar-as-markets-price-in-a-hawkish-fed/articleshow/135738659.cms",
-        "source": "Economic Times",
-        "at": "2026-11-11T13:08:01.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Anthropic IPO: A $1.4 trillion bet on the future of AI",
-        "link": "https://economictimes.indiatimes.com/markets/ipos/fpos/anthropic-ipo-a-1-4-trillion-bet-on-the-future-of-ai/videoshow/135738282.cms",
-        "source": "Economic Times",
-        "at": "2026-11-11T12:51:21.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Realty firms' land acquisition falls 56% to 1,445 acres in Jan-Sep: Anarock",
-        "link": "https://economictimes.indiatimes.com/markets/digital-real-estate/realty-news/realty-firms-land-acquisition-falls-56-to-1445-acres-in-jan-sep-anarock/articleshow/135736891.cms",
-        "source": "Economic Times",
-        "at": "2026-11-11T12:10:24.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "US Treasury rout hands India's 10-year bond its worst day in a month",
-        "link": "https://economictimes.indiatimes.com/markets/bonds/us-treasury-rout-hands-indias-10-year-bond-its-worst-day-in-a-month/articleshow/135736836.cms",
-        "source": "Economic Times",
-        "at": "2026-11-11T12:06:33.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "These 12 midcap stocks rally up to 30% in just one month",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/these-12-midcap-stocks-rally-up-to-30-in-just-one-month/slideshow/135734690.cms",
-        "source": "Economic Times",
-        "at": "2026-11-11T10:40:03.000Z",
-        "market": "Indian markets"
       }
     ],
     "GLOBAL": [
       {
-        "title": "European shares near record high as earnings absorb tech volatility",
+        "title": "Kraken-backed tokenized trading expands to UK and EU-listed stocks",
+        "link": "https://finance.yahoo.com/video/kraken-backed-tokenized-trading-expands-173000750.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-11-11T17:30:00.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "Wall Street hits the night shift thanks to Okxice, and Kraken puts daq in your wallet",
+        "link": "https://finance.yahoo.com/video/wall-street-hits-night-shift-170000622.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-11-11T17:00:00.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "European Stocks Close Mostly Higher in Wednesday Trading; Energy Prices Keep German Inflation 'Persistently High'",
+        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-close-mostly-higher-165254722.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-11-11T16:52:54.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "FTSE 100 today: Stocks gain as oil rebounds; Spirax tops gainers",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/ftse-100-today-stocks-rise-084246110.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-11-11T08:42:46.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "European shares post record close as earnings absorb tech volatility",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/european-shares-near-record-high-083802841.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-11-11T08:38:02.000Z",
@@ -86,34 +114,6 @@
         "link": "https://finance.yahoo.com/markets/stocks/articles/european-shares-inch-toward-record-084912749.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-11-10T08:49:12.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "European Stocks Close Higher in Monday Trading Amid Easing Bond Yields, Oil Prices",
-        "link": "https://finance.yahoo.com/markets/stocks/articles/european-stocks-close-higher-monday-165807604.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-11-09T16:58:07.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "FTSE 100 today: Stocks rise as miners rally, oil slides on Iran deal hope",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-jump-085612574.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-11-09T08:56:12.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "European shares rally as Tech rebounds; Nvidia probe weighs",
-        "link": "https://finance.yahoo.com/markets/stocks/articles/european-equities-flatline-markets-digest-083653253.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-11-09T08:36:53.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "European Stocks Tumble in Friday Trading; Bank of England Raises Rates for First Time Since 2023",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-tumble-friday-trading-164554920.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-11-06T16:45:54.000Z",
         "market": "European markets"
       }
     ]
@@ -298,34 +298,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Microsoft Stock Fell After Anthropic Launches Claude Sheets to Rival Excel",
-          "link": "https://www.ibtimes.com/microsoft-shares-fall-anthropic-office-ai-tools-3809631?.tsrc=rss",
-          "source": "ibtimes.com",
-          "at": "2026-11-11T12:13:24.000Z"
+          "title": "Fed’s Bowman Says AI Now Drives About a Quarter of America’s Excess Inflation",
+          "link": "https://247wallst.com/investing/2026/11/11/feds-bowman-says-ai-now-drives-about-a-quarter-of-americas-excess-inflation/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-11-11T21:18:38.000Z"
         },
         {
-          "title": "Northern Trust leans on Microsoft FDEs to boost agentic buildout",
-          "link": "https://www.ciodive.com/news/northern-trust-leans-microsoft-fde-agentic-buildout/874317/?.tsrc=rss",
-          "source": "ciodive.com",
-          "at": "2026-11-11T12:00:00.000Z"
+          "title": "Democrats Could Target Data Center Tax Breaks in 2027. What It Means for Meta, Microsoft, Alphabet, and Amazon",
+          "link": "https://www.tikr.com/blog/democrats-could-target-data-center-tax-breaks-in-2027-what-it-means-for-meta-microsoft-alphabet-and-amazon?ref=yahoofinance&tlnk=yf-261111-57r3xq32&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-11T20:18:08.000Z"
         },
         {
-          "title": "Microsoft stock sinks as new AI rival targets $27 billion business",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-stock-sinks-ai-rival-111659740.html?.tsrc=rss",
+          "title": "Replit Awarded 2026 Microsoft for Startups Partner of the Year",
+          "link": "https://finance.yahoo.com/technology/articles/replit-awarded-2026-microsoft-startups-200100221.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-11T11:16:59.000Z"
+          "at": "2026-11-11T20:01:00.000Z"
         },
         {
-          "title": "Microsoft Stock Falls as Anthropic Takes Aim at Office Work With New Claude Tools",
-          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-stock-falls-anthropic-takes-111433184.html?.tsrc=rss",
+          "title": "TD SYNNEX Recognized as the Winner of 2026 Microsoft Global Commercial Device Channel Partner of the Year Award",
+          "link": "https://finance.yahoo.com/technology/articles/td-synnex-recognized-winner-2026-200000186.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-11T11:14:33.000Z"
+          "at": "2026-11-11T20:00:00.000Z"
         },
         {
-          "title": "Kai-Fu Lee Questions Soaring AI Valuations",
-          "link": "https://finance.yahoo.com/video/kai-fu-lee-questions-soaring-111005116.html?.tsrc=rss",
+          "title": "Arrow Electronics recognized as 2026 Microsoft Distribution Partner of the Year for second consecutive year",
+          "link": "https://finance.yahoo.com/technology/ai/articles/arrow-electronics-recognized-2026-microsoft-200000458.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-11T11:10:05.000Z"
+          "at": "2026-11-11T20:00:00.000Z"
         }
       ],
       "actions": [
@@ -340,34 +340,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Cathie Wood Dumps $3 Million of This Magnificent Seven Stock",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/cathie-wood-dumps-3-million-120959967.html?.tsrc=rss",
+          "title": "Cathie Wood's ARK Pares Amazon, Adds These Aerospace Stocks",
+          "link": "https://finance.yahoo.com/m/a05afc08-5415-3fe5-b6d1-9c1540a56a42/cathie-wood%27s-ark-pares.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-11T12:09:59.000Z"
+          "at": "2026-11-11T21:10:39.000Z"
         },
         {
-          "title": "YieldMax® ETFs Announces Weekly Distributions for Group 2 ETFs",
-          "link": "https://finance.yahoo.com/news/yieldmax-etfs-announces-weekly-distributions-115500125.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-11T11:55:00.000Z"
+          "title": "Amazon and Google Are Sitting on a $411 Billion Anthropic Windfall",
+          "link": "https://247wallst.com/investing/2026/11/11/amazon-and-google-are-sitting-on-a-411-billion-anthropic-windfall/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-11-11T20:47:45.000Z"
         },
         {
-          "title": "ETFs Are Buying Amazon (AMZN) on Monday",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/etfs-buying-amazon-amzn-monday-110118718.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-11T11:01:18.000Z"
+          "title": "Democrats Could Target Data Center Tax Breaks in 2027. What It Means for Meta, Microsoft, Alphabet, and Amazon",
+          "link": "https://www.tikr.com/blog/democrats-could-target-data-center-tax-breaks-in-2027-what-it-means-for-meta-microsoft-alphabet-and-amazon?ref=yahoofinance&tlnk=yf-261111-57r3xq32&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-11T20:18:08.000Z"
         },
         {
-          "title": "Amazon EU may face Italian trial over alleged unpaid import VAT – report",
-          "link": "https://www.retail-insight-network.com/news/amazon-eu-may-face-italian-trial/?.tsrc=rss",
-          "source": "retail-insight-network.com",
-          "at": "2026-11-11T09:14:25.000Z"
+          "title": "Amazon Stocks Move Lower 1.64% as Anthropic Filing Details AWS Note Conversion",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-stocks-move-lower-1-191029536.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-11T19:10:29.000Z"
         },
         {
-          "title": "What ProShares Ultra S&P500 2x Shares (SSO) Sold: Apple Leads on Monday",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/proshares-ultra-p500-2x-shares-110428472.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-11T11:04:28.000Z"
+          "title": "Amazon and Microsoft Lead the Cloud Market. One of Them Has Far Greater Upside.",
+          "link": "https://www.fool.com/investing/2026/11/11/amazon-and-microsoft-lead-the-cloud-market-one-of/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-11T19:05:00.000Z"
         }
       ],
       "actions": []
@@ -387,22 +387,22 @@
           "at": "2026-11-09T21:05:00.000Z"
         },
         {
-          "title": "Nasdaq Reports October 2026 Volumes",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-reports-october-2026-volumes-210500610.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-04T21:05:00.000Z"
-        },
-        {
-          "title": "I Bonds Now Pay 5.51%. Can Dividend Stocks Compete?",
-          "link": "https://247wallst.com/investing/2026/11/04/i-bonds-now-pay-5-51-can-dividend-stocks-compete/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-11-04T16:17:33.000Z"
-        },
-        {
           "title": "Nasdaq Announces End-of-Month Open Short Interest Positions in Nasdaq Stocks as of Settlement Date October 30, 2026",
           "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-announces-end-month-open-210500456.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-10T21:05:00.000Z"
+        },
+        {
+          "title": "The SEC Is Pushing for Stock Tokenization. Why Nasdaq Has Concerns About How It’s Being Done.",
+          "link": "https://finance.yahoo.com/m/c5a9f806-39b7-3e9a-815f-31383f727cc8/the-sec-is-pushing-for-stock.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-10T15:25:00.000Z"
+        },
+        {
+          "title": "Why Is Monolithic Power Systems Stock Going Up?",
+          "link": "https://www.trefis.com/stock/mpwr/articles/624083/why-is-monolithic-power-systems-stock-going-up/2026-11-10?.tsrc=rss",
+          "source": "trefis.com",
+          "at": "2026-11-10T14:56:38.000Z"
         }
       ],
       "actions": [
@@ -416,6 +416,18 @@
     },
     "NOW": {
       "news": [
+        {
+          "title": "Docusign vs. ServiceNow: Which Technology Stock Is a Better Buy for 2027?",
+          "link": "https://www.fool.com/coverage/better-buy/2026/11/11/docusign-vs-servicenow-which-technology-stock-is-a-better-buy-for-2027/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-11T20:50:02.000Z"
+        },
+        {
+          "title": "ServiceNow Drops 29% in a Month: Should You Hold or Fold the Stock?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-drops-29-month-hold-172000560.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-11T17:20:00.000Z"
+        },
         {
           "title": "What Are ServiceNow Stock Bears Missing?",
           "link": "https://www.trefis.com/stock/now/articles/623995/what-are-servicenow-stock-bears-missing/2026-11-10?.tsrc=rss",
@@ -433,18 +445,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/fjtsy-vs-now-stock-value-193809487.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-10T19:38:09.000Z"
-        },
-        {
-          "title": "ServiceNow (NOW) Gets a Boost From AI Demand and a Major Partnership",
-          "link": "https://finance.yahoo.com/technology/ai/articles/servicenow-now-gets-boost-ai-164523318.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-10T16:45:23.000Z"
-        },
-        {
-          "title": "Is ServiceNow (NOW) A Bargain As AI Partnership News Meets Valuation Doubts?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-now-bargain-ai-partnership-151020139.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-10T15:10:20.000Z"
         }
       ],
       "actions": []
