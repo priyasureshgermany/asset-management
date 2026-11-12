@@ -1,7 +1,49 @@
 {
-  "at": "2026-11-12T14:32:09.242Z",
+  "at": "2026-11-12T21:42:31.831Z",
   "market": {
     "IN": [
+      {
+        "title": "US stocks: Retail buyers limit Nvidia stock rout",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-stocks-retail-buyers-limit-nvidia-stock-rout/articleshow/135782108.cms",
+        "source": "Economic Times",
+        "at": "2026-11-12T20:36:34.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "US Fed sets new meeting schedule for 2027, as foretold by Chairman Kevin Warsh",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-fed-sets-new-meeting-schedule-for-2027-as-foretold-by-chairman-kevin-warsh/articleshow/135781878.cms",
+        "source": "Economic Times",
+        "at": "2026-11-12T20:12:45.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Kalshi ends Donald Trump Jr's advisory contract due to Polymarket conflict",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/kalshi-ends-donald-trump-jrs-advisory-contract-due-to-polymarket-conflict/articleshow/135780903.cms",
+        "source": "Economic Times",
+        "at": "2026-11-12T18:46:11.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "October retail inflation surge may weigh on housing demand, raise rate hike concerns: Knight Frank, PHDCCI",
+        "link": "https://economictimes.indiatimes.com/markets/digital-real-estate/realty-news/october-retail-inflation-surge-may-weigh-on-housing-demand-raise-rate-hike-concerns-knight-frank-phdcci/articleshow/135776096.cms",
+        "source": "Economic Times",
+        "at": "2026-11-12T16:09:52.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Nvidia default risk nears record high as board weighs CEO’s fate",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/nvidia-default-risk-nears-record-high-as-board-weighs-ceos-fate/articleshow/135775893.cms",
+        "source": "Economic Times",
+        "at": "2026-11-12T16:00:02.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "US stocks: S&P 500, Nasdaq fall as Nvidia CEO exit rattles AI stocks",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-us-market-opens-lower-after-nvidia-ceo-steps-down/articleshow/135773944.cms",
+        "source": "Economic Times",
+        "at": "2026-11-12T15:00:31.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Nebius beats quarterly revenue estimates on strong AI demand",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/nebius-beats-quarterly-revenue-estimates-on-strong-ai-demand/articleshow/135771184.cms",
@@ -15,63 +57,28 @@
         "source": "Economic Times",
         "at": "2026-11-12T13:14:54.000Z",
         "market": "Indian markets"
-      },
-      {
-        "title": "Clean Max Enviro Energy pledges Rs 50,000 crore investment in Andhra Pradesh",
-        "link": "https://economictimes.indiatimes.com/markets/companies/clean-max-enviro-energy-pledges-rs-50000-crore-investment-in-andhra-pradesh/articleshow/135771043.cms",
-        "source": "Economic Times",
-        "at": "2026-11-12T13:11:57.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Nvidia CEO Jensen Huang resigns; Colette Kress appointed Interim CEO; US futures slide: Stock Market Live Updates",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/stock-market-live-updates-dow-jones-nasdaq-sp-500-nvidia-intel-micron-ai-stocks-marvell-coreweave-ai-chip-stocks-treasury-yield-news-12th-november-2026/liveblog/135771380.cms",
-        "source": "Economic Times",
-        "at": "2026-11-12T13:10:17.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "India bonds track Treasury weakness ahead of debt supply",
-        "link": "https://economictimes.indiatimes.com/markets/bonds/india-bonds-track-treasury-weakness-ahead-of-debt-supply/articleshow/135769595.cms",
-        "source": "Economic Times",
-        "at": "2026-11-12T12:28:02.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Punjab National Bank among 4 stocks hitting 52-week highs; rally up to 22% in a month",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/punjab-national-bank-among-4-stocks-hitting-52-week-highs-rally-up-to-22-in-a-month/slideshow/135769519.cms",
-        "source": "Economic Times",
-        "at": "2026-11-12T12:21:16.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Nvidia Boardroom Turmoil: What's Happening to Jensen Huang?",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/nvidia-boardroom-turmoil-whats-happening-to-jensen-huang/videoshow/135769095.cms",
-        "source": "Economic Times",
-        "at": "2026-11-12T12:11:01.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Zee Entertainment approves Rs 600-crore share buyback at Rs 91 apiece; promoters to stay out",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/zee-entertainment-approves-rs-600-crore-share-buyback-at-rs-91-apiece-promoters-to-stay-out/articleshow/135767979.cms",
-        "source": "Economic Times",
-        "at": "2026-11-12T11:46:29.000Z",
-        "market": "Indian markets"
       }
     ],
     "GLOBAL": [
       {
-        "title": "European shares hit record highs as defensive appeal offsets Nvidia shock",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-shares-hit-record-highs-083743723.html?.tsrc=rss",
+        "title": "European Stocks Close Higher in Thursday Trading as Investors Eye Earnings, UK GDP Growth Tops Forecasts",
+        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-close-higher-thursday-165857609.html?.tsrc=rss",
         "source": "finance.yahoo.com",
-        "at": "2026-11-12T08:37:43.000Z",
+        "at": "2026-11-12T16:58:57.000Z",
         "market": "European markets"
       },
       {
-        "title": "World shares are mixed as Nvidia's troubles weigh on AI stocks",
-        "link": "https://finance.yahoo.com/markets/stocks/articles/asian-shares-mostly-slip-nvidias-041124515.html?.tsrc=rss",
+        "title": "FTSE 100 today: Stocks edge higher on strong GDP, upbeat company earnings",
+        "link": "https://finance.yahoo.com/economy/articles/ftse-100-nears-record-high-090422431.html?.tsrc=rss",
         "source": "finance.yahoo.com",
-        "at": "2026-11-12T04:11:24.000Z",
+        "at": "2026-11-12T09:04:22.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "European shares close at new high as rising yields and Nvidia slump stifle rally",
+        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-shares-hit-record-highs-083743723.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-11-12T08:37:43.000Z",
         "market": "European markets"
       },
       {
@@ -107,13 +114,6 @@
         "link": "https://finance.yahoo.com/markets/world-indices/articles/european-shares-near-record-high-083802841.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-11-11T08:38:02.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "European Stocks Close Mostly Higher in Tuesday Trading; Bank, Oil Stocks Rise as Mining, Auto Stocks Drop",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-close-mostly-higher-164927980.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-11-10T16:49:27.000Z",
         "market": "European markets"
       }
     ]
@@ -257,6 +257,12 @@
     "INTU": {
       "news": [
         {
+          "title": "Intuit (INTU) Expected to Beat Earnings Estimates: Can the Stock Move Higher?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-expected-beat-earnings-140004297.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-12T14:00:04.000Z"
+        },
+        {
           "title": "Here is What to Know Beyond Why Intuit Inc. (INTU) is a Trending Stock",
           "link": "https://finance.yahoo.com/markets/stocks/articles/know-beyond-why-intuit-inc-130002306.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -279,12 +285,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-stock-drops-despite-214501607.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-06T21:45:01.000Z"
-        },
-        {
-          "title": "Affirm Holdings Inc (AFRM) (Q1 2027) Earnings Call Highlights: 34% GMV Growth, AI Underwriting ...",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/affirm-holdings-inc-afrm-q1-071836664.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-06T07:18:36.000Z"
         }
       ],
       "actions": [
@@ -299,34 +299,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Artificial Intelligence (AI) Clinical Trial Optimization Global Market Report 2026 | Capitalize on 15.7% CAGR with IQVIA, NVIDIA, Microsoft and Oracle",
-          "link": "https://finance.yahoo.com/healthcare/articles/artificial-intelligence-ai-clinical-trial-142000510.html?.tsrc=rss",
+          "title": "Microsoft outage disrupts Outlook, Teams, and Copilot for users 'in any region'",
+          "link": "https://finance.yahoo.com/markets/article/microsoft-outage-disrupts-outlook-teams-and-copilot-for-users-in-any-region-212333470.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-12T14:20:00.000Z"
+          "at": "2026-11-12T21:23:33.000Z"
         },
         {
-          "title": "AI in IT Operations Global Market Report 2026 | Capitalize on 22.3% CAGR with Microsoft, Cisco, IBM, and ServiceNow",
-          "link": "https://finance.yahoo.com/technology/ai/articles/ai-operations-global-market-report-141600318.html?.tsrc=rss",
+          "title": "Microsoft (MSFT) Expands AI Ties With Ohio State, Is The Stock Fully Priced?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-expands-ai-ties-191040444.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-12T14:16:00.000Z"
+          "at": "2026-11-12T19:10:40.000Z"
         },
         {
-          "title": "Nvidia Is Back Below $4 Trillion, and Microsoft Just Passed It",
-          "link": "https://247wallst.com/investing/2026/11/12/nvidia-is-back-below-4-trillion-and-microsoft-just-passed-it/?.tsrc=rss",
+          "title": "Alphabet Climbs 3% as NVIDIA’s Leadership Shake-Up Puts Google’s AI Chips in the Spotlight; Microsoft Gains 2%, Amazon Ticks Up",
+          "link": "https://247wallst.com/investing/2026/11/12/alphabet-climbs-3-as-nvidias-leadership-shake-up-puts-googles-ai-chips-in-the-spotlight-microsoft-gains-2-amazon-ticks-up/?.tsrc=rss",
           "source": "247wallst.com",
-          "at": "2026-11-12T14:13:10.000Z"
+          "at": "2026-11-12T18:02:51.000Z"
         },
         {
-          "title": "DuPont Announces Collaboration with Microsoft and NobleAI to Accelerate R&D Innovation with AI",
-          "link": "https://finance.yahoo.com/technology/ai/articles/dupont-announces-collaboration-microsoft-nobleai-140000849.html?.tsrc=rss",
+          "title": "Microsoft Stocks Edge Higher as Anthropic Ties Deepen Despite Spreadsheet Rivalry",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-stocks-edge-higher-anthropic-180145730.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-12T14:00:00.000Z"
+          "at": "2026-11-12T18:01:45.000Z"
         },
         {
-          "title": "Kno2 Brings Nationwide Connectivity to Microsoft Azure Healthcare Customers",
-          "link": "https://finance.yahoo.com/healthcare/articles/kno2-brings-nationwide-connectivity-microsoft-133000267.html?.tsrc=rss",
+          "title": "ALSO and Intermedia Form Joint Venture to Build a Next-Generation U.S. Cloud and Technology Business",
+          "link": "https://finance.yahoo.com/technology/articles/intermedia-form-joint-venture-build-180000447.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-12T13:30:00.000Z"
+          "at": "2026-11-12T18:00:00.000Z"
         }
       ],
       "actions": [
@@ -341,40 +341,46 @@
     "AMZN": {
       "news": [
         {
-          "title": "Min Jin Lee’s Contemporary Epic American Hagwon Selected as Amazon’s Best Book of 2026",
-          "link": "https://finance.yahoo.com/media-advertising/articles/min-jin-lee-contemporary-epic-141500851.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-12T14:15:00.000Z"
+          "title": "Pimco CEO Warns: AI Companies Risk Borrowing \"Too Much\" ($10 Trillion)",
+          "link": "https://www.fool.com/investing/2026/11/12/pimco-ceo-warns-ai-companies-risk-borrowing-too-mu/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-12T19:50:00.000Z"
         },
         {
-          "title": "Global Fifth Party Logistics (5PL) Market Report 2026 | Capitalize on AI-Led Growth to $21.99 Billion by 2030 as Amazon, UPS, DHL, Kuehne + Nagel and DSV Scale Orchestration",
-          "link": "https://finance.yahoo.com/technology/articles/global-fifth-party-logistics-5pl-141100953.html?.tsrc=rss",
+          "title": "After Selling Poppi For $1.95B, The Ellsworths Are Back With Another Startup. But What Comes After A Billion-Dollar Exit?",
+          "link": "https://finance.yahoo.com/small-business/articles/selling-poppi-1-95b-ellsworths-183007893.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-12T14:11:00.000Z"
+          "at": "2026-11-12T18:30:07.000Z"
         },
         {
-          "title": "Cloudinary and AWS Deepen Partnership to Bring Cloudinary’s Image and Video Platform to Amazon CloudFront",
-          "link": "https://finance.yahoo.com/technology/articles/cloudinary-aws-deepen-partnership-bring-140100383.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-12T14:01:00.000Z"
+          "title": "Alphabet Climbs 3% as NVIDIA’s Leadership Shake-Up Puts Google’s AI Chips in the Spotlight; Microsoft Gains 2%, Amazon Ticks Up",
+          "link": "https://247wallst.com/investing/2026/11/12/alphabet-climbs-3-as-nvidias-leadership-shake-up-puts-googles-ai-chips-in-the-spotlight-microsoft-gains-2-amazon-ticks-up/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-11-12T18:02:51.000Z"
         },
         {
-          "title": "Cabilly & Co. Explains Legal Considerations in Unresolved Amazon Seller Disputes",
-          "link": "https://finance.yahoo.com/small-business/articles/cabilly-co-explains-legal-considerations-122000210.html?.tsrc=rss",
+          "title": "Amazon Stocks Gain as Anthropic IPO Puts $271.8 Billion Value on Stake",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-stocks-gain-anthropic-ipo-175921521.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-12T12:20:00.000Z"
+          "at": "2026-11-12T17:59:21.000Z"
         },
         {
-          "title": "Amazon Stock At $266: How Much Of Its Profit Is Anthropic?",
-          "link": "https://www.trefis.com/stock/amzn/articles/624614/amazon-stock-at-266-how-much-of-its-profit-is-anthropic/2026-11-12?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-12T12:02:22.000Z"
+          "title": "Voters Just Rejected AI Data Centers in 40 of 41 Elections. Is the $1 Trillion Boom in Trouble?",
+          "link": "https://247wallst.com/investing/2026/11/12/voters-just-rejected-ai-data-centers-in-40-of-41-elections-is-the-1-trillion-boom-in-trouble/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-11-12T17:20:01.000Z"
         }
       ],
       "actions": []
     },
     "NDAQ": {
       "news": [
+        {
+          "title": "Nasdaq Stock: Analyst Estimates & Ratings",
+          "link": "https://www.barchart.com/story/news/8798045/nasdaq-stock-analyst-estimates-ratings?.tsrc=rss",
+          "source": "barchart.com",
+          "at": "2026-11-12T12:29:38.000Z"
+        },
         {
           "title": "Rate Trading Rose in October and a Fed Governor Leans Toward Backing a December Hike",
           "link": "https://finance.yahoo.com/economy/policy/articles/rate-trading-rose-october-fed-185500013.html?.tsrc=rss",
@@ -398,12 +404,6 @@
           "link": "https://finance.yahoo.com/m/c5a9f806-39b7-3e9a-815f-31383f727cc8/the-sec-is-pushing-for-stock.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-10T15:25:00.000Z"
-        },
-        {
-          "title": "Why Is Monolithic Power Systems Stock Going Up?",
-          "link": "https://www.trefis.com/stock/mpwr/articles/624083/why-is-monolithic-power-systems-stock-going-up/2026-11-10?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-10T14:56:38.000Z"
         }
       ],
       "actions": [
@@ -418,34 +418,34 @@
     "NOW": {
       "news": [
         {
+          "title": "ServiceNow Targets Back-Office AI Growth as EmployeeWorks Hits $100 Million",
+          "link": "https://www.marketbeat.com/instant-alerts/event-servicenow-targets-back-office-ai-growth-as-employeeworks-hits-100-million-2026-11-12/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
+          "source": "marketbeat.com",
+          "at": "2026-11-12T17:15:26.000Z"
+        },
+        {
+          "title": "ServiceNow (NOW) Stock Could Be Pricey On Fresh Agentic AI Partnership News",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-now-stock-could-pricey-171338538.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-12T17:13:38.000Z"
+        },
+        {
+          "title": "LicenseFortress Expands Independent Software Licensing Services to Include ServiceNow",
+          "link": "https://finance.yahoo.com/technology/articles/licensefortress-expands-independent-software-licensing-160000729.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-12T16:00:00.000Z"
+        },
+        {
           "title": "AI in IT Operations Global Market Report 2026 | Capitalize on 22.3% CAGR with Microsoft, Cisco, IBM, and ServiceNow",
           "link": "https://finance.yahoo.com/technology/ai/articles/ai-operations-global-market-report-141600318.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-12T14:16:00.000Z"
         },
         {
-          "title": "Is The Anthropic IPO Bad News For Salesforce And ServiceNow Stock?",
-          "link": "https://www.trefis.com/stock/crm/articles/624620/is-the-anthropic-ipo-bad-news-for-salesforce-and-servicenow-stock/2026-11-12?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-12T12:02:21.000Z"
-        },
-        {
-          "title": "Why Is ServiceNow Stock Cheap Near $100?",
-          "link": "https://www.trefis.com/stock/now/articles/624204/why-is-servicenow-stock-cheap-near-100/2026-11-12?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-12T09:42:40.000Z"
-        },
-        {
-          "title": "Docusign vs. ServiceNow: Which Technology Stock Is a Better Buy for 2027?",
-          "link": "https://www.fool.com/coverage/better-buy/2026/11/11/docusign-vs-servicenow-which-technology-stock-is-a-better-buy-for-2027/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-11T20:50:02.000Z"
-        },
-        {
-          "title": "ServiceNow Drops 29% in a Month: Should You Hold or Fold the Stock?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-drops-29-month-hold-172000560.html?.tsrc=rss",
+          "title": "ReSource Point of Sale nearly doubles support volume, cuts resolution time with ServiceNow CRM",
+          "link": "https://finance.yahoo.com/technology/articles/point-sale-nearly-doubles-support-140000222.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-11T17:20:00.000Z"
+          "at": "2026-11-12T14:00:00.000Z"
         }
       ],
       "actions": []
@@ -453,16 +453,16 @@
     "WKL.AS": {
       "news": [
         {
+          "title": "Wolters Kluwer introduces ComplianceOne Plus, streamlining commercial and consumer lending",
+          "link": "https://finance.yahoo.com/technology/articles/wolters-kluwer-introduces-complianceone-plus-143000675.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-12T14:30:00.000Z"
+        },
+        {
           "title": "Wolters Kluwer brings TyMetrix 360° data into enterprise AI workflows with new MCP server",
           "link": "https://finance.yahoo.com/technology/ai/articles/wolters-kluwer-brings-tymetrix-360-153000130.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-06T15:30:00.000Z"
-        },
-        {
-          "title": "Wolters Kluwer launches agentic tax preparation capabilities in CCH iFirm Taxprep for Canadian accounting firms",
-          "link": "https://finance.yahoo.com/technology/ai/articles/wolters-kluwer-launches-agentic-tax-150000591.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-05T15:00:00.000Z"
         },
         {
           "title": "Share Buyback Transaction Details November 5 – November 11, 2026",
