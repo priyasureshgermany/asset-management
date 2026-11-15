@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-14T19:40:32.994Z",
+  "at": "2026-11-15T00:41:19.507Z",
   "market": {
     "IN": [
       {
@@ -317,16 +317,16 @@
           "at": "2026-11-14T05:33:57.000Z"
         },
         {
+          "title": "Big Tech Will Spend “Well Over $1 Trillion” in 2027, Says Applied Materials CFO",
+          "link": "https://www.tikr.com/blog/big-tech-will-spend-well-over-1-trillion-in-2027-says-applied-materials-cfo?ref=yahoofinance&tlnk=yf-261114-qqm26385&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-14T03:55:55.000Z"
+        },
+        {
           "title": "DAS Technology Gives Retailers a Competitive Advantage During Microsoft Outage",
           "link": "https://finance.yahoo.com/technology/ai/articles/das-technology-gives-retailers-competitive-230700578.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-13T23:07:00.000Z"
-        },
-        {
-          "title": "Nvidia, Alphabet, Microsoft, and Micron Are All Buying Anthropic’s IPO. Should You Buy Too?",
-          "link": "https://www.fool.com/investing/2026/11/14/nvidia-alphabet-microsoft-and-micron-are-buying-anthropic-ipo/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-14T10:22:02.000Z"
         }
       ],
       "actions": [
@@ -340,6 +340,12 @@
     },
     "AMZN": {
       "news": [
+        {
+          "title": "Amazon (AMZN) Has Its First Binding Union Contract In North America",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-amzn-first-binding-union-230857139.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-14T23:08:57.000Z"
+        },
         {
           "title": "Billionaire Bill Ackman Says There’s a Huge Disconnect in Wall Street’s Expectations for Amazon, Microsoft, Meta, and Alphabet",
           "link": "https://www.fool.com/investing/2026/11/14/bill-ackman-huge-disconnect-wall-street-expectations-for-hyperscalers/?.tsrc=rss",
@@ -363,12 +369,6 @@
           "link": "https://www.tikr.com/blog/scott-galloway-predicts-anthropics-first-trade-opens-15-to-40-higher-thats-great-news-for-alphabet-and-amazon?ref=yahoofinance&tlnk=yf-261114-5vwf9544&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-11-14T09:50:43.000Z"
-        },
-        {
-          "title": "Jim Cramer: Amazon Has What “May Soon Be a $50 Billion Semiconductor Business”",
-          "link": "https://www.tikr.com/blog/jim-cramer-amazon-has-what-may-soon-be-a-50-billion-semiconductor-business?ref=yahoofinance&tlnk=yf-261114-wq798x99&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-11-14T08:49:57.000Z"
         }
       ],
       "actions": []
