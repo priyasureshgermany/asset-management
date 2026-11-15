@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-15T00:41:19.507Z",
+  "at": "2026-11-15T10:19:37.155Z",
   "market": {
     "IN": [
       {
@@ -299,6 +299,12 @@
     "MSFT": {
       "news": [
         {
+          "title": "Founderz AI Wins 2026 Microsoft Partner of the Year Award in Training Services Category",
+          "link": "https://finance.yahoo.com/technology/ai/articles/founderz-ai-wins-2026-microsoft-083600708.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-15T08:36:00.000Z"
+        },
+        {
           "title": "Billionaire Bill Ackman Says There’s a Huge Disconnect in Wall Street’s Expectations for Amazon, Microsoft, Meta, and Alphabet",
           "link": "https://www.fool.com/investing/2026/11/14/bill-ackman-huge-disconnect-wall-street-expectations-for-hyperscalers/?.tsrc=rss",
           "source": "fool.com",
@@ -321,12 +327,6 @@
           "link": "https://www.tikr.com/blog/big-tech-will-spend-well-over-1-trillion-in-2027-says-applied-materials-cfo?ref=yahoofinance&tlnk=yf-261114-qqm26385&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-11-14T03:55:55.000Z"
-        },
-        {
-          "title": "DAS Technology Gives Retailers a Competitive Advantage During Microsoft Outage",
-          "link": "https://finance.yahoo.com/technology/ai/articles/das-technology-gives-retailers-competitive-230700578.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-13T23:07:00.000Z"
         }
       ],
       "actions": [
