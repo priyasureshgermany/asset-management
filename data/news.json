@@ -1,7 +1,35 @@
 {
-  "at": "2026-11-18T19:53:41.518Z",
+  "at": "2026-11-19T02:13:32.153Z",
   "market": {
     "IN": [
+      {
+        "title": "Sensex Today | Nifty 50 | Stock Market Live Updates: GIFT Nifty signals a negative start; Asian shares trade mixed",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-hcl-tech-adani-green-share-price-19-november-2026/liveblog/135975324.cms",
+        "source": "Economic Times",
+        "at": "2026-11-19T01:53:52.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Gold recovers from one-year low as markets assess Fed rate outlook",
+        "link": "https://economictimes.indiatimes.com/markets/commodities/news/gold-recovers-from-one-year-low-as-markets-assess-fed-rate-outlook/articleshow/135975129.cms",
+        "source": "Economic Times",
+        "at": "2026-11-19T01:47:22.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Global Market Today: Asian shares mixed as commodity prices tumble",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-today-asian-shares-mixed-as-commodity-prices-tumble/articleshow/135974671.cms",
+        "source": "Economic Times",
+        "at": "2026-11-19T00:51:57.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Dow slumps over 500 pts as Fed minutes revive rate-hike fears",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/dow-slumps-over-500-pts-as-fed-minutes-revive-rate-hike-fears/articleshow/135971558.cms",
+        "source": "Economic Times",
+        "at": "2026-11-18T21:12:38.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Fed policymakers focused on inflation risks in October, with some seeing need for bigger rate hike",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/fed-policymakers-focused-on-inflation-risks-in-october-with-some-seeing-need-for-bigger-rate-hike/articleshow/135970652.cms",
@@ -28,34 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/target-reports-strongest-quarterly-sales-gain-in-five-years-heading-into-the-holiday-shopping-season/articleshow/135966816.cms",
         "source": "Economic Times",
         "at": "2026-11-18T15:25:58.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Nasdaq gains in choppy trade as Nvidia outlook lifts AI mood; Anthropic pricing awaited",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/sp-500-nasdaq-open-higher-as-nvidia-forecast-eases-ai-jitters/articleshow/135966195.cms",
-        "source": "Economic Times",
-        "at": "2026-11-18T14:59:39.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "PSBs' net profit rises 17% to Rs 1.10 lakh cr in H1 FY27; business crosses Rs 300 lakh crore",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/psbs-net-profit-rises-17-to-rs-1-10-lakh-cr-in-h1-fy27-business-crosses-rs-300-lakh-crore/articleshow/135965650.cms",
-        "source": "Economic Times",
-        "at": "2026-11-18T14:22:28.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Puravankara launches Purva Cityspire in Kochi with ₹2,000 crore GDV",
-        "link": "https://economictimes.indiatimes.com/markets/digital-real-estate/realty-news/puravankara-launches-purva-cityspire-in-kochi-with-2000-crore-gdv/articleshow/135965572.cms",
-        "source": "Economic Times",
-        "at": "2026-11-18T14:17:43.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Prestige Group buys 50 pc stake in Advent Convention and Hotels International for Rs 500 cr",
-        "link": "https://economictimes.indiatimes.com/markets/digital-real-estate/realty-news/prestige-group-buys-50-pc-stake-in-advent-convention-and-hotels-international-for-rs-500-cr/articleshow/135965554.cms",
-        "source": "Economic Times",
-        "at": "2026-11-18T14:14:08.000Z",
         "market": "Indian markets"
       }
     ],
@@ -277,6 +277,18 @@
     "INTU": {
       "news": [
         {
+          "title": "Ahead of Intuit Earnings, Here's What Barchart Data Says Comes Next for INTU Stock",
+          "link": "https://www.barchart.com/story/news/8903158/ahead-of-intuit-earnings-here-s-what-barchart-data-says-comes-next-for-intu-stock?.tsrc=rss",
+          "source": "barchart.com",
+          "at": "2026-11-18T19:37:03.000Z"
+        },
+        {
+          "title": "Dear Intuit Stock Fans, Mark Your Calendars for November 19",
+          "link": "https://www.barchart.com/story/news/8902300/dear-intuit-stock-fans-mark-your-calendars-for-november-19?.tsrc=rss",
+          "source": "barchart.com",
+          "at": "2026-11-18T18:30:46.000Z"
+        },
+        {
           "title": "Intuit (INTU) Stock Looks Undervalued Despite A 51% Five Year Slide",
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-stock-looks-undervalued-180958217.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -293,18 +305,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-report-q1-earnings-buy-153800339.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-18T15:38:00.000Z"
-        },
-        {
-          "title": "Global Financial Management Market Report 2026: Size, Trends, and Forecast to 2030 | Capitalize on AI and cloud growth with Microsoft, Oracle, SAP, Workday, and Intuit",
-          "link": "https://finance.yahoo.com/technology/articles/global-financial-management-market-report-150800009.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-18T15:08:00.000Z"
-        },
-        {
-          "title": "Why Intuit Stock Is Falling Fast Today",
-          "link": "https://www.fool.com/investing/2026/11/17/why-intuit-stock-is-falling-fast-today/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-17T17:34:51.000Z"
         }
       ],
       "actions": [
@@ -319,34 +319,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Elastic Makes High-Accuracy, Cost-Efficient Jina AI Models Available on Microsoft Foundry",
-          "link": "https://finance.yahoo.com/technology/ai/articles/elastic-makes-high-accuracy-cost-193100251.html?.tsrc=rss",
+          "title": "Microsoft CEO Satya Nadella explains why he asked 60K employees to quit",
+          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-ceo-satya-nadella-explains-004256847.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-18T19:31:00.000Z"
+          "at": "2026-11-19T00:42:56.000Z"
         },
         {
-          "title": "AI Risks Lift Cyber Stocks as Software Looks to Shrug Off Slump",
-          "link": "https://finance.yahoo.com/m/646ac265-aef5-3b36-8971-189ef1f7c636/ai-risks-lift-cyber-stocks-as.html?.tsrc=rss",
+          "title": "Microsoft CEO Satya Nadella remains confident in Nvidia after Huang’s exit",
+          "link": "https://finance.yahoo.com/technology/articles/microsoft-ceo-satya-nadella-remains-231728146.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-18T19:25:00.000Z"
+          "at": "2026-11-18T23:17:28.000Z"
         },
         {
-          "title": "Factory Expands Collaboration with Microsoft to Bring Autonomous Software Engineering to Enterprises",
-          "link": "https://finance.yahoo.com/technology/ai/articles/factory-expands-collaboration-microsoft-bring-190400724.html?.tsrc=rss",
+          "title": "Satya Nadella predicts AI agents will reshuffle the economics of the web",
+          "link": "https://finance.yahoo.com/technology/ai/articles/satya-nadella-predicts-ai-agents-225811295.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-18T19:04:00.000Z"
+          "at": "2026-11-18T22:58:11.000Z"
         },
         {
-          "title": "Temporal Cloud Enters Public Preview on Microsoft Azure",
-          "link": "https://finance.yahoo.com/technology/ai/articles/temporal-cloud-enters-public-preview-190000118.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-18T19:00:00.000Z"
+          "title": "Billionaire Bill Ackman Sold 2 Million Shares of Microsoft Stock. But Here's Why He Says He's Still Bullish",
+          "link": "https://www.fool.com/investing/2026/11/18/billionaire-bill-ackman-sold-2-million-shares-of-microsoft-stock-but-here-s-why-he-says-he-s-still-bullish/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-18T22:42:31.000Z"
         },
         {
-          "title": "Microsoft Stocks Fall 2.27% on Day Ignite Unveils Maia 300 and Copilot Workspaces",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-stocks-fall-2-27-185525264.html?.tsrc=rss",
+          "title": "Arrow Electronics (ARW) Launches ArrowSphere Cloud Portal, Is The 16% Undervaluation Case Convincing?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/arrow-electronics-arw-launches-arrowsphere-221407018.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-18T18:55:25.000Z"
+          "at": "2026-11-18T22:14:07.000Z"
         }
       ],
       "actions": [
@@ -361,34 +361,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Amazon Stocks Rise 0.89% Premarket After UBS Trims Target to $340 but Keeps Buy",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-stocks-rise-0-89-183829798.html?.tsrc=rss",
+          "title": "3 Investments to Give a Child This Holiday Season and Leave Alone Until 2040",
+          "link": "https://www.fool.com/investing/2026/11/18/3-investments-to-give-a-child-this-holiday-season-and-leave-alone-until-2040/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-19T00:58:02.000Z"
+        },
+        {
+          "title": "Brookie Beauty LLC Announces TreStyler Launch and International Media Expansion",
+          "link": "https://finance.yahoo.com/media-advertising/articles/brookie-beauty-llc-announces-trestyler-234900589.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-18T18:38:29.000Z"
+          "at": "2026-11-18T23:49:00.000Z"
         },
         {
-          "title": "TikTok Shop takes on Amazon and Walmart with new strategy",
-          "link": "https://www.thestreet.com/retail/tiktok-shop-membership-amazon-walmart?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-11-18T18:07:00.000Z"
-        },
-        {
-          "title": "Should You Buy Amazon Stock Before the Holiday Season?",
-          "link": "https://www.fool.com/investing/2026/11/18/should-you-buy-amazon-stock-before-the-holiday-season/?.tsrc=rss",
+          "title": "Blackstone Digital Infrastructure: 3 Key Takeaways for Long-Term Investors",
+          "link": "https://www.fool.com/earnings/takeaways/2026/11/18/blackstone-digital-infrastructure-3-key-takeaways-for-long-term-investors/?.tsrc=rss",
           "source": "fool.com",
-          "at": "2026-11-18T18:05:02.000Z"
+          "at": "2026-11-18T23:46:55.000Z"
         },
         {
-          "title": "Amazon to accelerate logistics expansion in 2027, says Bank of America",
-          "link": "https://www.proactiveinvestors.com/companies/news/1102038/amazon-to-accelerate-logistics-expansion-in-2027-says-bank-of-america-1102038.html?.tsrc=rss",
-          "source": "proactiveinvestors.com",
-          "at": "2026-11-18T17:55:00.000Z"
+          "title": "Ken Griffin Dumps SpaceX, Amazon; Buys ARKK and Bets Big on Marvell",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/ken-griffin-dumps-spacex-amazon-223005217.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-18T22:30:05.000Z"
         },
         {
-          "title": "Amazon and Alphabet Will Own Over 28% of Anthropic After Its IPO. Here’s What That Means for Their Stocks.",
-          "link": "https://www.fool.com/investing/2026/11/18/amazon-and-alphabet-will-own-28-percent-of-anthropic-after-ipo/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-18T17:30:02.000Z"
+          "title": "Amazon Widens Its Fuel Surcharge to Bulk Inventory Services",
+          "link": "https://wwd.com/sourcing-journal/logistics/amazon-widens-fuel-logistics-surcharge-bulk-inventory-services-1239425935/?.tsrc=rss",
+          "source": "wwd.com",
+          "at": "2026-11-18T22:10:19.000Z"
         }
       ],
       "actions": []
@@ -408,6 +408,12 @@
           "at": "2026-11-12T12:29:38.000Z"
         },
         {
+          "title": "What Moved Coupang Stock Over 5% Lower?",
+          "link": "https://www.trefis.com/stock/cpng/articles/625841/what-moved-coupang-stock-over-5-lower/2026-11-18?.tsrc=rss",
+          "source": "trefis.com",
+          "at": "2026-11-18T23:42:56.000Z"
+        },
+        {
           "title": "Roblox Stock Fell Nearly 8%. What Happened?",
           "link": "https://www.trefis.com/stock/rblx/articles/625794/why-did-roblox-stock-fall-nearly-8/2026-11-17?.tsrc=rss",
           "source": "trefis.com",
@@ -418,12 +424,6 @@
           "link": "https://www.trefis.com/stock/ttwo/articles/625817/why-did-take-two-stock-fall-6-before-gta-vi/2026-11-17?.tsrc=rss",
           "source": "trefis.com",
           "at": "2026-11-17T14:40:48.000Z"
-        },
-        {
-          "title": "Nvidia Volatility Puts Nasdaq Stock And Trading Platforms In Focus",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-volatility-puts-nasdaq-stock-190836991.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-15T19:08:36.000Z"
         }
       ],
       "actions": [
