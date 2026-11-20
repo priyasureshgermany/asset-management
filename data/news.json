@@ -1,7 +1,35 @@
 {
-  "at": "2026-11-20T10:51:28.963Z",
+  "at": "2026-11-20T19:33:26.716Z",
   "market": {
     "IN": [
+      {
+        "title": "Sebi proposes limiting tenure of chief executives, independent directors at exchanges",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/sebi-proposes-limiting-tenure-of-chief-executives-independent-directors-at-exchanges/articleshow/136031465.cms",
+        "source": "Economic Times",
+        "at": "2026-11-20T15:09:36.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Nasdaq tumbles 2% as Anthropic retreat deepens AI trade concerns",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-nasdaq-falls-1-at-open-as-anthropic-fails-to-steady-ai-trade/articleshow/136030779.cms",
+        "source": "Economic Times",
+        "at": "2026-11-20T14:59:06.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Nasdaq tumbles over 3% as AI trade concerns spur safe-haven bid: Stock Market Live Updates",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/stock-market-live-updates-dow-jones-nasdaq-sp-500-meta-tesla-anthropic-claude-nvidia-micron-meta-ai-stocks-fed-rate-hike-inflation-treasury-yield-news-20th-november-2026/liveblog/136028991.cms",
+        "source": "Economic Times",
+        "at": "2026-11-20T13:09:00.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Rupee climbs past 93/USD as investors seek shelter in Indian stocks, shorts unwind",
+        "link": "https://economictimes.indiatimes.com/markets/forex/forex-news/rupee-climbs-past-93/usd-as-investors-seek-shelter-in-indian-stocks-shorts-unwind/articleshow/136023536.cms",
+        "source": "Economic Times",
+        "at": "2026-11-20T10:45:31.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Anthropic's debut rally fades as shares crack 7% in US pre-market trade",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropics-debut-rally-fades-as-shares-crack-7-in-pre-market-trade-on-day-2/articleshow/136021174.cms",
@@ -29,56 +57,28 @@
         "source": "Economic Times",
         "at": "2026-11-20T07:32:59.000Z",
         "market": "Indian markets"
-      },
-      {
-        "title": "Who is Roaring Kitty? The man behind GameStop's meme rally",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/who-is-roaring-kitty-the-man-behind-gamestops-meme-rally/slideshow/136017912.cms",
-        "source": "Economic Times",
-        "at": "2026-11-20T06:50:28.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Treasury rally spills over to Indian bonds, debt supply slows move",
-        "link": "https://economictimes.indiatimes.com/markets/bonds/treasury-rally-spills-over-to-indian-bonds-debt-supply-slows-move/articleshow/136014379.cms",
-        "source": "Economic Times",
-        "at": "2026-11-20T05:19:20.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Rupee rises past 93 vs USD as portfolio inflows, bear retreat fuel rally",
-        "link": "https://economictimes.indiatimes.com/markets/forex/rupee-rises-past-93-vs-usd-as-portfolio-inflows-bear-retreat-fuel-rally/articleshow/136014185.cms",
-        "source": "Economic Times",
-        "at": "2026-11-20T05:08:53.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Rupee strengthens 17 paise to 93.15 against US dollar in early trade",
-        "link": "https://economictimes.indiatimes.com/markets/forex/rupee-strengthens-17-paise-to-93-15-against-us-dollar-in-early-trade/articleshow/136013858.cms",
-        "source": "Economic Times",
-        "at": "2026-11-20T04:54:03.000Z",
-        "market": "Indian markets"
       }
     ],
     "GLOBAL": [
       {
-        "title": "FTSE 100 today: Stocks fall on tech, metals rout despite UK retail beat",
+        "title": "European Stocks Close Sharply Lower in Friday Trading Amid Tech Selloff",
+        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-close-sharply-lower-164711944.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-11-20T16:47:11.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "FTSE 100 today: Stocks plunge to worst week since March on tech, metals rout",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-fall-085409825.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-11-20T08:54:09.000Z",
         "market": "European markets"
       },
       {
-        "title": "European shares near 1-month lows as Anthropic’s debut fails to halt tech rout",
+        "title": "European shares tumble again as Anthropic debut fails to halt tech rout",
         "link": "https://finance.yahoo.com/markets/stocks/articles/european-shares-near-1-month-083602848.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-11-20T08:36:02.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "Global shares drop on AI worries, echoing Wall Street's decline despite the strong Anthropic debut",
-        "link": "https://finance.yahoo.com/markets/stocks/articles/asia-shares-drop-ai-worries-031709382.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-11-20T03:17:09.000Z",
         "market": "European markets"
       },
       {
@@ -121,6 +121,12 @@
   "symbols": {
     "TCS.NS": {
       "news": [
+        {
+          "title": "Financial Process Management Market 2026: Size, Share, Trends, and Forecast to 2030 | Capitalize on $13.11B AI and Cloud Growth with Accenture, IBM, TCS, NTT DATA, and Capgemini",
+          "link": "https://finance.yahoo.com/technology/articles/financial-process-management-market-2026-145100629.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-20T14:51:00.000Z"
+        },
         {
           "title": "Building a Community in Greater Philadelphia",
           "link": "https://finance.yahoo.com/small-business/articles/building-community-greater-philadelphia-141800188.html?.tsrc=rss",
@@ -276,34 +282,34 @@
     "INTU": {
       "news": [
         {
-          "title": "Update: Intuit Shares Drop Pre-Bell as Full-Year Sales Outlook Cut Takes Shine Off Fiscal Q1 Adjusted Earnings, Revenue Beat",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-shares-drop-pre-bell-095017644.html?.tsrc=rss",
+          "title": "Intuit stock falls on weaker outlook, Mailchimp sale to Bending Spoons",
+          "link": "https://finance.yahoo.com/markets/stocks/article/intuit-stock-falls-on-weaker-outlook-mailchimp-sale-to-bending-spoons-160641699.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-20T09:50:17.000Z"
+          "at": "2026-11-20T16:06:41.000Z"
         },
         {
-          "title": "Why Is INTU Stock Falling Overnight?",
-          "link": "https://stocktwits.com/news-articles/markets/equity/why-is-intu-stock-falling-overnight/cNbSGTSR90z?.tsrc=rss",
-          "source": "stocktwits.com",
-          "at": "2026-11-20T02:18:41.000Z"
+          "title": "Why Intuit Stock Crashed Today",
+          "link": "https://www.fool.com/investing/2026/11/20/why-intuit-stock-crashed-today/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-20T18:04:55.000Z"
         },
         {
-          "title": "What Is Intuit (INTU) Asking With Its $3.68 Billion Mailchimp Exit?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-asking-3-68-011317926.html?.tsrc=rss",
+          "title": "Intuit Stocks Drop 9.52% After Hours on Credit Karma Guide Cut and Mailchimp Sale",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-stocks-drop-9-52-180236017.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-20T01:13:17.000Z"
+          "at": "2026-11-20T18:02:36.000Z"
         },
         {
-          "title": "What Intuit (INTU) Said on Its Q1 Earnings Call",
-          "link": "https://www.marketbeat.com/instant-alerts/transcript-what-intuit-intu-said-on-its-q1-earnings-call-2026-11-19/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
-          "source": "marketbeat.com",
-          "at": "2026-11-20T00:14:07.000Z"
-        },
-        {
-          "title": "Bending Spoons Stock Surges. Its Latest Deal Comes as It Boosts Its Revenue Outlook.",
-          "link": "https://finance.yahoo.com/m/afed95e3-23c3-347d-b555-7dcc9c3c6a70/bending-spoons-stock-surges..html?.tsrc=rss",
+          "title": "Intuit Q1 Earnings Beat Estimates on Online Ecosystem Growth",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-q1-earnings-beat-estimates-162900717.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-19T22:45:00.000Z"
+          "at": "2026-11-20T16:29:00.000Z"
+        },
+        {
+          "title": "Update: Intuit Faces AI Headwinds at Credit Karma; RBC Says Long-Term Opportunity Outweighs Risks",
+          "link": "https://finance.yahoo.com/technology/ai/articles/intuit-faces-ai-headwinds-credit-161843134.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-20T16:18:43.000Z"
         }
       ],
       "actions": [
@@ -318,34 +324,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Microsoft CEO explains why the company asked 60K workers to quit. How to know when to accept a buyout or turn it down",
-          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-ceo-explains-why-company-100000431.html?.tsrc=rss",
+          "title": "Could a handful of tech giants control the future of AI?",
+          "link": "https://finance.yahoo.com/video/could-a-handful-of-tech-giants-control-the-future-of-ai-180645576.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-20T10:00:00.000Z"
+          "at": "2026-11-20T18:06:45.000Z"
         },
         {
-          "title": "What Does Mastercard (MA) Joining The AI Transparency Initiative Mean For Investors?",
-          "link": "https://finance.yahoo.com/technology/ai/articles/does-mastercard-ma-joining-ai-052240359.html?.tsrc=rss",
+          "title": "How Microsoft’s (MSFT) Valuation Crashed From 75x to 10x – Even as Earnings Kept Growing",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-valuation-crashed-75x-185012363.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-20T05:22:40.000Z"
+          "at": "2026-11-20T18:50:12.000Z"
         },
         {
-          "title": "Microsoft CEO Nadella faces uncomfortable reality after outage",
-          "link": "https://www.thestreet.com/technology/microsoft-ceo-nadella-faces-uncomfortable-reality-after-outage?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-11-20T03:47:00.000Z"
-        },
-        {
-          "title": "Akamai Technologies (AKAM) Expands Mobile Enterprise Browser Security",
-          "link": "https://finance.yahoo.com/technology/articles/akamai-technologies-akam-expands-mobile-031634349.html?.tsrc=rss",
+          "title": "Microsoft (MSFT) and Its Rivals Are Making a Huge AI Bet – Here’s What Investors Should Know",
+          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-rivals-making-huge-180640023.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-20T03:16:34.000Z"
+          "at": "2026-11-20T18:06:40.000Z"
         },
         {
-          "title": "Microsoft Bought Into Anthropic Around $350 Billion. The IPO Says “Almost Exactly $1.5 Trillion”",
-          "link": "https://www.tikr.com/blog/microsoft-bought-into-anthropic-around-350-billion-the-ipo-says-almost-exactly-1-5-trillion?ref=yahoofinance&tlnk=yf-261120-g55x67qh&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-11-19T23:06:40.000Z"
+          "title": "Wedbush: Microsoft May Give Intel a Crucial AI Chip Win",
+          "link": "https://finance.yahoo.com/technology/ai/articles/wedbush-microsoft-may-intel-crucial-180407908.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-20T18:04:07.000Z"
+        },
+        {
+          "title": "What Could Stall Microsoft Stock's Run?",
+          "link": "https://www.trefis.com/stock/msft/articles/627236/what-could-stall-microsoft-stocks-run/2026-11-20?.tsrc=rss",
+          "source": "trefis.com",
+          "at": "2026-11-20T18:02:13.000Z"
         }
       ],
       "actions": [
@@ -366,34 +372,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Amazon vs. Alphabet: Which Cloud Computing Stock Is the Better Buy?",
-          "link": "https://www.fool.com/investing/2026/11/20/amazon-vs-alphabet-which-cloud-computing-stock-is-the-better-buy/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-20T09:50:02.000Z"
+          "title": "Retailers Are Backsliding on Toxic Chemicals and Plastic. Here’s Who’s Falling Short.",
+          "link": "https://wwd.com/sourcing-journal/industry-news/report-walmart-target-amazon-backsliding-chemical-plastic-cuts-1239460454/?.tsrc=rss",
+          "source": "wwd.com",
+          "at": "2026-11-20T18:57:34.000Z"
         },
         {
-          "title": "How High Can ANT Stock Go? Wall Street Debut Sparks Valuation Debate – One Analyst Sees Amazon-Google Scale Opportunity In Anthropic",
-          "link": "https://stocktwits.com/news-articles/markets/equity/how-high-can-ant-stock-go-wall-street-valuation-analyst-amazon-google-scale-opportunity/cNbSG4tR90C?.tsrc=rss",
-          "source": "stocktwits.com",
-          "at": "2026-11-20T02:23:55.000Z"
-        },
-        {
-          "title": "Peter Thiel Now Has as Much Money in an Argentine Oil Stock as in Amazon. It’s Down 23% Since September 30",
-          "link": "https://247wallst.com/investing/2026/11/19/peter-thiel-now-has-as-much-money-in-an-argentine-oil-stock-as-in-amazon-its-down-23-since-september-30/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-11-20T01:17:06.000Z"
-        },
-        {
-          "title": "NYC lawmakers weigh compromise on Amazon delivery worker bill, Bloomberg reports",
-          "link": "https://finance.yahoo.com/economy/policy/articles/nyc-lawmakers-weigh-compromise-amazon-234713116.html?.tsrc=rss",
+          "title": "Amazon (AMZN) and Big Tech Are Spending Heavily on AI – Here’s Why Investors Aren’t Panicking",
+          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-amzn-big-tech-spending-180258975.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-19T23:47:13.000Z"
+          "at": "2026-11-20T18:02:58.000Z"
         },
         {
-          "title": "Jeff Bezos says 2 policies drive up housing costs, and it's 'not hard to figure out'",
-          "link": "https://www.thestreet.com/real-estate/jeff-bezos-says-2-policies-drive-up-housing-costs-subsidize-demand-constrain-supply?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-11-19T23:07:00.000Z"
+          "title": "The AI Boom Math In Five Lines",
+          "link": "https://www.trefis.com/stock/nvda/articles/627083/the-ai-boom-math-in-five-lines/2026-11-20?.tsrc=rss",
+          "source": "trefis.com",
+          "at": "2026-11-20T18:02:13.000Z"
+        },
+        {
+          "title": "Shopify Drops 11% in a Year: Buy, Sell or Hold the Stock?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/shopify-drops-11-buy-sell-174100619.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-20T17:41:00.000Z"
+        },
+        {
+          "title": "Amazon Stock: What Wall Street’s Latest Forecasts Say About Its Next Move",
+          "link": "https://247wallst.com/investing/2026/11/20/amazon-stock-what-wall-streets-latest-forecasts-say-about-its-next-move/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-11-20T17:03:10.000Z"
         }
       ],
       "actions": []
@@ -443,6 +449,12 @@
     "NOW": {
       "news": [
         {
+          "title": "A $4.5 Billion Fund Just Bought These 3 Stocks",
+          "link": "https://www.tikr.com/blog/a-4-5-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261120-7vmp3gpg&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-20T16:50:54.000Z"
+        },
+        {
           "title": "AI sell-off: These sectors held firm as tech slumped in Oct, Nov",
           "link": "https://finance.yahoo.com/markets/stocks/articles/ai-sell-off-sectors-held-044523371.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -465,18 +477,30 @@
           "link": "https://finance.yahoo.com/technology/articles/asset-management-itam-software-global-151500668.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-19T15:15:00.000Z"
-        },
-        {
-          "title": "Is ServiceNow A Better Buy Than Atlassian Now?",
-          "link": "https://www.trefis.com/stock/team/articles/626643/is-servicenow-a-better-buy-than-atlassian-now/2026-11-19?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-19T12:54:10.000Z"
         }
       ],
       "actions": []
     },
     "WKL.AS": {
       "news": [
+        {
+          "title": "Wolters Kluwer (ENXTAM:WKL) Stock May Be Undervalued Despite Blue Chip IQ Launch",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/wolters-kluwer-enxtam-wkl-stock-161443264.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-20T16:14:43.000Z"
+        },
+        {
+          "title": "Wolters Kluwer (ENXTAM:WKL) Says Most Accountants Have Not Fully Integrated AI",
+          "link": "https://finance.yahoo.com/technology/ai/articles/wolters-kluwer-enxtam-wkl-says-141624061.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-20T14:16:24.000Z"
+        },
+        {
+          "title": "Blue Chip IQ Launch Might Change The Case For Investing In Wolters Kluwer Stock (ENXTAM:WKL)",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/blue-chip-iq-launch-might-111358265.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-20T11:13:58.000Z"
+        },
         {
           "title": "Is Wolters Kluwer (ENXTAM:WKL) Undervalued As Blue Chip IQ Fuels Fresh AI Optimism?",
           "link": "https://finance.yahoo.com/markets/stocks/articles/wolters-kluwer-enxtam-wkl-undervalued-101215804.html?.tsrc=rss",
@@ -488,24 +512,6 @@
           "link": "https://finance.yahoo.com/economy/policy/articles/wolters-kluwer-launches-blue-chip-150100358.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-19T15:01:00.000Z"
-        },
-        {
-          "title": "Share Buyback Transaction Details November 12 – November 18, 2026",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/share-buyback-transaction-details-november-090000889.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-19T09:00:00.000Z"
-        },
-        {
-          "title": "Viz.ai and Wolters Kluwer Partner to Unite Patient Identification, Care Coordination and UpToDate Clinical Evidence on a Single Platform",
-          "link": "https://finance.yahoo.com/healthcare/articles/viz-ai-wolters-kluwer-partner-143000135.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-16T14:30:00.000Z"
-        },
-        {
-          "title": "Wolters Kluwer appoints new technology VP for tax and accounting",
-          "link": "https://www.internationalaccountingbulletin.com/news/wolters-kluwer-appoints-new-technology-vp/?.tsrc=rss",
-          "source": "internationalaccountingbulletin.com",
-          "at": "2026-11-16T10:52:03.000Z"
         }
       ],
       "actions": [
