@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-20T19:33:26.716Z",
+  "at": "2026-11-21T01:56:36.855Z",
   "market": {
     "IN": [
       {
@@ -17,7 +17,7 @@
         "market": "Indian markets"
       },
       {
-        "title": "Nasdaq tumbles over 3% as AI trade concerns spur safe-haven bid: Stock Market Live Updates",
+        "title": "Nasdaq crashes 5% at close, erasing 2026 gains; S&P 500, Dow in correction: Stock Market Highlights",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/stock-market-live-updates-dow-jones-nasdaq-sp-500-meta-tesla-anthropic-claude-nvidia-micron-meta-ai-stocks-fed-rate-hike-inflation-treasury-yield-news-20th-november-2026/liveblog/136028991.cms",
         "source": "Economic Times",
         "at": "2026-11-20T13:09:00.000Z",
@@ -288,28 +288,28 @@
           "at": "2026-11-20T16:06:41.000Z"
         },
         {
-          "title": "Why Intuit Stock Crashed Today",
-          "link": "https://www.fool.com/investing/2026/11/20/why-intuit-stock-crashed-today/?.tsrc=rss",
+          "title": "Intuit (INTU) Stock Price Slides As Q1 Results Meet Slower Growth Fears",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-stock-price-slides-231300241.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-20T23:13:00.000Z"
+        },
+        {
+          "title": "Intuit Sinks 13% on Revenue Guidance Cut as CEO Calls AI Tools “New Front Doors for Discovery”",
+          "link": "https://www.tikr.com/blog/intuit-sinks-13-on-revenue-guidance-cut-as-ceo-calls-ai-tools-new-front-doors-for-discovery?ref=yahoofinance&tlnk=yf-261120-h3hx3gvv&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-20T21:45:24.000Z"
+        },
+        {
+          "title": "Intuit Earnings Signal That Some AI Software Fears Are Sound",
+          "link": "https://finance.yahoo.com/m/9025bf5f-47bd-35cc-a90f-80a68daef480/intuit-earnings-signal-that.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-20T21:31:00.000Z"
+        },
+        {
+          "title": "Bending Spoons: 3 Key Takeaways for Long-Term Investors",
+          "link": "https://www.fool.com/earnings/takeaways/2026/11/20/bending-spoons-3-key-takeaways-for-long-term-investors/?.tsrc=rss",
           "source": "fool.com",
-          "at": "2026-11-20T18:04:55.000Z"
-        },
-        {
-          "title": "Intuit Stocks Drop 9.52% After Hours on Credit Karma Guide Cut and Mailchimp Sale",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-stocks-drop-9-52-180236017.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-20T18:02:36.000Z"
-        },
-        {
-          "title": "Intuit Q1 Earnings Beat Estimates on Online Ecosystem Growth",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-q1-earnings-beat-estimates-162900717.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-20T16:29:00.000Z"
-        },
-        {
-          "title": "Update: Intuit Faces AI Headwinds at Credit Karma; RBC Says Long-Term Opportunity Outweighs Risks",
-          "link": "https://finance.yahoo.com/technology/ai/articles/intuit-faces-ai-headwinds-credit-161843134.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-20T16:18:43.000Z"
+          "at": "2026-11-20T20:28:03.000Z"
         }
       ],
       "actions": [
@@ -324,34 +324,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Could a handful of tech giants control the future of AI?",
-          "link": "https://finance.yahoo.com/video/could-a-handful-of-tech-giants-control-the-future-of-ai-180645576.html?.tsrc=rss",
+          "title": "Mercedes F1's drivers still get the final say, even as it utilizes AI agents",
+          "link": "https://finance.yahoo.com/video/mercedes-f1s-drivers-still-get-the-final-say-even-as-it-utilizes-ai-agents-222256690.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-20T18:06:45.000Z"
+          "at": "2026-11-20T22:22:56.000Z"
         },
         {
-          "title": "How Microsoft’s (MSFT) Valuation Crashed From 75x to 10x – Even as Earnings Kept Growing",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-valuation-crashed-75x-185012363.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-20T18:50:12.000Z"
+          "title": "Mets Owner Steve Cohen’s Fund Dumped Nearly All of Its AMD and Bet $1 Billion That Microsoft Is the Safer AI Stock. AMD Has Fallen 31% Since",
+          "link": "https://247wallst.com/investing/2026/11/20/mets-owner-steve-cohens-fund-dumped-nearly-all-of-its-amd-and-bet-1-billion-that-microsoft-is-the-safer-ai-stock-amd-has-fallen-31-since/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-11-20T23:47:04.000Z"
         },
         {
-          "title": "Microsoft (MSFT) and Its Rivals Are Making a Huge AI Bet – Here’s What Investors Should Know",
-          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-rivals-making-huge-180640023.html?.tsrc=rss",
+          "title": "International Business Machines (IBM) Opens Lightwell Access On Microsoft Marketplace, Is It Still Undervalued?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/international-business-machines-ibm-opens-231452605.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-20T18:06:40.000Z"
+          "at": "2026-11-20T23:14:52.000Z"
         },
         {
-          "title": "Wedbush: Microsoft May Give Intel a Crucial AI Chip Win",
-          "link": "https://finance.yahoo.com/technology/ai/articles/wedbush-microsoft-may-intel-crucial-180407908.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-20T18:04:07.000Z"
+          "title": "Andrew Ross Sorkin Doubts OpenAI Will Be “Worth More Than Anthropic.” That’s a Problem for Microsoft",
+          "link": "https://www.tikr.com/blog/andrew-ross-sorkin-doubts-openai-will-be-worth-more-than-anthropic-thats-a-problem-for-microsoft?ref=yahoofinance&tlnk=yf-261120-j5jvg3r4&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-20T22:26:38.000Z"
         },
         {
-          "title": "What Could Stall Microsoft Stock's Run?",
-          "link": "https://www.trefis.com/stock/msft/articles/627236/what-could-stall-microsoft-stocks-run/2026-11-20?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-20T18:02:13.000Z"
+          "title": "Cramer: Microsoft the “Smartest of the Hyperscalers” With Relentless Focus on Positive Cashflow. That Includes Asking 60,000 Employees to Quit",
+          "link": "https://www.tikr.com/blog/cramer-microsoft-the-smartest-of-the-hyperscalers-with-relentless-focus-on-positive-cashflow-that-includes-asking-60000-employees-to-quit?ref=yahoofinance&tlnk=yf-261120-mq52hwf2&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-20T22:22:20.000Z"
         }
       ],
       "actions": [
@@ -372,40 +372,46 @@
     "AMZN": {
       "news": [
         {
-          "title": "Retailers Are Backsliding on Toxic Chemicals and Plastic. Here’s Who’s Falling Short.",
-          "link": "https://wwd.com/sourcing-journal/industry-news/report-walmart-target-amazon-backsliding-chemical-plastic-cuts-1239460454/?.tsrc=rss",
-          "source": "wwd.com",
-          "at": "2026-11-20T18:57:34.000Z"
-        },
-        {
-          "title": "Amazon (AMZN) and Big Tech Are Spending Heavily on AI – Here’s Why Investors Aren’t Panicking",
-          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-amzn-big-tech-spending-180258975.html?.tsrc=rss",
+          "title": "Generac Stock In Focus After Earnings Beat And Amazon Supply Deal",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/generac-stock-focus-earnings-beat-001937973.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-20T18:02:58.000Z"
+          "at": "2026-11-21T00:19:37.000Z"
         },
         {
-          "title": "The AI Boom Math In Five Lines",
-          "link": "https://www.trefis.com/stock/nvda/articles/627083/the-ai-boom-math-in-five-lines/2026-11-20?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-20T18:02:13.000Z"
+          "title": "Stock Market Today, Nov. 20: Amazon Shares Slide on AI and Mega-Cap Tech Sell-Off",
+          "link": "https://www.fool.com/coverage/stock-market-today/2026/11/20/stock-market-today-nov-20-amazon-shares-slide-on-ai-and-mega-cap-tech-sell-off/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-20T22:50:02.000Z"
         },
         {
-          "title": "Shopify Drops 11% in a Year: Buy, Sell or Hold the Stock?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/shopify-drops-11-buy-sell-174100619.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-20T17:41:00.000Z"
+          "title": "Billionaire Dan Loeb’s “Bear Math”: AI Needs $2-3 Trillion of New Yearly Revenue. He Sold Amazon",
+          "link": "https://www.tikr.com/blog/billionaire-dan-loebs-bear-math-ai-needs-2-3-trillion-of-new-yearly-revenue-he-sold-amazon?ref=yahoofinance&tlnk=yf-261120-5qww8h93&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-20T21:59:08.000Z"
         },
         {
-          "title": "Amazon Stock: What Wall Street’s Latest Forecasts Say About Its Next Move",
-          "link": "https://247wallst.com/investing/2026/11/20/amazon-stock-what-wall-streets-latest-forecasts-say-about-its-next-move/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-11-20T17:03:10.000Z"
+          "title": "From Nvidia To Amazon, Tech Giants Face Stunning Reversal As Nasdaq Erases 2026 Gains",
+          "link": "https://www.ibtimes.com/us-stocks-ai-selloff-nasdaq-market-decline-3810038?.tsrc=rss",
+          "source": "ibtimes.com",
+          "at": "2026-11-20T21:34:47.000Z"
+        },
+        {
+          "title": "Amazon Provides Options To Buy Ads Across Entire Ecosystem",
+          "link": "https://www.mediapost.com/publications/article/419599/amazon-provides-options-to-buy-ads-across-entire-e.html?.tsrc=rss",
+          "source": "mediapost.com",
+          "at": "2026-11-20T21:07:56.000Z"
         }
       ],
       "actions": []
     },
     "NDAQ": {
       "news": [
+        {
+          "title": "Nasdaq Rises on Record Recurring Revenue",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-rises-record-recurring-revenue-163545422.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-20T16:35:45.000Z"
+        },
         {
           "title": "Nasdaq and Mercedes-AMG PETRONAS F1 Team Renew Multi-Year Partnership",
           "link": "https://finance.yahoo.com/media-advertising/articles/nasdaq-mercedes-amg-petronas-f1-133000252.html?.tsrc=rss",
@@ -429,12 +435,6 @@
           "link": "https://www.trefis.com/stock/rblx/articles/625794/why-did-roblox-stock-fall-nearly-8/2026-11-17?.tsrc=rss",
           "source": "trefis.com",
           "at": "2026-11-17T14:40:49.000Z"
-        },
-        {
-          "title": "Why Did Take-Two Stock Fall 6% Before GTA VI?",
-          "link": "https://www.trefis.com/stock/ttwo/articles/625817/why-did-take-two-stock-fall-6-before-gta-vi/2026-11-17?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-17T14:40:48.000Z"
         }
       ],
       "actions": [
@@ -448,6 +448,12 @@
     },
     "NOW": {
       "news": [
+        {
+          "title": "Salesforce vs. ServiceNow: Which Technology Stock Is a Better Buy for 2027?",
+          "link": "https://www.fool.com/coverage/better-buy/2026/11/20/salesforce-vs-servicenow-which-technology-stock-is-a-better-buy-for-2027/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-20T21:47:17.000Z"
+        },
         {
           "title": "A $4.5 Billion Fund Just Bought These 3 Stocks",
           "link": "https://www.tikr.com/blog/a-4-5-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261120-7vmp3gpg&.tsrc=rss",
@@ -471,12 +477,6 @@
           "link": "https://finance.yahoo.com/technology/articles/software-saas-market-reach-usd-160000054.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-19T16:00:00.000Z"
-        },
-        {
-          "title": "IT Asset Management (ITAM) Software - Global Strategic Business Report 2026: Capitalize on the $3.5 Billion Market by 2032 with ServiceNow, IBM, Microsoft, Oracle, and BMC Software",
-          "link": "https://finance.yahoo.com/technology/articles/asset-management-itam-software-global-151500668.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-19T15:15:00.000Z"
         }
       ],
       "actions": []
