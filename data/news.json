@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-21T10:36:02.786Z",
+  "at": "2026-11-21T18:38:13.385Z",
   "market": {
     "IN": [
       {
@@ -282,6 +282,12 @@
     "INTU": {
       "news": [
         {
+          "title": "What Does Bending Spoons (BSP) Mean With A $3.68 Billion Deal And $1.3 Billion Raise?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/does-bending-spoons-bsp-mean-130857128.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-21T13:08:57.000Z"
+        },
+        {
           "title": "Intuit (INTU) Stock Price Slides As Q1 Results Meet Slower Growth Fears",
           "link": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-stock-price-slides-231300241.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -304,12 +310,6 @@
           "link": "https://www.barchart.com/story/news/8942273/a-3-7-billion-reason-why-intuit-stock-is-down-today?.tsrc=rss",
           "source": "barchart.com",
           "at": "2026-11-20T20:48:38.000Z"
-        },
-        {
-          "title": "Bending Spoons: 3 Key Takeaways for Long-Term Investors",
-          "link": "https://www.fool.com/earnings/takeaways/2026/11/20/bending-spoons-3-key-takeaways-for-long-term-investors/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-20T20:28:03.000Z"
         }
       ],
       "actions": [
@@ -324,34 +324,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Mercedes F1's drivers still get the final say, even as it utilizes AI agents",
-          "link": "https://finance.yahoo.com/video/mercedes-f1s-drivers-still-get-the-final-say-even-as-it-utilizes-ai-agents-222256690.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-20T22:22:56.000Z"
+          "title": "A $1.3 Billion Fund Just Bought These 3 Stocks",
+          "link": "https://www.tikr.com/blog/a-1-3-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261121-5m5mfwj7&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-21T17:21:55.000Z"
         },
         {
-          "title": "Did Microsoft AI Partnership Just Shift Danaher's (DHR) Investment Narrative?",
-          "link": "https://finance.yahoo.com/technology/ai/articles/did-microsoft-ai-partnership-just-051538591.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-21T05:15:38.000Z"
+          "title": "Tech Outages Drive Costco Surge: How Much Emergency Prep Should You Buy?",
+          "link": "https://moneylion.com/trending/money/tech-outages-drive-costco-surge-emergency-prep?.tsrc=rss",
+          "source": "moneylion.com",
+          "at": "2026-11-21T17:00:42.000Z"
         },
         {
-          "title": "Is Danaher (DHR) Undervalued After Its Microsoft AI Lab Partnership?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/danaher-dhr-undervalued-microsoft-ai-042011998.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-21T04:20:11.000Z"
+          "title": "3 Money Moves To Make If You Hear About Layoffs at Your Company",
+          "link": "https://moneylion.com/trending/money/money-moves-hear-about-company-layoffs?.tsrc=rss",
+          "source": "moneylion.com",
+          "at": "2026-11-21T17:00:40.000Z"
         },
         {
-          "title": "Mets Owner Steve Cohen’s Fund Dumped Nearly All of Its AMD and Bet $1 Billion That Microsoft Is the Safer AI Stock. AMD Has Fallen 31% Since",
-          "link": "https://247wallst.com/investing/2026/11/20/mets-owner-steve-cohens-fund-dumped-nearly-all-of-its-amd-and-bet-1-billion-that-microsoft-is-the-safer-ai-stock-amd-has-fallen-31-since/?.tsrc=rss",
+          "title": "Fed’s Lisa Cook Warns of Larger Rate Hikes Ahead",
+          "link": "https://247wallst.com/investing/2026/11/21/feds-lisa-cook-warns-of-larger-rate-hikes-ahead/?.tsrc=rss",
           "source": "247wallst.com",
-          "at": "2026-11-20T23:47:04.000Z"
+          "at": "2026-11-21T16:03:16.000Z"
         },
         {
-          "title": "International Business Machines (IBM) Opens Lightwell Access On Microsoft Marketplace, Is It Still Undervalued?",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/international-business-machines-ibm-opens-231452605.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-20T23:14:52.000Z"
+          "title": "A $12 Billion Fund Just Bought These 3 Stocks",
+          "link": "https://www.tikr.com/blog/a-12-billion-fund-just-bought-these-3-stocks-2?ref=yahoofinance&tlnk=yf-261121-99975xff&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-21T14:51:03.000Z"
         }
       ],
       "actions": [
@@ -372,34 +372,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Amazon's re:Invent Conference Starts Nov. 30. Here's What the Stock Did in the Month After the Last 10.",
-          "link": "https://www.fool.com/investing/2026/11/20/amazon-s-re-invent-conference-starts-nov-30-here-s-what-the-stock-did-in-the-month-after-the-last-10/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-21T02:12:02.000Z"
-        },
-        {
-          "title": "Generac Stock In Focus After Earnings Beat And Amazon Supply Deal",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/generac-stock-focus-earnings-beat-001937973.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-21T00:19:37.000Z"
-        },
-        {
-          "title": "Stock Market Today, Nov. 20: Amazon Shares Slide on AI and Mega-Cap Tech Sell-Off",
-          "link": "https://www.fool.com/coverage/stock-market-today/2026/11/20/stock-market-today-nov-20-amazon-shares-slide-on-ai-and-mega-cap-tech-sell-off/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-20T22:50:02.000Z"
-        },
-        {
-          "title": "Billionaire Dan Loeb’s “Bear Math”: AI Needs $2-3 Trillion of New Yearly Revenue. He Sold Amazon",
-          "link": "https://www.tikr.com/blog/billionaire-dan-loebs-bear-math-ai-needs-2-3-trillion-of-new-yearly-revenue-he-sold-amazon?ref=yahoofinance&tlnk=yf-261120-5qww8h93&.tsrc=rss",
+          "title": "Buy Microsoft and Amazon at More Than 70x 2028 Free Cash Flow? Here’s What Their Capex Must Return",
+          "link": "https://www.tikr.com/blog/buy-microsoft-and-amazon-at-more-than-70x-2028-free-cash-flow-heres-what-their-capex-must-return?ref=yahoofinance&tlnk=yf-261121-crqwjg7c&.tsrc=rss",
           "source": "tikr.com",
-          "at": "2026-11-20T21:59:08.000Z"
+          "at": "2026-11-21T16:20:38.000Z"
         },
         {
-          "title": "From Nvidia To Amazon, Tech Giants Face Stunning Reversal As Nasdaq Erases 2026 Gains",
-          "link": "https://www.ibtimes.com/us-stocks-ai-selloff-nasdaq-market-decline-3810038?.tsrc=rss",
-          "source": "ibtimes.com",
-          "at": "2026-11-20T21:34:47.000Z"
+          "title": "Bank of America doubles down on Amazon stock ahead of 2027",
+          "link": "https://www.thestreet.com/investing/stocks/bank-of-america-doubles-down-on-amazon-stock-ahead-of-2027?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-11-21T16:07:00.000Z"
+        },
+        {
+          "title": "Jim Cramer: Amazon Could Sell Its Anthropic Stake and Say “Our CapEx Is Paid For.” Does the Math Work?",
+          "link": "https://www.tikr.com/blog/jim-cramer-amazon-could-sell-its-anthropic-stake-and-say-our-capex-is-paid-for-does-the-math-work?ref=yahoofinance&tlnk=yf-261121-jx78vhmx&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-21T15:05:56.000Z"
+        },
+        {
+          "title": "Amazon.com (AMZN) Warns It Could Exit New York City Deliveries",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-com-amzn-warns-could-140724430.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-21T14:07:24.000Z"
+        },
+        {
+          "title": "Hank Paulson Has “Never Seen So Much Money Chasing One Opportunity.” That’s a Problem for Microsoft, Amazon and Alphabet",
+          "link": "https://www.tikr.com/blog/hank-paulson-has-never-seen-so-much-money-chasing-one-opportunity-thats-a-problem-for-microsoft-amazon-and-alphabet?ref=yahoofinance&tlnk=yf-261121-2ch8r4jc&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-21T13:46:13.000Z"
         }
       ],
       "actions": []
