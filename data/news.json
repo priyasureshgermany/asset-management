@@ -1,7 +1,21 @@
 {
-  "at": "2026-11-22T10:39:36.741Z",
+  "at": "2026-11-22T18:58:23.435Z",
   "market": {
     "IN": [
+      {
+        "title": "South Korea prepares market stabilisation funds after KOSPI hits 10-month low",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/south-korea-prepares-market-stabilisation-funds-after-kospi-hits-10-month-low/articleshow/136073016.cms",
+        "source": "Economic Times",
+        "at": "2026-11-22T11:45:31.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Crude oil futures brace for OPEC+ output decision amid supply glut concerns: Analysts",
+        "link": "https://economictimes.indiatimes.com/markets/commodities/crude-oil-futures-brace-for-opec-output-decision-amid-supply-glut-concerns-analysts/articleshow/136072428.cms",
+        "source": "Economic Times",
+        "at": "2026-11-22T11:00:27.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Why gold’s five-year winning streak is under threat after dramatic selloff",
         "link": "https://economictimes.indiatimes.com/markets/commodities/why-golds-five-year-winning-streak-is-under-threat-after-dramatic-selloff/articleshow/136070323.cms",
@@ -42,20 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/nifty-eyes-26200-as-rally-strengthens-6-sectors-signal-outperformance/articleshow/136050218.cms",
         "source": "Economic Times",
         "at": "2026-11-21T09:39:05.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Stocks to buy: HSBC lists 19 Indian stocks that saw FY27 earnings upgrades, check target prices",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/stocks-to-buy-hsbc-lists-19-indian-stocks-that-saw-fy27-earnings-upgrades-check-target-prices/slideshow/136048231.cms",
-        "source": "Economic Times",
-        "at": "2026-11-21T07:21:34.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Concurrent Gainers: These 13 stocks gained for 5 days in a row, all rose over 27%",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/concurrent-gainers-these-13-stocks-gained-for-5-days-in-a-row-all-rose-over-27/slideshow/136047969.cms",
-        "source": "Economic Times",
-        "at": "2026-11-21T06:57:10.000Z",
         "market": "Indian markets"
       }
     ],
@@ -282,6 +282,12 @@
     "INTU": {
       "news": [
         {
+          "title": "TurboTax parent's $12 billion bet ends with a costly twist",
+          "link": "https://www.thestreet.com/investing/turbotax-parents-12-billion-bet-ends-with-a-costly-twist?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-11-22T18:07:00.000Z"
+        },
+        {
           "title": "Intuit vs. Oracle: Which Technology Stock Is a Better Buy for 2027?",
           "link": "https://www.fool.com/coverage/better-buy/2026/11/21/intuit-vs-oracle-which-technology-stock-is-a-better-buy-for-2027/?.tsrc=rss",
           "source": "fool.com",
@@ -304,12 +310,6 @@
           "link": "https://www.tikr.com/blog/intuit-sinks-13-on-revenue-guidance-cut-as-ceo-calls-ai-tools-new-front-doors-for-discovery?ref=yahoofinance&tlnk=yf-261120-h3hx3gvv&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-11-20T21:45:24.000Z"
-        },
-        {
-          "title": "Intuit Earnings Signal That Some AI Software Fears Are Sound",
-          "link": "https://finance.yahoo.com/m/9025bf5f-47bd-35cc-a90f-80a68daef480/intuit-earnings-signal-that.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-20T21:31:00.000Z"
         }
       ],
       "actions": [
@@ -324,34 +324,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Microsoft Stock Gave Back 8% Within 2 Weeks of Its Record. Here's How Past Quick Pullbacks Like This Played Out.",
-          "link": "https://www.fool.com/investing/2026/11/22/microsoft-stock-gave-back-8-within-2-weeks-of-its-record-here-s-how-past-quick-pullbacks-like-this-played-out/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-22T09:01:02.000Z"
+          "title": "Is Microsoft (MSFT) Building A Bigger AI Role In Scientific Labs?",
+          "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-building-bigger-ai-160715680.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-22T16:07:15.000Z"
         },
         {
-          "title": "Nvidia Stock Has Crashed 48% and Now Trades at 15 Times Earnings, Its Cheapest in More Than a Decade and Cheaper Than Microsoft and Broadcom",
-          "link": "https://247wallst.com/investing/2026/11/21/nvidia-stock-has-crashed-48-and-now-trades-at-15-times-earnings-its-cheapest-in-more-than-a-decade-and-cheaper-than-microsoft-and-broadcom/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-11-22T00:47:00.000Z"
-        },
-        {
-          "title": "Microsoft Was The Only Big AI Buyer Paying Down Debt. How Much More Can It Spend?",
-          "link": "https://www.trefis.com/stock/msft/articles/627454/microsoft-was-the-only-big-ai-buyer-paying-down-debt-how-much-more-can-it-spend/2026-11-21?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-21T18:32:03.000Z"
-        },
-        {
-          "title": "A $1.3 Billion Fund Just Bought These 3 Stocks",
-          "link": "https://www.tikr.com/blog/a-1-3-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261121-5m5mfwj7&.tsrc=rss",
+          "title": "Warning for CoreWeave: Satya Nadella Says “Selling to One or Two Customers Is Not a Business”",
+          "link": "https://www.tikr.com/blog/warning-for-coreweave-satya-nadella-says-selling-to-one-or-two-customers-is-not-a-business?ref=yahoofinance&tlnk=yf-261122-jxpj37r5&.tsrc=rss",
           "source": "tikr.com",
-          "at": "2026-11-21T17:21:55.000Z"
+          "at": "2026-11-22T14:43:32.000Z"
         },
         {
-          "title": "Tech Outages Drive Costco Surge: How Much Emergency Prep Should You Buy?",
-          "link": "https://moneylion.com/trending/money/tech-outages-drive-costco-surge-emergency-prep?.tsrc=rss",
-          "source": "moneylion.com",
-          "at": "2026-11-21T17:00:42.000Z"
+          "title": "A $3.1 Billion Fund Just Bought These 3 Stocks",
+          "link": "https://www.tikr.com/blog/a-3-1-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261122-x5gqq5xg&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-22T11:20:52.000Z"
+        },
+        {
+          "title": "A $1.2 Billion Fund Just Bought These 3 Stocks",
+          "link": "https://www.tikr.com/blog/a-1-2-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261122-77qr38x6&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-22T11:20:01.000Z"
+        },
+        {
+          "title": "A $4.4 Billion Fund Just Bought These 3 Stocks",
+          "link": "https://www.tikr.com/blog/a-4-4-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261122-fp25684g&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-22T11:17:21.000Z"
         }
       ],
       "actions": [
@@ -372,34 +372,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "ULA Vulcan Launch Ends in Disaster for Amazon's Satellite Internet Ambitions",
-          "link": "https://www.fool.com/investing/2026/11/21/ula-vulcan-launch-ends-in-disaster-for-amazon-s-satellite-internet-ambitions/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-22T02:47:02.000Z"
+          "title": "Jeff Bezos predicts Amazon will eventually 'go bankrupt' and shares 30-year rule behind it",
+          "link": "https://www.thestreet.com/retail/jeff-bezos-predicts-amazon-will-eventually-go-bankrupt-30-year-rule?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-11-22T18:33:00.000Z"
         },
         {
-          "title": "The Ultimate Growth Stock to Buy With $1,000 Before the End of November",
-          "link": "https://www.fool.com/investing/2026/11/21/the-ultimate-growth-stock-to-buy-with-usd1-000-before-the-end-of-november/?.tsrc=rss",
+          "title": "Amazon.com vs. Home Depot: Which Consumer Stock Is a Better Buy for 2027?",
+          "link": "https://www.fool.com/coverage/better-buy/2026/11/22/amazoncom-vs-home-depot-which-consumer-stock-is-a-better-buy-for-2027/?.tsrc=rss",
           "source": "fool.com",
-          "at": "2026-11-22T00:20:03.000Z"
+          "at": "2026-11-22T18:24:11.000Z"
         },
         {
-          "title": "A $2.2 Billion Fund Just Bought These 3 Stocks",
-          "link": "https://www.tikr.com/blog/a-2-2-billion-fund-just-bought-these-3-stocks-2?ref=yahoofinance&tlnk=yf-261121-75qm98f6&.tsrc=rss",
+          "title": "Anthropic Drove “the Entire Acceleration in AWS and Google Cloud,” per Gil Luria. That’s a Big Risk for Amazon and Alphabet",
+          "link": "https://www.tikr.com/blog/anthropic-drove-the-entire-acceleration-in-aws-and-google-cloud-per-gil-luria-thats-a-big-risk-for-amazon-and-alphabet?ref=yahoofinance&tlnk=yf-261122-rqv8x2vc&.tsrc=rss",
           "source": "tikr.com",
-          "at": "2026-11-21T19:35:35.000Z"
+          "at": "2026-11-22T16:09:13.000Z"
         },
         {
-          "title": "Amazon tells NYC shoppers a Mamdani-backed delivery bill could cost them up to $664 a year per household",
-          "link": "https://finance.yahoo.com/economy/policy/articles/amazon-tells-nyc-shoppers-mamdani-193000343.html?.tsrc=rss",
+          "title": "A $1.6 Billion Fund Just Bought These 3 Stocks",
+          "link": "https://www.tikr.com/blog/a-1-6-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261122-3wx5vxcw&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-22T16:05:31.000Z"
+        },
+        {
+          "title": "‘It’s greed’: Zohran Mamdani blasts Amazon over new $5 fee hike in NYC. Is your next order about to get pricier?",
+          "link": "https://finance.yahoo.com/economy/policy/articles/greed-zohran-mamdani-blasts-amazon-121000124.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-21T19:30:00.000Z"
-        },
-        {
-          "title": "Cathie Wood Just Sold $9 Million of Amazon",
-          "link": "https://www.tikr.com/blog/cathie-wood-just-sold-9-million-of-amazon?ref=yahoofinance&tlnk=yf-261121-44jm86mg&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-11-21T19:05:34.000Z"
+          "at": "2026-11-22T12:10:00.000Z"
         }
       ],
       "actions": []
@@ -449,6 +449,12 @@
     "NOW": {
       "news": [
         {
+          "title": "ServiceNow (NOW) Stock: An Oversold AI Opportunity With Nearly 77% Upside?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-now-stock-oversold-ai-165017801.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-22T16:50:17.000Z"
+        },
+        {
           "title": "ServiceNow (NOW) Launches Autonomous CRM Engine And Expands AI Risk Monitoring",
           "link": "https://finance.yahoo.com/technology/ai/articles/servicenow-now-launches-autonomous-crm-011149322.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -471,12 +477,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/ai-sell-off-sectors-held-044523371.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-20T04:45:23.000Z"
-        },
-        {
-          "title": "ServiceNow vs. UiPath: Which Technology Stock Is a Better Buy for 2027?",
-          "link": "https://www.fool.com/coverage/better-buy/2026/11/19/servicenow-vs-uipath-which-technology-stock-is-a-better-buy-for-2027/?.tsrc=rss",
-          "source": "fool.com",
-          "at": "2026-11-19T19:03:02.000Z"
         }
       ],
       "actions": []
