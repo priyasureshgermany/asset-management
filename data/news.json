@@ -1,7 +1,42 @@
 {
-  "at": "2026-11-22T00:53:24.135Z",
+  "at": "2026-11-22T10:39:36.741Z",
   "market": {
     "IN": [
+      {
+        "title": "Why gold’s five-year winning streak is under threat after dramatic selloff",
+        "link": "https://economictimes.indiatimes.com/markets/commodities/why-golds-five-year-winning-streak-is-under-threat-after-dramatic-selloff/articleshow/136070323.cms",
+        "source": "Economic Times",
+        "at": "2026-11-22T08:21:09.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "InvIT IPO rush gathers pace; 4-5 private trusts likely to go public by Mar 2027",
+        "link": "https://economictimes.indiatimes.com/markets/ipos/fpos/invit-ipo-rush-gathers-pace-4-5-private-trusts-likely-to-go-public-by-mar-2027/articleshow/136069094.cms",
+        "source": "Economic Times",
+        "at": "2026-11-22T06:45:10.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "5 penny stocks plunge up to 68% in six months. Do you own any?",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/5-penny-stocks-plunge-up-to-68-in-six-months-do-you-own-any/slideshow/136069072.cms",
+        "source": "Economic Times",
+        "at": "2026-11-22T06:33:45.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Reliance Brands FY26 revenue up 3.8% to Rs 3,390.9 crore; loss narrows to Rs 137 crore",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/reliance-brands-fy26-revenue-up-3-8-to-rs-3390-9-crore-loss-narrows-to-rs-137-crore/articleshow/136068185.cms",
+        "source": "Economic Times",
+        "at": "2026-11-22T05:44:52.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Anthropic's post-debut stumble delivers reality check for AI trade",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/anthropics-post-debut-stumble-delivers-reality-check-for-ai-trade/articleshow/136066633.cms",
+        "source": "Economic Times",
+        "at": "2026-11-22T03:30:15.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Nifty eyes 26,200 as rally strengthens; 6 sectors signal outperformance",
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/nifty-eyes-26200-as-rally-strengthens-6-sectors-signal-outperformance/articleshow/136050218.cms",
@@ -21,41 +56,6 @@
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/concurrent-gainers-these-13-stocks-gained-for-5-days-in-a-row-all-rose-over-27/slideshow/136047969.cms",
         "source": "Economic Times",
         "at": "2026-11-21T06:57:10.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "AI to lead investment strategy in 2027; Energy and borrowing costs shape macro outlook: Barclays",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/ai-to-lead-investment-strategy-in-2027-energy-and-borrowing-costs-shape-macro-outlook-barclays/articleshow/136046648.cms",
-        "source": "Economic Times",
-        "at": "2026-11-21T06:09:54.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Market winners: Max Healthcare, Deepak Fertilisers among 10 stocks that surged up to 14% in last week",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/market-winners-max-healthcare-deepak-fertilisers-among-10-stocks-that-surged-up-to-14-in-last-week/slideshow/136046616.cms",
-        "source": "Economic Times",
-        "at": "2026-11-21T05:51:22.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "US Treasury yields drop for day and week; AI trade concern spurs safe-haven bid",
-        "link": "https://economictimes.indiatimes.com/markets/bonds/us-treasury-yields-drop-for-day-and-week-ai-trade-concern-spurs-safe-haven-bid/articleshow/136045682.cms",
-        "source": "Economic Times",
-        "at": "2026-11-21T05:23:49.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Dollar weaker as Fed-fueled rally stalls; lower US yields help yen",
-        "link": "https://economictimes.indiatimes.com/markets/forex/forex-news/dollar-weaker-as-fed-fueled-rally-stalls-lower-us-yields-help-yen/articleshow/136045620.cms",
-        "source": "Economic Times",
-        "at": "2026-11-21T05:20:04.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Crude prices may normalise to USD 70 by end-2027 as global oil market moves into surplus: Report",
-        "link": "https://economictimes.indiatimes.com/markets/commodities/news/crude-prices-may-normalise-to-usd-70-by-end-2027-as-global-oil-market-moves-into-surplus-report/articleshow/136045576.cms",
-        "source": "Economic Times",
-        "at": "2026-11-21T05:16:52.000Z",
         "market": "Indian markets"
       }
     ],
@@ -324,6 +324,18 @@
     "MSFT": {
       "news": [
         {
+          "title": "Microsoft Stock Gave Back 8% Within 2 Weeks of Its Record. Here's How Past Quick Pullbacks Like This Played Out.",
+          "link": "https://www.fool.com/investing/2026/11/22/microsoft-stock-gave-back-8-within-2-weeks-of-its-record-here-s-how-past-quick-pullbacks-like-this-played-out/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-22T09:01:02.000Z"
+        },
+        {
+          "title": "Nvidia Stock Has Crashed 48% and Now Trades at 15 Times Earnings, Its Cheapest in More Than a Decade and Cheaper Than Microsoft and Broadcom",
+          "link": "https://247wallst.com/investing/2026/11/21/nvidia-stock-has-crashed-48-and-now-trades-at-15-times-earnings-its-cheapest-in-more-than-a-decade-and-cheaper-than-microsoft-and-broadcom/?.tsrc=rss",
+          "source": "247wallst.com",
+          "at": "2026-11-22T00:47:00.000Z"
+        },
+        {
           "title": "Microsoft Was The Only Big AI Buyer Paying Down Debt. How Much More Can It Spend?",
           "link": "https://www.trefis.com/stock/msft/articles/627454/microsoft-was-the-only-big-ai-buyer-paying-down-debt-how-much-more-can-it-spend/2026-11-21?.tsrc=rss",
           "source": "trefis.com",
@@ -340,18 +352,6 @@
           "link": "https://moneylion.com/trending/money/tech-outages-drive-costco-surge-emergency-prep?.tsrc=rss",
           "source": "moneylion.com",
           "at": "2026-11-21T17:00:42.000Z"
-        },
-        {
-          "title": "3 Money Moves To Make If You Hear About Layoffs at Your Company",
-          "link": "https://moneylion.com/trending/money/money-moves-hear-about-company-layoffs?.tsrc=rss",
-          "source": "moneylion.com",
-          "at": "2026-11-21T17:00:40.000Z"
-        },
-        {
-          "title": "Fed’s Lisa Cook Warns of Larger Rate Hikes Ahead",
-          "link": "https://247wallst.com/investing/2026/11/21/feds-lisa-cook-warns-of-larger-rate-hikes-ahead/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-11-21T16:03:16.000Z"
         }
       ],
       "actions": [
@@ -371,6 +371,12 @@
     },
     "AMZN": {
       "news": [
+        {
+          "title": "ULA Vulcan Launch Ends in Disaster for Amazon's Satellite Internet Ambitions",
+          "link": "https://www.fool.com/investing/2026/11/21/ula-vulcan-launch-ends-in-disaster-for-amazon-s-satellite-internet-ambitions/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-22T02:47:02.000Z"
+        },
         {
           "title": "The Ultimate Growth Stock to Buy With $1,000 Before the End of November",
           "link": "https://www.fool.com/investing/2026/11/21/the-ultimate-growth-stock-to-buy-with-usd1-000-before-the-end-of-november/?.tsrc=rss",
@@ -394,18 +400,18 @@
           "link": "https://www.tikr.com/blog/cathie-wood-just-sold-9-million-of-amazon?ref=yahoofinance&tlnk=yf-261121-44jm86mg&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-11-21T19:05:34.000Z"
-        },
-        {
-          "title": "Buy Microsoft and Amazon at More Than 70x 2028 Free Cash Flow? Here’s What Their Capex Must Return",
-          "link": "https://www.tikr.com/blog/buy-microsoft-and-amazon-at-more-than-70x-2028-free-cash-flow-heres-what-their-capex-must-return?ref=yahoofinance&tlnk=yf-261121-crqwjg7c&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-11-21T16:20:38.000Z"
         }
       ],
       "actions": []
     },
     "NDAQ": {
       "news": [
+        {
+          "title": "Nasdaq Targets 2027 Equity Token Launch as AI and FinTech Growth Accelerate",
+          "link": "https://www.marketbeat.com/instant-alerts/event-nasdaq-targets-2027-equity-token-launch-as-ai-and-fintech-growth-accelerate-2026-11-21/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
+          "source": "marketbeat.com",
+          "at": "2026-11-22T02:12:04.000Z"
+        },
         {
           "title": "Nasdaq Starts Charging for Financial Crime AI Agents as 850 Customers Sign On",
           "link": "https://www.marketbeat.com/instant-alerts/event-nasdaq-starts-charging-for-financial-crime-ai-agents-as-850-customers-sign-on-2026-11-21/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
@@ -429,12 +435,6 @@
           "link": "https://finance.yahoo.com/m/c4a00b79-e142-3efa-a231-5e38bb86b75f/the-nyse-and-texas-stock.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-19T17:44:00.000Z"
-        },
-        {
-          "title": "What Moved Coupang Stock Over 5% Lower?",
-          "link": "https://www.trefis.com/stock/cpng/articles/625841/what-moved-coupang-stock-over-5-lower/2026-11-18?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-18T23:42:56.000Z"
         }
       ],
       "actions": [
@@ -448,6 +448,12 @@
     },
     "NOW": {
       "news": [
+        {
+          "title": "ServiceNow (NOW) Launches Autonomous CRM Engine And Expands AI Risk Monitoring",
+          "link": "https://finance.yahoo.com/technology/ai/articles/servicenow-now-launches-autonomous-crm-011149322.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-22T01:11:49.000Z"
+        },
         {
           "title": "Salesforce vs. ServiceNow: Which Technology Stock Is a Better Buy for 2027?",
           "link": "https://www.fool.com/coverage/better-buy/2026/11/20/salesforce-vs-servicenow-which-technology-stock-is-a-better-buy-for-2027/?.tsrc=rss",
@@ -471,12 +477,6 @@
           "link": "https://www.fool.com/coverage/better-buy/2026/11/19/servicenow-vs-uipath-which-technology-stock-is-a-better-buy-for-2027/?.tsrc=rss",
           "source": "fool.com",
           "at": "2026-11-19T19:03:02.000Z"
-        },
-        {
-          "title": "Software as a Service (SaaS) Market to Reach USD 1,367.68 Billion by 2035 as AI Agents Reshape Pricing and Salesforce, Adobe, ServiceNow and Workday Build New AI Revenue Lines",
-          "link": "https://finance.yahoo.com/technology/articles/software-saas-market-reach-usd-160000054.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-19T16:00:00.000Z"
         }
       ],
       "actions": []
