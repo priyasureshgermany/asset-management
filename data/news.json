@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-21T18:38:13.385Z",
+  "at": "2026-11-22T00:53:24.135Z",
   "market": {
     "IN": [
       {
@@ -282,6 +282,12 @@
     "INTU": {
       "news": [
         {
+          "title": "Intuit vs. Oracle: Which Technology Stock Is a Better Buy for 2027?",
+          "link": "https://www.fool.com/coverage/better-buy/2026/11/21/intuit-vs-oracle-which-technology-stock-is-a-better-buy-for-2027/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-22T00:00:25.000Z"
+        },
+        {
           "title": "What Does Bending Spoons (BSP) Mean With A $3.68 Billion Deal And $1.3 Billion Raise?",
           "link": "https://finance.yahoo.com/markets/stocks/articles/does-bending-spoons-bsp-mean-130857128.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -304,12 +310,6 @@
           "link": "https://finance.yahoo.com/m/9025bf5f-47bd-35cc-a90f-80a68daef480/intuit-earnings-signal-that.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-20T21:31:00.000Z"
-        },
-        {
-          "title": "A $3.7 Billion Reason Why Intuit Stock Is Down Today",
-          "link": "https://www.barchart.com/story/news/8942273/a-3-7-billion-reason-why-intuit-stock-is-down-today?.tsrc=rss",
-          "source": "barchart.com",
-          "at": "2026-11-20T20:48:38.000Z"
         }
       ],
       "actions": [
@@ -323,6 +323,12 @@
     },
     "MSFT": {
       "news": [
+        {
+          "title": "Microsoft Was The Only Big AI Buyer Paying Down Debt. How Much More Can It Spend?",
+          "link": "https://www.trefis.com/stock/msft/articles/627454/microsoft-was-the-only-big-ai-buyer-paying-down-debt-how-much-more-can-it-spend/2026-11-21?.tsrc=rss",
+          "source": "trefis.com",
+          "at": "2026-11-21T18:32:03.000Z"
+        },
         {
           "title": "A $1.3 Billion Fund Just Bought These 3 Stocks",
           "link": "https://www.tikr.com/blog/a-1-3-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261121-5m5mfwj7&.tsrc=rss",
@@ -346,12 +352,6 @@
           "link": "https://247wallst.com/investing/2026/11/21/feds-lisa-cook-warns-of-larger-rate-hikes-ahead/?.tsrc=rss",
           "source": "247wallst.com",
           "at": "2026-11-21T16:03:16.000Z"
-        },
-        {
-          "title": "A $12 Billion Fund Just Bought These 3 Stocks",
-          "link": "https://www.tikr.com/blog/a-12-billion-fund-just-bought-these-3-stocks-2?ref=yahoofinance&tlnk=yf-261121-99975xff&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-11-21T14:51:03.000Z"
         }
       ],
       "actions": [
@@ -372,40 +372,46 @@
     "AMZN": {
       "news": [
         {
+          "title": "The Ultimate Growth Stock to Buy With $1,000 Before the End of November",
+          "link": "https://www.fool.com/investing/2026/11/21/the-ultimate-growth-stock-to-buy-with-usd1-000-before-the-end-of-november/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-22T00:20:03.000Z"
+        },
+        {
+          "title": "A $2.2 Billion Fund Just Bought These 3 Stocks",
+          "link": "https://www.tikr.com/blog/a-2-2-billion-fund-just-bought-these-3-stocks-2?ref=yahoofinance&tlnk=yf-261121-75qm98f6&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-21T19:35:35.000Z"
+        },
+        {
+          "title": "Amazon tells NYC shoppers a Mamdani-backed delivery bill could cost them up to $664 a year per household",
+          "link": "https://finance.yahoo.com/economy/policy/articles/amazon-tells-nyc-shoppers-mamdani-193000343.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-21T19:30:00.000Z"
+        },
+        {
+          "title": "Cathie Wood Just Sold $9 Million of Amazon",
+          "link": "https://www.tikr.com/blog/cathie-wood-just-sold-9-million-of-amazon?ref=yahoofinance&tlnk=yf-261121-44jm86mg&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-21T19:05:34.000Z"
+        },
+        {
           "title": "Buy Microsoft and Amazon at More Than 70x 2028 Free Cash Flow? Here’s What Their Capex Must Return",
           "link": "https://www.tikr.com/blog/buy-microsoft-and-amazon-at-more-than-70x-2028-free-cash-flow-heres-what-their-capex-must-return?ref=yahoofinance&tlnk=yf-261121-crqwjg7c&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-11-21T16:20:38.000Z"
-        },
-        {
-          "title": "Bank of America doubles down on Amazon stock ahead of 2027",
-          "link": "https://www.thestreet.com/investing/stocks/bank-of-america-doubles-down-on-amazon-stock-ahead-of-2027?.tsrc=rss",
-          "source": "thestreet.com",
-          "at": "2026-11-21T16:07:00.000Z"
-        },
-        {
-          "title": "Jim Cramer: Amazon Could Sell Its Anthropic Stake and Say “Our CapEx Is Paid For.” Does the Math Work?",
-          "link": "https://www.tikr.com/blog/jim-cramer-amazon-could-sell-its-anthropic-stake-and-say-our-capex-is-paid-for-does-the-math-work?ref=yahoofinance&tlnk=yf-261121-jx78vhmx&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-11-21T15:05:56.000Z"
-        },
-        {
-          "title": "Amazon.com (AMZN) Warns It Could Exit New York City Deliveries",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-com-amzn-warns-could-140724430.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-21T14:07:24.000Z"
-        },
-        {
-          "title": "Hank Paulson Has “Never Seen So Much Money Chasing One Opportunity.” That’s a Problem for Microsoft, Amazon and Alphabet",
-          "link": "https://www.tikr.com/blog/hank-paulson-has-never-seen-so-much-money-chasing-one-opportunity-thats-a-problem-for-microsoft-amazon-and-alphabet?ref=yahoofinance&tlnk=yf-261121-2ch8r4jc&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-11-21T13:46:13.000Z"
         }
       ],
       "actions": []
     },
     "NDAQ": {
       "news": [
+        {
+          "title": "Nasdaq Starts Charging for Financial Crime AI Agents as 850 Customers Sign On",
+          "link": "https://www.marketbeat.com/instant-alerts/event-nasdaq-starts-charging-for-financial-crime-ai-agents-as-850-customers-sign-on-2026-11-21/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
+          "source": "marketbeat.com",
+          "at": "2026-11-21T20:12:08.000Z"
+        },
         {
           "title": "Nasdaq Rises on Record Recurring Revenue",
           "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-rises-record-recurring-revenue-163545422.html?.tsrc=rss",
@@ -429,12 +435,6 @@
           "link": "https://www.trefis.com/stock/cpng/articles/625841/what-moved-coupang-stock-over-5-lower/2026-11-18?.tsrc=rss",
           "source": "trefis.com",
           "at": "2026-11-18T23:42:56.000Z"
-        },
-        {
-          "title": "Roblox Stock Fell Nearly 8%. What Happened?",
-          "link": "https://www.trefis.com/stock/rblx/articles/625794/why-did-roblox-stock-fall-nearly-8/2026-11-17?.tsrc=rss",
-          "source": "trefis.com",
-          "at": "2026-11-17T14:40:49.000Z"
         }
       ],
       "actions": [
