@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-22T18:58:23.435Z",
+  "at": "2026-11-23T01:22:11.542Z",
   "market": {
     "IN": [
       {
@@ -121,6 +121,12 @@
   "symbols": {
     "TCS.NS": {
       "news": [
+        {
+          "title": "CORPWATCH: India's IT giants turn captive tech centres into billion-dollar deals",
+          "link": "http://www.intellinews.com/corpwatch-india-s-it-giants-turn-captive-tech-centres-into-billion-dollar-deals-487312/?.tsrc=rss",
+          "source": "intellinews.com",
+          "at": "2026-11-23T00:51:18.000Z"
+        },
         {
           "title": "Financial Process Management Market 2026: Size, Share, Trends, and Forecast to 2030 | Capitalize on $13.11B AI and Cloud Growth with Accenture, IBM, TCS, NTT DATA, and Capgemini",
           "link": "https://finance.yahoo.com/technology/articles/financial-process-management-market-2026-145100629.html?.tsrc=rss",
@@ -324,6 +330,18 @@
     "MSFT": {
       "news": [
         {
+          "title": "15% of parents already cut college savings after Microsoft AI CEO told a mom 'probably not' to bother saving",
+          "link": "https://finance.yahoo.com/technology/ai/articles/15-parents-already-cut-college-211500548.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-22T21:15:00.000Z"
+        },
+        {
+          "title": "Bank of America sends strong signal to Microsoft stock investors",
+          "link": "https://www.thestreet.com/investing/stocks/bank-of-america-sends-strong-signal-to-microsoft-stock-investors?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-11-22T19:03:00.000Z"
+        },
+        {
           "title": "Is Microsoft (MSFT) Building A Bigger AI Role In Scientific Labs?",
           "link": "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-building-bigger-ai-160715680.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -340,18 +358,6 @@
           "link": "https://www.tikr.com/blog/a-3-1-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261122-x5gqq5xg&.tsrc=rss",
           "source": "tikr.com",
           "at": "2026-11-22T11:20:52.000Z"
-        },
-        {
-          "title": "A $1.2 Billion Fund Just Bought These 3 Stocks",
-          "link": "https://www.tikr.com/blog/a-1-2-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261122-77qr38x6&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-11-22T11:20:01.000Z"
-        },
-        {
-          "title": "A $4.4 Billion Fund Just Bought These 3 Stocks",
-          "link": "https://www.tikr.com/blog/a-4-4-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261122-fp25684g&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-11-22T11:17:21.000Z"
         }
       ],
       "actions": [
