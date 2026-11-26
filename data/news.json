@@ -1,7 +1,42 @@
 {
-  "at": "2026-11-25T16:42:57.910Z",
+  "at": "2026-11-26T01:28:52.332Z",
   "market": {
     "IN": [
+      {
+        "title": "Volatility-weary US investors side swiped as tariff mayhem adds to tech pain",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/volatility-weary-us-investors-side-swiped-as-tariff-mayhem-adds-to-tech-pain/articleshow/136175666.cms",
+        "source": "Economic Times",
+        "at": "2026-11-26T01:04:00.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "S&P warns Nvidia's board may be compromised, puts chipmaker's rating on downgrade watch",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/sp-warns-nvidias-board-may-be-compromised-puts-chipmakers-rating-on-downgrade-watch/articleshow/136175537.cms",
+        "source": "Economic Times",
+        "at": "2026-11-26T00:48:46.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Global Market Today: Asian equities advance after late rebound in US stocks",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-today-asian-equities-advance-after-late-rebound-in-us-stocks/articleshow/136175415.cms",
+        "source": "Economic Times",
+        "at": "2026-11-26T00:42:44.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Fed survey shows continued growth and sticky inflation in recent weeks",
+        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/fed-survey-shows-continued-growth-and-sticky-inflation-in-recent-weeks/articleshow/136172166.cms",
+        "source": "Economic Times",
+        "at": "2026-11-25T20:07:37.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Copper slumps to lowest in 11 months as investors flee",
+        "link": "https://economictimes.indiatimes.com/markets/commodities/copper-slumps-to-lowest-in-11-months-as-investors-flee/articleshow/136172100.cms",
+        "source": "Economic Times",
+        "at": "2026-11-25T19:53:49.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Carlyle pares 7.4% stake in Piramal Pharma for over Rs 2,211 crore",
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/carlyle-pares-7-4-stake-in-piramal-pharma-for-over-rs-2211-crore/articleshow/136165837.cms",
@@ -22,44 +57,16 @@
         "source": "Economic Times",
         "at": "2026-11-25T13:49:47.000Z",
         "market": "Indian markets"
-      },
-      {
-        "title": "RBI net buyer of dollars for fourth straight month in September, data shows",
-        "link": "https://economictimes.indiatimes.com/markets/forex/forex-news/rbi-net-buyer-of-dollars-for-fourth-straight-month-in-september-data-shows/articleshow/136163192.cms",
-        "source": "Economic Times",
-        "at": "2026-11-25T13:19:28.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "US Stock Market Live Updates: Dow Jones plunges 550 pts, Nasdaq over 3% as AI rout intensifies",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/stock-market-live-updates-dow-jones-nasdaq-sp-500-nvidia-alphabet-amazon-anthropic-dell-inflation-fed-rate-hike-gold-treasury-yield-news-25th-november-2026/liveblog/136163404.cms",
-        "source": "Economic Times",
-        "at": "2026-11-25T13:12:55.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "SEBI eases KYC norms, centralises supplementary client data to simplify onboarding",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/sebi-eases-kyc-norms-centralises-supplementary-client-data-to-simplify-onboarding/articleshow/136162936.cms",
-        "source": "Economic Times",
-        "at": "2026-11-25T13:11:00.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Sebi mulls early payout of up to 80% of sale proceeds to FPOs in commodity derivatives market",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/sebi-mulls-early-payout-of-up-to-80-of-sale-proceeds-to-fpos-in-commodity-derivatives-market/articleshow/136162861.cms",
-        "source": "Economic Times",
-        "at": "2026-11-25T13:09:04.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "RBI may opt for 25 bps rate hike as oil eases, inflation risks persist: Baroda BNP Paribas MF CIO",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/news/rbi-may-opt-for-25-bps-rate-hike-as-oil-eases-inflation-risks-persist-baroda-bnp-paribas-mf-cio/articleshow/136162711.cms",
-        "source": "Economic Times",
-        "at": "2026-11-25T13:06:00.000Z",
-        "market": "Indian markets"
       }
     ],
     "GLOBAL": [
+      {
+        "title": "European Stocks Close Lower Wednesday; German GDP Growth Slows More Than Expected",
+        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-close-lower-wednesday-165912635.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-11-25T16:59:12.000Z",
+        "market": "European markets"
+      },
       {
         "title": "European Stocks Close Lower in Tuesday Trading as Tech Stocks Lose Steam After Monday's Rally",
         "link": "https://finance.yahoo.com/markets/stocks/articles/european-stocks-close-lower-tuesday-165213431.html?.tsrc=rss",
@@ -108,19 +115,18 @@
         "source": "finance.yahoo.com",
         "at": "2026-11-20T16:47:11.000Z",
         "market": "European markets"
-      },
-      {
-        "title": "FTSE 100 today: Stocks plunge to worst week since March on tech, metals rout",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-fall-085409825.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-11-20T08:54:09.000Z",
-        "market": "European markets"
       }
     ]
   },
   "symbols": {
     "TCS.NS": {
       "news": [
+        {
+          "title": "TransConnect Services (TCS) Achieves World-Class Client Loyalty with a Net Promoter Score of 78",
+          "link": "https://finance.yahoo.com/small-business/articles/transconnect-services-tcs-achieves-world-192300630.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-25T19:23:00.000Z"
+        },
         {
           "title": "CORPWATCH: India's IT giants turn captive tech centres into billion-dollar deals",
           "link": "http://www.intellinews.com/corpwatch-india-s-it-giants-turn-captive-tech-centres-into-billion-dollar-deals-487312/?.tsrc=rss",
@@ -317,34 +323,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Prediction: IREN’s Microsoft Deal Could Be Just the Beginning of Its Next Growth Phase",
-          "link": "https://247wallst.com/investing/2026/11/25/prediction-irens-microsoft-deal-could-be-just-the-beginning-of-its-next-growth-phase-massive-upside-ahead/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-11-25T16:33:59.000Z"
-        },
-        {
-          "title": "Microsoft Stocks Fall 2.53% as Hyperscalers Join AI Selloff",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-stocks-fall-2-53-154006144.html?.tsrc=rss",
+          "title": "Japan's biggest banks pick Solana as Fidelity adds DeFi tokens",
+          "link": "https://finance.yahoo.com/video/japans-biggest-banks-pick-solana-as-fidelity-adds-defi-tokens-222056705.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-25T15:40:06.000Z"
+          "at": "2026-11-25T17:00:00.000Z"
         },
         {
-          "title": "Stirlingshire Investments Appoints Daniel Gicklhorn as Chief Technology Officer",
-          "link": "https://finance.yahoo.com/technology/articles/stirlingshire-investments-appoints-daniel-gicklhorn-151300914.html?.tsrc=rss",
+          "title": "Microsoft's Green Card Filings Reveal A Striking Pattern After Mass Layoffs. Trump's New Rule Could Freeze Sponsorships For Two Years.",
+          "link": "https://www.ibtimes.com/microsoft-green-card-filings-after-2025-layoffs-3810211?.tsrc=rss",
+          "source": "ibtimes.com",
+          "at": "2026-11-25T23:48:07.000Z"
+        },
+        {
+          "title": "Trump Has A Message for Big Tech Firms Like Amazon, Google and Microsoft Building Data Centers Abroad: ‘We’re Going to Put A Tremendous Tax On Them’",
+          "link": "https://finance.yahoo.com/economy/policy/articles/trump-message-big-tech-firms-223005233.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-25T15:13:00.000Z"
+          "at": "2026-11-25T22:30:05.000Z"
         },
         {
-          "title": "Bright Horizon utility lands Microsoft data center deals amid Wyoming buildout",
-          "link": "https://www.utilitydive.com/news/cheyenne-light-microsoft-google-data-center-bright-horizon/875739/?.tsrc=rss",
-          "source": "utilitydive.com",
-          "at": "2026-11-25T15:00:39.000Z"
+          "title": "Bill Ackman, George Soros and 5 Other Famous Investors Own Microsoft. Here’s Who Bought and Sold Recently",
+          "link": "https://www.tikr.com/blog/bill-ackman-george-soros-and-5-other-famous-investors-own-microsoft-heres-who-bought-and-sold-recently?ref=yahoofinance&tlnk=yf-261125-hv5wfr5m&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-25T20:50:22.000Z"
         },
         {
-          "title": "Digital Twins in Healthcare Market to worth USD 101.19 Billion by 2031, at a CAGR of 68.4% – MarketsandMarkets™",
-          "link": "https://finance.yahoo.com/healthcare/articles/digital-twins-healthcare-market-worth-150000405.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-25T15:00:00.000Z"
+          "title": "Satya Nadella Says “the Floor of Cyber Attacks Has Fallen.” Microsoft Just Declared Code Red After a 24-Hour Outage",
+          "link": "https://www.tikr.com/blog/satya-nadella-says-the-floor-of-cyber-attacks-has-fallen-microsoft-just-declared-code-red-after-a-24-hour-outage?ref=yahoofinance&tlnk=yf-261125-gxp284g5&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-25T18:03:36.000Z"
         }
       ],
       "actions": [
@@ -365,34 +371,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Amazon and Meta are negotiating the future of AI shopping. Consumers aren't quite there yet.",
-          "link": "https://finance.yahoo.com/technology/article/amazon-and-meta-are-negotiating-the-future-of-ai-shopping-consumers-arent-quite-there-yet-144215428.html?.tsrc=rss",
+          "title": "Jensen Huang's return, neocloud risk, and a holiday retail rally",
+          "link": "https://finance.yahoo.com/video/jensen-huangs-return-neocloud-risk-and-a-holiday-retail-rally-222042649.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-25T14:42:15.000Z"
+          "at": "2026-11-25T21:00:00.000Z"
         },
         {
-          "title": "Amazon, Meta reportedly in talks to remove block on Muse AI agent",
-          "link": "https://finance.yahoo.com/video/amazon-meta-reportedly-in-talks-to-remove-block-on-muse-ai-agent-143616531.html?.tsrc=rss",
+          "title": "Nvidia is cheap on paper, so why won't the market buy it?",
+          "link": "https://finance.yahoo.com/video/nvidia-is-cheap-on-paper-so-why-wont-the-market-buy-it-192215326.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-25T14:36:16.000Z"
+          "at": "2026-11-25T19:22:15.000Z"
         },
         {
-          "title": "Amazon Wants a 'Fair Exchange' Before Letting Muse Back In",
-          "link": "https://finance.yahoo.com/technology/articles/amazon-wants-fair-exchange-letting-163449964.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-25T16:34:49.000Z"
+          "title": "Bill Gurley: Investors Weren’t “Scrambling to Actually Own Anthropic.” That’s a Problem for Amazon and Alphabet",
+          "link": "https://www.tikr.com/blog/bill-gurley-investors-werent-scrambling-to-actually-own-anthropic-thats-a-problem-for-amazon-and-alphabet?ref=yahoofinance&tlnk=yf-261125-5qg4553j&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-25T23:43:06.000Z"
         },
         {
-          "title": "Amazon Makes Major Move Into Car Sales Beyond U.S.",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-makes-major-move-car-163032877.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-25T16:30:32.000Z"
+          "title": "Musk's Plan To Put 1 Million AI Satellites In Orbit Gets US Approval. Amazon Questions Whether It Can Be Done.",
+          "link": "https://www.ibtimes.com/fcc-approves-spacex-ai-satellite-constellation-3810209?.tsrc=rss",
+          "source": "ibtimes.com",
+          "at": "2026-11-25T23:16:30.000Z"
         },
         {
-          "title": "Amazon and Meta Face Major Showdown Over the Future of AI Shopping",
-          "link": "https://finance.yahoo.com/technology/ai/articles/amazon-meta-face-major-showdown-155254367.html?.tsrc=rss",
+          "title": "Trump Has A Message for Big Tech Firms Like Amazon, Google and Microsoft Building Data Centers Abroad: ‘We’re Going to Put A Tremendous Tax On Them’",
+          "link": "https://finance.yahoo.com/economy/policy/articles/trump-message-big-tech-firms-223005233.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-25T15:52:54.000Z"
+          "at": "2026-11-25T22:30:05.000Z"
         }
       ],
       "actions": []
