@@ -1,7 +1,35 @@
 {
-  "at": "2026-11-27T16:01:32.377Z",
+  "at": "2026-11-28T00:59:44.012Z",
   "market": {
     "IN": [
+      {
+        "title": "OPEC+ set to keep oil production targets steady: Report",
+        "link": "https://economictimes.indiatimes.com/markets/commodities/opec-set-to-keep-oil-production-targets-steady-report/articleshow/136232084.cms",
+        "source": "Economic Times",
+        "at": "2026-11-27T18:46:42.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Copper sweeps higher as China offers stock market support",
+        "link": "https://economictimes.indiatimes.com/markets/commodities/copper-sweeps-higher-as-china-offers-stock-market-support/articleshow/136232015.cms",
+        "source": "Economic Times",
+        "at": "2026-11-27T18:43:45.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Gold pares gains as Fed-hike risks linger, eyes first weekly rise in three weeks",
+        "link": "https://economictimes.indiatimes.com/markets/commodities/gold-pares-gains-as-fed-hike-risks-linger-eyes-first-weekly-rise-in-three-weeks/articleshow/136231951.cms",
+        "source": "Economic Times",
+        "at": "2026-11-27T18:39:27.000Z",
+        "market": "Indian markets"
+      },
+      {
+        "title": "Blackstone sells 1.55% stake in IGI for Rs 280 crore to meet public shareholding norms",
+        "link": "https://economictimes.indiatimes.com/markets/stocks/news/blackstone-sells-1-55-stake-in-igi-for-rs-280-crore-to-meet-public-shareholding-norms/articleshow/136228297.cms",
+        "source": "Economic Times",
+        "at": "2026-11-27T16:33:18.000Z",
+        "market": "Indian markets"
+      },
       {
         "title": "Capital market industry hopes for relief in capital gains taxation in Budget 2027-28: Axis Capital MD",
         "link": "https://economictimes.indiatimes.com/markets/stocks/news/capital-market-industry-hopes-for-relief-in-capital-gains-taxation-in-budget-2027-28-axis-capital-md/articleshow/136224186.cms",
@@ -10,7 +38,7 @@
         "market": "Indian markets"
       },
       {
-        "title": "US stocks edge higher as battered AI shares claw back losses: Stock Market Live Updates",
+        "title": "Nasdaq jumps 2%, Dow gains 600 pts as US stocks log weekly gains: Stock Market Live Updates",
         "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/stock-market-live-updates-dow-jones-nasdaq-sp-500-gold-silver-price-coreqeave-nebius-meta-nvidia-ai-stocks-fed-rate-hike-treasury-yield-news-27th-november-2026/liveblog/136223511.cms",
         "source": "Economic Times",
         "at": "2026-11-27T12:46:59.000Z",
@@ -29,46 +57,25 @@
         "source": "Economic Times",
         "at": "2026-11-27T11:01:59.000Z",
         "market": "Indian markets"
-      },
-      {
-        "title": "Eurozone bond yields rise as investors return to riskier assets, oil prices rebound",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/eurozone-bond-yields-rise-as-investors-return-to-riskier-assets-oil-prices-rebound/articleshow/136218279.cms",
-        "source": "Economic Times",
-        "at": "2026-11-27T10:26:25.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Rupee rally takes a hit as AI trade revival dents shares, currency sees weekly dip",
-        "link": "https://economictimes.indiatimes.com/markets/forex/rupee-rally-takes-a-hit-as-ai-trade-revival-dents-shares-currency-sees-weekly-dip/articleshow/136218142.cms",
-        "source": "Economic Times",
-        "at": "2026-11-27T10:23:05.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "Can SpaceX's AI ambitions drive further upside in its stock?",
-        "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/can-spacexs-ai-ambitions-drive-further-upside-in-its-stock/slideshow/136213079.cms",
-        "source": "Economic Times",
-        "at": "2026-11-27T06:53:29.000Z",
-        "market": "Indian markets"
-      },
-      {
-        "title": "RIL Share Price Live Updates: RIL Stock Price History",
-        "link": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ril-share-price-today-live-updates-27-nov-2026/liveblog/136212220.cms",
-        "source": "Economic Times",
-        "at": "2026-11-27T06:33:08.000Z",
-        "market": "Indian markets"
       }
     ],
     "GLOBAL": [
       {
-        "title": "FTSE 100 today: Stocks rise as miners lead on metals rebound; Entain leads gains",
+        "title": "European Stocks Close Higher Friday as Mining, Tech, Banking Shares Advance",
+        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-close-higher-friday-165243118.html?.tsrc=rss",
+        "source": "finance.yahoo.com",
+        "at": "2026-11-27T16:52:43.000Z",
+        "market": "European markets"
+      },
+      {
+        "title": "FTSE 100 today: Stocks climb as miners lead on metals rebound; Entain gains",
         "link": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-rise-085208572.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-11-27T08:52:08.000Z",
         "market": "European markets"
       },
       {
-        "title": "European shares extend rally, but bruising November leaves AI scars",
+        "title": "European shares extend rise, but bruising November leaves AI scars",
         "link": "https://finance.yahoo.com/markets/stocks/articles/european-shares-extend-rally-bruising-083741729.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-11-27T08:37:41.000Z",
@@ -107,13 +114,6 @@
         "link": "https://finance.yahoo.com/markets/stocks/articles/asian-shares-rebound-led-ai-052153058.html?.tsrc=rss",
         "source": "finance.yahoo.com",
         "at": "2026-11-26T05:21:53.000Z",
-        "market": "European markets"
-      },
-      {
-        "title": "European Stocks Close Lower Wednesday; German GDP Growth Slows More Than Expected",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/european-stocks-close-lower-wednesday-165912635.html?.tsrc=rss",
-        "source": "finance.yahoo.com",
-        "at": "2026-11-25T16:59:12.000Z",
         "market": "European markets"
       }
     ]
@@ -311,34 +311,34 @@
     "MSFT": {
       "news": [
         {
-          "title": "Anthropic, Meta and Microsoft Join AI Data Center Talks in Japan",
-          "link": "https://finance.yahoo.com/technology/ai/articles/anthropic-meta-microsoft-join-ai-143801446.html?.tsrc=rss",
+          "title": "Microsoft Stocks Rise 0.26% as Code Red Targets One-Hour Outage Recovery",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/microsoft-stocks-rise-0-26-182320294.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-27T14:38:01.000Z"
+          "at": "2026-11-27T18:23:20.000Z"
         },
         {
-          "title": "Privacy-Enhancing Computation Market to Reach $16.49 Billion by 2030 as Data Protection Demand Accelerates - Microsoft, IBM, Cisco, and Oracle Accelerate AI, FHE, and Cloud Security",
-          "link": "https://finance.yahoo.com/technology/ai/articles/privacy-enhancing-computation-market-reach-143600579.html?.tsrc=rss",
+          "title": "Did Billionaire Bill Ackman Lose Confidence in Microsoft? The Answer Might Surprise You",
+          "link": "https://www.fool.com/investing/2026/11/27/did-billionaire-bill-ackman-lose-confidence-in-microsoft-the-answer-might-surprise-you/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-27T17:20:02.000Z"
+        },
+        {
+          "title": "Why Is Microsoft (MSFT) Down 7.6% Since Last Earnings Report?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/why-microsoft-msft-down-7-153027471.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-27T14:36:00.000Z"
+          "at": "2026-11-27T15:30:27.000Z"
         },
         {
-          "title": "AI Powered Supply Chain Planning Software Market Report 2026 | Capitalize on 24.8% CAGR and $26.72B in Revenue by 2030 with Microsoft, Oracle, SAP and IBM",
-          "link": "https://finance.yahoo.com/technology/ai/articles/ai-powered-supply-chain-planning-143200996.html?.tsrc=rss",
+          "title": "IREN (NasdaqGS:IREN) Stock Sees Modest Fair Value Cut After AI Cloud Sentiment Swings",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/iren-nasdaqgs-iren-stock-sees-190922720.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-27T14:32:00.000Z"
+          "at": "2026-11-27T19:09:22.000Z"
         },
         {
-          "title": "Near-Equal ~$664B–$678B Backlogs: Why Oracle’s AI Concentration Risk Differs From Microsoft’s",
-          "link": "https://247wallst.com/investing/2026/11/27/near-equal-664b-678b-backlogs-why-oracles-ai-concentration-risk-differs-from-microsofts/?.tsrc=rss",
-          "source": "247wallst.com",
-          "at": "2026-11-27T13:45:37.000Z"
-        },
-        {
-          "title": "Exploits Arrive in “10 to 15 Minutes,” Patches in 45 Days, per Cisco’s Jeetu Patel. Cue CrowdStrike",
-          "link": "https://www.tikr.com/blog/exploits-arrive-in-10-to-15-minutes-patches-in-45-days-per-ciscos-jeetu-patel-cue-crowdstrike?ref=yahoofinance&tlnk=yf-261127-27866rp2&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-11-27T13:35:36.000Z"
+          "title": "What Does Alphabet (GOOGL) Need To Prove After The Air Force Cloud Breach?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/does-alphabet-googl-prove-air-181025421.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-27T18:10:25.000Z"
         }
       ],
       "actions": [
@@ -359,34 +359,34 @@
     "AMZN": {
       "news": [
         {
-          "title": "Anthropic, Meta and Microsoft Join AI Data Center Talks in Japan",
-          "link": "https://finance.yahoo.com/technology/ai/articles/anthropic-meta-microsoft-join-ai-143801446.html?.tsrc=rss",
+          "title": "Amazon, Target and Walmart Chase Holiday Toy Spending",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-target-walmart-chase-holiday-195308961.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-27T14:38:01.000Z"
+          "at": "2026-11-27T19:53:08.000Z"
         },
         {
-          "title": "Market Chatter: Hackers Breach US Air Force Cloud Platform Powered by Microsoft, Amazon, Oracle, Alphabet",
-          "link": "https://finance.yahoo.com/technology/articles/market-chatter-hackers-breach-us-122132707.html?.tsrc=rss",
+          "title": "Amazon’s AWS Profit Rose 55%. Can It Absorb a $220 Billion Capex Bill?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-aws-profit-rose-55-191859418.html?.tsrc=rss",
           "source": "finance.yahoo.com",
-          "at": "2026-11-27T12:21:32.000Z"
+          "at": "2026-11-27T19:18:59.000Z"
         },
         {
-          "title": "Amazon Blocked Meta’s Muse Two Months Ago. Now It’s in Talks to Let It Shop, and Walmart Already Did",
-          "link": "https://www.tikr.com/blog/amazon-blocked-metas-muse-two-months-ago-now-its-in-talks-to-let-it-shop-and-walmart-already-did?ref=yahoofinance&tlnk=yf-261127-c9m256qx&.tsrc=rss",
-          "source": "tikr.com",
-          "at": "2026-11-27T11:52:43.000Z"
+          "title": "Amazon Stocks Climb 2.96% as Thanksgiving Online Spending Hits $7.1 Billion",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-stocks-climb-2-96-190908869.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-27T19:09:08.000Z"
         },
         {
-          "title": "Is Meta Stock a Buy as Amazon Reportedly Weighs Letting Its AI Shopping Agent Back In?",
-          "link": "https://www.fool.com/investing/2026/11/27/is-meta-stock-a-buy-as-amazon-reportedly-weighs-letting-its-ai-shopping-agent-back-in/?.tsrc=rss",
+          "title": "Jeff Bezos makes a $200 million move involving Amazon stock",
+          "link": "https://www.thestreet.com/investing/jeff-bezos-amazon-stock-charitable-donation?.tsrc=rss",
+          "source": "thestreet.com",
+          "at": "2026-11-27T19:03:00.000Z"
+        },
+        {
+          "title": "The Best 3 Stocks to Buy in December to Hold Into 2027",
+          "link": "https://www.fool.com/investing/2026/11/27/the-best-3-stocks-to-buy-in-december-to-hold-into-2027/?.tsrc=rss",
           "source": "fool.com",
-          "at": "2026-11-27T11:33:02.000Z"
-        },
-        {
-          "title": "What iShares Russell 1000 Value (IWD) Bought: Apple Leads on Nov. 25",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/ishares-russell-1000-value-iwd-110429616.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-27T11:04:29.000Z"
+          "at": "2026-11-27T17:57:02.000Z"
         }
       ],
       "actions": []
@@ -418,10 +418,10 @@
           "at": "2026-11-21T20:12:08.000Z"
         },
         {
-          "title": "Nasdaq Rises on Record Recurring Revenue",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-rises-record-recurring-revenue-163545422.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-20T16:35:45.000Z"
+          "title": "A $4.3 Billion Fund Just Bought These 3 Stocks",
+          "link": "https://www.tikr.com/blog/a-4-3-billion-fund-just-bought-these-3-stocks-2?ref=yahoofinance&tlnk=yf-261124-693q4x6g&.tsrc=rss",
+          "source": "tikr.com",
+          "at": "2026-11-23T22:20:28.000Z"
         }
       ],
       "actions": [
@@ -436,6 +436,24 @@
     "NOW": {
       "news": [
         {
+          "title": "Baron Fund Reestablishes Position in ServiceNow (NOW) Following Attractive Valuation Pullback",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/baron-fund-reestablishes-position-servicenow-164101736.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-27T16:41:01.000Z"
+        },
+        {
+          "title": "ServiceNow vs. Synopsys: Which Technology Stock Is a Better Buy for 2027?",
+          "link": "https://www.fool.com/coverage/better-buy/2026/11/27/servicenow-vs-synopsys-which-technology-stock-is-a-better-buy-for-2027/?.tsrc=rss",
+          "source": "fool.com",
+          "at": "2026-11-27T15:56:04.000Z"
+        },
+        {
+          "title": "ServiceNow (NOW) Down 16% Since Last Earnings Report: Can It Rebound?",
+          "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-now-down-16-since-153017193.html?.tsrc=rss",
+          "source": "finance.yahoo.com",
+          "at": "2026-11-27T15:30:17.000Z"
+        },
+        {
           "title": "ServiceNow (NOW) Stock May Be Fully Priced As AI Risks Hit Software",
           "link": "https://finance.yahoo.com/technology/ai/articles/servicenow-now-stock-may-fully-090902140.html?.tsrc=rss",
           "source": "finance.yahoo.com",
@@ -446,24 +464,6 @@
           "link": "https://finance.yahoo.com/technology/ai/articles/global-risk-analysis-management-market-142700333.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-25T14:27:00.000Z"
-        },
-        {
-          "title": "Anthropic falls below IPO price as Nvidia gives back gains",
-          "link": "https://finance.yahoo.com/video/anthropic-falls-below-ipo-price-as-nvidia-gives-back-gains-214558309.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-24T21:45:58.000Z"
-        },
-        {
-          "title": "Global Workflow Market Size, Trends, and Forecast Report 2026 | Capitalize on 22.5% CAGR as IBM, Oracle, SAP, ServiceNow, and Appian Accelerate AI and Cloud Automation Through 2030",
-          "link": "https://finance.yahoo.com/technology/articles/global-workflow-market-size-trends-143400424.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-24T14:34:00.000Z"
-        },
-        {
-          "title": "Leading CHROs and Business Executives to Convene at i4cp's 2027 Next Practices Now Conference",
-          "link": "https://finance.yahoo.com/small-business/articles/leading-chros-business-executives-convene-212500658.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-23T21:25:00.000Z"
         }
       ],
       "actions": []
@@ -475,12 +475,6 @@
           "link": "https://finance.yahoo.com/markets/stocks/articles/share-buyback-transaction-details-november-090000691.html?.tsrc=rss",
           "source": "finance.yahoo.com",
           "at": "2026-11-26T09:00:00.000Z"
-        },
-        {
-          "title": "Wolters Kluwer (ENXTAM:WKL) Stock May Be Undervalued Despite Blue Chip IQ Launch",
-          "link": "https://finance.yahoo.com/markets/stocks/articles/wolters-kluwer-enxtam-wkl-stock-161443264.html?.tsrc=rss",
-          "source": "finance.yahoo.com",
-          "at": "2026-11-20T16:14:43.000Z"
         }
       ],
       "actions": [
